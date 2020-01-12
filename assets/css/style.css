@@ -1,0 +1,216 @@
+html,
+body,
+header,
+
+#intro {
+    height: 80%;    
+}
+
+#intro {
+    background: url("../image/landing_page.png")no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+.top-nav-collapse {
+  background-color: #7986cb;
+}
+
+@media (max-width: 991px) {
+  .navbar:not(.top-nav-collapse) {
+    background-color: #7986cb;
+  }
+}
+
+@media (min-width: 800px) and (max-width: 850px) {
+  .navbar:not(.top-nav-collapse) {
+    background-color: #7986cb;
+  }
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  overflow: overlay;
+}
+
+@font-face { font-family: title; src: url('../fonts/Economica-Regular.TTF'); } 
+@font-face { font-family: sans; src: url('../fonts/ComingSoon.TTF'); }
+@font-face { font-family: diskon; src: url('../fonts/FugazOne-Regular.TTF'); }
+
+.abs-center-x {
+    position: relative;    
+}
+
+@media (max-width: 991px){
+  .abs-center-x {
+      position: relative;
+      align-items: center;
+  }
+}
+
+.box-footer{ position: relative; width:100%; }
+.bg_footer{
+  background-image: url('../image/logo/logo_bg.png'); background-repeat: no-repeat; background-position: center; background-size: 15%;
+}
+
+@media (max-width: 800px){
+  .bg_footer{ background-size: 45%; }
+}
+
+.mt-footer {
+  margin-top: 40px;
+}
+
+@media (max-width: 800px){
+  .mt-footer{ margin-top: 0px; }
+}
+
+.box-logo{
+  position:absolute;
+  top:0; left:0;
+  width: 100%; height:100%;
+  box-sizing:border-box;
+}
+
+.icon_button{
+  display: inline-block;
+  width:75px; height:75px;
+  box-sizing: border-box;
+}
+
+.section-model{
+  display: block; box-sizing:border-box;
+  overflow:hidden;
+  width:100%; height: auto;
+}
+.section-model-container{
+  display:block; box-sizing:border-box;
+  width:100%; height:500px;
+  overflow:hidden;
+  position: relative;
+}
+
+.section-model-container .model-gallery{
+  display: block;
+  height:290.94px; line-height: 290.94px;
+  box-sizing: border-box;
+  position:absolute;
+  font-size:2em;
+  transform: rotateZ(-50deg);
+  text-align:center;
+  transition: 500ms;
+}
+
+.section-model-container .model-gallery:nth-child(1){ 
+  width:50vw; 
+  top:-30px; left:-250px;
+  background-image:url('../image/preview/1.png');
+  background-size:cover;
+  background-position:center;
+  background-repeat: no-repeat;
+}
+.section-model-container .model-gallery:nth-child(2){ 
+  width:65vw;
+  top:95px; left:-77px; 
+  background:#8FC782;
+}
+.section-model-container .model-gallery:nth-child(3){ 
+  width:70vw;
+  top:105px; left:260px; 
+  background-image:url('../image/preview/3.png');
+  background-size:cover;
+  background-position:top;
+  background-repeat: no-repeat;
+}
+.section-model-container .model-gallery:nth-child(4){ 
+  width:70vw;
+  top:90px; left:650px; 
+  background:#A1A9AA;
+}
+.section-model-container .model-gallery:nth-child(5){ 
+  width:50vw;
+  bottom:-1px; right:-395px;
+  background-image:url('../image/preview/4.png');
+  background-size:cover;
+  background-position:center;
+  background-repeat: no-repeat;
+}
+
+.link-footer a {
+  color: white;
+}
+
+.link-footer a:link{
+  text-decoration: none;
+  color: white;
+  transition: 0.4s;
+}
+
+.link-footer a:visited{  
+  color: white;
+}
+
+.link-footer a:hover{
+  color: #E1C3FF;
+  text-decoration: none;  
+  letter-spacing: 0.5px;  
+}
+
+.link-footer a:active{  
+  color: white;
+}
+
+/* Container needed to position the overlay. Adjust the width as needed */
+.container-c {
+  position: relative;
+  width: 100%;  
+}
+
+/* Make the image to responsive */
+.image-c {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+/* The overlay effect - lays on top of the container and over the image */
+.overlay-c {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  background: rgb(0, 0, 0);
+  background: rgba(0, 0, 230, 0.3); /* Black see-through */
+  color: #f1f1f1;
+  width: 40%;
+  transition: .5s ease;
+  opacity:1;
+  color: white;
+  font-size: 16px;
+  padding-top: 12px;
+  text-align: center;
+  border-radius: 10px 0px 0px 0px;
+}
+
+/* width */
+::-webkit-scrollbar {
+  opacity: 0.5;
+  width: 7px;
+  height: 7px;
+  transition: 0.4s;
+}
+
+/* Track */
+::-webkit-scrollbar-track {  
+  background: rgba(0, 0, 180, 0.2);
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #3F729B; 
+  border-radius: 20px;
+}
