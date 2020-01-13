@@ -98,7 +98,7 @@ if(isset($_GET['caritb2'])){
 						      <td><?= $data['harga_khusus']; ?></td>
 						      <td class="text-center">
 						      	<a href="edit-penumpang.php?tb=tb1&nomer=<?=$data['nomer']; ?>" role="button"><i class="far fa-edit text-warning mr-1"></i></a>
-						      	|<a href="delete_data.php?tb=tb1&nomer=<?=$data['nomer']; ?>" role="button" class="ml-2"><i class=" far fa-trash-alt red-text"></i></a>
+						      	|<a href="delete_data.php?tb=tb1&nomer=<?=$data['nomer']; ?>" role="button" class="ml-2" onclick="return confirm('Apakah Data Yang Dipilih Tetap Di Hapus ?')"><i class=" far fa-trash-alt red-text"></i></a>
 						      </td>						      
 						    </tr>	
 						    <?php endwhile; ?>				    
@@ -161,7 +161,7 @@ if(isset($_GET['caritb2'])){
 						      <td><?= $data['harga_khusus']; ?></td>
 						      <td class="text-center">
 						      	<a href="edit-penumpang.php?tb=tb2&nomer=<?=$data['nomer']; ?>" role="button"><i class="far fa-edit text-warning mr-1"></i></a>
-						      	|<a href="delete_data.php?tb=tb2&nomer=<?=$data['nomer']; ?>" role="button" class="ml-2"><i class=" far fa-trash-alt red-text"></i></a>
+						      	|<a href="delete_data.php?tb=tb2&nomer=<?=$data['nomer']; ?>" role="button" class="ml-2"><i class=" far fa-trash-alt red-text" onclick="return confirm('Apakah Data Yang Dipilih Tetap Di Hapus ?')"></i></a>
 						      </td>						      
 						    </tr>	
 						    <?php endwhile; ?>				    

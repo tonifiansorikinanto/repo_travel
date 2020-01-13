@@ -19,7 +19,7 @@ if(isset($_GET['nomer']) && isset($_GET['tb'])){
 }
 
 }else{
-	header('Location: login-admin.php')
+	header('Location: login-admin.php');
 }
 
 ?>
