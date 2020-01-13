@@ -25,7 +25,7 @@ if(isset($_GET['caritb2'])){
 <div class="container-fluid" style="padding-left: 0px; padding-right: 0px;">
 	<nav class="navbar navbar-dark default-color justify-content-between" style="position: sticky; top: 0; z-index: 9999999;">
 	  	<h2 class="navbar-brand h2-responsive my-0" href="#">Database Travel</h2>  
-	    <a href="logout.php" class="btn btn-danger btn-md my-0" type="button">logout</a>
+	    <a href="logout.php" class="btn btn-danger btn-md my-0" type="button" onclick="return confirm('Yakin Keluar ?')">logout</a>
 	</nav>
 
 	<div class="container-fluid">
