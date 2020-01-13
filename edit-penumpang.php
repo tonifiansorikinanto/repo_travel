@@ -138,7 +138,7 @@ if(isset($_POST['edit'])){
 							</div>		                  
 						</div>
 						<div align="right" class="my-4">
-			  				<button type="submit" name="edit" class="btn btn-warning btn-md" style="width: 130px;">Edit Data</button>
+			  				<button type="submit" name="edit" class="btn btn-warning btn-md" style="width: 130px;" onclick="return confirm('Yakin ingin merubah data ?')">Edit Data</button>
 			  				<a type="button" class="btn btn-info btn-md" href="admin.php" style="width: 130px;">Kembali</a>
 			  			</div>
 					</div>
