@@ -43,14 +43,18 @@ if(isset($_POST['edit'])){
 
 		if($table_name == "tb1"){
 			if(edit_data_tbSiluet($nomer, $namaEdit, $alamatEdit, $tglEdit, $jamEdit, $tujuanEdit, $lunasEdit, $harga_khususEdit)){
+				$_SESSION['report_message'] = report_message("success", "Berhasil Mengubah Data " . $namaEdit);
 				header('Location: admin.php');
 			}else{
+				$_SESSION['report_message'] = report_message("error", "Gagal Mengubah Data " . $namaEdit);
 				header('Location: edit-penumpang.php?tb=' . $table_name . '&nomer=' . $nomer . '');
 			}
 		}else{
 			if(edit_data_tbLiza($nomer, $namaEdit, $alamatEdit, $tglEdit, $jamEdit, $tujuanEdit, $lunasEdit, $harga_khususEdit)){
+				$_SESSION['report_message'] = report_message("success", "Berhasil Mengubah Data " . $namaEdit);
 				header('Location: admin.php');
 			}else{
+				$_SESSION['report_message'] = report_message("error", "Gagal Mengubah Data " . $namaEdit);
 				header('Location: edit-penumpang.php?tb=' . $table_name . '&nomer=' . $nomer . '');
 			}
 		}

@@ -28,6 +28,17 @@ if(isset($_GET['caritb2'])){
 	    <a href="logout.php" class="btn btn-danger btn-md my-0" type="button" onclick="return confirm('Yakin Keluar ?')">logout</a>
 	</nav>
 
+	<?php
+
+	if(isset($_SESSION['report_message'])){
+		echo $_SESSION['report_message'];
+		unset($_SESSION['report_message']);
+	}
+
+	?>
+
+	
+
 	<div class="container-fluid">
 		<div class="row justify-content-center mt-2 mb-4">
 			<div class="col-md-12">			
@@ -77,31 +88,37 @@ if(isset($_GET['caritb2'])){
 						    </tr>
 						  </thead>
 						  <tbody>
-						  	<?php while($data = mysqli_fetch_assoc($show_data_tbSiluet)): ?>
-						    <tr>
-						      <th scope="row"><?= $no1++; ?></th>
-						      <td><?= md5($data['nomer']); ?></td>
-						      <td><?= $data['nama']; ?></td>
-						      <td><?= $data['alamat']; ?></td>
-						      <td><?= $data['tanggal']; ?></td>
-						      <td><?= $data['jam']; ?></td>
-						      <td><?= $data['tujuan']; ?></td>
-						      <td>
-						      	<?php 
-						      	if($data['lunas'] == 1){
-						      		echo "Lunas";
-						      	}else if($data['lunas'] == 2){
-						      		echo "BA";
-						      	}
-						      	?>
-						      </td>
-						      <td><?= $data['harga_khusus']; ?></td>
-						      <td class="text-center">
-						      	<a href="edit-penumpang.php?tb=tb1&nomer=<?=$data['nomer']; ?>" role="button"><i class="far fa-edit text-warning mr-1"></i></a>
-						      	|<a href="delete_data.php?tb=tb1&nomer=<?=$data['nomer']; ?>" role="button" class="ml-2" onclick="return confirm('Apakah Data Yang Dipilih Tetap Di Hapus ?')"><i class=" far fa-trash-alt red-text"></i></a>
-						      </td>						      
-						    </tr>	
-						    <?php endwhile; ?>				    
+						  	<?php if(mysqli_num_rows($show_data_tbSiluet) > 0 ): ?>
+							  	<?php while($data = mysqli_fetch_assoc($show_data_tbSiluet)): ?>
+							    <tr>
+							      <th scope="row"><?= $no1++; ?></th>
+							      <td><?= md5($data['nomer']); ?></td>
+							      <td><?= $data['nama']; ?></td>
+							      <td><?= $data['alamat']; ?></td>
+							      <td><?= $data['tanggal']; ?></td>
+							      <td><?= $data['jam']; ?></td>
+							      <td><?= $data['tujuan']; ?></td>
+							      <td>
+							      	<?php 
+							      	if($data['lunas'] == 1){
+							      		echo "Lunas";
+							      	}else if($data['lunas'] == 2){
+							      		echo "BA";
+							      	}
+							      	?>
+							      </td>
+							      <td><?= $data['harga_khusus']; ?></td>
+							      <td class="text-center">
+							      	<a href="edit-penumpang.php?tb=tb1&nomer=<?=$data['nomer']; ?>" role="button"><i class="far fa-edit text-warning mr-1"></i></a>
+							      	|<a href="delete_data.php?tb=tb1&nomer=<?=$data['nomer']; ?>" role="button" class="ml-2" onclick="return confirm('Apakah Data Yang Dipilih Tetap Di Hapus ?')"><i class=" far fa-trash-alt red-text"></i></a>
+							      </td>						      
+							    </tr>	
+							    <?php endwhile; ?>
+							  <?php else: ?>	    
+							  <tr>
+							  	<td colspan="10" class="text-center"><b>Tidak ada data !</b></td>
+							  </tr>
+							 	<?php endif; ?>
 						  </tbody>
 						</table>
 					</div>
@@ -140,31 +157,37 @@ if(isset($_GET['caritb2'])){
 						    </tr>
 						  </thead>
 						  <tbody>
-						    <?php while($data = mysqli_fetch_assoc($show_data_tbLiza)): ?>
-						    <tr>
-						      <th scope="row"><?= $no2++; ?></th>
-						      <td><?= $data['nomer']; ?></td>
-						      <td><?= $data['nama']; ?></td>
-						      <td><?= $data['alamat']; ?></td>
-						      <td><?= $data['tanggal']; ?></td>
-						      <td><?= $data['jam']; ?></td>
-						      <td><?= $data['tujuan']; ?></td>
-						      <td>
-						      	<?php 
-						      	if($data['lunas'] == 1){
-						      		echo "Lunas";
-						      	}else if($data['lunas'] == 2){
-						      		echo "BA";
-						      	}
-						      	?>
-						      </td>
-						      <td><?= $data['harga_khusus']; ?></td>
-						      <td class="text-center">
-						      	<a href="edit-penumpang.php?tb=tb2&nomer=<?=$data['nomer']; ?>" role="button"><i class="far fa-edit text-warning mr-1"></i></a>
-						      	|<a href="delete_data.php?tb=tb2&nomer=<?=$data['nomer']; ?>" role="button" class="ml-2"><i class=" far fa-trash-alt red-text" onclick="return confirm('Apakah Data Yang Dipilih Tetap Di Hapus ?')"></i></a>
-						      </td>						      
-						    </tr>	
-						    <?php endwhile; ?>				    
+						  	<?php if(mysqli_num_rows($show_data_tbLiza) > 0 ): ?>
+							    <?php while($data = mysqli_fetch_assoc($show_data_tbLiza)): ?>
+							    <tr>
+							      <th scope="row"><?= $no2++; ?></th>
+							      <td><?= $data['nomer']; ?></td>
+							      <td><?= $data['nama']; ?></td>
+							      <td><?= $data['alamat']; ?></td>
+							      <td><?= $data['tanggal']; ?></td>
+							      <td><?= $data['jam']; ?></td>
+							      <td><?= $data['tujuan']; ?></td>
+							      <td>
+							      	<?php 
+							      	if($data['lunas'] == 1){
+							      		echo "Lunas";
+							      	}else if($data['lunas'] == 2){
+							      		echo "BA";
+							      	}
+							      	?>
+							      </td>
+							      <td><?= $data['harga_khusus']; ?></td>
+							      <td class="text-center">
+							      	<a href="edit-penumpang.php?tb=tb2&nomer=<?=$data['nomer']; ?>" role="button"><i class="far fa-edit text-warning mr-1"></i></a>
+							      	|<a href="delete_data.php?tb=tb2&nomer=<?=$data['nomer']; ?>" role="button" class="ml-2"><i class=" far fa-trash-alt red-text" onclick="return confirm('Apakah Data Yang Dipilih Tetap Di Hapus ?')"></i></a>
+							      </td>						      
+							    </tr>	
+							    <?php endwhile; ?>	
+							  <?php else: ?>	    
+							  <tr>
+							  	<td colspan="10" class="text-center"><b>Tidak ada data !</b></td>
+							  </tr>
+							 	<?php endif; ?>			    
 						  </tbody>
 						</table>
 					</div>

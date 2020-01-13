@@ -9,6 +9,8 @@ if(isset($_GET['nomer']) && isset($_GET['tb'])){
 	$table_name = $_GET['tb'];
 	$nomer 			= $_GET['nomer'];
 
+	$_SESSION['report_message'] = report_message("success", "Berhasil Menghapus Data : " . $nomer);
+
 	if($table_name == 'tb1'){
 		delete_data_tbSiluet($nomer);
 		header('Location: admin.php');
@@ -16,6 +18,8 @@ if(isset($_GET['nomer']) && isset($_GET['tb'])){
 		delete_data_tbLiza($nomer);
 		header('Location: admin.php');
 	}
+}else{
+	header('Location: login-admin.php');
 }
 
 }else{

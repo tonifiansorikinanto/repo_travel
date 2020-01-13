@@ -21,14 +21,18 @@ if(isset($_POST['submit'])){
 
 		if($table_name == "tb1"){
 			if(add_data_tbSiluet($nomer, $nama, $alamat, $tgl, $jam, $tujuan, $lunas, $harga_khusus)){
+				$_SESSION['report_message'] = report_message("success", "Berhasil Menambahkan Data ke Tabel Siluet");
 				header('Location: admin.php');
 			}else{
+				$_SESSION['report_message'] = report_message("error", "Gagal Menambahkan Data !");
 				header('Location: tambah-penumpang.php?tb=tb1');
 			}
 		}else{
 			if(add_data_tbLiza($nomer, $nama, $alamat, $tgl, $jam, $tujuan, $lunas, $harga_khusus)){
+				$_SESSION['report_message'] = report_message("success", "Berhasil Menambahkan Data ke Tabel Liza");
 				header('Location: admin.php');
 			}else{
+				$_SESSION['report_message'] = report_message("error", "Gagal Menambahkan Data !");
 				header('Location: tambah-penumpang.php?tb=tb2');
 			}
 		}

@@ -214,3 +214,34 @@ body {
   background: #3F729B; 
   border-radius: 20px;
 }
+
+
+
+/* --- Report Message --- */
+
+.report-message{
+  display: block; box-sizing:border-box;
+  width: auto; height:85px; min-height:85px; max-height: 125px;
+  background-color:white;
+  border-radius:8px; padding:20px 20px;
+  position:fixed;
+  top:50%; left:50%;
+  transform: translate(-50%, -50%) scale(0);
+  z-index: 999999999;
+  box-shadow: 0px 0px 10px 2px #525F84;
+  animation-name: transitionAnimation;
+  animation-duration:5s;
+  user-select:none;
+}
+
+.report-message img.image-report-message{
+  width:45px; height:45px;
+  margin-right: 30px;
+}
+
+@keyframes transitionAnimation{
+  0%{ transform: translate(-50%, -50%) scale(0); }
+  20%{ transform: translate(-50%, -50%) scale(1); }
+  90%{ transform: translate(-50%, -50%) scale(1); }
+  100%{ transform: translate(-50%, -50%) scale(0); }
+}
