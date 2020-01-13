@@ -80,7 +80,7 @@ if(isset($_GET['caritb2'])){
 						  	<?php while($data = mysqli_fetch_assoc($show_data_tbSiluet)): ?>
 						    <tr>
 						      <th scope="row"><?= $no1++; ?></th>
-						      <td><?= $data['nomer']; ?></td>
+						      <td><?= md5($data['nomer']); ?></td>
 						      <td><?= $data['nama']; ?></td>
 						      <td><?= $data['alamat']; ?></td>
 						      <td><?= $data['tanggal']; ?></td>
