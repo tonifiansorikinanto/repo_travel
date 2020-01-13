@@ -116,7 +116,7 @@ if(isset($_POST['submit'])){
 							</div>		                  
 						</div>
 						<div align="right" class="my-4">
-			  				<button type="submit" name="submit" class="btn btn-primary btn-md" style="width: 130px;">Tambah Data</button>
+			  				<button type="submit" name="submit" class="btn btn-primary btn-md" style="width: 130px;" onclick="return confirm('Lanjut Tambah Data Penumpang ?')">Tambah Data</button>
 			  				<a type="button" class="btn btn-info btn-md" href="admin.php" style="width: 130px;">Kembali</a>
 			  			</div>
 					</div>
