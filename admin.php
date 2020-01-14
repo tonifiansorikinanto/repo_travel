@@ -10,6 +10,15 @@ if(isset($_SESSION["user_access"])){
 $show_data_tbSiluet = show_data_tbSiluet();
 $show_data_tbLiza = show_data_tbLiza();
 
+// editanku
+	$query_id = $_SESSION['user_access'];
+	$query = "SELECT * FROM tb_admin WHERE username='$query_id'";
+	$result = mysqli_query($connect, $query);
+	while($row = mysqli_fetch_assoc($result)){
+	    $nama = $row['nama'];   
+	}
+// end
+
 if(isset($_GET['caritb1'])){
 	$caritb1 = $_GET['caritb1'];
 	$show_data_tbSiluet = search_data_tbSiluet($caritb1);
@@ -24,9 +33,12 @@ if(isset($_GET['caritb2'])){
 
 <div class="container-fluid" style="padding-left: 0px; padding-right: 0px;">
 	<nav class="navbar navbar-dark default-color justify-content-between" style="position: sticky; top: 0; z-index: 9999999;">
-	  	<h2 class="navbar-brand h2-responsive my-0" href="#">Database Travel</h2>  
-	    <a href="logout.php" class="btn btn-danger btn-md my-0" type="button" onclick="return confirm('Yakin Keluar ?')">logout</a>
-	</nav>
+	  	<h2 class="navbar-brand h2-responsive my-0" href="#">Database Travel</h2>
+		<h6 class="h6-responsive my-0 ml-auto text-white" href="#">Selamat Datang, <?= $nama; ?>!</h6>
+	    <a href="logout.php" class="btn btn-danger btn-md ml-3 my-0" type="button" onclick="return confirm('Yakin Keluar ?')">logout</a>	    
+	      
+	    
+	</nav>	
 
 	<?php
 
@@ -61,7 +73,7 @@ if(isset($_GET['caritb2'])){
 				  				<!-- Search form -->
 								<form class="form-inline active-cyan-3 active-cyan-4" method="get" action="">
 								  <i class="fas fa-search" aria-hidden="true"></i>
-								  <input class="form-control form-control-sm ml-3" style="width: 220px;" type="text" placeholder="Cari berdasarkan nomer HP.." aria-label="Cari berdasarkan nomer HP.." name="caritb1" autocomplete="off" spellcheck="false">
+								  <input class="form-control form-control-sm ml-3" style="width: 240px;" type="text" placeholder="Cari berdasarkan Tgl Berangkat.." aria-label="Cari berdasarkan Tgl Berangkat.." name="caritb1" autocomplete="off" spellcheck="false">
 								</form>
 				  			</div>
 				  			<div class="col-md-4" align="center">
@@ -138,7 +150,7 @@ if(isset($_GET['caritb2'])){
 				  				<!-- Search form -->
 								<form class="form-inline active-cyan-3 active-cyan-4">
 								  <i class="fas fa-search" aria-hidden="true"></i>
-								  <input class="form-control form-control-sm ml-3" style="width: 220px;" type="text" placeholder="Cari berdasarkan nomer HP.." aria-label="Cari berdasarkan nomer HP.." name="caritb2">
+								  <input class="form-control form-control-sm ml-3" style="width: 220px;" type="text" placeholder="Cari berdasarkan Tgl Berangkat.." aria-label="Cari berdasarkan Tgl Berangkat.." name="caritb2" autocomplete="off" spellcheck="false">
 								</form>
 				  			</div>
 				  			<div class="col-md-4" align="center">
