@@ -8,4 +8,10 @@ function report_message($type, $text){
 		</div>';
 }
 
+function escape($data){
+	global $connect;
+	$data = htmlentities($data);
+	return mysqli_real_escape_string($connect, $data);
+}
+
 ?>
