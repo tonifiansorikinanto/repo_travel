@@ -77,13 +77,6 @@ if(isset($_POST['edit'])){
 							<div class="col-md-6">
 								<div class="row">
 									<div class="col-md-12 mt-2">
-										<h4 class="h4-responsive text-primary">Nomer HP</h4>
-									</div>
-									<div class="col-md-12">
-										<input type="number" aria-label="nomer" name="nomer" id="nomer" class="form-control z-depth-1">
-									</div>
-
-									<div class="col-md-12 mt-2">
 										<h4 class="h4-responsive text-primary">Nama</h4>
 									</div>
 									<div class="col-md-12">

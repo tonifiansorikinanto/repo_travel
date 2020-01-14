@@ -61,7 +61,7 @@ if(isset($_GET['caritb2'])){
 				  				<!-- Search form -->
 								<form class="form-inline active-cyan-3 active-cyan-4" method="get" action="">
 								  <i class="fas fa-search" aria-hidden="true"></i>
-								  <input class="form-control form-control-sm ml-3" style="width: 220px;" type="text" placeholder="Cari berdasarkan nomer HP.." aria-label="Cari berdasarkan nomer HP.." name="caritb1">
+								  <input class="form-control form-control-sm ml-3" style="width: 220px;" type="text" placeholder="Cari berdasarkan nomer HP.." aria-label="Cari berdasarkan nomer HP.." name="caritb1" autocomplete="off" spellcheck="false">
 								</form>
 				  			</div>
 				  			<div class="col-md-4" align="center">
@@ -93,7 +93,7 @@ if(isset($_GET['caritb2'])){
 							    <tr>
 							    	<?php
 							    	$datatanggal 	= $data['tanggal'];
-							    	$day 			= substr($datatanggal, 9, 2);
+							    	$day 			= substr($datatanggal, 8, 2);
 							    	$month 		= substr($datatanggal, 5, 2);
 							    	$year 		= substr($datatanggal, 0, 4);
 
@@ -170,7 +170,7 @@ if(isset($_GET['caritb2'])){
 							    <tr>
 							    	<?php
 							    	$datatanggal 	= $data['tanggal'];
-							    	$day 			= substr($datatanggal, 9, 2);
+							    	$day 			= substr($datatanggal, 8, 2);
 							    	$month 		= substr($datatanggal, 5, 2);
 							    	$year 		= substr($datatanggal, 0, 4);
 
