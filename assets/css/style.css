@@ -230,7 +230,7 @@ body {
   z-index: 999999999;
   box-shadow: 0px 0px 10px 2px #525F84;
   animation-name: transitionAnimation;
-  animation-duration:5s;
+  animation-duration:4s;
   user-select:none;
 }
 

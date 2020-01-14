@@ -91,11 +91,19 @@ if(isset($_GET['caritb2'])){
 						  	<?php if(mysqli_num_rows($show_data_tbSiluet) > 0 ): ?>
 							  	<?php while($data = mysqli_fetch_assoc($show_data_tbSiluet)): ?>
 							    <tr>
+							    	<?php
+							    	$datatanggal 	= $data['tanggal'];
+							    	$day 			= substr($datatanggal, 9, 2);
+							    	$month 		= substr($datatanggal, 5, 2);
+							    	$year 		= substr($datatanggal, 0, 4);
+
+							    	$datatanggal 	= $day . "-" . $month . "-" . $year;
+							    	?>
 							      <th scope="row"><?= $no1++; ?></th>
-							      <td><?= md5($data['nomer']); ?></td>
+							      <td><?= $data['nomer']; ?></td>
 							      <td><?= $data['nama']; ?></td>
 							      <td><?= $data['alamat']; ?></td>
-							      <td><?= $data['tanggal']; ?></td>
+							      <td><?= $datatanggal; ?></td>
 							      <td><?= $data['jam']; ?></td>
 							      <td><?= $data['tujuan']; ?></td>
 							      <td>
@@ -160,11 +168,19 @@ if(isset($_GET['caritb2'])){
 						  	<?php if(mysqli_num_rows($show_data_tbLiza) > 0 ): ?>
 							    <?php while($data = mysqli_fetch_assoc($show_data_tbLiza)): ?>
 							    <tr>
+							    	<?php
+							    	$datatanggal 	= $data['tanggal'];
+							    	$day 			= substr($datatanggal, 9, 2);
+							    	$month 		= substr($datatanggal, 5, 2);
+							    	$year 		= substr($datatanggal, 0, 4);
+
+							    	$datatanggal 	= $day . "-" . $month . "-" . $year;
+							    	?>
 							      <th scope="row"><?= $no2++; ?></th>
 							      <td><?= $data['nomer']; ?></td>
 							      <td><?= $data['nama']; ?></td>
 							      <td><?= $data['alamat']; ?></td>
-							      <td><?= $data['tanggal']; ?></td>
+							      <td><?= $datatanggal; ?></td>
 							      <td><?= $data['jam']; ?></td>
 							      <td><?= $data['tujuan']; ?></td>
 							      <td>
