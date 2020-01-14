@@ -1,0 +1,21 @@
+body{
+	font-family: arial;
+	margin: 0; padding: 0;
+}
+
+table{
+	border: 1px solid #8F8F8F;
+	color:#484747;
+}
+
+thead tr{
+	background-color:#DADADC;
+}
+
+thead tr th, tbody tr td{
+	border-top:1px solid #8F8F8F; border-left:1px solid #8F8F8F;
+	text-align:center;
+}
+
+thead tr th{ border-top: 0; }
+thead tr th:nth-child(1), tbody tr td:nth-child(1){ border-left: none; }
