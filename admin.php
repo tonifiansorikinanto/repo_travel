@@ -77,7 +77,7 @@ if(isset($_GET['caritb2'])){
 								</form>
 				  			</div>
 				  			<div class="col-md-4" align="center">
-				  				<a href="tambah-penumpang.php?tb=tb1" class="h5-responsive text-info"><i class="fas fa-user-plus"></i> Tambah Penumpang</a>
+				  				<a href="tambah-penumpang/tb1" class="h5-responsive text-info"><i class="fas fa-user-plus"></i> Tambah Penumpang</a>
 				  			</div>
 				  			<div class="col-md-4" align="right">
 				  				<a href="print_file.php" class="h5-responsive text-success" target="_blank"><i class="fas fa-print"></i> Print Tabel</a>
@@ -215,7 +215,7 @@ if(isset($_GET['caritb2'])){
 							  <tr>
 							  	<td colspan="10" class="text-center"><b>Tidak ada data !</b></td>
 							  </tr>
-							 	<?php endif; ?>			    
+							  <?php endif; ?>			    
 						  </tbody>
 						</table>
 					</div>
@@ -264,6 +264,6 @@ if(isset($_GET['caritb2'])){
 require_once 'assets/templates/footer.php'; 
 
 }else{
-	header('Location: login-admin.php');
+	header('Location: login-admin');
 }
 ?>

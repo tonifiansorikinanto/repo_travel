@@ -11,9 +11,9 @@ if(isset($_POST['submit'])){
 	if(!empty(trim($username)) && !empty(trim($password))){
 		if(login_admin($username, $password)){
 			$_SESSION["user_access"] = $username;
-			header('Location: admin.php');
+			header('Location: admin');
 		}else{
-			header('Location: login-admin.php');
+			header('Location: login-admin');
 		}
 	}
 }
@@ -94,7 +94,7 @@ background: linear-gradient(to right, #3b8d99, #6b6b83, #aa4b6b); /* W3C, IE 10+
 <?php 
 
 }else{
-	header('Location: admin.php');
+	header('Location: admin');
 }
 
 ?>

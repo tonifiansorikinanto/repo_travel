@@ -1,0 +1,7 @@
+RewriteEngine On
+
+RewriteRule ^([a-z-]+)\/?$ $1.php [L,NC]
+
+RewriteRule ^([a-z-]+)\/([0-9-]+)\/?$ $1.php?tb=$2 [L,NC]
+
+RewriteRule ^([a-zA-Z0-9_-]+)$ tambah-penumpang.php?tb=$1 [L,NC]
