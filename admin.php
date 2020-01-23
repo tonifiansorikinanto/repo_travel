@@ -30,7 +30,18 @@ if(isset($_GET['caritb2'])){
 }
 
 if(isset($_POST['submit'])){
-	$password = $_POST['pass_sv'];
+	$password = $_POST["pass_sv"];
+	$tb 		= $_GET['tb'];
+	$nomer 	= $_GET['nomer'];
+
+	if(!empty(trim($password))){
+
+		if(cek_user_supervisor($password)){
+			header('Location: edit-penumpang.php?tb=' . $_GET['tb'] . '&nomer=' . $_GET['nomer'] . '');
+		}else{
+			echo("<script>alert('Error Saat Mengcek Password !')</script>");
+		}
+	}
 }
 
 ?>
@@ -95,24 +106,21 @@ if(isset($_POST['submit'])){
   </div>
 </div>
 
-<?php if(isset($pass_sv)){ echo $pass_sv; } ?>
-
-<div class="modal fade" id="modalKonfirmSupervisor" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true" style="z-index:99999999;">		  
+<div class="modal fade" id="modalKonfirmSupervisor" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true" style="z-index:99999999;">
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="exampleModalLongTitle">Konfirmasi Supervisor</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"  onclick="resetUrl()">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <form method="post" action="" name="form_sv">
 	      <div class="modal-body">
-			    <input type="text" aria-label="pass_sv" name="pass_sv" class="form-control" placeholder="Masukkan password Supervisor..." id="field_password">
-		      
+			    <input type="password" aria-label="pass_sv" name="pass_sv" class="form-control" placeholder="Masukkan password Supervisor..." id="field_password">
 		  	</div>
 	      <div class="modal-footer">
-	        <button type="button" class="btn btn-sm btn-warning" data-dismiss="modal">Batal</button>
+	        <button type="button" class="btn btn-sm btn-warning" data-dismiss="modal" onclick="resetUrl()">Batal</button>
 	        <button role="button" class="btn btn-sm btn-danger" id="button_edit" name="submit">Konfirmasi</button>
 	      </div>
       </form>
@@ -121,7 +129,7 @@ if(isset($_POST['submit'])){
 </div>
 
 <div class="container-fluid" style="padding-left: 0px; padding-right: 0px;">
-	<nav class="navbar navbar-dark default-color justify-content-between" style="position: sticky; top: 0; z-index: 9999999;">
+	<nav class="navbar navbar-dark default-color justify-content-between" style="position: sticky; top: 0; z-index: 10;">
 	  <h2 class="navbar-brand h2-responsive my-0" href="#">Database Travel</h2>
 		<h6 class="h6-responsive my-0 ml-auto text-white" href="#">Selamat Datang, <?= $nama; ?>!</h6>
 	  <button class="btn btn-danger btn-md ml-3 my-0" type="button" data-toggle="modal" data-target="#modalLogout">logout</button>
@@ -343,7 +351,6 @@ if(isset($_POST['submit'])){
 		</div>
 	</div>
 </div>
-
 
 <?php 
 require_once 'assets/templates/footer.php'; 
