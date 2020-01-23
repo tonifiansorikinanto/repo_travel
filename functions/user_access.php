@@ -13,4 +13,16 @@ function login_admin($username, $password){
 	else return false;
 }
 
+function cek_user_supervisor($password){
+	global $connect;
+
+	$password = md5($password);
+
+	$query = "SELECT * FROM tb_supervisor WHERE password='$password'";
+	$result = mysqli_query($connect, $query);
+	
+	if(mysqli_num_rows($result) != 0)return true;
+	else return false;
+}
+
 ?>
