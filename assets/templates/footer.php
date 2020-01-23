@@ -8,6 +8,7 @@
   <script type="text/javascript" src="assets/js/bootstrap.min.js"></script>
   <!-- MDB core JavaScript -->
   <script type="text/javascript" src="assets/js/mdb.min.js"></script>
+  <script type="text/javascript" src="assets/js/event.js"></script>
 </body>
 
 </html>

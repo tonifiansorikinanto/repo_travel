@@ -29,15 +29,102 @@ if(isset($_GET['caritb2'])){
 	$show_data_tbLiza = search_data_tbLiza($caritb2);
 }
 
+if(isset($_POST['submit'])){
+	$password = $_POST['pass_sv'];
+}
+
 ?>
+
+<div class="modal" id="modalsv" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true" style="z-index:99999999;">
+  <div class="modal-dialog modal-dialog-centered modal-sm" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Logout</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        Anda yakin ingin keluar?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-sm btn-warning" data-dismiss="modal">Tidak</button>
+        <a href="logout.php" class="btn btn-sm btn-danger">Iya</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="modalLogout" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true" style="z-index:99999999;">
+  <div class="modal-dialog modal-dialog-centered modal-sm" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Logout</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        Anda yakin ingin keluar?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-sm btn-warning" data-dismiss="modal">Tidak</button>
+        <a href="logout.php" class="btn btn-sm btn-danger">Iya</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="modalDelete" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true" style="z-index:99999999;">		  
+  <div class="modal-dialog modal-dialog-centered modal-sm" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Delete Data</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        Anda yakin ingin menghapus data penumpang ini?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-sm btn-warning" data-dismiss="modal">Tidak</button>
+        <a href="#x" class="btn btn-sm btn-danger" id="button_delete">Iya</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<?php if(isset($pass_sv)){ echo $pass_sv; } ?>
+
+<div class="modal fade" id="modalKonfirmSupervisor" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true" style="z-index:99999999;">		  
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Konfirmasi Supervisor</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <form method="post" action="" name="form_sv">
+	      <div class="modal-body">
+			    <input type="text" aria-label="pass_sv" name="pass_sv" class="form-control" placeholder="Masukkan password Supervisor..." id="field_password">
+		      
+		  	</div>
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-sm btn-warning" data-dismiss="modal">Batal</button>
+	        <button role="button" class="btn btn-sm btn-danger" id="button_edit" name="submit">Konfirmasi</button>
+	      </div>
+      </form>
+    </div>
+  </div>
+</div>
 
 <div class="container-fluid" style="padding-left: 0px; padding-right: 0px;">
 	<nav class="navbar navbar-dark default-color justify-content-between" style="position: sticky; top: 0; z-index: 9999999;">
-	  	<h2 class="navbar-brand h2-responsive my-0" href="#">Database Travel</h2>
+	  <h2 class="navbar-brand h2-responsive my-0" href="#">Database Travel</h2>
 		<h6 class="h6-responsive my-0 ml-auto text-white" href="#">Selamat Datang, <?= $nama; ?>!</h6>
-	    <a href="logout.php" class="btn btn-danger btn-md ml-3 my-0" type="button" onclick="return confirm('Yakin Keluar ?')">logout</a>	    
-	      
-	    
+	  <button class="btn btn-danger btn-md ml-3 my-0" type="button" data-toggle="modal" data-target="#modalLogout">logout</button>
 	</nav>	
 
 	<?php
@@ -48,8 +135,6 @@ if(isset($_GET['caritb2'])){
 	}
 
 	?>
-
-	
 
 	<div class="container-fluid">
 		<div class="row justify-content-center mt-2 mb-4">
@@ -129,8 +214,8 @@ if(isset($_GET['caritb2'])){
 							      </td>
 							      <td><?= $data['harga_khusus']; ?></td>
 							      <td class="text-center">
-							      	<a href="edit-penumpang.php?tb=tb1&nomer=<?=$data['nomer']; ?>" role="button"><i class="far fa-edit text-warning mr-1"></i></a>
-							      	|<a href="delete_data.php?tb=tb1&nomer=<?=$data['nomer']; ?>" role="button" class="ml-2" onclick="return confirm('Apakah Data Yang Dipilih Tetap Di Hapus ?')"><i class=" far fa-trash-alt red-text"></i></a>
+							      	<a href="#x" role="button" data-toggle="modal" data-target="#modalKonfirmSupervisor" onclick="setEditParameter('tb1', '<?=$data['nomer']; ?>')"><i class="far fa-edit text-warning mr-1"></i></a>
+							      	|<a href="#x" class="ml-2" data-toggle="modal" data-target="#modalDelete" onclick="setDeleteParameter('tb1', '<?=$data['nomer']; ?>')"><i class=" far fa-trash-alt red-text"></i></a>
 							      </td>						      
 							    </tr>	
 							    <?php endwhile; ?>
@@ -207,7 +292,7 @@ if(isset($_GET['caritb2'])){
 							      <td><?= $data['harga_khusus']; ?></td>
 							      <td class="text-center">
 							      	<a href="edit-penumpang.php?tb=tb2&nomer=<?=$data['nomer']; ?>" role="button"><i class="far fa-edit text-warning mr-1"></i></a>
-							      	|<a href="delete_data.php?tb=tb2&nomer=<?=$data['nomer']; ?>" role="button" class="ml-2"><i class=" far fa-trash-alt red-text" onclick="return confirm('Apakah Data Yang Dipilih Tetap Di Hapus ?')"></i></a>
+							      	|<a href="#x" role="button" class="ml-2" data-toggle="modal" data-target="#modalDelete" onclick="setDeleteParameter('tb2', '<?=$data['nomer']; ?>')"><i class=" far fa-trash-alt red-text"></i></a>
 							      </td>						      
 							    </tr>	
 							    <?php endwhile; ?>	
