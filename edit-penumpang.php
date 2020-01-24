@@ -68,7 +68,7 @@ if(isset($_POST['edit'])){
 <div class="container">
 	<div class="row justify-content-center mt-3">
 		<div class="col-md-10">
-			<h1 class="h1-responsive deep-purple-text">Edit <?= $_SESSION['password_test']; ?> </h1>			
+			<h1 class="h1-responsive deep-purple-text">Edit</h1>
             
 			<form method="post" action="">
 				<div class="row justify-content-center">
