@@ -23,7 +23,18 @@ if(isset($_GET['caritb2'])){
 }
 
 if(isset($_POST['submit'])){
-	$password = $_POST['pass_sv'];
+	$password = $_POST["pass_sv"];
+	$tb 		= $_GET['tb'];
+	$nomer 	= $_GET['nomer'];
+
+	if(!empty(trim($password))){
+
+		if(cek_user_supervisor($password)){
+			header('Location: edit-penumpang.php?tb=' . $_GET['tb'] . '&nomer=' . $_GET['nomer'] . '');
+		}else{
+			echo("<script>alert('Error Saat Mengcek Password !')</script>");
+		}
+	}
 }
 
 ?>
@@ -180,7 +191,7 @@ if(isset($_POST['submit'])){
 						      </td>
 						      <td><?= $data['harga_khusus']; ?></td>
 						      <td class="text-center">
-						      	<a href="edit-penumpang.php?tb=tb2&nomer=<?=$data['nomer']; ?>" role="button"><i class="far fa-edit text-warning mr-1"></i></a>
+						      	<a href="#x" role="button" data-toggle="modal" data-target="#modalKonfirmSupervisor" onclick="setEditParameter('tb1', '<?=$data['nomer']; ?>')"><i class="far fa-edit text-warning mr-1"></i></a>
 						      	|<a href="#x" role="button" class="ml-2" data-toggle="modal" data-target="#modalDelete" onclick="setDeleteParameter('tb2', '<?=$data['nomer']; ?>')"><i class=" far fa-trash-alt red-text"></i></a>
 						      </td>						      
 						    </tr>	

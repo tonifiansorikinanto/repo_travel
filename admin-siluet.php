@@ -23,7 +23,18 @@ if(isset($_GET['caritb1'])){
 }
 
 if(isset($_POST['submit'])){
-	$password = $_POST['pass_sv'];
+	$password = $_POST["pass_sv"];
+	$tb 		= $_GET['tb'];
+	$nomer 	= $_GET['nomer'];
+
+	if(!empty(trim($password))){
+
+		if(cek_user_supervisor($password)){
+			header('Location: edit-penumpang.php?tb=' . $_GET['tb'] . '&nomer=' . $_GET['nomer'] . '');
+		}else{
+			echo("<script>alert('Error Saat Mengcek Password !'); resetUrl(); </script>");
+		}
+	}
 }
 
 ?>
