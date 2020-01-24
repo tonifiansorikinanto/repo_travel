@@ -173,7 +173,7 @@ if(isset($_POST['submit'])){
 				  				<a href="tambah-penumpang/tb1" class="h5-responsive text-info"><i class="fas fa-user-plus"></i> Tambah Penumpang</a>
 				  			</div>
 				  			<div class="col-md-4" align="right">
-				  				<a href="print_file.php" class="h5-responsive text-success" target="_blank"><i class="fas fa-print"></i> Print Tabel</a>
+				  				<a href="print_file.php<?php if(isset($_GET['caritb1'])){ echo '?caritb1=' . $_GET['caritb1']; }?>" class="h5-responsive text-success" target="_blank"><i class="fas fa-print"></i> Print Tabel</a>
 				  			</div>
 				  		</div>	  		
 						
