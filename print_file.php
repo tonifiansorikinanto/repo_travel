@@ -4,6 +4,11 @@ require_once __DIR__ . '/vendor/autoload.php';
 require_once 'core/system.php';
 
 $show_data_tbSiluet = show_data_tbSiluet();
+
+if(isset($_GET['caritb1'])){
+  $caritb1 = $_GET['caritb1'];
+  $show_data_tbSiluet = search_data_tbSiluet($caritb1);
+}
 $no = 1;
 
 $mpdf = new \Mpdf\Mpdf();
