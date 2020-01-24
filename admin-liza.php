@@ -40,70 +40,67 @@ if(isset($_POST['submit'])){
 ?>
 
 <!-- modal -->
-	<div class="modal fade" id="modalLogout" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true" style="z-index:99999999;">
-	  <div class="modal-dialog modal-dialog-centered modal-sm" role="document">
-	    <div class="modal-content">
-	      <div class="modal-header">
-	        <h5 class="modal-title" id="exampleModalLongTitle">Logout</h5>
-	        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-	          <span aria-hidden="true">&times;</span>
-	        </button>
-	      </div>
+<div class="modal fade" id="modalLogout" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true" style="z-index:99999999;">
+  <div class="modal-dialog modal-dialog-centered modal-sm" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Logout</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        Anda yakin ingin keluar?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-sm btn-warning" data-dismiss="modal">Tidak</button>
+        <a href="logout.php" class="btn btn-sm btn-danger">Iya</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="modalDelete" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true" style="z-index:99999999;">		  
+  <div class="modal-dialog modal-dialog-centered modal-sm" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Delete Data</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        Anda yakin ingin menghapus data penumpang ini?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-sm btn-warning" data-dismiss="modal">Tidak</button>
+        <a href="#x" class="btn btn-sm btn-danger" id="button_delete">Iya</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="modalKonfirmSupervisor" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true" style="z-index:99999999;">		  
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Konfirmasi Supervisor</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"onclick="resetUrl()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <form method="post" action="" name="form_sv">
 	      <div class="modal-body">
-	        Anda yakin ingin keluar?
-	      </div>
+			    <input type="password" aria-label="pass_sv" name="pass_sv" class="form-control" placeholder="Masukkan password Supervisor..." id="field_password">
+		  	</div>
 	      <div class="modal-footer">
-	        <button type="button" class="btn btn-sm btn-warning" data-dismiss="modal">Tidak</button>
-	        <a href="logout.php" class="btn btn-sm btn-danger">Iya</a>
+	        <button type="button" class="btn btn-sm btn-warning" data-dismiss="modal" onclick="resetUrl()">Batal</button>
+	        <button role="button" class="btn btn-sm btn-danger" id="button_edit" name="submit">Konfirmasi</button>
 	      </div>
-	    </div>
-	  </div>
-	</div>
-
-	<div class="modal fade" id="modalDelete" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true" style="z-index:99999999;">		  
-	  <div class="modal-dialog modal-dialog-centered modal-sm" role="document">
-	    <div class="modal-content">
-	      <div class="modal-header">
-	        <h5 class="modal-title" id="exampleModalLongTitle">Delete Data</h5>
-	        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-	          <span aria-hidden="true">&times;</span>
-	        </button>
-	      </div>
-	      <div class="modal-body">
-	        Anda yakin ingin menghapus data penumpang ini?
-	      </div>
-	      <div class="modal-footer">
-	        <button type="button" class="btn btn-sm btn-warning" data-dismiss="modal">Tidak</button>
-	        <a href="#x" class="btn btn-sm btn-danger" id="button_delete">Iya</a>
-	      </div>
-	    </div>
-	  </div>
-	</div>
-
-	<?php if(isset($pass_sv)){ echo $pass_sv; } ?>
-
-	<div class="modal fade" id="modalKonfirmSupervisor" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true" style="z-index:99999999;">		  
-	  <div class="modal-dialog modal-dialog-centered" role="document">
-	    <div class="modal-content">
-	      <div class="modal-header">
-	        <h5 class="modal-title" id="exampleModalLongTitle">Konfirmasi Supervisor</h5>
-	        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-	          <span aria-hidden="true">&times;</span>
-	        </button>
-	      </div>
-	      <form method="post" action="" name="form_sv">
-		      <div class="modal-body">
-				    <input type="text" aria-label="pass_sv" name="pass_sv" class="form-control" placeholder="Masukkan password Supervisor..." id="field_password">
-			      
-			  	</div>
-		      <div class="modal-footer">
-		        <button type="button" class="btn btn-sm btn-warning" data-dismiss="modal">Batal</button>
-		        <button role="button" class="btn btn-sm btn-danger" id="button_edit" name="submit">Konfirmasi</button>
-		      </div>
-	      </form>
-	    </div>
-	  </div>
-	</div>
+      </form>
+    </div>
+  </div>
+</div>
 <!-- modal -->
 
 <div class="container-fluid" style="padding-left: 0px; padding-right: 0px;">
@@ -191,7 +188,7 @@ if(isset($_POST['submit'])){
 						      </td>
 						      <td><?= $data['harga_khusus']; ?></td>
 						      <td class="text-center">
-						      	<a href="#x" role="button" data-toggle="modal" data-target="#modalKonfirmSupervisor" onclick="setEditParameter('tb1', '<?=$data['nomer']; ?>')"><i class="far fa-edit text-warning mr-1"></i></a>
+						      	<a href="#x" role="button" data-toggle="modal" data-target="#modalKonfirmSupervisor" onclick="setEditParameter('tb2', '<?=$data['nomer']; ?>')"><i class="far fa-edit text-warning mr-1"></i></a>
 						      	|<a href="#x" role="button" class="ml-2" data-toggle="modal" data-target="#modalDelete" onclick="setDeleteParameter('tb2', '<?=$data['nomer']; ?>')"><i class=" far fa-trash-alt red-text"></i></a>
 						      </td>						      
 						    </tr>	

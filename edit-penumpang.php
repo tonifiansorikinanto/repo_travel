@@ -44,7 +44,7 @@ if(isset($_POST['edit'])){
 		if($table_name == "tb1"){
 			if(edit_data_tbSiluet($nomer, $namaEdit, $alamatEdit, $tglEdit, $jamEdit, $tujuanEdit, $lunasEdit, $harga_khususEdit)){
 				$_SESSION['report_message'] = report_message("success", "Berhasil Mengubah Data " . $namaEdit);
-				header('Location: admin.php');
+				header('Location: admin-siluet.php');
 			}else{
 				$_SESSION['report_message'] = report_message("error", "Gagal Mengubah Data " . $namaEdit);
 				header('Location: edit-penumpang.php?tb=' . $table_name . '&nomer=' . $nomer . '');
@@ -52,7 +52,7 @@ if(isset($_POST['edit'])){
 		}else{
 			if(edit_data_tbLiza($nomer, $namaEdit, $alamatEdit, $tglEdit, $jamEdit, $tujuanEdit, $lunasEdit, $harga_khususEdit)){
 				$_SESSION['report_message'] = report_message("success", "Berhasil Mengubah Data " . $namaEdit);
-				header('Location: admin.php');
+				header('Location: admin-liza.php');
 			}else{
 				$_SESSION['report_message'] = report_message("error", "Gagal Mengubah Data " . $namaEdit);
 				header('Location: edit-penumpang.php?tb=' . $table_name . '&nomer=' . $nomer . '');
@@ -136,7 +136,11 @@ if(isset($_POST['edit'])){
 						</div>
 						<div align="right" class="my-4">
 			  				<button type="submit" name="edit" class="btn btn-warning btn-md" style="width: 130px;" onclick="return confirm('Yakin ingin merubah data ?')">Edit Data</button>
-			  				<a type="button" class="btn btn-info btn-md" href="admin.php" style="width: 130px;">Kembali</a>
+			  			<?php if($table_name == "tb1"): ?>
+			  				<a type="button" class="btn btn-info btn-md" href="admin-siluet.php" style="width: 130px;">Kembali</a>
+			  			<?php else: ?>
+			  				<a type="button" class="btn btn-info btn-md" href="admin-liza.php" style="width: 130px;">Kembali</a>
+			  			<?php endif; ?>
 			  			</div>
 					</div>
 				</div>				

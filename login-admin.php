@@ -94,7 +94,7 @@ background: linear-gradient(to right, #3b8d99, #6b6b83, #aa4b6b); /* W3C, IE 10+
 <?php 
 
 }else{
-	header('Location: admin');
+	header('Location: admin-siluet');
 }
 
 ?>

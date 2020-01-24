@@ -22,7 +22,7 @@ if(isset($_POST['submit'])){
 		if($table_name == "tb1"){
 			if(add_data_tbSiluet($nomer, $nama, $alamat, $tgl, $jam, $tujuan, $lunas, $harga_khusus)){
 				$_SESSION['report_message'] = report_message("success", "Berhasil Menambahkan Data ke Tabel Siluet");
-				header('Location: admin.php');
+				header('Location: admin-siluet.php');
 			}else{
 				$_SESSION['report_message'] = report_message("error", "Gagal Menambahkan Data !");
 				header('Location: tambah-penumpang.php?tb=tb1');
@@ -30,7 +30,7 @@ if(isset($_POST['submit'])){
 		}else{
 			if(add_data_tbLiza($nomer, $nama, $alamat, $tgl, $jam, $tujuan, $lunas, $harga_khusus)){
 				$_SESSION['report_message'] = report_message("success", "Berhasil Menambahkan Data ke Tabel Liza");
-				header('Location: admin.php');
+				header('Location: admin-liza.php');
 			}else{
 				$_SESSION['report_message'] = report_message("error", "Gagal Menambahkan Data !");
 				header('Location: tambah-penumpang.php?tb=tb2');
@@ -121,7 +121,11 @@ if(isset($_POST['submit'])){
 						</div>
 						<div align="right" class="my-4">
 			  				<button type="submit" name="submit" class="btn btn-primary btn-md" style="width: 130px;" onclick="return confirm('Lanjut Tambah Data Penumpang ?')">Tambah Data</button>
-			  				<a type="button" class="btn btn-info btn-md" href="admin.php" style="width: 130px;">Kembali</a>
+			  			<?php if($table_name == "tb1"): ?>
+			  				<a type="button" class="btn btn-info btn-md" href="admin-siluet.php" style="width: 130px;">Kembali</a>
+			  			<?php else: ?>
+			  				<a type="button" class="btn btn-info btn-md" href="admin-liza.php" style="width: 130px;">Kembali</a>
+			  			<?php endif; ?>
 			  			</div>
 					</div>
 				</div>				
