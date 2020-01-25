@@ -30,8 +30,10 @@ if(isset($_POST['submit'])){
 	if(!empty(trim($password))){
 
 		if(cek_user_supervisor($password)){
+			$_SESSION['pass_supervisor'] = true;
 			header('Location: edit-penumpang.php?tb=' . $_GET['tb'] . '&nomer=' . $_GET['nomer'] . '');
 		}else{
+			$_SESSION['pass_supervisor'] = false;
 			echo("<script>alert('Error Saat Mengcek Password !')</script>");
 		}
 	}
@@ -162,19 +164,11 @@ if(isset($_POST['submit'])){
 					  	<?php if(mysqli_num_rows($show_data_tbSiluet) > 0 ): ?>
 						  	<?php while($data = mysqli_fetch_assoc($show_data_tbSiluet)): ?>
 						    <tr>
-						    	<?php
-						    	$datatanggal 	= $data['tanggal'];
-						    	$day 			= substr($datatanggal, 8, 2);
-						    	$month 		= substr($datatanggal, 5, 2);
-						    	$year 		= substr($datatanggal, 0, 4);
-
-						    	$datatanggal 	= $day . "-" . $month . "-" . $year;
-						    	?>
 						      <th scope="row"><?= $no1++; ?></th>
 						      <td><?= $data['nomer']; ?></td>
 						      <td><?= $data['nama']; ?></td>
 						      <td><?= $data['alamat']; ?></td>
-						      <td><?= $datatanggal; ?></td>
+						      <td><?= $data['tanggal']; ?></td>
 						      <td><?= $data['jam']; ?></td>
 						      <td><?= $data['tujuan']; ?></td>
 						      <td>

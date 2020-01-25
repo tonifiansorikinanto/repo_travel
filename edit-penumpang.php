@@ -2,11 +2,16 @@
 require_once 'core/system.php';
 require_once 'assets/templates/header.php';
 
+$table_name = $_GET['tb'];
+
 if(isset($_SESSION["user_access"])){
+
+if(isset($_SESSION["pass_supervisor"])){
+
+unset($_SESSION["pass_supervisor"]);
 
 if(isset($_GET['nomer']) && isset($_GET['tb'])){
 	$nomer = $_GET['nomer'];
-	$table_name = $_GET['tb'];
 
 	if($table_name == "tb1"){
 		$data_perNomer = show_data_onNomer_tbSiluet($nomer);
@@ -24,8 +29,18 @@ if(isset($_GET['nomer']) && isset($_GET['tb'])){
 		$harga_khusus = $data['harga_khusus'];
 	}
 
+	$day 			= substr($tanggal, 0, 2);
+	$month 		= substr($tanggal, 3, 2);
+	$year 		= substr($tanggal, 6, 4);
+
+	$tanggal 	= $year . "-" . $month . "-" . $day;
+
 }else{
-	header('Location: admin.php');
+	if($table_name == "tb1"){
+		header('Location: admin-siluet.php');
+	}else{
+		header('Location: admin-liza.php');
+	}
 }
 
 
@@ -40,6 +55,12 @@ if(isset($_POST['edit'])){
 
 	if(!empty(trim($namaEdit)) && !empty(trim($alamatEdit)) && !empty(trim($tglEdit)) &&
 	!empty(trim($jamEdit)) && !empty(trim($tujuanEdit)) && !empty(trim($lunasEdit)) && !empty(trim($harga_khususEdit))){
+
+		$day 			= substr($tglEdit, 8, 2);
+  	$month 		= substr($tglEdit, 5, 2);
+  	$year 		= substr($tglEdit, 0, 4);
+
+  	$tglEdit 	= $day . "-" . $month . "-" . $year;
 
 		if($table_name == "tb1"){
 			if(edit_data_tbSiluet($nomer, $namaEdit, $alamatEdit, $tglEdit, $jamEdit, $tujuanEdit, $lunasEdit, $harga_khususEdit)){
@@ -151,7 +172,15 @@ if(isset($_POST['edit'])){
 </div>
 
 <?php 
-require_once 'assets/templates/footer.php'; 
+require_once 'assets/templates/footer.php';
+
+}else{
+	if($table_name == "tb1"){
+		header('Location: admin-siluet.php');
+	}else{
+		header('Location: admin-liza.php');
+	}
+}
 
 }else{
 	header('Location: login-admin.php');
