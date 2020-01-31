@@ -1,4 +1,3 @@
 RewriteEngine On
 
-RewriteRule ^([a-z-]+)\/?$ $1.php [L,NC]
-
+RewriteRule ^([a-z-]+)\/?$ $1.php [NC]
