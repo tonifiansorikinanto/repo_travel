@@ -33,3 +33,16 @@ function cekAccessibility(){
 	var field_password = document.getElementById('field_password').value;
 	return field_password;
 }
+
+function show_data(data){
+	row_parameter = document.getElementById('row' + data);
+	if(row_parameter.style.opacity == "1"){
+		row_parameter.style.display = "none";
+		row_parameter.style.opacity = "0";
+		row_parameter.style.maxHeight = "0px";
+	}else{
+		row_parameter.style.display = "table-row";
+		row_parameter.style.opacity = "1";
+		row_parameter.style.maxHeight = "200px";
+	}
+}
