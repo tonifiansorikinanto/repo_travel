@@ -52,85 +52,136 @@ if(isset($_POST['submit'])){
 <div class="container">
 	<div class="row justify-content-center mt-3">
 		<div class="col-md-10">
-			<h1 class="h1-responsive deep-purple-text">Tambah Data</h1>			
+			<h1 class="h1-responsive <?php
+						if ($table_name =='tb1') {
+							echo "text-warning";
+						} else {
+							echo "text-info";
+						}
+					?>">
+					Edit / Tambah Penumpang 
+					<?php
+						if ($table_name =='tb1') {
+							echo "Siluet";
+						} else {
+							echo "Liza";
+						}
+					?>					
+				</h1>			
             
 			<form method="post" action="">
-				<div class="row justify-content-center">
+				<div class="row justify-content-center <?php
+						if ($table_name =='tb1') {
+							echo "text-warning";
+						} else {
+							echo "text-info";
+						}
+					?>">
 					<div class="col-md-12">
 						<div class="row">
 							<div class="col-md-6">
 								<div class="row">
-									<div class="col-md-12 mt-2">
-										<h4 class="h4-responsive text-primary">Nomer HP</h4>
+									<div class="col-md-12 mt-3">
+										<h4 class="h4-responsive">Nomer HP</h4>
 									</div>
 									<div class="col-md-12">
-										<input type="text" aria-label="nomer" name="nomer" id="nomer" class="form-control z-depth-1" maxlength="13">
+										<form class="form-inline active-cyan-3 active-cyan-4">
+										  <input class="form-control form-control z-depth-1" type="text" aria-label="" name="caritb2" autocomplete="off" spellcheck="false">
+										</form>
+										<input type="hidden" aria-label="nomer" name="nomer" id="nomer" class="form-control z-depth-1" maxlength="13">
 									</div>
 
-									<div class="col-md-12 mt-2">
-										<h4 class="h4-responsive text-primary">Nama</h4>
+									<div class="col-md-12 mt-3">
+										<h4 class="h4-responsive">Nama</h4>
 									</div>
 									<div class="col-md-12">
 										<input type="text" aria-label="nama" name="nama" id="nama" class="form-control z-depth-1" autocomplete="off">
 									</div>
 
-									<div class="col-md-12 mt-2">
-										<h4 class="h4-responsive text-primary">Alamat</h4>
+									<div class="col-md-6 mt-3">
+										<h4 class="h4-responsive">Alamat Tetap</h4>
 									</div>
-									<div class="col-md-12">
+									<div class="col-md-6 mt-3">
+										<h4 class="h4-responsive">Alamat Jemput</h4>
+									</div>
+									<div class="col-md-6">
 										<textarea class="form-control z-depth-1" name="alamat" style="height: 100px;" id="exampleFormControlTextarea6"></textarea>
 									</div>
+									<div class="col-md-6">
+										<textarea class="form-control z-depth-1" name="jemput" style="height: 100px;" id="exampleFormControlTextarea6"></textarea>
+									</div>
 
-									<div class="col-md-12 mt-2">
-										<h4 class="h4-responsive text-primary">Tanggal Berangkat</h4>
+
+
+									<div class="col-md-12 mt-3">
+										<h4 class="h4-responsive">Tanggal Berangkat</h4>
 									</div>
 									<div class="col-md-12">
 										<input type="date" aria-label="nomer" name="tgl" id="tgl" class="form-control z-depth-1">
 									</div>
+
+									<div class="col-md-12 mt-3">
+										<h4 class="h4-responsive">Keterangan</h4>
+									</div>
+									<div class="col-md-12">
+										<textarea class="form-control z-depth-1" name="ket" style="height: 100px;" id="exampleFormControlTextarea6"></textarea>
+									</div>
+
 								</div>
 							</div>
 							<div class="col-md-6">
 								<div class="row">
-									<div class="col-md-12 mt-2">
-										<h4 class="h4-responsive text-primary">Jam Berangkat</h4>
+									<div class="col-md-12 mt-3">
+										<h4 class="h4-responsive">Jam Berangkat</h4>
 									</div>
 									<div class="col-md-12">
 										<input type="time" aria-label="nomer" name="jam" id="nomer" class="form-control z-depth-1" placeholder="14:00" autocomplete="off">
 									</div>
 
-									<div class="col-md-12 mt-2">
-										<h4 class="h4-responsive text-primary">Tujuan</h4>
+									<div class="col-md-12 mt-3">
+										<h4 class="h4-responsive">Tujuan</h4>
 									</div>
 									<div class="col-md-12">
 										<input type="text" aria-label="nama" name="tujuan" id="nama" class="form-control z-depth-1" autocomplete="off">
 									</div>
 
-									<div class="col-md-12 mt-2">
-										<h4 class="h4-responsive text-primary">Lunas / BA</h4>
+									<div class="col-md-12 mt-3">
+										<h4 class="h4-responsive">Jumlah Penumpang</h4>
+									</div>
+									<div class="col-md-12">
+										<input type="number" aria-label="nama" name="penumpang" id="nama" class="form-control z-depth-1" autocomplete="off">
+									</div>
+
+									<div class="col-md-12 mt-3">
+										<h4 class="h4-responsive">Lunas / BA</h4>
 									</div>
 									<div class="col-md-12">
 										<select name="lunas" id="durasi1" class="form-control" >
-                      <option value="0">- Pilih Status Pembayaran -</option>
-                      <option value="1">Lunas</option>
-                      <option value="2">BA</option>					                      
-                    </select>
+					                        <option value="0">- Pilih Status Pembayaran -</option>
+					                        <option value="1">Lunas</option>
+					                        <option value="2">BA</option>					
+				                    	</select>
 									</div>
 
-									<div class="col-md-12 mt-2">
-										<h4 class="h4-responsive text-primary">Harga Khusus</h4>
+									<div class="col-md-12 mt-3">
+										<h4 class="h4-responsive">Harga Khusus</h4>
 									</div>
 									<div class="col-md-12">
 										<input type="text" aria-label="nomer" name="harga_khusus" id="nomer" class="form-control z-depth-1" autocomplete="off">
 									</div>
+
+									
+
 								</div>
 							</div>		                  
 						</div>
-						<div align="right" class="my-4">
+						<div align="right" class="mt-5 mb-4">
 			  				<button type="submit" name="submit" class="btn btn-primary btn-md" style="width: 130px;" onclick="return confirm('Lanjut Tambah Data Penumpang ?')">Tambah Data</button>
+			  				<button type="submit" name="edit" class="btn btn-warning btn-md" style="width: 130px;" onclick="return confirm('Lanjut Edit Data Penumpang ?')">Edit Data</button>
 			  			<?php if($table_name == "tb1"): ?>
-			  				<a type="button" class="btn btn-info btn-md" href="admin-siluet.php" style="width: 130px;">Kembali</a>
+			  				<a type="button" class="btn btn-info btn-md" href="admin-siluet" style="width: 130px;">Kembali</a>
 			  			<?php else: ?>
-			  				<a type="button" class="btn btn-info btn-md" href="admin-liza.php" style="width: 130px;">Kembali</a>
+			  				<a type="button" class="btn btn-info btn-md" href="admin-liza" style="width: 130px;">Kembali</a>
 			  			<?php endif; ?>
 			  			</div>
 					</div>
