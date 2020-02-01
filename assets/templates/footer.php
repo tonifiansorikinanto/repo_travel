@@ -9,6 +9,8 @@
   <!-- MDB core JavaScript -->
   <script type="text/javascript" src="assets/js/mdb.min.js"></script>
   <script type="text/javascript" src="assets/js/event.js"></script>
+  <script type="text/javascript" src="assets/js/dataTables.bootstrap4.min.js"></script>
+  <script type="text/javascript" src="assets/js/jquery.dataTables.min.js"></script>  
 </body>
 
 </html>

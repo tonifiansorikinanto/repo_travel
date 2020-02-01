@@ -14,7 +14,8 @@
   <!-- Material Design Bootstrap -->
   <link href="assets/css/mdb.min.css" rel="stylesheet">
   <!-- Your custom styles (optional) -->
-  <link href="assets/css/style.css" rel="stylesheet">
+  <link href="assets/css/style.css" rel="stylesheet">  
+  <link href="assets/css/dataTables.bootstrap4.min.css" rel="stylesheet">
 
   <link rel="shortcut icon" type="image/png" href="assets/image/logo/icon.png"/>
 

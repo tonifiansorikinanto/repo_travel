@@ -41,6 +41,7 @@ function show_data(data){
 		row_parameter.style.opacity = "0";
 		row_parameter.style.maxHeight = "0px";
 	}else{
+		row_parameter.style.transition = "4s";
 		row_parameter.style.display = "table-row";
 		row_parameter.style.opacity = "1";
 		row_parameter.style.maxHeight = "200px";

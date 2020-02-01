@@ -143,76 +143,78 @@
 		  				<a href="print_file.php?tb=tb2<?php if(isset($_GET['caritb2'])){ echo '&caritb2=' . $_GET['caritb2']; }?>" class="h5-responsive text-success" target="_blank"><i class="fas fa-print"></i> Print Tabel</a>
 		  			</div>
 		  		</div>
-				<table class="table table-hover mt-4">
-				  <thead class="info-color text-white" align="center">
-				    <tr>
-				      <th style="width: 35px;" scope="col"><i class="far fa-check-square"></i></th>
-				      <th style="width: 35px;" scope="col">#</th>
-				      <th scope="col">Nomer HP</th>
-				      <th scope="col">Nama</th>
-				      <th scope="col">Alamat Jemput</th>
-				      <th scope="col">Tgl Berangkat</th>
-				      <th scope="col">Jam Berangkat</th>
-				      <th scope="col">Tujuan</th>		
-				      <th scope="col">Jumlah Penumpang</th>			      
-				      <th scope="col">Lunas / BA</th>
-				      <th scope="col">Special Price</th>
-				      <th scope="col">Mobil</th>				      
-				    </tr>
-				  </thead>
-				  <tbody>
-				  	<?php if(mysqli_num_rows($show_data_tbLiza) > 0 ): ?>
-					    <?php while($data = mysqli_fetch_assoc($show_data_tbLiza)): ?>
-					    <tr style="cursor:pointer;">
-					    	<?php
-					    	// $datatanggal 	= $data['tanggal'];
-					    	// $day 			= substr($datatanggal, 8, 2);
-					    	// $month 		= substr($datatanggal, 5, 2);
-					    	// $year 		= substr($datatanggal, 0, 4);
+		  		<div class="table-responsive-sm">
+					<table class="table table-hover mt-4" id="example">
+					  <thead class="info-color text-white" align="center">
+					    <tr>
+					      <th style="width: 35px;" scope="col"><i class="far fa-check-square"></i></th>
+					      <th style="width: 35px;" scope="col">#</th>
+					      <th scope="col">Nomer HP</th>
+					      <th scope="col">Nama</th>
+					      <th scope="col">Alamat Jemput</th>
+					      <th scope="col">Tgl Berangkat</th>
+					      <th scope="col">Jam Berangkat</th>
+					      <th scope="col">Tujuan</th>		
+					      <th scope="col">Jumlah Penumpang</th>			      
+					      <th scope="col">Lunas / BA</th>
+					      <th scope="col">Special Price</th>
+					      <th scope="col">Mobil</th>				      
+					    </tr>
+					  </thead>
+					  <tbody>
+					  	<?php if(mysqli_num_rows($show_data_tbLiza) > 0 ): ?>
+						    <?php while($data = mysqli_fetch_assoc($show_data_tbLiza)): ?>
+						    <tr style="cursor:pointer;">
+						    	<?php
+						    	// $datatanggal 	= $data['tanggal'];
+						    	// $day 			= substr($datatanggal, 8, 2);
+						    	// $month 		= substr($datatanggal, 5, 2);
+						    	// $year 		= substr($datatanggal, 0, 4);
 
-					    	// $datatanggal 	= $day . "-" . $month . "-" . $year;
-					    	?>
-					      <td>
-					      	<input type="checkbox"></td>
-					      </td>
-					      <th scope="row" onclick="show_data(<?= $no2; ?>)"><?= $no2; ?></th>
-					      <td onclick="show_data(<?= $no2; ?>)"><?= $data['nomer']; ?></td>
-					      <td onclick="show_data(<?= $no2; ?>)"><?= $data['nama']; ?></td>
-					      <td onclick="show_data(<?= $no2; ?>)"><?= $data['alamat']; ?> Rahayu No. 3B</td>
-					      <td onclick="show_data(<?= $no2; ?>)"><?= $data['tanggal']; ?></td>
-					      <td onclick="show_data(<?= $no2; ?>)"><?= $data['jam']; ?></td>
-					      <td onclick="show_data(<?= $no2; ?>)"><?= $data['tujuan']; ?> Rahayu No. 3B</td>
-					      <td onclick="show_data(<?= $no2; ?>)" class="text-center">5</td>
-					      <td onclick="show_data(<?= $no2; ?>)">
-					      	<?php 
-					      	if($data['lunas'] == 1){
-					      		echo "Lunas";
-					      	}else if($data['lunas'] == 2){
-					      		echo "BA";
-					      	}
-					      	?>
-					      </td>
-					      <td onclick="show_data(<?= $no2; ?>)"><?= $data['harga_khusus']; ?></td>
-					      <td><a href="#x" role="button" class="text-primary" data-toggle="modal" data-target="#modalDelete" onclick="setDeleteParameter('tb1', '<?=$data['nomer']; ?>')">Pilih</a></td>
-					    </tr>					    
-					    <tr class="align-items-center row_hidden" id="row<?= $no2++; ?>">
-					    	<td colspan="2"></td>
-					    	<td><b>Keterangan</b></td>
-					    	<td colspan="6">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Expedita veritatis hic in unde assumenda.</td>
-					    	<td colspan="1" class="text-right"><b>Aksi</b></td>
-					    	<td colspan="2">
-					      	<a href="#x" role="button" class="text-warning" data-toggle="modal" data-target="#modalKonfirmSupervisor" onclick="setEditParameter('tb1', '<?=$data['nomer']; ?>')">Edit</i></a>
-					      	| <a href="#x" role="button" class="text-danger" data-toggle="modal" data-target="#modalDelete" onclick="setDeleteParameter('tb1', '<?=$data['nomer']; ?>')">Hapus</a>
-					      </td>
-					    </tr>	
-					    <?php endwhile; ?>	
-					  <?php else: ?>	    
-					  <tr>
-					  	<td colspan="12" class="text-center"><b>Tidak ada data !</b></td>
-					  </tr>
-					  <?php endif; ?>			    
-				  </tbody>				  
-				</table>
+						    	// $datatanggal 	= $day . "-" . $month . "-" . $year;
+						    	?>
+						      <td>
+						      	<input type="checkbox"></td>
+						      </td>
+						      <th scope="row" onclick="show_data(<?= $no2; ?>)"><?= $no2; ?></th>
+						      <td onclick="show_data(<?= $no2; ?>)"><?= $data['nomer']; ?></td>
+						      <td onclick="show_data(<?= $no2; ?>)"><?= $data['nama']; ?></td>
+						      <td onclick="show_data(<?= $no2; ?>)"><?= $data['alamat']; ?> Rahayu No. 3B</td>
+						      <td onclick="show_data(<?= $no2; ?>)"><?= $data['tanggal']; ?></td>
+						      <td onclick="show_data(<?= $no2; ?>)"><?= $data['jam']; ?></td>
+						      <td onclick="show_data(<?= $no2; ?>)"><?= $data['tujuan']; ?> Rahayu No. 3B</td>
+						      <td onclick="show_data(<?= $no2; ?>)" class="text-center">5</td>
+						      <td onclick="show_data(<?= $no2; ?>)">
+						      	<?php 
+						      	if($data['lunas'] == 1){
+						      		echo "Lunas";
+						      	}else if($data['lunas'] == 2){
+						      		echo "BA";
+						      	}
+						      	?>
+						      </td>
+						      <td onclick="show_data(<?= $no2; ?>)"><?= $data['harga_khusus']; ?></td>
+						      <td><a href="#x" role="button" class="text-primary" data-toggle="modal" data-target="#modalDelete" onclick="setDeleteParameter('tb1', '<?=$data['nomer']; ?>')">Pilih</a></td>
+						    </tr>					    
+						    <tr class="align-items-center row_hidden" id="row<?= $no2++; ?>">
+						    	<td colspan="2"></td>
+						    	<td><b>Keterangan</b></td>
+						    	<td colspan="6">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Expedita veritatis hic in unde assumenda.</td>
+						    	<td colspan="1" class="text-right"><b>Aksi</b></td>
+						    	<td colspan="2">
+						      	<a href="#x" role="button" class="text-warning" data-toggle="modal" data-target="#modalKonfirmSupervisor" onclick="setEditParameter('tb1', '<?=$data['nomer']; ?>')">Edit</i></a>
+						      	| <a href="#x" role="button" class="text-danger" data-toggle="modal" data-target="#modalDelete" onclick="setDeleteParameter('tb1', '<?=$data['nomer']; ?>')">Hapus</a>
+						      </td>
+						    </tr>	
+						    <?php endwhile; ?>	
+						  <?php else: ?>	    
+						  <tr>
+						  	<td colspan="12" class="text-center"><b>Tidak ada data !</b></td>
+						  </tr>
+						  <?php endif; ?>			    
+					  </tbody>				  
+					</table>
+				</div>
 				
 
 						
@@ -221,6 +223,12 @@
 	</div>
 </div>
 
+<script>
+$(document).ready(function () {
+$('#example').DataTable();
+$('.dataTables_length').addClass('bs-select');
+});
+</script>
 
 <?php 
 require_once 'assets/templates/footer.php'; 
