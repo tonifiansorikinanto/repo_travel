@@ -45,7 +45,7 @@ function search_data_tbSiluet($caritb1){
 
 	$caritb1 = escape($caritb1);
 
-	$query 	= "SELECT * FROM tb_siluet WHERE tanggal LIKE '%$caritb1%'";
+	$query 	= "SELECT * FROM tb_siluet WHERE tanggal LIKE '%$caritb1%' ORDER BY jam ASC";
 	$result = mysqli_query($connect, $query);
 
 	return $result;
@@ -56,7 +56,7 @@ function search_data_tbLiza($caritb2){
 
 	$caritb2 = escape($caritb2);
 
-	$query 	= "SELECT * FROM tb_liza WHERE tanggal LIKE '%$caritb2%'";
+	$query 	= "SELECT * FROM tb_liza WHERE tanggal LIKE '%$caritb2%' ORDER BY jam ASC";
 	$result = mysqli_query($connect, $query);
 
 	return $result;
