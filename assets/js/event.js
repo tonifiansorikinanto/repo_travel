@@ -34,15 +34,16 @@ function cekAccessibility(){
 	return field_password;
 }
 
+
 function show_data(data){
 	row_parameter = document.getElementById('row' + data);
 	if(row_parameter.style.opacity == "1"){
 		row_parameter.style.display = "none";
 		row_parameter.style.opacity = "0";
-		row_parameter.style.maxHeight = "0px";
+		row_parameter.style.transition = "opacity 0.5s";
 	}else{
 		row_parameter.style.display = "table-row";
 		row_parameter.style.opacity = "1";
-		row_parameter.style.maxHeight = "200px";
+		row_parameter.style.transition = "opacity 0.5s";
 	}
 }
