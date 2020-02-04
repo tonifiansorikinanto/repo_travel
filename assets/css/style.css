@@ -247,10 +247,6 @@ body {
 }
 
 
-tr.row_hidden td{
-  display:none;
-  height:0px;
-}
 
 .row_hidden{  
   display: none;
