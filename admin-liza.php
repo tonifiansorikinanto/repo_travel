@@ -179,7 +179,14 @@
 						      <th scope="row" onclick="show_data(<?= $no2; ?>)"><?= $no2; ?></th>
 						      <td onclick="show_data(<?= $no2; ?>)"><?= $data['nomer']; ?></td>
 						      <td onclick="show_data(<?= $no2; ?>)"><?= $data['nama']; ?></td>
-						      <td onclick="show_data(<?= $no2; ?>)"><?= $data['alamat']; ?> Rahayu No. 3B</td>
+						      <td onclick="show_data(<?= $no2; ?>)">
+						      	<?php
+						      		if ($data['jemput'] != ''){
+						      			echo $data['jemput'];
+						      		} else {
+						      			echo $data['alamat'];
+						      		}
+						      	?> Rahayu No. 3B</td>
 						      <td onclick="show_data(<?= $no2; ?>)"><?= $data['tanggal']; ?></td>
 						      <td onclick="show_data(<?= $no2; ?>)"><?= $data['jam']; ?></td>
 						      <td onclick="show_data(<?= $no2; ?>)"><?= $data['tujuan']; ?> Rahayu No. 3B</td>
