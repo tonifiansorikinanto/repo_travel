@@ -47,13 +47,23 @@ function cekAccessibility(){
 function show_data(data){
 	row_parameter = document.getElementById('row' + data);
 	if(row_parameter.style.opacity == "1"){
-		row_parameter.style.display = "none";
 		row_parameter.style.opacity = "0";
-		row_parameter.style.transition = "opacity 0.5s";
+		row_parameter.style.transform = "translateX(-200px)";
+		row_parameter.style.transition = "all 0.5s";
+
+		setTimeout(function(){
+			row_parameter.style.display = "none";
+		}, 250);
+
 	}else{
 		row_parameter.style.transition = "4s";
 		row_parameter.style.display = "table-row";
-		row_parameter.style.opacity = "1";
-		row_parameter.style.transition = "opacity 0.5s";
+
+		setTimeout(function(){
+			row_parameter.style.opacity = "1";
+			row_parameter.style.transform = "translateX(0px)";
+			row_parameter.style.transition = "all 0.3s";
+		}, 100);
+
 	}
 }

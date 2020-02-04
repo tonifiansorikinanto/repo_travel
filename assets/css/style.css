@@ -251,7 +251,11 @@ body {
 .row_hidden{  
   display: none;
   max-height:0px;
+  opacity: 0;
+  transition: opacity 0.5s;
   overflow: hidden;
+  background: #EAEAEA;
+  transform: translateX(-200px);
 }
 
 table.dataTable thead .sorting:after,
