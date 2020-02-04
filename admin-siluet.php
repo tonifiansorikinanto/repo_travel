@@ -39,6 +39,22 @@ if(isset($_POST['submit'])){
 	}
 }
 
+if(isset($_POST['submit_cs'])){
+	$password = $_POST["pass_cs"];
+	$tb 			= $_GET['tb'];
+
+	if(!empty(trim($password))){
+
+		if(cek_user_cs($password)){
+			$_SESSION['pass_cs'] = true;
+			header('Location: tambah-penumpang?tb=' . $_GET['tb'] . '');
+		}else{
+			$_SESSION['pass_cs'] = false;
+			echo("<script>alert('Error Saat Mengcek Password !')</script>");
+		}
+	}
+}
+
 ?>
 
 <!-- modal -->
@@ -78,6 +94,28 @@ if(isset($_POST['submit'])){
 	        <button type="button" class="btn btn-sm btn-warning" data-dismiss="modal">Tidak</button>
 	        <a href="#x" class="btn btn-sm btn-danger" id="button_delete">Iya</a>
 	      </div>
+	    </div>
+	  </div>
+	</div>
+
+	<div class="modal fade" id="modalCS" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true" style="z-index:99999999;">
+	  <div class="modal-dialog modal-dialog-centered" role="document">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <h5 class="modal-title" id="exampleModalLongTitle">Login Customer Service</h5>
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Close"onclick="resetUrl()">
+	          <span aria-hidden="true">&times;</span>
+	        </button>
+	      </div>
+	      <form method="post" action="" name="form_sv">
+		      <div class="modal-body">
+				    <input type="password" aria-label="pass_cs" name="pass_cs" class="form-control" placeholder="Masukkan password CS..." id="field_password">
+			  	</div>
+		      <div class="modal-footer">
+		        <button type="button" class="btn btn-sm btn-warning" data-dismiss="modal" onclick="resetUrl()">Batal</button>
+		        <button role="button" class="btn btn-sm btn-danger" id="button_edit" name="submit_cs">Login</button>
+		      </div>
+	      </form>
 	    </div>
 	  </div>
 	</div>
@@ -125,7 +163,7 @@ if(isset($_POST['submit'])){
 		<div class="row justify-content-center mt-2 mb-4">
 			<div class="col-md-12">
 				<div align="center" class="mt-2">
-					<a class="btn waves-effect btn-outline-warning" role="button" style="width: 190px;">Siluet</a>
+					<a class="btn waves-effect btn-outline-warning"  href="admin-siluet" role="button" style="width: 190px;">Siluet</a>
 					<a href="admin-liza" class="btn waves-effect btn-info" role="button" style="width: 190px;">Liza</a>
 				</div>				
 		  		<div class="row mt-4">
@@ -133,11 +171,11 @@ if(isset($_POST['submit'])){
 		  				<!-- Search form -->
 						<form class="form-inline active-cyan-3 active-cyan-4" method="get" action="">
 						  <i class="fas fa-search" aria-hidden="true"></i>
-						  <input class="form-control form-control-sm ml-3" style="width: 240px;" type="text" placeholder="Cari berdasarkan Tgl Berangkat.." aria-label="Cari berdasarkan Tgl Berangkat.." name="caritb1" autocomplete="off" spellcheck="false">
+						  <input class="form-control form-control-sm ml-3" style="width: 240px;" type="search" placeholder="Cari berdasarkan Tgl Berangkat.." aria-label="Cari berdasarkan Tgl Berangkat.." name="caritb1" autocomplete="off" spellcheck="false">
 						</form>
 		  			</div>
 		  			<div class="col-md-4" align="center">
-		  				<a href="tambah-penumpang?tb=tb1" class="h5-responsive text-warning"><i class="fas fa-user-plus"></i> Tambah Penumpang Siluet</a>
+		  				<a href="#x" class="h5-responsive text-warning" data-toggle="modal" data-target="#modalCS"  onclick="setInputParameter('tb1')"><i class="fas fa-user-plus"></i> Tambah Penumpang Siluet</a>
 		  			</div>
 		  			<div class="col-md-4" align="right">
 		  				<a href="print_file.php?tb=tb1<?php if(isset($_GET['caritb1'])){ echo '&caritb1=' . $_GET['caritb1']; }?>" class="h5-responsive text-success" target="_blank"><i class="fas fa-print"></i> Print Tabel</a>
@@ -180,18 +218,18 @@ if(isset($_POST['submit'])){
 					      <td onclick="show_datashow_data(<?= $no1; ?>)"><?= $data['nomer']; ?></td>
 					      <td onclick="show_data(<?= $no1; ?>)"><?= $data['nama']; ?></td>
 					      <td onclick="show_data(<?= $no1; ?>)">
-					      	<?php 
-						      	if($data['lunas'] == 1){
-						      		echo "Lunas";
-						      	}else if($data['lunas'] == 2){
-						      		echo "BA";
-						      	}
+					      	<?php
+					      		if ($data['jemput'] != ''){
+					      			echo $data['jemput'];
+					      		} else {
+					      			echo $data['alamat'];
+					      		}
 					      	?>
 					      </td>
 					      <td onclick="show_data(<?= $no1; ?>)"><?= $data['tanggal']; ?></td>
 					      <td onclick="show_data(<?= $no1; ?>)"><?= $data['jam']; ?></td>
-					      <td onclick="show_data(<?= $no1; ?>)"><?= $data['tujuan']; ?> Rahayu No. 3B</td>
-					      <td onclick="show_data(<?= $no1; ?>)" class="text-center">5</td>
+					      <td onclick="show_data(<?= $no1; ?>)"><?= $data['tujuan']; ?></td>
+					      <td onclick="show_data(<?= $no1; ?>)" class="text-center"><?= $data['penumpang']; ?></td>
 					      <td onclick="show_data(<?= $no1; ?>)">
 					      	<?php 
 					      	if($data['lunas'] == 1){
@@ -207,7 +245,7 @@ if(isset($_POST['submit'])){
 					    <tr class="align-items-center row_hidden" id="row<?= $no1++; ?>">
 					    	<td colspan="2"></td>
 					    	<td><b>Keterangan</b></td>
-					    	<td colspan="6">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Expedita veritatis hic in unde assumenda.</td>
+					    	<td colspan="6"><?= $data['ket']; ?></td>
 					    	<td colspan="1" class="text-right"><b>Aksi</b></td>
 					    	<td colspan="2">
 					      	<a href="#x" role="button" class="text-warning" data-toggle="modal" data-target="#modalKonfirmSupervisor" onclick="setEditParameter('tb1', '<?=$data['nomer']; ?>')">Edit</i></a>

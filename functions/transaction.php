@@ -79,7 +79,8 @@ function add_data_tbSiluet($nomer, $nama, $alamat, $jemput, $tgl, $jam, $tujuan,
 	$harga_khusus 		= escape($harga_khusus);
 	$ket 				= escape($ket);
 
-	$query = "INSERT INTO tb_siluet (nomer, nama, alamat, jemput, tanggal, jam, tujuan, penumpang, lunas, harga_khusus, ket) VALUES ('$nomer', '$nama', '$alamat', '$jemput', '$tgl', '$jam', '$tujuan', '$penumpang', '$lunas', '$harga_khusus', '$ket')";
+	$query = "INSERT INTO tb_siluet (nomer, nama, alamat, jemput, tanggal, jam, tujuan, penumpang, lunas, harga_khusus, ket) VALUES 
+	('$nomer', '$nama', '$alamat', '$jemput', '$tgl', '$jam', '$tujuan', '$penumpang', '$lunas', '$harga_khusus', '$ket')";
 	$result = mysqli_query($connect, $query);
 
 	return $result;
@@ -104,39 +105,45 @@ function add_data_tbLiza($nomer, $nama, $alamat, $jemput, $tgl, $jam, $tujuan, $
 }
 
 
-function edit_data_tbSiluet($nomer, $namaEdit, $alamatEdit, $tglEdit, $jamEdit, $tujuanEdit, $lunasEdit, $harga_khususEdit){
+function edit_data_tbSiluet($nomerEdit, $namaEdit, $alamatEdit, $jemputEdit, $tglEdit, $jamEdit, $tujuanEdit, $penumpangEdit, $lunasEdit, $harga_khususEdit, $ketEdit, $nomer){
 	global $connect;
 
-	$nomer 						= escape($nomer);
+	$nomerEdit 				= escape($nomerEdit);
 	$namaEdit 				= escape($namaEdit);
 	$alamatEdit 			= escape($alamatEdit);
+	$jemputEdit				= escape($jemputEdit);
 	$tglEdit 					= escape($tglEdit);
 	$jamEdit 					= escape($jamEdit);
 	$tujuanEdit 			= escape($tujuanEdit);
+	$penumpangEdit		= escape($penumpangEdit);
 	$lunasEdit 				= escape($lunasEdit);
 	$harga_khususEdit = escape($harga_khususEdit);
+	$ketEdit 					= escape($ketEdit);
 
-	$query = "UPDATE tb_siluet SET nama='$namaEdit', alamat='$alamatEdit', tanggal='$tglEdit', jam='$jamEdit',
-						tujuan='$tujuanEdit', lunas='$lunasEdit', harga_khusus='$harga_khususEdit' WHERE nomer='$nomer'";
+	$query = "UPDATE tb_siluet SET nomer='$nomerEdit', nama='$namaEdit', alamat='$alamatEdit', jemput='$jemputEdit', tanggal='$tglEdit', jam='$jamEdit',
+						tujuan='$tujuanEdit', penumpang='$penumpangEdit', lunas='$lunasEdit', harga_khusus='$harga_khususEdit', ket='$ketEdit' WHERE nomer='$nomer'";
 	$result = mysqli_query($connect, $query);
 
 	return $result;
 }
 
-function edit_data_tbLiza($nomer, $namaEdit, $alamatEdit, $tglEdit, $jamEdit, $tujuanEdit, $lunasEdit, $harga_khususEdit){
+function edit_data_tbLiza($nomerEdit, $namaEdit, $alamatEdit, $jemputEdit, $tglEdit, $jamEdit, $tujuanEdit, $penumpangEdit, $lunasEdit, $harga_khususEdit, $ketEditt){
 	global $connect;
 
-	$nomer 						= escape($nomer);
+	$nomer 						= escape($nomerEdit);
 	$namaEdit 				= escape($namaEdit);
 	$alamatEdit 			= escape($alamatEdit);
+	$jemputEdit				= escape($jemputEdit);
 	$tglEdit 					= escape($tglEdit);
 	$jamEdit 					= escape($jamEdit);
 	$tujuanEdit 			= escape($tujuanEdit);
+	$penumpangEdit		= escape($penumpangEdit);
 	$lunasEdit 				= escape($lunasEdit);
 	$harga_khususEdit = escape($harga_khususEdit);
+	$ketEdit 					= escape($ketEdit);
 
-	$query = "UPDATE tb_liza SET nama='$namaEdit', alamat='$alamatEdit', tanggal='$tglEdit', jam='$jamEdit',
-						tujuan='$tujuanEdit', lunas='$lunasEdit', harga_khusus='$harga_khususEdit' WHERE nomer='$nomer'";
+	$query = "UPDATE tb_siluet SET nomer='$nomer', nama='$namaEdit', alamat='$alamatEdit', jemput='$jemputEdit', tanggal='$tglEdit', jam='$jamEdit',
+						tujuan='$tujuanEdit', penumpang='$penumpangEdit', lunas='$lunasEdit', harga_khusus='$harga_khususEdit', ket='$ketEdit' WHERE nomer='$nomer'";
 	$result = mysqli_query($connect, $query);
 
 	return $result;

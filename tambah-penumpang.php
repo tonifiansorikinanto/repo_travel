@@ -30,23 +30,32 @@ if(isset($_POST['submit'])){
 		if($table_name == "tb1"){
 			if(add_data_tbSiluet($nomer, $nama, $alamat, $jemput, $tgl, $jam, $tujuan, $penumpang, $lunas, $harga_khusus, $ket)){
 				$_SESSION['report_message'] = report_message("success", "Berhasil Menambahkan Data ke Tabel Siluet");
-				header('Location: admin-siluet.php');
+				header('Location: admin-siluet');
 			}else{
 				$_SESSION['report_message'] = report_message("error", "Gagal Menambahkan Data !");
-				header('Location: tambah-penumpang.php?tb=tb1');
+				header('Location: tambah-penumpang?tb=tb1');
 			}
 		}else{
 			if(add_data_tbLiza($nomer, $nama, $alamat, $jemput, $tgl, $jam, $tujuan, $penumpang, $lunas, $harga_khusus, $ket)){
 				$_SESSION['report_message'] = report_message("success", "Berhasil Menambahkan Data ke Tabel Liza");
-				header('Location: admin-liza.php');
+				header('Location: admin-liza');
 			}else{
 				$_SESSION['report_message'] = report_message("error", "Gagal Menambahkan Data !");
-				header('Location: tambah-penumpang.php?tb=tb2');
+				header('Location: tambah-penumpang?tb=tb2');
 			}
 		}
 
 	}
 
+}
+
+?>
+
+<?php
+
+if(isset($_SESSION['report_message'])){
+	echo $_SESSION['report_message'];
+	unset($_SESSION['report_message']);
 }
 
 ?>

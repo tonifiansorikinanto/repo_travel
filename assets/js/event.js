@@ -7,6 +7,12 @@ function setDeleteParameter(data1, data2){
 	button_delete.href = "delete_data.php?tb=" + data1 + "&" + "nomer=" + data2;
 }
 
+function setInputParameter(data1){
+	history.pushState({
+		id : 'homepage'
+	}, 'Home | My App', currentUrl + "?tb=" + data1);
+}
+
 function setEditParameter(data1, data2){
 	
 	//window.location.href = currentUrl + "?tb=" + data1 + "&" + "nomer=" + data2;

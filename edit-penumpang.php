@@ -8,8 +8,6 @@ if(isset($_SESSION["user_access"])){
 
 if(isset($_SESSION["pass_supervisor"])){
 
-unset($_SESSION["pass_supervisor"]);
-
 if(isset($_GET['nomer']) && isset($_GET['tb'])){
 	$nomer = $_GET['nomer'];
 
@@ -20,12 +18,16 @@ if(isset($_GET['nomer']) && isset($_GET['tb'])){
 	}
 
 	while($data = mysqli_fetch_assoc($data_perNomer)){
+		$nomerOri = $data['nomer'];
 		$nama = $data['nama'];
 		$alamat = $data['alamat'];
+		$jemput = $data['jemput'];
 		$tanggal = $data['tanggal'];
 		$jam = $data['jam'];
+		$ket = $data['ket'];
 		$tujuan = $data['tujuan'];
 		$lunas = $data['lunas'];
+		$penumpang = $data['penumpang'];
 		$harga_khusus = $data['harga_khusus'];
 	}
 
@@ -45,16 +47,20 @@ if(isset($_GET['nomer']) && isset($_GET['tb'])){
 
 
 if(isset($_POST['edit'])){
+	$nomerEdit	 			= $_POST['nomer'];
 	$namaEdit 				= $_POST['nama'];
 	$alamatEdit 			= $_POST['alamat'];
+	$jemputEdit				= $_POST['jemput'];
 	$tglEdit 					= $_POST['tgl'];
 	$jamEdit 					= $_POST['jam'];
 	$tujuanEdit 			= $_POST['tujuan'];
+	$penumpangEdit		= $_POST['penumpang'];
 	$lunasEdit 				= $_POST['lunas'];
 	$harga_khususEdit = $_POST['harga_khusus'];
+	$ketEdit 					= $_POST['ket'];
 
-	if(!empty(trim($namaEdit)) && !empty(trim($alamatEdit)) && !empty(trim($tglEdit)) &&
-	!empty(trim($jamEdit)) && !empty(trim($tujuanEdit)) && !empty(trim($lunasEdit)) && !empty(trim($harga_khususEdit))){
+	if(!empty(trim($nomerEdit)) && !empty(trim($namaEdit)) && !empty(trim($alamatEdit)) && !empty(trim($jemputEdit)) && !empty(trim($tglEdit)) &&
+	!empty(trim($jamEdit)) && !empty(trim($tujuanEdit)) && !empty(trim($penumpangEdit)) && !empty(trim($lunasEdit)) && !empty(trim($harga_khususEdit)) && !empty(trim($ketEdit))){
 
 		$day 			= substr($tglEdit, 8, 2);
   	$month 		= substr($tglEdit, 5, 2);
@@ -63,16 +69,18 @@ if(isset($_POST['edit'])){
   	$tglEdit 	= $day . "-" . $month . "-" . $year;
 
 		if($table_name == "tb1"){
-			if(edit_data_tbSiluet($nomer, $namaEdit, $alamatEdit, $tglEdit, $jamEdit, $tujuanEdit, $lunasEdit, $harga_khususEdit)){
+			if(edit_data_tbSiluet($nomerEdit, $namaEdit, $alamatEdit, $jemputEdit, $tglEdit, $jamEdit, $tujuanEdit, $penumpangEdit, $lunasEdit, $harga_khususEdit, $ketEdit, $nomer)){
 				$_SESSION['report_message'] = report_message("success", "Berhasil Mengubah Data " . $namaEdit);
+				unset($_SESSION["pass_supervisor"]);
 				header('Location: admin-siluet.php');
 			}else{
 				$_SESSION['report_message'] = report_message("error", "Gagal Mengubah Data " . $namaEdit);
 				header('Location: edit-penumpang.php?tb=' . $table_name . '&nomer=' . $nomer . '');
 			}
 		}else{
-			if(edit_data_tbLiza($nomer, $namaEdit, $alamatEdit, $tglEdit, $jamEdit, $tujuanEdit, $lunasEdit, $harga_khususEdit)){
+			if(edit_data_tbLiza($nomerEdit, $namaEdit, $alamatEdit, $jemputEdit, $tglEdit, $jamEdit, $tujuanEdit, $penumpangEdit, $lunasEdit, $harga_khususEdit, $ketEdit)){
 				$_SESSION['report_message'] = report_message("success", "Berhasil Mengubah Data " . $namaEdit);
+				unset($_SESSION["pass_supervisor"]);
 				header('Location: admin-liza.php');
 			}else{
 				$_SESSION['report_message'] = report_message("error", "Gagal Mengubah Data " . $namaEdit);
@@ -86,6 +94,7 @@ if(isset($_POST['edit'])){
 
 ?>
 
+
 <div class="container">
 	<div class="row justify-content-center mt-3">
 		<div class="col-md-10">
@@ -94,11 +103,18 @@ if(isset($_POST['edit'])){
 			<form method="post" action="">
 				<div class="row justify-content-center">
 					<div class="col-md-12">
-						<div class="row">
+						<div class="row text-primary">
 							<div class="col-md-6">
 								<div class="row">
 									<div class="col-md-12 mt-2">
-										<h4 class="h4-responsive text-primary">Nama</h4>
+										<h4 class="h4-responsive">Nomer</h4>
+									</div>
+									<div class="col-md-12">
+										<input type="text" aria-label="nomer" name="nomer" id="nomer" class="form-control z-depth-1" autocomplete="off" value="<?= $nomerOri; ?>">
+									</div>
+
+									<div class="col-md-12 mt-3">
+										<h4 class="h4-responsive">Nama</h4>
 									</div>
 									<div class="col-md-12">
 										<input type="text" aria-label="nama" name="nama" id="nama" class="form-control z-depth-1" autocomplete="off" value="<?= $nama; ?>">
@@ -118,7 +134,7 @@ if(isset($_POST['edit'])){
 									</div>
 
 									<div class="col-md-12 mt-2">
-										<h4 class="h4-responsive text-primary">Tanggal Berangkat</h4>
+										<h4 class="h4-responsive">Tanggal Berangkat</h4>
 									</div>
 									<div class="col-md-12">
 										<input type="date" aria-label="nomer" name="tgl" id="nomer" class="form-control z-depth-1"  value="<?= $tanggal; ?>">
@@ -135,14 +151,14 @@ if(isset($_POST['edit'])){
 							<div class="col-md-6">
 								<div class="row">
 									<div class="col-md-12 mt-2">
-										<h4 class="h4-responsive text-primary">Jam Berangkat</h4>
+										<h4 class="h4-responsive">Jam Berangkat</h4>
 									</div>
 									<div class="col-md-12">
 										<input type="text" aria-label="nomer" name="jam" id="nomer" class="form-control z-depth-1" placeholder="14:00" autocomplete="off"  value="<?= $jam; ?>">
 									</div>
 
 									<div class="col-md-12 mt-2">
-										<h4 class="h4-responsive text-primary">Tujuan</h4>
+										<h4 class="h4-responsive">Tujuan</h4>
 									</div>
 									<div class="col-md-12">
 										<input type="text" aria-label="nama" name="tujuan" id="nama" class="form-control z-depth-1" autocomplete="off"  value="<?= $tujuan; ?>">
@@ -156,7 +172,7 @@ if(isset($_POST['edit'])){
 									</div>
 
 									<div class="col-md-12 mt-2">
-										<h4 class="h4-responsive text-primary">Lunas / BA</h4>
+										<h4 class="h4-responsive">Lunas / BA</h4>
 									</div>
 									<div class="col-md-12">
 										<select name="lunas" id="durasi1" class="form-control">
@@ -167,7 +183,7 @@ if(isset($_POST['edit'])){
 									</div>
 
 									<div class="col-md-12 mt-2">
-										<h4 class="h4-responsive text-primary">Harga Khusus</h4>
+										<h4 class="h4-responsive">Harga Khusus</h4>
 									</div>
 									<div class="col-md-12">
 										<input type="text" aria-label="nomer" name="harga_khusus" id="nomer" class="form-control z-depth-1" autocomplete="off"  value="<?= $harga_khusus; ?>">

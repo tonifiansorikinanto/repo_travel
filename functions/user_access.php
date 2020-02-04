@@ -25,4 +25,16 @@ function cek_user_supervisor($password){
 	else return false;
 }
 
+function cek_user_cs($password){
+	global $connect;
+
+	$password = md5($password);
+
+	$query = "SELECT * FROM tb_cs WHERE password='$password'";
+	$result = mysqli_query($connect, $query);
+	
+	if(mysqli_num_rows($result) != 0)return true;
+	else return false;
+}
+
 ?>

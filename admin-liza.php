@@ -38,6 +38,22 @@
 			}
 		}
 	}
+
+	if(isset($_POST['submit_cs'])){
+		$password = $_POST["pass_cs"];
+		$tb 			= $_GET['tb'];
+
+		if(!empty(trim($password))){
+
+			if(cek_user_cs($password)){
+				$_SESSION['pass_cs'] = true;
+				header('Location: tambah-penumpang?tb=' . $_GET['tb'] . '');
+			}else{
+				$_SESSION['pass_cs'] = false;
+				echo("<script>alert('Error Saat Mengcek Password !')</script>");
+			}
+		}
+	}
 ?>
 
 <!-- modal -->
@@ -81,6 +97,28 @@
 	  </div>
 	</div>
 
+	<div class="modal fade" id="modalCS" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true" style="z-index:99999999;">
+	  <div class="modal-dialog modal-dialog-centered" role="document">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <h5 class="modal-title" id="exampleModalLongTitle">Login Customer Service</h5>
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Close"onclick="resetUrl()">
+	          <span aria-hidden="true">&times;</span>
+	        </button>
+	      </div>
+	      <form method="post" action="" name="form_sv">
+		      <div class="modal-body">
+				    <input type="password" aria-label="pass_cs" name="pass_cs" class="form-control" placeholder="Masukkan password CS..." id="field_password">
+			  	</div>
+		      <div class="modal-footer">
+		        <button type="button" class="btn btn-sm btn-warning" data-dismiss="modal" onclick="resetUrl()">Batal</button>
+		        <button role="button" class="btn btn-sm btn-danger" id="button_edit" name="submit_cs">Login</button>
+		      </div>
+	      </form>
+	    </div>
+	  </div>
+	</div>
+
 	<div class="modal fade" id="modalKonfirmSupervisor" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true" style="z-index:99999999;">		  
 	  <div class="modal-dialog modal-dialog-centered" role="document">
 	    <div class="modal-content">
@@ -92,7 +130,7 @@
 	      </div>
 	      <form method="post" action="" name="form_sv">
 		      <div class="modal-body">
-				    <input type="password" aria-label="pass_sv" name="pass_sv" class="form-control" placeholder="Masukkan password Supervisor..." id="field_password">
+				    <input type="password"  aria-label="pass_sv" name="pass_sv" class="form-control" placeholder="Masukkan password Supervisor..." id="field_password">
 			  	</div>
 		      <div class="modal-footer">
 		        <button type="button" class="btn btn-sm btn-warning" data-dismiss="modal" onclick="resetUrl()">Batal</button>
@@ -125,7 +163,7 @@
 			<div class="col-md-12">
 				<div align="center" class="mt-2">
 					<a href="admin-siluet" class="btn waves-effect btn-warning" role="button" style="width: 190px;">Siluet</a>
-					<a class="btn waves-effect btn-outline-info" role="button" style="width: 190px;">Liza</a>
+					<a class="btn waves-effect btn-outline-info" href="admin-liza" role="button" style="width: 190px;">Liza</a>
 				</div>
 				
 				<div class="row mt-4 justify-content-center">
@@ -137,7 +175,7 @@
 						</form>
 		  			</div>
 		  			<div class="col-md-4" align="center">
-		  				<a href="tambah-penumpang?tb=tb2" class="h5-responsive text-info"><i class="fas fa-user-plus"></i> Tambah Penumpang Liza</a>
+		  				<a href="#x" class="h5-responsive text-info" data-toggle="modal" data-target="#modalCS"  onclick="setInputParameter('tb2')"><i class="fas fa-user-plus"></i> Tambah Penumpang Liza</a>
 		  			</div>
 		  			<div class="col-md-4" align="right">
 		  				<a href="print_file.php?tb=tb2<?php if(isset($_GET['caritb2'])){ echo '&caritb2=' . $_GET['caritb2']; }?>" class="h5-responsive text-success" target="_blank"><i class="fas fa-print"></i> Print Tabel</a>
@@ -186,12 +224,12 @@
 						      		} else {
 						      			echo $data['alamat'];
 						      		}
-						      	?> Rahayu No. 3B
+						      	?>
 						      </td>
 						      <td onclick="show_data(<?= $no2; ?>)"><?= $data['tanggal']; ?></td>
 						      <td onclick="show_data(<?= $no2; ?>)"><?= $data['jam']; ?></td>
-						      <td onclick="show_data(<?= $no2; ?>)"><?= $data['tujuan']; ?> Rahayu No. 3B</td>
-						      <td onclick="show_data(<?= $no2; ?>)" class="text-center">5</td>
+						      <td onclick="show_data(<?= $no2; ?>)"><?= $data['tujuan']; ?></td>
+						      <td onclick="show_data(<?= $no2; ?>)" class="text-center"><?= $data['penumpang']; ?></td>
 						      <td onclick="show_data(<?= $no2; ?>)">
 						      	<?php 
 						      	if($data['lunas'] == 1){
@@ -202,16 +240,16 @@
 						      	?>
 						      </td>
 						      <td onclick="show_data(<?= $no2; ?>)"><?= $data['harga_khusus']; ?></td>
-						      <td><a href="#x" role="button" class="text-primary" data-toggle="modal" data-target="#modalDelete" onclick="setDeleteParameter('tb1', '<?=$data['nomer']; ?>')">Pilih</a></td>
+						      <td><a href="#x" role="button" class="text-primary" data-toggle="modal" data-target="#modalDelete" onclick="setDeleteParameter('tb2', '<?=$data['nomer']; ?>')">Pilih</a></td>
 						    </tr>					    
 						    <tr class="align-items-center row_hidden" id="row<?= $no2++; ?>">
 						    	<td colspan="2"></td>
 						    	<td><b>Keterangan</b></td>
-						    	<td colspan="6">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Expedita veritatis hic in unde assumenda.</td>
+						    	<td colspan="6"><?= $data['ket']; ?></td>
 						    	<td colspan="1" class="text-right"><b>Aksi</b></td>
 						    	<td colspan="2">
-						      	<a href="#x" role="button" class="text-warning" data-toggle="modal" data-target="#modalKonfirmSupervisor" onclick="setEditParameter('tb1', '<?=$data['nomer']; ?>')">Edit</i></a>
-						      	| <a href="#x" role="button" class="text-danger" data-toggle="modal" data-target="#modalDelete" onclick="setDeleteParameter('tb1', '<?=$data['nomer']; ?>')">Hapus</a>
+						      	<a href="#x" role="button" class="text-warning" data-toggle="modal" data-target="#modalKonfirmSupervisor" onclick="setEditParameter('tb2', '<?=$data['nomer']; ?>')">Edit</i></a>
+						      	| <a href="#x" role="button" class="text-danger" data-toggle="modal" data-target="#modalDelete" onclick="setDeleteParameter('tb2', '<?=$data['nomer']; ?>')">Hapus</a>
 						      </td>
 						    </tr>	
 						    <?php endwhile; ?>	
