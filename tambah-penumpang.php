@@ -10,23 +10,25 @@ if(isset($_POST['submit'])){
 	$nomer = $_POST['nomer'];
 	$nama = $_POST['nama'];
 	$alamat = $_POST['alamat'];
+	$jemput = $_POST['jemput'];
 	$tgl = $_POST['tgl'];
 	$jam = $_POST['jam'];
 	$tujuan = $_POST['tujuan'];
+	$penumpang = $_POST['penumpang'];
 	$lunas = $_POST['lunas'];
 	$harga_khusus = $_POST['harga_khusus'];
+	$ket = $_POST['ket'];
 
-	if(!empty(trim($nomer)) && !empty(trim($nama)) && !empty(trim($alamat)) && !empty(trim($tgl)) &&
-	!empty(trim($jam)) && !empty(trim($tujuan)) && !empty(trim($lunas)) && !empty(trim($harga_khusus))){
+	if(!empty(trim($nomer)) && !empty(trim($nama)) && !empty(trim($alamat)) && !empty(trim($jemput)) && !empty(trim($tgl)) && !empty(trim($jam)) && !empty(trim($tujuan)) && !empty(trim($penumpang)) && !empty(trim($lunas)) && !empty(trim($harga_khusus)) && !empty(trim($ket))){
 
-  	$day 			= substr($tgl, 8, 2);
+  	$day 		= substr($tgl, 8, 2);
   	$month 		= substr($tgl, 5, 2);
   	$year 		= substr($tgl, 0, 4);
 
   	$tgl 	= $day . "-" . $month . "-" . $year;
 
 		if($table_name == "tb1"){
-			if(add_data_tbSiluet($nomer, $nama, $alamat, $tgl, $jam, $tujuan, $lunas, $harga_khusus)){
+			if(add_data_tbSiluet($nomer, $nama, $alamat, $jemput, $tgl, $jam, $tujuan, $penumpang, $lunas, $harga_khusus, $ket)){
 				$_SESSION['report_message'] = report_message("success", "Berhasil Menambahkan Data ke Tabel Siluet");
 				header('Location: admin-siluet.php');
 			}else{
@@ -34,7 +36,7 @@ if(isset($_POST['submit'])){
 				header('Location: tambah-penumpang.php?tb=tb1');
 			}
 		}else{
-			if(add_data_tbLiza($nomer, $nama, $alamat, $tgl, $jam, $tujuan, $lunas, $harga_khusus)){
+			if(add_data_tbLiza($nomer, $nama, $alamat, $jemput, $tgl, $jam, $tujuan, $penumpang, $lunas, $harga_khusus, $ket)){
 				$_SESSION['report_message'] = report_message("success", "Berhasil Menambahkan Data ke Tabel Liza");
 				header('Location: admin-liza.php');
 			}else{
@@ -86,9 +88,9 @@ if(isset($_POST['submit'])){
 									</div>
 									<div class="col-md-12">
 										<form class="form-inline active-cyan-3 active-cyan-4">
-										  <input class="form-control form-control z-depth-1" type="text" aria-label="" name="caritb2" autocomplete="off" spellcheck="false">
+										  <input class="form-control form-control z-depth-1" type="text" aria-label="" name="caritb2" autocomplete="off" spellcheck="false" maxlength="13" pattern="\d*">
 										</form>
-										<input type="hidden" aria-label="nomer" name="nomer" id="nomer" class="form-control z-depth-1" maxlength="13">
+										<input type="number" aria-label="nomer" name="nomer" id="nomer" class="form-control z-depth-1" maxlength="13">
 									</div>
 
 									<div class="col-md-12 mt-3">

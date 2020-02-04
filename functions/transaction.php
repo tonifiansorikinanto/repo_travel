@@ -64,39 +64,40 @@ function search_data_tbLiza($caritb2){
 
 
 
-function add_data_tbSiluet($nomer, $nama, $alamat, $tgl, $jam, $tujuan, $lunas, $harga_khusus){
+function add_data_tbSiluet($nomer, $nama, $alamat, $jemput, $tgl, $jam, $tujuan, $penumpang, $lunas, $harga_khusus, $ket){
 	global $connect;
 
 	$nomer 				= escape($nomer);
 	$nama 				= escape($nama);
 	$alamat 			= escape($alamat);
-	$tgl 					= escape($tgl);
-	$jam 					= escape($jam);
+	$jemput 			= escape($jemput);
+	$tgl 				= escape($tgl);
+	$jam 				= escape($jam);
 	$tujuan 			= escape($tujuan);
+	$penumpang 			= escape($penumpang);
 	$lunas 				= escape($lunas);
-	$harga_khusus = escape($harga_khusus);
+	$harga_khusus 		= escape($harga_khusus);
+	$ket 				= escape($ket);
 
-	$query = "INSERT INTO tb_siluet (nomer, nama, alamat, tanggal, jam, tujuan, lunas, harga_khusus) VALUES 
-						('$nomer', '$nama', '$alamat', '$tgl', '$jam', '$tujuan', '$lunas', '$harga_khusus')";
+	$query = "INSERT INTO tb_siluet (nomer, nama, alamat, jemput, tanggal, jam, tujuan, penumpang, lunas, harga_khusus, ket) VALUES ('$nomer', '$nama', '$alamat', '$jemput', '$tgl', '$jam', '$tujuan', '$penumpang', '$lunas', '$harga_khusus', '$ket')";
 	$result = mysqli_query($connect, $query);
 
 	return $result;
 }
 
-function add_data_tbLiza($nomer, $nama, $alamat, $tgl, $jam, $tujuan, $lunas, $harga_khusus){
+function add_data_tbLiza($nomer, $nama, $alamat, $jemput, $tgl, $jam, $tujuan, $penumpang, $lunas, $harga_khusus, $ket){
 	global $connect;
 
 	$nomer 				= escape($nomer);
 	$nama 				= escape($nama);
 	$alamat 			= escape($alamat);
-	$tgl 					= escape($tgl);
-	$jam 					= escape($jam);
+	$tgl 				= escape($tgl);
+	$jam 				= escape($jam);
 	$tujuan 			= escape($tujuan);
 	$lunas 				= escape($lunas);
-	$harga_khusus = escape($harga_khusus);
+	$harga_khusus 		= escape($harga_khusus);
 
-	$query = "INSERT INTO tb_liza (nomer, nama, alamat, tanggal, jam, tujuan, lunas, harga_khusus) VALUES 
-						('$nomer', '$nama', '$alamat', '$tgl', '$jam', '$tujuan', '$lunas', '$harga_khusus')";
+	$query = "INSERT INTO tb_liza (nomer, nama, alamat, jemput, tanggal, jam, tujuan, penumpang, lunas, harga_khusus, ket) VALUES ('$nomer', '$nama', '$alamat', '$jemput', '$tgl', '$jam', '$tujuan', '$penumpang', '$lunas', '$harga_khusus', '$ket')";
 	$result = mysqli_query($connect, $query);
 
 	return $result;

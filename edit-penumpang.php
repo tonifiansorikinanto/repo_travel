@@ -104,19 +104,32 @@ if(isset($_POST['edit'])){
 										<input type="text" aria-label="nama" name="nama" id="nama" class="form-control z-depth-1" autocomplete="off" value="<?= $nama; ?>">
 									</div>
 
-									<div class="col-md-12 mt-2">
-										<h4 class="h4-responsive text-primary">Alamat</h4>
+									<div class="col-md-6 mt-3">
+										<h4 class="h4-responsive">Alamat Tetap</h4>
 									</div>
-									<div class="col-md-12">
+									<div class="col-md-6 mt-3">
+										<h4 class="h4-responsive">Alamat Jemput</h4>
+									</div>
+									<div class="col-md-6">
 										<textarea class="form-control z-depth-1" name="alamat" style="height: 100px;" id="exampleFormControlTextarea6"><?= $alamat; ?></textarea>
+									</div>
+									<div class="col-md-6">
+										<textarea class="form-control z-depth-1" name="jemput" style="height: 100px;" id="exampleFormControlTextarea6"><?= $jemput; ?></textarea>
 									</div>
 
 									<div class="col-md-12 mt-2">
 										<h4 class="h4-responsive text-primary">Tanggal Berangkat</h4>
 									</div>
 									<div class="col-md-12">
-										<input type="date" aria-label="nomer" name="tgl" id="nomer" class="form-control z-depth-1"  value="<?= $tanggal; ?>">										
+										<input type="date" aria-label="nomer" name="tgl" id="nomer" class="form-control z-depth-1"  value="<?= $tanggal; ?>">
 									</div>
+									<div class="col-md-12 mt-3">
+										<h4 class="h4-responsive">Keterangan</h4>
+									</div>
+									<div class="col-md-12">
+										<textarea class="form-control z-depth-1" name="ket" style="height: 100px;" id="exampleFormControlTextarea6"><?= $ket; ?></textarea>
+									</div>
+
 								</div>
 							</div>
 							<div class="col-md-6">
@@ -135,15 +148,22 @@ if(isset($_POST['edit'])){
 										<input type="text" aria-label="nama" name="tujuan" id="nama" class="form-control z-depth-1" autocomplete="off"  value="<?= $tujuan; ?>">
 									</div>
 
+									<div class="col-md-12 mt-3">
+										<h4 class="h4-responsive">Jumlah Penumpang</h4>
+									</div>
+									<div class="col-md-12">
+										<input type="number" aria-label="nama" name="penumpang" id="nama" class="form-control z-depth-1" autocomplete="off" value="<?= $penumpang; ?>">
+									</div>
+
 									<div class="col-md-12 mt-2">
 										<h4 class="h4-responsive text-primary">Lunas / BA</h4>
 									</div>
 									<div class="col-md-12">
 										<select name="lunas" id="durasi1" class="form-control">
-                      <option value="0">- Pilih Status Pembayaran -</option>
-                      <option value="1" <?php if($lunas == "1") echo "selected='selected'"; ?>>Lunas</option>
-                      <option value="2" <?php if($lunas == "2") echo "selected='selected'"; ?>>BA</option>					                      
-                    </select>
+					                      <option value="0">- Pilih Status Pembayaran -</option>
+					                      <option value="1" <?php if($lunas == "1") echo "selected='selected'"; ?>>Lunas</option>
+					                      <option value="2" <?php if($lunas == "2") echo "selected='selected'"; ?>>BA</option>					                      
+					                    </select>
 									</div>
 
 									<div class="col-md-12 mt-2">

@@ -186,7 +186,8 @@
 						      		} else {
 						      			echo $data['alamat'];
 						      		}
-						      	?> Rahayu No. 3B</td>
+						      	?> Rahayu No. 3B
+						      </td>
 						      <td onclick="show_data(<?= $no2; ?>)"><?= $data['tanggal']; ?></td>
 						      <td onclick="show_data(<?= $no2; ?>)"><?= $data['jam']; ?></td>
 						      <td onclick="show_data(<?= $no2; ?>)"><?= $data['tujuan']; ?> Rahayu No. 3B</td>

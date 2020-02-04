@@ -179,7 +179,15 @@ if(isset($_POST['submit'])){
 					      <th scope="row" onclick="show_data(<?= $no1; ?>)"><?= $no1; ?></th>
 					      <td onclick="show_datashow_data(<?= $no1; ?>)"><?= $data['nomer']; ?></td>
 					      <td onclick="show_data(<?= $no1; ?>)"><?= $data['nama']; ?></td>
-					      <td onclick="show_data(<?= $no1; ?>)"><?= $data['alamat']; ?> Rahayu No. 3B</td>
+					      <td onclick="show_data(<?= $no1; ?>)">
+					      	<?php 
+						      	if($data['lunas'] == 1){
+						      		echo "Lunas";
+						      	}else if($data['lunas'] == 2){
+						      		echo "BA";
+						      	}
+					      	?>
+					      </td>
 					      <td onclick="show_data(<?= $no1; ?>)"><?= $data['tanggal']; ?></td>
 					      <td onclick="show_data(<?= $no1; ?>)"><?= $data['jam']; ?></td>
 					      <td onclick="show_data(<?= $no1; ?>)"><?= $data['tujuan']; ?> Rahayu No. 3B</td>
