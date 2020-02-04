@@ -78,7 +78,7 @@ if(isset($_POST['edit'])){
 				header('Location: edit-penumpang.php?tb=' . $table_name . '&nomer=' . $nomer . '');
 			}
 		}else{
-			if(edit_data_tbLiza($nomerEdit, $namaEdit, $alamatEdit, $jemputEdit, $tglEdit, $jamEdit, $tujuanEdit, $penumpangEdit, $lunasEdit, $harga_khususEdit, $ketEdit)){
+			if(edit_data_tbLiza($nomerEdit, $namaEdit, $alamatEdit, $jemputEdit, $tglEdit, $jamEdit, $tujuanEdit, $penumpangEdit, $lunasEdit, $harga_khususEdit, $ketEdit, $nomer)){
 				$_SESSION['report_message'] = report_message("success", "Berhasil Mengubah Data " . $namaEdit);
 				unset($_SESSION["pass_supervisor"]);
 				header('Location: admin-liza.php');
@@ -91,6 +91,14 @@ if(isset($_POST['edit'])){
 	}
 }
 
+?>
+
+<?php
+
+if(isset($_SESSION['report_message'])){
+	echo $_SESSION['report_message'];
+	unset($_SESSION['report_message']);
+}
 
 ?>
 

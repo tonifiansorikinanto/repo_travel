@@ -109,7 +109,7 @@ if(isset($_POST['submit_cs'])){
 	      </div>
 	      <form method="post" action="" name="form_sv">
 		      <div class="modal-body">
-				    <input type="password" aria-label="pass_cs" name="pass_cs" class="form-control" placeholder="Masukkan password CS..." id="field_password">
+				    <input type="password" aria-label="pass_cs" name="pass_cs" class="form-control" placeholder="Masukkan password CS..." id="pass_cs">
 			  	</div>
 		      <div class="modal-footer">
 		        <button type="button" class="btn btn-sm btn-warning" data-dismiss="modal" onclick="resetUrl()">Batal</button>
@@ -131,7 +131,7 @@ if(isset($_POST['submit_cs'])){
 	      </div>
 	      <form method="post" action="" name="form_sv">
 		      <div class="modal-body">
-				    <input type="password" aria-label="pass_sv" name="pass_sv" class="form-control" placeholder="Masukkan password Supervisor..." id="field_password">
+				    <input type="password" aria-label="pass_sv" name="pass_sv" class="form-control" placeholder="Masukkan password Supervisor..." id="pass_sv">
 			  	</div>
 		      <div class="modal-footer">
 		        <button type="button" class="btn btn-sm btn-warning" data-dismiss="modal" onclick="resetUrl()">Batal</button>

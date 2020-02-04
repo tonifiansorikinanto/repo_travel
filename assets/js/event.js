@@ -8,12 +8,15 @@ function setDeleteParameter(data1, data2){
 }
 
 function setInputParameter(data1){
+	setTimeout(function(){ document.getElementById("pass_cs").focus(); }, 500);
+
 	history.pushState({
 		id : 'homepage'
 	}, 'Home | My App', currentUrl + "?tb=" + data1);
 }
 
 function setEditParameter(data1, data2){
+	setTimeout(function(){ document.getElementById("pass_sv").focus(); }, 500);
 	
 	//window.location.href = currentUrl + "?tb=" + data1 + "&" + "nomer=" + data2;
 	history.pushState({

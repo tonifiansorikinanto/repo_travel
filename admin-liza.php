@@ -6,16 +6,16 @@
 
 	if(isset($_SESSION["user_access"])){
 
-	$show_data_tbLiza = show_data_tbLiza();
+		$show_data_tbLiza = show_data_tbLiza();
 
-	// editanku
+		// editanku
 		$query_id = $_SESSION['user_access'];
 		$query = "SELECT * FROM tb_admin WHERE username='$query_id'";
 		$result = mysqli_query($connect, $query);
 		while($row = mysqli_fetch_assoc($result)){
 		    $nama = $row['nama'];   
 		}
-	// end
+		// end
 
 	if(isset($_GET['caritb2'])){
 		$caritb2 = $_GET['caritb2'];
@@ -108,7 +108,7 @@
 	      </div>
 	      <form method="post" action="" name="form_sv">
 		      <div class="modal-body">
-				    <input type="password" aria-label="pass_cs" name="pass_cs" class="form-control" placeholder="Masukkan password CS..." id="field_password">
+				    <input type="password" aria-label="pass_cs" name="pass_cs" class="form-control" placeholder="Masukkan password CS..." id="pass_cs">
 			  	</div>
 		      <div class="modal-footer">
 		        <button type="button" class="btn btn-sm btn-warning" data-dismiss="modal" onclick="resetUrl()">Batal</button>
@@ -130,7 +130,7 @@
 	      </div>
 	      <form method="post" action="" name="form_sv">
 		      <div class="modal-body">
-				    <input type="password"  aria-label="pass_sv" name="pass_sv" class="form-control" placeholder="Masukkan password Supervisor..." id="field_password">
+				    <input type="password"  aria-label="pass_sv" name="pass_sv" class="form-control" placeholder="Masukkan password Supervisor..." id="pass_sv">
 			  	</div>
 		      <div class="modal-footer">
 		        <button type="button" class="btn btn-sm btn-warning" data-dismiss="modal" onclick="resetUrl()">Batal</button>
