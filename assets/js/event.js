@@ -27,6 +27,14 @@ function setEditParameter(data1, data2){
 	//button_edit.href = "edit-penumpang.php?tb=" + data1 + "&" + "nomer=" + data2;
 }
 
+function setSearchParameter(data1){
+  history.pushState({
+		id : 'homepage'
+	}, 'Home | My App', currentUrl + "?tb=" + data1 + "&" + "cari-data=" + cari_nomer.value);
+
+	document.location.reload(true);
+}
+
 document.onkeydown = function(evt) {
     evt = evt || window.event;
     if (evt.keyCode == 27) {
@@ -34,18 +42,18 @@ document.onkeydown = function(evt) {
     }
 };
 
-cari_nomer.onkeydown = function(evt) {
-  evt = evt || window.event;
-  if (evt.keyCode == 13) {
+// cari_nomer.onkeydown = function(evt, data1) {
+//   evt = evt || window.event;
+//   if (evt.keyCode == 13) {
 
-    history.pushState({
-			id : 'homepage'
-		}, 'Home | My App', location.href + "&" + "cari-data=" + cari_nomer.value);
+//     history.pushState({
+// 			id : 'homepage'
+// 		}, 'Home | My App', currentUrl + "?tb=" + data1 + "&" + "cari-data=" + cari_nomer.value);
 
-		document.location.reload(true);
-  }
+// 		document.location.reload(true);
+//   }
 
-};
+// };
 
 function resetUrl(){
 	history.pushState({

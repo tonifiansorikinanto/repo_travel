@@ -4,13 +4,27 @@ require_once 'assets/templates/header.php';
 
 if(isset($_SESSION["user_access"])){
 
-$table_name = $_GET['tb'];
+if(isset($_GET['tb'])){
+	$table_name = $_GET['tb'];
+}else{
+	header('Location: admin-siluet');
+}
+
+$data_search_found = 0;
 
 if(isset($_GET['cari-data'])){
 	$cari_data = $_GET['cari-data'];
-	$data_nomer = show_data_onNomer_tbSiluet($cari_data);
+
+	if($table_name == "tb1"){
+		$data_nomer = show_data_onNomer_tbSiluet($cari_data);
+	}else if($table_name == "tb2"){
+		$data_nomer = show_data_onNomer_tbLiza($cari_data);
+	}
 
 	if(mysqli_num_rows($data_nomer) > 0){
+		$data_search_found = 1;
+
+		echo report_message("success", "Data Ditemukan !");
 
 		while($data = mysqli_fetch_assoc($data_nomer)):
 			$nomerOri 				= $data['nomer'];
@@ -33,14 +47,16 @@ if(isset($_GET['cari-data'])){
 		$tglOri 	= $year . "-" . $month . "-" . $day;
 
 	}else{
-		
+		$data_search_found = 0;
+
+		echo report_message("error", "Data Yang Dicari Tidak Ditemukan !");
 	}
 }
 
 
 // pengaturan submit data
 
-if(isset($_POST['submit'])){
+if(isset($_POST['submit_input'])){
 	$nomer 				= $_POST['nomer'];
 	$nama 				= $_POST['nama'];
 	$alamat 			= $_POST['alamat'];
@@ -82,6 +98,49 @@ if(isset($_POST['submit'])){
 	}
 }
 
+if(isset($_POST['submit_edit'])){
+	$nomerEdit	 			= $_POST['nomer'];
+	$namaEdit 				= $_POST['nama'];
+	$alamatEdit 			= $_POST['alamat'];
+	$jemputEdit				= $_POST['jemput'];
+	$tglEdit 					= $_POST['tgl'];
+	$jamEdit 					= $_POST['jam'];
+	$tujuanEdit 			= $_POST['tujuan'];
+	$penumpangEdit		= $_POST['penumpang'];
+	$lunasEdit 				= $_POST['lunas'];
+	$harga_khususEdit = $_POST['harga_khusus'];
+	$ketEdit 					= $_POST['ket'];
+
+	if(!empty(trim($nomerEdit)) && !empty(trim($namaEdit)) && !empty(trim($alamatEdit)) && !empty(trim($jemputEdit)) && !empty(trim($tglEdit)) &&
+	!empty(trim($jamEdit)) && !empty(trim($tujuanEdit)) && !empty(trim($penumpangEdit)) && !empty(trim($lunasEdit)) && !empty(trim($harga_khususEdit)) && !empty(trim($ketEdit))){
+
+		$day 			= substr($tglEdit, 8, 2);
+  	$month 		= substr($tglEdit, 5, 2);
+  	$year 		= substr($tglEdit, 0, 4);
+
+  	$tglEdit 	= $day . "-" . $month . "-" . $year;
+
+		if($table_name == "tb1"){
+			if(edit_data_tbSiluet($nomerEdit, $namaEdit, $alamatEdit, $jemputEdit, $tglEdit, $jamEdit, $tujuanEdit, $penumpangEdit, $lunasEdit, $harga_khususEdit, $ketEdit, $nomerOri)){
+				$_SESSION['report_message'] = report_message("success", "Berhasil Mengubah Data " . $namaEdit);
+				header('Location: admin-siluet.php');
+			}else{
+				$_SESSION['report_message'] = report_message("error", "Gagal Mengubah Data " . $namaEdit);
+				header('Location: edit-penumpang.php?tb=' . $table_name . '&nomer=' . $nomerOri . '');
+			}
+		}else{
+			if(edit_data_tbLiza($nomerEdit, $namaEdit, $alamatEdit, $jemputEdit, $tglEdit, $jamEdit, $tujuanEdit, $penumpangEdit, $lunasEdit, $harga_khususEdit, $ketEdit, $nomerOri)){
+				$_SESSION['report_message'] = report_message("success", "Berhasil Mengubah Data " . $namaEdit);
+				header('Location: admin-liza.php');
+			}else{
+				$_SESSION['report_message'] = report_message("error", "Gagal Mengubah Data " . $namaEdit);
+				header('Location: edit-penumpang.php?tb=' . $table_name . '&nomer=' . $nomerOri . '');
+			}
+		}
+
+	}
+}
+
 ?>
 
 <?php
@@ -117,7 +176,7 @@ if(isset($_SESSION['report_message'])){
 	  			<div align="center" class="col-md-4">
 						<h4 class="h4-responsive">Cari Nomer HP</h4>
 
-						<input class="form-control z-depth-1 text-center" type="text" aria-label="" name="cari-data" autocomplete="off" spellcheck="false" placeholder="input nomer.." style="width: 100%;" maxlength="13" id="cari_nomer" value="<?php if(isset($cari_data)){ echo $cari_data; }?>">
+						<input class="form-control z-depth-1 text-center" type="text" aria-label="" name="cari-data" autocomplete="off" spellcheck="false" placeholder="input nomer.." style="width: 100%;" maxlength="13" id="cari_nomer" value="<?php if(isset($cari_data)){ echo $cari_data; }?>" onkeypress="if(event.keyCode == 13){ setSearchParameter('<?= $table_name ?>'); }">
 	  			</div>
 		  	</div>			
             
@@ -206,8 +265,8 @@ if(isset($_SESSION['report_message'])){
 									<div class="col-md-12">
 										<select name="lunas" id="durasi1" class="form-control" >
                       <option value="0">- Pilih Status Pembayaran -</option>
-                      <option value="1" <?php if($lunasOri == "1") echo "selected='selected'"; ?>>Lunas</option>
-                      <option value="2" <?php if($lunasOri == "2") echo "selected='selected'"; ?>>BA</option>
+                      <option value="1" <?php if(isset($lunasOri) == "1") echo "selected='selected'"; ?>>Lunas</option>
+                      <option value="2" <?php if(isset($lunasOri) == "2") echo "selected='selected'"; ?>>BA</option>
                   	</select>
 									</div>
 
@@ -223,8 +282,12 @@ if(isset($_SESSION['report_message'])){
 						</div>
 						
 						<div align="right" class="mt-5 mb-4">
-			  			<button type="submit" name="submit" class="btn btn-primary btn-md" style="width: 130px;" onclick="return confirm('Lanjut Tambah Data Penumpang ?')">Tambah Data</button>
-			  			<button type="submit" name="edit" class="btn btn-warning btn-md" style="width: 130px;" onclick="return confirm('Lanjut Edit Data Penumpang ?')">Edit Data</button>
+							<?php if($data_search_found == 0): ?>
+			  				<button type="submit" name="submit_input" class="btn btn-primary btn-md" style="width: 130px;" onclick="return confirm('Lanjut Tambah Data Penumpang ?')">Tambah Data</button>
+			  			<?php else: ?> 
+				  			<button type="submit" name="submit_edit" class="btn btn-warning btn-md" style="width: 130px;" onclick="return confirm('Lanjut Edit Data Penumpang ?')">Edit Data</button>
+				  		<?php endif; ?>
+
 			  			<?php if($table_name == "tb1"): ?>
 			  				<a type="button" class="btn btn-info btn-md" href="admin-siluet" style="width: 130px;">Kembali</a>
 			  			<?php else: ?>
