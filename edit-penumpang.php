@@ -184,10 +184,10 @@ if(isset($_SESSION['report_message'])){
 									</div>
 									<div class="col-md-12">
 										<select name="lunas" id="durasi1" class="form-control">
-					                      <option value="0">- Pilih Status Pembayaran -</option>
-					                      <option value="1" <?php if($lunas == "1") echo "selected='selected'"; ?>>Lunas</option>
-					                      <option value="2" <?php if($lunas == "2") echo "selected='selected'"; ?>>BA</option>					                      
-					                    </select>
+	                    <option value="0">- Pilih Status Pembayaran -</option>
+	                    <option value="1" <?php if($lunas == "1") echo "selected='selected'"; ?>>Lunas</option>
+	                    <option value="2" <?php if($lunas == "2") echo "selected='selected'"; ?>>BA</option>
+	                  </select>
 									</div>
 
 									<div class="col-md-12 mt-2">
@@ -200,13 +200,13 @@ if(isset($_SESSION['report_message'])){
 							</div>		                  
 						</div>
 						<div align="right" class="my-4">
-			  				<button type="submit" name="edit" class="btn btn-warning btn-md" style="width: 130px;" onclick="return confirm('Yakin ingin merubah data ?')">Edit Data</button>
+			  			<button type="submit" name="edit" class="btn btn-warning btn-md" style="width: 130px;" onclick="return confirm('Yakin ingin merubah data ?')">Edit Data</button>
 			  			<?php if($table_name == "tb1"): ?>
 			  				<a type="button" class="btn btn-info btn-md" href="admin-siluet.php" style="width: 130px;">Kembali</a>
 			  			<?php else: ?>
 			  				<a type="button" class="btn btn-info btn-md" href="admin-liza.php" style="width: 130px;">Kembali</a>
 			  			<?php endif; ?>
-			  			</div>
+			  		</div>
 					</div>
 				</div>				
 			</form>

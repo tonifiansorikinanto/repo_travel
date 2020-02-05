@@ -178,10 +178,10 @@ if(isset($_SESSION['report_message'])){
 										</div>
 										<div class="col-md-12">
 											<select name="lunas" id="durasi1" class="form-control" >
-						                        <option value="0">- Pilih Status Pembayaran -</option>
-						                        <option value="1">Lunas</option>
-						                        <option value="2">BA</option>					
-					                    	</select>
+                        <option value="0">- Pilih Status Pembayaran -</option>
+                        <option value="1">Lunas</option>
+                        <option value="2">BA</option>
+                    	</select>
 										</div>
 
 										<div class="col-md-12 mt-3">
@@ -203,6 +203,7 @@ if(isset($_SESSION['report_message'])){
 						?>
 							<?php if(mysqli_num_rows($show_data_user) > 0 ): ?>
 								<?php while($data = mysqli_fetch_assoc($show_data_user)):
+									$nama = $data['nama'];
 									$tanggal = $data['tanggal'];
 									$day		= substr($tanggal, 0, 2);
 									$month 		= substr($tanggal, 3, 2);
@@ -227,7 +228,7 @@ if(isset($_SESSION['report_message'])){
 													<h4 class="h4-responsive">Nama</h4>
 												</div>
 												<div class="col-md-12">
-													<input type="text" aria-label="nama" name="nama" id="nama" class="form-control z-depth-1" autocomplete="off" value="<?=$data['nama'];?>">
+													<input type="text" aria-label="nama" name="nama" id="nama" class="form-control z-depth-1" autocomplete="off" value="<?=$nama;?>">
 												</div>
 
 												<div class="col-md-6 mt-3">
@@ -289,10 +290,10 @@ if(isset($_SESSION['report_message'])){
 												</div>
 												<div class="col-md-12">
 													<select name="lunas" id="durasi1" class="form-control" >
-								                        <option value="0">- Pilih Status Pembayaran -</option>
-								                        <option value="1">Lunas</option>
-								                        <option value="2">BA</option>					
-							                    	</select>
+		                        <option value="0">- Pilih Status Pembayaran -</option>
+		                        <option value="1">Lunas</option>
+		                        <option value="2">BA</option>
+		                    	</select>
 												</div>
 
 												<div class="col-md-12 mt-3">
