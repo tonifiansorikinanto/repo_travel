@@ -77,7 +77,20 @@ if(isset($_SESSION['report_message'])){
 							echo "Liza";
 						}
 					?>					
-				</h1>			
+				</h1>
+
+			<div class="row mt-4 justify-content-center">
+	  			<div align="center" class="col-md-4">
+
+					<h4 class="h4-responsive">Cari Nomer HP</h4>
+									
+	  				<!-- Search form -->
+					<form class="form-inline active-cyan-3 active-cyan-4">
+					  
+					  <input class="form-control z-depth-1" type="search" aria-label="" name="cari-data" autocomplete="off" spellcheck="false" placeholder="input nomer.." style="width: 100%;" maxlength="13" pattern="\d*">
+					</form>
+	  			</div>
+		  	</div>			
             
 			<form method="post" action="">
 				<div class="row justify-content-center <?php
@@ -95,11 +108,8 @@ if(isset($_SESSION['report_message'])){
 										<div class="col-md-12 mt-3">
 											<h4 class="h4-responsive">Nomer HP</h4>
 										</div>
-										<div class="col-md-12">
-											<form class="form-inline active-cyan-3 active-cyan-4">
-											  <input class="form-control form-control z-depth-1" type="search" aria-label="" name="cari-data" autocomplete="off" spellcheck="false" maxlength="13" pattern="\d*">
-											</form>
-											<input type="hidden" aria-label="nomer" name="nomer" id="nomer" class="form-control z-depth-1" maxlength="13">
+										<div class="col-md-12">											
+											<input type="text" disabled aria-label="nomer" name="nomer" id="nomer" class="form-control z-depth-1" maxlength="13">
 										</div>
 
 										<div class="col-md-12 mt-3">
@@ -208,7 +218,7 @@ if(isset($_SESSION['report_message'])){
 												</div>
 												<div class="col-md-12">
 													<form class="form-inline active-cyan-3 active-cyan-4">
-													  <input class="form-control form-control z-depth-1" type="search" aria-label="" name="cari-data" autocomplete="off" spellcheck="false" maxlength="13" pattern="\d*">
+													  <input class="form-control z-depth-1" type="search" aria-label="" name="cari-data" autocomplete="off" spellcheck="false" maxlength="13" pattern="\d*">
 													</form>
 													<input type="hidden" aria-label="nomer" value="<?=$data['nomer'];?>" name="nomer" id="nomer" class="form-control z-depth-1" maxlength="13">
 												</div>
