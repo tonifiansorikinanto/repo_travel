@@ -85,10 +85,10 @@ if(isset($_SESSION['report_message'])){
 					<h4 class="h4-responsive">Cari Nomer HP</h4>
 									
 	  				<!-- Search form -->
-					<form class="form-inline active-cyan-3 active-cyan-4">
+					
 					  
-					  <input class="form-control z-depth-1" type="search" aria-label="" name="cari-data" autocomplete="off" spellcheck="false" placeholder="input nomer.." style="width: 100%;" maxlength="13" pattern="\d*">
-					</form>
+					  <input class="form-control z-depth-1" type="text" aria-label="" name="cari-data" autocomplete="off" spellcheck="false" placeholder="input nomer.." style="width: 100%;" maxlength="13" id="cari_nomer">
+					
 	  			</div>
 		  	</div>			
             

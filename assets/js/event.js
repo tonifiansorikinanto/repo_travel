@@ -3,6 +3,8 @@ var button_delete = document.getElementById('button_delete');
 var button_edit 	= document.getElementById('button_edit');
 var currentUrl = "http://localhost" + window.location.pathname;
 
+var cari_nomer = document.getElementById('cari_nomer');
+
 function setDeleteParameter(data1, data2){
 	button_delete.href = "delete_data.php?tb=" + data1 + "&" + "nomer=" + data2;
 }
@@ -30,6 +32,19 @@ document.onkeydown = function(evt) {
     if (evt.keyCode == 27) {
       resetUrl();
     }
+};
+
+cari_nomer.onkeydown = function(evt) {
+  evt = evt || window.event;
+  if (evt.keyCode == 13) {
+
+    history.pushState({
+			id : 'homepage'
+		}, 'Home | My App', location.href + "&" + "cari-data=" + cari_nomer.value);
+
+		document.location.reload(true);
+  }
+
 };
 
 function resetUrl(){
