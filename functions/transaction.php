@@ -173,4 +173,21 @@ function delete_data_tbLiza($nomer){
 	return $result;
 }
 
+function search_data_user($cari_data, $tb){
+	global $connect;
+	$cari_data = escape($cari_data);
+	$tb = escape($tb);
+
+	if($tb == "tb1"){
+		$tb_cari = "tb_siluet";
+	} else if ($tb == "tb2"){
+		$tb_cari = "tb_liza";
+	}
+
+	$query 	= "SELECT * FROM $tb_cari WHERE nomer LIKE '%$cari_data%'";
+	$result = mysqli_query($connect, $query);
+	return $result;
+
+}
+
 ?>

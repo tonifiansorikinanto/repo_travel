@@ -41,13 +41,14 @@
 
 	if(isset($_POST['submit_cs'])){
 		$password = $_POST["pass_cs"];
-		$tb 			= $_GET['tb'];
+		// $tb 			= $_GET['tb'];
 
 		if(!empty(trim($password))){
 
 			if(cek_user_cs($password)){
 				$_SESSION['pass_cs'] = true;
-				header('Location: tambah-penumpang?tb=' . $_GET['tb'] . '');
+				header('Location: tambah-penumpang?tb=tb2');
+				// header('Location: tambah-penumpang?tb=' . $_GET['tb'] . '');
 			}else{
 				$_SESSION['pass_cs'] = false;
 				echo("<script>alert('Error Saat Mengcek Password !')</script>");
@@ -172,6 +173,7 @@
 						<form class="form-inline active-cyan-3 active-cyan-4">
 						  <i class="fas fa-search" aria-hidden="true"></i>
 						  <input class="form-control form-control-sm ml-3" style="width: 220px;" type="text" placeholder="Cari berdasarkan Tgl Berangkat.." aria-label="Cari berdasarkan Tgl Berangkat.." name="caritb2" autocomplete="off" spellcheck="false">
+						  <a class="text-info ml-3" href="admin-liza" title="Refresh Tabel"><i class="fas fa-redo"></i></a>
 						</form>
 		  			</div>
 		  			<div class="col-md-4" align="center">

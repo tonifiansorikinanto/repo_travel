@@ -106,10 +106,10 @@ if(isset($_SESSION['report_message'])){
 <div class="container">
 	<div class="row justify-content-center mt-3">
 		<div class="col-md-10">
-			<h1 class="h1-responsive deep-purple-text">Edit</h1>
+			<h1 class="h1-responsive deep-purple-text">Edit Data Client <?= $nama; ?></h1>
             
 			<form method="post" action="">
-				<div class="row justify-content-center">
+				<div class="row justify-content-center mt-4">
 					<div class="col-md-12">
 						<div class="row text-primary">
 							<div class="col-md-6">
