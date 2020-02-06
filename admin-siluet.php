@@ -205,19 +205,9 @@ if(isset($_POST['submit_cs'])){
 				  	<?php if(mysqli_num_rows($show_data_tbSiluet) > 0 ): ?>
 					    <?php while($data = mysqli_fetch_assoc($show_data_tbSiluet)): ?>
 					    <tr style="cursor:pointer;">
-					    	<?php
-					    	// $datatanggal 	= $data['tanggal'];
-					    	// $day 			= substr($datatanggal, 8, 2);
-					    	// $month 		= substr($datatanggal, 5, 2);
-					    	// $year 		= substr($datatanggal, 0, 4);
-
-					    	// $datatanggal 	= $day . "-" . $month . "-" . $year;
-					    	?>
-					      <td>
-					      	<input type="checkbox"></td>
-					      </td>
-					      <th scope="row" onclick="show_data(<?= $no1; ?>)"><?= $no1; ?></th>
-					      <td onclick="show_datashow_data(<?= $no1; ?>)"><?= $data['nomer']; ?></td>
+					      <td><input type="checkbox"></td>
+					      <td scope="row" onclick="show_data(<?= $no1; ?>)"><?= $no1; ?></td>
+					      <td onclick="show_data(<?= $no1; ?>)"><?= $data['nomer']; ?></td>
 					      <td onclick="show_data(<?= $no1; ?>)"><?= $data['nama']; ?></td>
 					      <td onclick="show_data(<?= $no1; ?>)">
 					      	<?php

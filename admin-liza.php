@@ -143,21 +143,21 @@
 	</div>
 <!-- modal -->
 
+<?php
+
+if(isset($_SESSION['report_message'])){
+	echo $_SESSION['report_message'];
+	unset($_SESSION['report_message']);
+}
+
+?>
+
 <div class="container-fluid" style="padding-left: 0px; padding-right: 0px;">
 	<nav class="navbar navbar-dark info-color justify-content-between" style="position: sticky; top: 0; z-index: 10;">
 	  <h2 class="navbar-brand h2-responsive my-0" href="#">Database Travel</h2>
 		<h6 class="h6-responsive my-0 ml-auto text-white" href="#">Selamat Datang, <?= $nama; ?>!</h6>
 	  <button class="btn btn-danger btn-md ml-3 my-0" type="button" data-toggle="modal" data-target="#modalLogout">logout</button>
 	</nav>	
-
-	<?php
-
-	if(isset($_SESSION['report_message'])){
-		echo $_SESSION['report_message'];
-		unset($_SESSION['report_message']);
-	}
-
-	?>
 
 	<div class="container-fluid">
 		<div class="row justify-content-center mt-2 mb-4">
@@ -205,18 +205,8 @@
 					  	<?php if(mysqli_num_rows($show_data_tbLiza) > 0 ): ?>
 						    <?php while($data = mysqli_fetch_assoc($show_data_tbLiza)): ?>
 						    <tr style="cursor:pointer;">
-						    	<?php
-						    	// $datatanggal 	= $data['tanggal'];
-						    	// $day 			= substr($datatanggal, 8, 2);
-						    	// $month 		= substr($datatanggal, 5, 2);
-						    	// $year 		= substr($datatanggal, 0, 4);
-
-						    	// $datatanggal 	= $day . "-" . $month . "-" . $year;
-						    	?>
-						      <td>
-						      	<input type="checkbox"></td>
-						      </td>
-						      <th scope="row" onclick="show_data(<?= $no2; ?>)"><?= $no2; ?></th>
+						      <td><input type="checkbox"></td></td>
+						      <td scope="row" onclick="show_data(<?= $no2; ?>)"><?= $no2; ?></td>
 						      <td onclick="show_data(<?= $no2; ?>)"><?= $data['nomer']; ?></td>
 						      <td onclick="show_data(<?= $no2; ?>)"><?= $data['nama']; ?></td>
 						      <td onclick="show_data(<?= $no2; ?>)">
