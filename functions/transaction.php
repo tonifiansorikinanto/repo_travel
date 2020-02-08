@@ -190,4 +190,42 @@ function search_data_user($cari_data, $tb){
 
 }
 
+
+
+function setKeteranganSiluet($text_mobil, $id_nomer){
+	global $connect;
+
+	$text_mobil = escape($text_mobil);
+	$id_nomer 	= escape($id_nomer);
+
+	$id_nomer = explode("-", $id_nomer);
+
+	for($x = 0; $x < count($id_nomer); $x++){
+		$query = "UPDATE tb_siluet SET ket='$text_mobil' WHERE nomer='$id_nomer[$x]'";
+		
+		mysqli_query($connect, $query);
+	}
+
+	return true;
+	
+}
+
+function setKeteranganLiza($text_mobil, $id_nomer){
+	global $connect;
+
+	$text_mobil = escape($text_mobil);
+	$id_nomer 	= escape($id_nomer);
+
+	$id_nomer = explode("-", $id_nomer);
+
+	for($x = 0; $x < count($id_nomer); $x++){
+		$query = "UPDATE tb_liza SET ket='$text_mobil' WHERE nomer='$id_nomer[$x]'";
+		
+		mysqli_query($connect, $query);
+	}
+
+	return true;
+	
+}
+
 ?>

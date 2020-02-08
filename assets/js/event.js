@@ -3,6 +3,8 @@ var button_delete = document.getElementById('button_delete');
 var button_edit 	= document.getElementById('button_edit');
 var currentUrl = "http://localhost" + window.location.pathname;
 
+var selectItems = [];
+
 var cari_nomer = document.getElementById('cari_nomer');
 
 function setDeleteParameter(data1, data2){
@@ -35,12 +37,43 @@ function setSearchParameter(data1){
 	document.location.reload(true);
 }
 
+function set_id(data1, data2){
+	setTimeout(function(){ document.getElementById("text_mobil").focus(); }, 500);
+
+	console.log(data1);
+
+	if(document.getElementById(data2).checked){
+		selectItems.push(data1);
+	}else{
+		for(var x = 0; x <= selectItems.length; x++){
+			var index = selectItems.indexOf(data1);
+			if (index > -1) {
+			  selectItems.splice(index, 1);
+			}
+		}
+		
+	}
+
+	history.pushState({
+		id : 'homepage'
+	}, 'Home | My App', currentUrl + "?id_nomer=" + selectItems.join("-"));
+}
+
 document.onkeydown = function(evt) {
     evt = evt || window.event;
     if (evt.keyCode == 27) {
       resetUrl();
     }
 };
+
+
+var button_select =  document.getElementsByClassName('button_select');
+
+for(var z = 0; z < button_select.length; z++){
+	button_select[z].onclick = function(){
+		setTimeout(function(){ document.getElementById("text_mobil").focus(); }, 500);
+	}
+}
 
 // cari_nomer.onkeydown = function(evt, data1) {
 //   evt = evt || window.event;

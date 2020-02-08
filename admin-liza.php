@@ -55,6 +55,35 @@
 			}
 		}
 	}
+
+	if(isset($_POST['submit_mobil'])){
+		$text_mobil = $_POST["text_mobil"];
+		
+
+		if(!isset($_GET['id_nomer'])){
+			$_SESSION['report_message'] = report_message("error", "Harus Memilih data !");
+		}else{
+			$id_nomer = $_GET['id_nomer'];
+
+			if($id_nomer != ""){
+				
+				if(!empty(trim($text_mobil))){
+					if(setKeteranganLiza($text_mobil, $id_nomer)){
+						header('Location: admin-liza');
+					}else{
+						$_SESSION['report_message'] = report_message("error", "Error Saat Mengatur Data ! ");
+					}
+				}else{
+					$_SESSION['report_message'] = report_message("error", "Data Tidak Boleh Kosong !");
+				}
+
+			}else{
+				$_SESSION['report_message'] = report_message("error", "Harus Memilih data !");
+			}
+
+		}
+
+	}
 ?>
 
 <!-- modal -->
@@ -120,22 +149,22 @@
 	  </div>
 	</div>
 
-	<div class="modal fade" id="modalKonfirmSupervisor" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true" style="z-index:99999999;">		  
+	<div class="modal fade" id="modalSelect" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true" style="z-index:99999999;">
 	  <div class="modal-dialog modal-dialog-centered" role="document">
 	    <div class="modal-content">
 	      <div class="modal-header">
-	        <h5 class="modal-title" id="exampleModalLongTitle">Konfirmasi Supervisor</h5>
+	        <h5 class="modal-title" id="exampleModalLongTitle">Masukan Keterangan Mobil</h5>
 	        <button type="button" class="close" data-dismiss="modal" aria-label="Close"onclick="resetUrl()">
 	          <span aria-hidden="true">&times;</span>
 	        </button>
 	      </div>
-	      <form method="post" action="" name="form_sv">
+	      <form method="post" action="" name="">
 		      <div class="modal-body">
-				    <input type="password"  aria-label="pass_sv" name="pass_sv" class="form-control" placeholder="Masukkan password Supervisor..." id="pass_sv">
+				    <input type="text" aria-label="text_mobil" name="text_mobil" class="form-control" placeholder="Masukkan Keterangan Mobil..." id="text_mobil">
 			  	</div>
 		      <div class="modal-footer">
 		        <button type="button" class="btn btn-sm btn-warning" data-dismiss="modal" onclick="resetUrl()">Batal</button>
-		        <button role="button" class="btn btn-sm btn-danger" id="button_edit" name="submit">Konfirmasi</button>
+		        <button role="button" class="btn btn-sm btn-danger" id="submit_mobil" name="submit_mobil">Submit</button>
 		      </div>
 	      </form>
 	    </div>
@@ -205,7 +234,7 @@ if(isset($_SESSION['report_message'])){
 					  	<?php if(mysqli_num_rows($show_data_tbLiza) > 0 ): ?>
 						    <?php while($data = mysqli_fetch_assoc($show_data_tbLiza)): ?>
 						    <tr style="cursor:pointer;">
-						      <td><input type="checkbox"></td></td>
+						      <td><input type="checkbox" onclick="set_id('<?= $data['nomer']; ?>', 'checkid<?= $no2; ?>')" id="checkid<?= $no2; ?>"></td>
 						      <td scope="row" onclick="show_data(<?= $no2; ?>)"><?= $no2; ?></td>
 						      <td onclick="show_data(<?= $no2; ?>)"><?= $data['nomer']; ?></td>
 						      <td onclick="show_data(<?= $no2; ?>)"><?= $data['nama']; ?></td>
@@ -232,7 +261,7 @@ if(isset($_SESSION['report_message'])){
 						      	?>
 						      </td>
 						      <td onclick="show_data(<?= $no2; ?>)"><?= $data['harga_khusus']; ?></td>
-						      <td><a href="#x" role="button" class="text-primary" data-toggle="modal" data-target="#modalDelete" onclick="setDeleteParameter('tb2', '<?=$data['nomer']; ?>')">Pilih</a></td>
+						      <td><a href="#x" role="button" class="text-primary button_select" data-toggle="modal" data-target="#modalSelect">Pilih</a></td>
 						    </tr>					    
 						    <tr class="align-items-center row_hidden" id="row<?= $no2++; ?>">
 						    	<td colspan="2"></td>

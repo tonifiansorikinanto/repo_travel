@@ -34,26 +34,60 @@ if(isset($_POST['submit'])){
 			header('Location: edit-penumpang.php?tb=' . $_GET['tb'] . '&nomer=' . $_GET['nomer'] . '');
 		}else{
 			$_SESSION['pass_supervisor'] = false;
-			echo("<script>alert('Error Saat Mengcek Password !')</script>");
+			$_SESSION['report_message'] = report_message("error", "Password Salah !");
 		}
+	}else{
+		$_SESSION['report_message'] = report_message("error", "Data Harus Terisi !");
 	}
+
 }
 
 if(isset($_POST['submit_cs'])){
 	$password = $_POST["pass_cs"];
-	// $tb 			= $_GET['tb'];
 
 	if(!empty(trim($password))){
 
 		if(cek_user_cs($password)){
 			$_SESSION['pass_cs'] = true;
 			header('Location: tambah-penumpang?tb=tb1');
-			// header('Location: tambah-penumpang?tb=' . $_GET['tb'] . '');
 		}else{
 			$_SESSION['pass_cs'] = false;
-			echo("<script>alert('Error Saat Mengcek Password !')</script>");
+			$_SESSION['report_message'] = report_message("error", "Password Salah !");
 		}
+	}else{
+		$_SESSION['report_message'] = report_message("error", "Data Harus Terisi !");
 	}
+
+}
+
+
+if(isset($_POST['submit_mobil'])){
+	$text_mobil = $_POST["text_mobil"];
+
+	if(!isset($_GET['id_nomer'])){
+		$_SESSION['report_message'] = report_message("error", "Harus Memilih data !");
+	}else{
+
+		$id_nomer = $_GET['id_nomer'];
+
+		if($id_nomer != ""){
+			
+			if(!empty(trim($text_mobil))){
+				if(setKeteranganSiluet($text_mobil, $id_nomer)){
+					header('Location: admin-siluet');
+				}else{
+					$_SESSION['report_message'] = report_message("error", "Error Saat Mengatur Data ! ");
+				}
+			}else{
+				$_SESSION['report_message'] = report_message("error", "Data Tidak Boleh Kosong !");
+			}
+
+		}else{
+			$_SESSION['report_message'] = report_message("error", "Harus Memilih data !");
+		}
+
+	}
+
 }
 
 ?>
@@ -142,6 +176,28 @@ if(isset($_POST['submit_cs'])){
 	    </div>
 	  </div>
 	</div>
+
+	<div class="modal fade" id="modalSelect" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true" style="z-index:99999999;">
+	  <div class="modal-dialog modal-dialog-centered" role="document">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <h5 class="modal-title" id="exampleModalLongTitle">Masukan Keterangan Mobil</h5>
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Close"onclick="resetUrl()">
+	          <span aria-hidden="true">&times;</span>
+	        </button>
+	      </div>
+	      <form method="post" action="" name="">
+		      <div class="modal-body">
+				    <input type="text" aria-label="text_mobil" name="text_mobil" class="form-control" placeholder="Masukkan Keterangan Mobil..." id="text_mobil">
+			  	</div>
+		      <div class="modal-footer">
+		        <button type="button" class="btn btn-sm btn-warning" data-dismiss="modal" onclick="resetUrl()">Batal</button>
+		        <button role="button" class="btn btn-sm btn-danger" id="submit_mobil" name="submit_mobil">Submit</button>
+		      </div>
+	      </form>
+	    </div>
+	  </div>
+	</div>
 <!-- modal -->
 
 <div class="container-fluid" style="padding-left: 0px; padding-right: 0px;">
@@ -164,7 +220,7 @@ if(isset($_POST['submit_cs'])){
 		<div class="row justify-content-center mt-2 mb-4">
 			<div class="col-md-12">
 				<div align="center" class="mt-2">
-					<a class="btn waves-effect btn-outline-warning"  href="admin-siluet" role="button" style="width: 190px;">Siluet</a>
+					<a class="btn waves-effect btn-outline-warning" href="admin-siluet" role="button" style="width: 190px;">Siluet</a>
 					<a href="admin-liza" class="btn waves-effect btn-info" role="button" style="width: 190px;">Liza</a>
 				</div>				
 		  		<div class="row mt-4">
@@ -205,7 +261,7 @@ if(isset($_POST['submit_cs'])){
 				  	<?php if(mysqli_num_rows($show_data_tbSiluet) > 0 ): ?>
 					    <?php while($data = mysqli_fetch_assoc($show_data_tbSiluet)): ?>
 					    <tr style="cursor:pointer;">
-					      <td><input type="checkbox"></td>
+					      <td><input type="checkbox" onclick="set_id('<?= $data['nomer']; ?>', 'checkid<?= $no1; ?>')" id="checkid<?= $no1; ?>"></td>
 					      <td scope="row" onclick="show_data(<?= $no1; ?>)"><?= $no1; ?></td>
 					      <td onclick="show_data(<?= $no1; ?>)"><?= $data['nomer']; ?></td>
 					      <td onclick="show_data(<?= $no1; ?>)"><?= $data['nama']; ?></td>
@@ -232,7 +288,7 @@ if(isset($_POST['submit_cs'])){
 					      	?>
 					      </td>
 					      <td onclick="show_data(<?= $no1; ?>)"><?= $data['harga_khusus']; ?></td>
-					      <td><a href="#x" role="button" class="text-primary" data-toggle="modal" data-target="#modalDelete" onclick="setDeleteParameter('tb1', '<?=$data['nomer']; ?>')">Pilih</a></td>
+					      <td><a href="#x" role="button" class="text-primary button_select" data-toggle="modal" data-target="#modalSelect">Pilih</a></td>
 					    </tr>					    
 					    <tr class="align-items-center row_hidden" id="row<?= $no1++; ?>">
 					    	<td colspan="2"></td>
