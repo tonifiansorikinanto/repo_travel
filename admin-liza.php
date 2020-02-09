@@ -66,9 +66,10 @@
 			$id_nomer = $_GET['id_nomer'];
 
 			if($id_nomer != ""){
-				
+
 				if(!empty(trim($text_mobil))){
 					if(setKeteranganLiza($text_mobil, $id_nomer)){
+						$_SESSION["report_message"] = report_message("success", "Berhasil Meng-set Data ");
 						header('Location: admin-liza');
 					}else{
 						$_SESSION['report_message'] = report_message("error", "Error Saat Mengatur Data ! ");
@@ -201,7 +202,7 @@ if(isset($_SESSION['report_message'])){
 		  				<!-- Search form -->
 						<form class="form-inline active-cyan-3 active-cyan-4">
 						  <i class="fas fa-search" aria-hidden="true"></i>
-						  <input class="form-control form-control-sm ml-3" style="width: 220px;" type="text" placeholder="Cari berdasarkan Tgl Berangkat.." aria-label="Cari berdasarkan Tgl Berangkat.." name="caritb2" autocomplete="off" spellcheck="false">
+						  <input class="form-control form-control-sm ml-3" style="width: 220px;" type="text" placeholder="Cari berdasarkan Tgl Berangkat.." aria-label="Cari berdasarkan Tgl Berangkat.." name="caritb2" autocomplete="off" spellcheck="false" <?php if(isset($_GET['caritb2'])){ echo('value=' . $_GET['caritb2'] .  ''); } ?>>
 						  <a class="text-info ml-3" href="admin-liza" title="Refresh Tabel"><i class="fas fa-redo"></i></a>
 						</form>
 		  			</div>

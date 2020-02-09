@@ -200,14 +200,20 @@ function setKeteranganSiluet($text_mobil, $id_nomer){
 
 	$id_nomer = explode("-", $id_nomer);
 
-	for($x = 0; $x < count($id_nomer); $x++){
-		$query = "UPDATE tb_siluet SET ket='$text_mobil' WHERE nomer='$id_nomer[$x]'";
-		
-		mysqli_query($connect, $query);
+	for($x = 0; $x < count($id_nomer); $x){
+
+		while($data = mysqli_fetch_assoc(show_data_onNomer_tbSiluet($id_nomer[$x]))){
+			$ket_mobil = $data['ket'];
+
+			$query = "UPDATE tb_siluet SET ket='$ket_mobil, $text_mobil' WHERE nomer='$id_nomer[$x]'";
+			
+			mysqli_query($connect, $query);
+
+			$x++;
+		}
 	}
 
 	return true;
-	
 }
 
 function setKeteranganLiza($text_mobil, $id_nomer){
@@ -218,14 +224,20 @@ function setKeteranganLiza($text_mobil, $id_nomer){
 
 	$id_nomer = explode("-", $id_nomer);
 
-	for($x = 0; $x < count($id_nomer); $x++){
-		$query = "UPDATE tb_liza SET ket='$text_mobil' WHERE nomer='$id_nomer[$x]'";
-		
-		mysqli_query($connect, $query);
+	for($x = 0; $x < count($id_nomer); $x){
+
+		while($data = mysqli_fetch_assoc(show_data_onNomer_tbLiza($id_nomer[$x]))){
+			$ket_mobil = $data['ket'];
+
+			$query = "UPDATE tb_liza SET ket='$ket_mobil, $text_mobil' WHERE nomer='$id_nomer[$x]'";
+			
+			mysqli_query($connect, $query);
+
+			$x++;
+		}
 	}
 
 	return true;
-	
 }
 
 ?>

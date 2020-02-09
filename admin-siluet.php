@@ -228,7 +228,7 @@ if(isset($_POST['submit_mobil'])){
 		  				<!-- Search form -->
 						<form class="form-inline active-cyan-3 active-cyan-4" method="get" action="">
 						  <i class="fas fa-search" aria-hidden="true"></i>
-						  <input class="form-control form-control-sm ml-3" style="width: 240px;" type="search" placeholder="Cari berdasarkan Tgl Berangkat.." aria-label="Cari berdasarkan Tgl Berangkat.." name="caritb1" autocomplete="off" spellcheck="false">
+						  <input class="form-control form-control-sm ml-3" style="width: 240px;" type="search" placeholder="Cari berdasarkan Tgl Berangkat.." aria-label="Cari berdasarkan Tgl Berangkat.." name="caritb1" autocomplete="off" spellcheck="false" <?php if(isset($_GET['caritb1'])){ echo('value=' . $_GET['caritb1'] .  ''); } ?>>
 						  <a class="text-warning ml-3" href="admin-siluet" title="Refresh Tabel"><i class="fas fa-redo"></i></a>
 						</form>
 		  			</div>

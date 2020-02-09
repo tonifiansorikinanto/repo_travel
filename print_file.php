@@ -37,33 +37,49 @@ $html = '
 
 <table cellspacing="0" cellpadding="10">
   <thead>
-    <tr>
-      <th>#</th>
-      <th>Nomer HP</th>
-      <th>Nama</th>
-      <th>Alamat</th>
-      <th>Tgl Berangkat</th>
-      <th>Jam Berangkat</th>
-      <th>Tujuan</th>					      
-      <th>Lunas / BA</th>
-      <th>Harga Khusus</th>
+    <tr style="background-color:#4C4C4C;">
+      <th style="color:#FFFFFF;">#</th>
+      <th style="color:#FFFFFF;">Nomer HP</th>
+      <th style="color:#FFFFFF;">Nama</th>
+      <th style="color:#FFFFFF;">Alamat Jemput</th>
+      <th style="color:#FFFFFF;">Tgl Berangkat</th>
+      <th style="color:#FFFFFF;">Jam Berangkat</th>
+      <th style="color:#FFFFFF;">Tujuan</th>
+      <th style="color:#FFFFFF;">Jumlah Penumpang</th>
+      <th style="color:#FFFFFF;">Lunas / BA</th>
+      <th style="color:#FFFFFF;">Harga Khusus</th>
     </tr>
   </thead>
  	<tbody>';
 
  	while($data = mysqli_fetch_assoc($show_data_tb)){
+    $dataLunas = $data["lunas"];
+
+    if($dataLunas == 1){
+      $dataLunas = "Lunas";
+    }else{
+      $dataLunas = "BA";
+    }
+
  		$html .= '
  		<tr>
  			<td> ' . $no++ . '</td>
  			<td class="text_center"> ' . $data["nomer"] . '</td>
  			<td class="text_center"> ' . $data["nama"] . '</td>
- 			<td class="text_center"> ' . $data["alamat"] . '</td>
+ 			<td class="text_center"> ' . $data["jemput"] . '</td>
  			<td class="text_center"> ' . $data["tanggal"] . '</td>
  			<td style="text-align:center"> ' . $data["jam"] . '</td>
  			<td class="text_center"> ' . $data["tujuan"] . '</td>
- 			<td class="text_center"> ' . $data["lunas"] . '</td>
+      <td class="text_center"> ' . $data["penumpang"] . '</td>
+ 			<td class="text_center"> ' . $dataLunas . '</td>
  			<td class="text_center"> ' . $data["harga_khusus"] . '</td>
  		</tr>
+
+    <tr style="background-color:#D5D5D5">
+      <td colspan="1"></td>
+      <td class="text_center"><b>Keterangan</b></td>
+      <td colspan="10" align="left"> ' . $data["ket"] . '</td>
+    </tr>
  		';
  	}
 
@@ -74,6 +90,7 @@ $html .= '
 </body>
 </html>';
 
+$mpdf->AddPage('L');
 $mpdf->WriteHTML($html);
 $mpdf->Output('Tabel Data Penumpang', 'I');
 
