@@ -25,13 +25,13 @@
 	if(isset($_POST['submit'])){
 		$password = $_POST["pass_sv"];
 		$tb 		= $_GET['tb'];
-		$nomer 	= $_GET['nomer'];
+		$nomer 	= $_GET['id'];
 
 		if(!empty(trim($password))){
 
 			if(cek_user_supervisor($password)){
 				$_SESSION['pass_supervisor'] = true;
-				header('Location: edit-penumpang.php?tb=' . $_GET['tb'] . '&nomer=' . $_GET['nomer'] . '');
+				header('Location: edit-penumpang.php?tb=' . $_GET['tb'] . '&id=' . $_GET['id'] . '');
 			}else{
 				$_SESSION['pass_supervisor'] = false;
 				echo("<script>alert('Error Saat Mengcek Password !')</script>");
@@ -60,10 +60,10 @@
 		$text_mobil = $_POST["text_mobil"];
 		
 
-		if(!isset($_GET['id_nomer'])){
+		if(!isset($_GET['id'])){
 			$_SESSION['report_message'] = report_message("error", "Harus Memilih data !");
 		}else{
-			$id_nomer = $_GET['id_nomer'];
+			$id_nomer = $_GET['id'];
 
 			if($id_nomer != ""){
 
@@ -257,7 +257,7 @@ if(isset($_SESSION['report_message'])){
 					  	<?php if(mysqli_num_rows($show_data_tbLiza) > 0 ): ?>
 						    <?php while($data = mysqli_fetch_assoc($show_data_tbLiza)): ?>
 						    <tr style="cursor:pointer;">
-						      <td><input type="checkbox" onclick="set_id('<?= $data['nomer']; ?>', 'checkid<?= $no2; ?>')" id="checkid<?= $no2; ?>"></td>
+						      <td><input type="checkbox" onclick="set_id('<?= $data['id']; ?>', 'checkid<?= $no2; ?>')" id="checkid<?= $no2; ?>"></td>
 						      <td scope="row" onclick="show_data(<?= $no2; ?>)"><?= $no2; ?></td>
 						      <td onclick="show_data(<?= $no2; ?>)"><?= $data['nomer']; ?></td>
 						      <td onclick="show_data(<?= $no2; ?>)"><?= $data['nama']; ?></td>
@@ -292,8 +292,8 @@ if(isset($_SESSION['report_message'])){
 						    	<td colspan="6"><?= $data['ket']; ?></td>
 						    	<td colspan="1" class="text-right"><b>Aksi</b></td>
 						    	<td colspan="2">
-						      	<a href="#x" role="button" class="text-warning" data-toggle="modal" data-target="#modalKonfirmSupervisor" onclick="setEditParameter('tb2', '<?=$data['nomer']; ?>')">Edit</i></a>
-						      	| <a href="#x" role="button" class="text-danger" data-toggle="modal" data-target="#modalDelete" onclick="setDeleteParameter('tb2', '<?=$data['nomer']; ?>')">Hapus</a>
+						      	<a href="#x" role="button" class="text-warning" data-toggle="modal" data-target="#modalKonfirmSupervisor" onclick="setEditParameter('tb2', '<?=$data['id']; ?>')">Edit</i></a>
+						      	| <a href="#x" role="button" class="text-danger" data-toggle="modal" data-target="#modalDelete" onclick="setDeleteParameter('tb2', '<?=$data['id']; ?>')">Hapus</a>
 						      </td>
 						    </tr>	
 						    <?php endwhile; ?>	

@@ -8,8 +8,8 @@ if(isset($_SESSION["user_access"])){
 
 if(isset($_SESSION["pass_supervisor"])){
 
-if(isset($_GET['nomer']) && isset($_GET['tb'])){
-	$nomer = $_GET['nomer'];
+if(isset($_GET['id']) && isset($_GET['tb'])){
+	$nomer = $_GET['id'];
 
 	if($table_name == "tb1"){
 		$data_perNomer = show_data_onNomer_tbSiluet($nomer);

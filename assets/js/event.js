@@ -25,7 +25,7 @@ function setEditParameter(data1, data2){
 	//window.location.href = currentUrl + "?tb=" + data1 + "&" + "nomer=" + data2;
 	history.pushState({
 		id : 'homepage'
-	}, 'Home | My App', currentUrl + "?tb=" + data1 + "&" + "nomer=" + data2);
+	}, 'Home | My App', currentUrl + "?tb=" + data1 + "&" + "id=" + data2);
 	//button_edit.href = "edit-penumpang.php?tb=" + data1 + "&" + "nomer=" + data2;
 }
 
@@ -56,7 +56,7 @@ function set_id(data1, data2){
 
 	history.pushState({
 		id : 'homepage'
-	}, 'Home | My App', currentUrl + "?id_nomer=" + selectItems.join("-"));
+	}, 'Home | My App', currentUrl + "?id=" + selectItems.join("-"));
 }
 
 document.onkeydown = function(evt) {

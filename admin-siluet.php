@@ -25,13 +25,13 @@ if(isset($_GET['caritb1'])){
 if(isset($_POST['submit'])){
 	$password = $_POST["pass_sv"];
 	$tb 		= $_GET['tb'];
-	$nomer 	= $_GET['nomer'];
+	$nomer 	= $_GET['id'];
 
 	if(!empty(trim($password))){
 
 		if(cek_user_supervisor($password)){
 			$_SESSION['pass_supervisor'] = true;
-			header('Location: edit-penumpang.php?tb=' . $_GET['tb'] . '&nomer=' . $_GET['nomer'] . '');
+			header('Location: edit-penumpang.php?tb=' . $_GET['tb'] . '&id=' . $_GET['id'] . '');
 		}else{
 			$_SESSION['pass_supervisor'] = false;
 			$_SESSION['report_message'] = report_message("error", "Password Salah !");
@@ -64,17 +64,18 @@ if(isset($_POST['submit_cs'])){
 if(isset($_POST['submit_mobil'])){
 	$text_mobil = $_POST["text_mobil"];
 
-	if(!isset($_GET['id_nomer'])){
+	if(!isset($_GET['id'])){
 		$_SESSION['report_message'] = report_message("error", "Harus Memilih data !");
 	}else{
 
-		$id_nomer = $_GET['id_nomer'];
+		$id_nomer = $_GET['id'];
 
 		if($id_nomer != ""){
 			
 			if(!empty(trim($text_mobil))){
 				if(setKeteranganSiluet($text_mobil, $id_nomer)){
-					header('Location: admin-siluet');
+					$_SESSION['report_message'] = report_message("success", "Error Saat Mengatur Data ! ");
+					header("Location: admin-siluet");
 				}else{
 					$_SESSION['report_message'] = report_message("error", "Error Saat Mengatur Data ! ");
 				}
@@ -261,7 +262,7 @@ if(isset($_POST['submit_mobil'])){
 				  	<?php if(mysqli_num_rows($show_data_tbSiluet) > 0 ): ?>
 					    <?php while($data = mysqli_fetch_assoc($show_data_tbSiluet)): ?>
 					    <tr style="cursor:pointer;">
-					      <td><input type="checkbox" onclick="set_id('<?= $data['nomer']; ?>', 'checkid<?= $no1; ?>')" id="checkid<?= $no1; ?>"></td>
+					      <td><input type="checkbox" onclick="set_id('<?= $data['id']; ?>', 'checkid<?= $no1; ?>')" id="checkid<?= $no1; ?>"></td>
 					      <td scope="row" onclick="show_data(<?= $no1; ?>)"><?= $no1; ?></td>
 					      <td onclick="show_data(<?= $no1; ?>)"><?= $data['nomer']; ?></td>
 					      <td onclick="show_data(<?= $no1; ?>)"><?= $data['nama']; ?></td>
@@ -296,8 +297,8 @@ if(isset($_POST['submit_mobil'])){
 					    	<td colspan="6"><?= $data['ket']; ?></td>
 					    	<td colspan="1" class="text-right"><b>Aksi</b></td>
 					    	<td colspan="2">
-					      	<a href="#x" role="button" class="text-warning" data-toggle="modal" data-target="#modalKonfirmSupervisor" onclick="setEditParameter('tb1', '<?=$data['nomer']; ?>')">Edit</i></a>
-					      	| <a href="#x" role="button" class="text-danger" data-toggle="modal" data-target="#modalDelete" onclick="setDeleteParameter('tb1', '<?=$data['nomer']; ?>')">Hapus</a>
+					      	<a href="#x" role="button" class="text-warning" data-toggle="modal" data-target="#modalKonfirmSupervisor" onclick="setEditParameter('tb1', '<?=$data['id']; ?>')">Edit</i></a>
+					      	| <a href="#x" role="button" class="text-danger" data-toggle="modal" data-target="#modalDelete" onclick="setDeleteParameter('tb1', '<?=$data['id']; ?>')">Hapus</a>
 					      </td>
 					    </tr>	
 					    <?php endwhile; ?>	

@@ -23,7 +23,7 @@ function show_data_onNomer_tbSiluet($nomer){
 
 	$nomer = escape($nomer);
 
-	$query 	= "SELECT * FROM tb_siluet WHERE nomer='$nomer'";
+	$query 	= "SELECT * FROM tb_siluet WHERE id='$nomer'";
 	$result = mysqli_query($connect, $query);
 
 	return $result;
@@ -34,7 +34,7 @@ function show_data_onNomer_tbLiza($nomer){
 
 	$nomer = escape($nomer);
 
-	$query 	= "SELECT * FROM tb_liza WHERE nomer='$nomer'";
+	$query 	= "SELECT * FROM tb_liza WHERE id='$nomer'";
 	$result = mysqli_query($connect, $query);
 
 	return $result;
@@ -121,7 +121,7 @@ function edit_data_tbSiluet($nomerEdit, $namaEdit, $alamatEdit, $jemputEdit, $tg
 	$ketEdit 					= escape($ketEdit);
 
 	$query = "UPDATE tb_siluet SET nomer='$nomerEdit', nama='$namaEdit', alamat='$alamatEdit', jemput='$jemputEdit', tanggal='$tglEdit', jam='$jamEdit',
-						tujuan='$tujuanEdit', penumpang='$penumpangEdit', lunas='$lunasEdit', harga_khusus='$harga_khususEdit', ket='$ketEdit' WHERE nomer='$nomer'";
+						tujuan='$tujuanEdit', penumpang='$penumpangEdit', lunas='$lunasEdit', harga_khusus='$harga_khususEdit', ket='$ketEdit' WHERE id='$nomer'";
 	$result = mysqli_query($connect, $query);
 
 	return $result;
@@ -143,7 +143,7 @@ function edit_data_tbLiza($nomerEdit, $namaEdit, $alamatEdit, $jemputEdit, $tglE
 	$ketEdit 					= escape($ketEdit);
 
 	$query = "UPDATE tb_liza SET nomer='$nomerEdit', nama='$namaEdit', alamat='$alamatEdit', jemput='$jemputEdit', tanggal='$tglEdit', jam='$jamEdit',
-						tujuan='$tujuanEdit', penumpang='$penumpangEdit', lunas='$lunasEdit', harga_khusus='$harga_khususEdit', ket='$ketEdit' WHERE nomer='$nomer'";
+						tujuan='$tujuanEdit', penumpang='$penumpangEdit', lunas='$lunasEdit', harga_khusus='$harga_khususEdit', ket='$ketEdit' WHERE id='$nomer'";
 	$result = mysqli_query($connect, $query);
 
 	return $result;
@@ -205,7 +205,7 @@ function setKeteranganSiluet($text_mobil, $id_nomer){
 		while($data = mysqli_fetch_assoc(show_data_onNomer_tbSiluet($id_nomer[$x]))){
 			$ket_mobil = $data['ket'];
 
-			$query = "UPDATE tb_siluet SET ket='$ket_mobil, $text_mobil' WHERE nomer='$id_nomer[$x]'";
+			$query = "UPDATE tb_siluet SET ket='$ket_mobil, $text_mobil' WHERE id='$id_nomer[$x]'";
 			
 			mysqli_query($connect, $query);
 
@@ -229,7 +229,7 @@ function setKeteranganLiza($text_mobil, $id_nomer){
 		while($data = mysqli_fetch_assoc(show_data_onNomer_tbLiza($id_nomer[$x]))){
 			$ket_mobil = $data['ket'];
 
-			$query = "UPDATE tb_liza SET ket='$ket_mobil, $text_mobil' WHERE nomer='$id_nomer[$x]'";
+			$query = "UPDATE tb_liza SET ket='$ket_mobil, $text_mobil' WHERE id='$id_nomer[$x]'";
 			
 			mysqli_query($connect, $query);
 

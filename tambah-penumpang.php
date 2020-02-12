@@ -80,7 +80,6 @@ if(isset($_POST['submit_input'])){
 		if($table_name == "tb1"){
 			if(add_data_tbSiluet($nomer, $nama, $alamat, $jemput, $tgl, $jam, $tujuan, $penumpang, $lunas, $harga_khusus, $ket)){
 				$_SESSION['report_message'] = report_message("success", "Berhasil Menambahkan Data ke Tabel Siluet");
-				header('Location: admin-siluet.php');
 			}else{
 				$_SESSION['report_message'] = report_message("error", "Gagal Menambahkan Data !");
 				header('Location: tambah-penumpang?tb=tb1');
@@ -88,7 +87,6 @@ if(isset($_POST['submit_input'])){
 		}else{
 			if(add_data_tbLiza($nomer, $nama, $alamat, $jemput, $tgl, $jam, $tujuan, $penumpang, $lunas, $harga_khusus, $ket)){
 				$_SESSION['report_message'] = report_message("success", "Berhasil Menambahkan Data ke Tabel Liza");
-				header('Location: admin-liza');
 			}else{
 				$_SESSION['report_message'] = report_message("error", "Gagal Menambahkan Data !");
 				header('Location: tambah-penumpang?tb=tb2');
@@ -100,51 +98,6 @@ if(isset($_POST['submit_input'])){
 	}
 }
 
-if(isset($_POST['submit_edit'])){
-	$nomerEdit	 			= $_POST['nomer'];
-	$namaEdit 				= $_POST['nama'];
-	$alamatEdit 			= $_POST['alamat'];
-	$jemputEdit				= $_POST['jemput'];
-	$tglEdit 					= $_POST['tgl'];
-	$jamEdit 					= $_POST['jam'];
-	$tujuanEdit 			= $_POST['tujuan'];
-	$penumpangEdit		= $_POST['penumpang'];
-	$lunasEdit 				= $_POST['lunas'];
-	$harga_khususEdit = $_POST['harga_khusus'];
-	$ketEdit 					= $_POST['ket'];
-
-	if(!empty(trim($nomerEdit)) && !empty(trim($namaEdit)) && !empty(trim($alamatEdit)) && !empty(trim($tglEdit)) &&
-	!empty(trim($jamEdit)) && !empty(trim($tujuanEdit)) && !empty(trim($penumpangEdit)) && !empty(trim($lunasEdit)) && !empty(trim($harga_khususEdit)) && !empty(trim($ketEdit))){
-
-		$day 			= substr($tglEdit, 8, 2);
-  	$month 		= substr($tglEdit, 5, 2);
-  	$year 		= substr($tglEdit, 0, 4);
-
-  	$tglEdit 	= $day . "-" . $month . "-" . $year;
-
-		if($table_name == "tb1"){
-			if(edit_data_tbSiluet($nomerEdit, $namaEdit, $alamatEdit, $jemputEdit, $tglEdit, $jamEdit, $tujuanEdit, $penumpangEdit, $lunasEdit, $harga_khususEdit, $ketEdit, $nomerOri)){
-				$_SESSION['report_message'] = report_message("success", "Berhasil Mengubah Data " . $namaEdit);
-				header('Location: admin-siluet.php');
-			}else{
-				$_SESSION['report_message'] = report_message("error", "Gagal Mengubah Data " . $namaEdit);
-				header('Location: edit-penumpang.php?tb=' . $table_name . '&nomer=' . $nomerOri . '');
-			}
-		}else{
-			if(edit_data_tbLiza($nomerEdit, $namaEdit, $alamatEdit, $jemputEdit, $tglEdit, $jamEdit, $tujuanEdit, $penumpangEdit, $lunasEdit, $harga_khususEdit, $ketEdit, $nomerOri)){
-				$_SESSION['report_message'] = report_message("success", "Berhasil Mengubah Data " . $namaEdit);
-				header('Location: admin-liza.php');
-			}else{
-				$_SESSION['report_message'] = report_message("error", "Gagal Mengubah Data " . $namaEdit);
-				header('Location: edit-penumpang.php?tb=' . $table_name . '&nomer=' . $nomerOri . '');
-			}
-		}
-
-	}else{
-		$_SESSION['report_message'] = report_message("error", "Data selain alamat jemput harus diisi !");
-	}
-
-}
 
 ?>
 
@@ -167,7 +120,7 @@ if(isset($_SESSION['report_message'])){
 		}
 	?>">
 		<div class="col-md-11">
-			<h1 class="h1-responsive"> Edit / Tambah Penumpang 
+			<h1 class="h1-responsive"> Tambah Penumpang 
 					<?php
 						if ($table_name =='tb1') {
 							echo "Siluet";
@@ -302,11 +255,7 @@ if(isset($_SESSION['report_message'])){
 						</div>
 						
 						<div align="right" class="mt-5 mb-4">
-							<?php if($data_search_found == 0): ?>
-			  				<button type="submit" name="submit_input" class="btn btn-primary btn-md" style="width: 130px;" onclick="return confirm('Lanjut Tambah Data Penumpang ?')">Tambah Data</button>
-			  			<?php else: ?> 
-				  			<button type="submit" name="submit_edit" class="btn btn-warning btn-md" style="width: 130px;" onclick="return confirm('Lanjut Edit Data Penumpang ?')">Edit Data</button>
-				  		<?php endif; ?>
+			  			<button type="submit" name="submit_input" class="btn btn-primary btn-md" style="width: 130px;" onclick="return confirm('Lanjut Tambah Data Penumpang ?')">Tambah Data</button>
 
 			  			<?php if($table_name == "tb1"): ?>
 			  				<a type="button" class="btn btn-info btn-md" href="admin-siluet" style="width: 130px;">Kembali</a>
