@@ -57,13 +57,14 @@ $html = '
   <thead>
     <tr style="background-color:#4C4C4C;">
       <th style="color:#FFFFFF;">#</th>
-      <th style="color:#FFFFFF;">Nomer HP</th>
-      <th style="color:#FFFFFF;">Nama</th>
-      <th style="color:#FFFFFF;">Alamat Jemput</th>
+      
       <th style="color:#FFFFFF; width: 10px;">Tgl Berangkat</th>
       <th style="color:#FFFFFF; width: 10px;">Jam Berangkat</th>
       <th style="color:#FFFFFF;">Tujuan</th>
       <th style="color:#FFFFFF; width: 10px;">Jumlah Pnmpg</th>
+      <th style="color:#FFFFFF;">Nama</th>
+      <th style="color:#FFFFFF;">Alamat Jemput</th>
+      <th style="color:#FFFFFF;">Nomer HP</th>
       <th style="color:#FFFFFF; width: 10px;">Lunas / BA</th>
       <th style="color:#FFFFFF;">Harga Khusus</th>
       <th style="color:#FFFFFF;">Keterangan</th>
@@ -83,13 +84,13 @@ $html = '
  		$html .= '
  		<tr class="row_table">
  			<td> ' . $no++ . '</td>
- 			<td> ' . $data["nomer"] . '</td>
+      <td> ' . $data["tanggal"] . '</td>
+      <td> ' . $data["jam"] . '</td>
+      <td> ' . $data["tujuan"] . '</td>
+ 			<td> ' . $data["penumpang"] . '</td>
  			<td> ' . $data["nama"] . '</td>
  			<td style="text-align: left;"> ' . $data["jemput"] . '</td>
- 			<td> ' . $data["tanggal"] . '</td>
- 			<td> ' . $data["jam"] . '</td>
- 			<td> ' . $data["tujuan"] . '</td>
-      <td> ' . $data["penumpang"] . '</td>
+      <td> ' . $data["nomer"] . '</td>
  			<td> ' . $dataLunas . '</td>
  			<td> ' . $data["harga_khusus"] . '</td>
       <td style="text-align: left;"> ' . $data["ket"] . '</td>

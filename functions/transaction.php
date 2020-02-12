@@ -3,7 +3,7 @@
 function show_data_tbSiluet(){
 	global $connect;
 
-	$query 	= "SELECT * FROM tb_siluet";
+	$query 	= "SELECT * FROM tb_siluet WHERE status_print = 0";
 	$result = mysqli_query($connect, $query);
 
 	return $result;
@@ -12,7 +12,7 @@ function show_data_tbSiluet(){
 function show_data_tbLiza(){
 	global $connect;
 
-	$query 	= "SELECT * FROM tb_liza";
+	$query 	= "SELECT * FROM tb_liza WHERE status_print = 0";
 	$result = mysqli_query($connect, $query);
 
 	return $result;
@@ -45,7 +45,7 @@ function search_data_tbSiluet($caritb1){
 
 	$caritb1 = escape($caritb1);
 
-	$query 	= "SELECT * FROM tb_siluet WHERE tanggal LIKE '%$caritb1%' ORDER BY jam ASC";
+	$query 	= "SELECT * FROM tb_siluet WHERE tanggal LIKE '%$caritb1%' AND status_print = '0' ORDER BY jam ASC";
 	$result = mysqli_query($connect, $query);
 
 	return $result;
@@ -56,7 +56,7 @@ function search_data_tbLiza($caritb2){
 
 	$caritb2 = escape($caritb2);
 
-	$query 	= "SELECT * FROM tb_liza WHERE tanggal LIKE '%$caritb2%' ORDER BY jam ASC";
+	$query 	= "SELECT * FROM tb_liza WHERE tanggal LIKE '%$caritb2%' AND status_print = '0' ORDER BY jam ASC";
 	$result = mysqli_query($connect, $query);
 
 	return $result;
