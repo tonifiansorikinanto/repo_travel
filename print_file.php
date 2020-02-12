@@ -30,6 +30,24 @@ $html = '
 <html>
 <head>
 	<link href="assets/css/print.css" rel="stylesheet">
+
+  <style>
+    body{
+      font-size:10px;
+    }
+
+    table{
+      letter-spacing:1.01px;
+    }
+
+    tr:nth-child(even){
+      background-color: #9E9C9C;
+      
+    }
+    tr:nth-child(even) td{
+      color: #f1f1f1;
+    }
+  </style>
 </head>
 <body>
 
@@ -42,12 +60,13 @@ $html = '
       <th style="color:#FFFFFF;">Nomer HP</th>
       <th style="color:#FFFFFF;">Nama</th>
       <th style="color:#FFFFFF;">Alamat Jemput</th>
-      <th style="color:#FFFFFF;">Tgl Berangkat</th>
-      <th style="color:#FFFFFF;">Jam Berangkat</th>
+      <th style="color:#FFFFFF; width: 10px;">Tgl Berangkat</th>
+      <th style="color:#FFFFFF; width: 10px;">Jam Berangkat</th>
       <th style="color:#FFFFFF;">Tujuan</th>
-      <th style="color:#FFFFFF;">Jumlah Penumpang</th>
-      <th style="color:#FFFFFF;">Lunas / BA</th>
+      <th style="color:#FFFFFF; width: 10px;">Jumlah Pnmpg</th>
+      <th style="color:#FFFFFF; width: 10px;">Lunas / BA</th>
       <th style="color:#FFFFFF;">Harga Khusus</th>
+      <th style="color:#FFFFFF;">Keterangan</th>
     </tr>
   </thead>
  	<tbody>';
@@ -62,24 +81,19 @@ $html = '
     }
 
  		$html .= '
- 		<tr>
+ 		<tr class="row_table">
  			<td> ' . $no++ . '</td>
- 			<td class="text_center"> ' . $data["nomer"] . '</td>
- 			<td class="text_center"> ' . $data["nama"] . '</td>
- 			<td class="text_center"> ' . $data["jemput"] . '</td>
- 			<td class="text_center"> ' . $data["tanggal"] . '</td>
- 			<td style="text-align:center"> ' . $data["jam"] . '</td>
- 			<td class="text_center"> ' . $data["tujuan"] . '</td>
-      <td class="text_center"> ' . $data["penumpang"] . '</td>
- 			<td class="text_center"> ' . $dataLunas . '</td>
- 			<td class="text_center"> ' . $data["harga_khusus"] . '</td>
+ 			<td> ' . $data["nomer"] . '</td>
+ 			<td> ' . $data["nama"] . '</td>
+ 			<td style="text-align: left;"> ' . $data["jemput"] . '</td>
+ 			<td> ' . $data["tanggal"] . '</td>
+ 			<td> ' . $data["jam"] . '</td>
+ 			<td> ' . $data["tujuan"] . '</td>
+      <td> ' . $data["penumpang"] . '</td>
+ 			<td> ' . $dataLunas . '</td>
+ 			<td> ' . $data["harga_khusus"] . '</td>
+      <td style="text-align: left;"> ' . $data["ket"] . '</td>
  		</tr>
-
-    <tr style="background-color:#D5D5D5">
-      <td colspan="1"></td>
-      <td class="text_center"><b>Keterangan</b></td>
-      <td colspan="10" align="left"> ' . $data["ket"] . '</td>
-    </tr>
  		';
  	}
 
