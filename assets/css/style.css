@@ -196,25 +196,6 @@ body {
   border-radius: 10px 0px 0px 0px;
 }
 
-/* width */
-::-webkit-scrollbar {
-  opacity: 0.5;
-  width: 7px;
-  height: 7px;
-  transition: 0.4s;
-}
-
-/* Track */
-::-webkit-scrollbar-track {  
-  background: rgba(0, 0, 180, 0.2);
-}
-
-/* Handle */
-::-webkit-scrollbar-thumb {
-  background: #3F729B; 
-  border-radius: 20px;
-}
-
 
 
 /* --- Report Message --- */

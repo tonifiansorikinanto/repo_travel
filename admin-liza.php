@@ -88,6 +88,28 @@
 ?>
 
 <!-- modal -->
+	<div class="modal fade" id="modalKonfirmSupervisor" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true" style="z-index:99999999;">		  
+	  <div class="modal-dialog modal-dialog-centered" role="document">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <h5 class="modal-title" id="exampleModalLongTitle">Konfirmasi Supervisor</h5>
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Close"onclick="resetUrl()">
+	          <span aria-hidden="true">&times;</span>
+	        </button>
+	      </div>
+	      <form method="post" action="" name="form_sv">
+		      <div class="modal-body">
+				    <input type="password" aria-label="pass_sv" name="pass_sv" class="form-control" placeholder="Masukkan password Supervisor..." id="pass_sv">
+			  	</div>
+		      <div class="modal-footer">
+		        <button type="button" class="btn btn-sm btn-warning" data-dismiss="modal" onclick="resetUrl()">Batal</button>
+		        <button role="button" class="btn btn-sm btn-danger" id="button_edit" name="submit">Konfirmasi</button>
+		      </div>
+	      </form>
+	    </div>
+	  </div>
+	</div>
+	
 	<div class="modal fade" id="modalLogout" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true" style="z-index:99999999;">
 	  <div class="modal-dialog modal-dialog-centered modal-sm" role="document">
 	    <div class="modal-content">

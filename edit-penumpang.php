@@ -104,18 +104,33 @@ if(isset($_SESSION['report_message'])){
 
 
 <div class="container">
-	<div class="row justify-content-center mt-3">
-		<div class="col-md-10">
-			<h1 class="h1-responsive deep-purple-text">Edit Data Client <?= $nama; ?></h1>
+	<div class="row justify-content-center mt-3
+	 <?php
+		if ($table_name =='tb1') {
+			echo "text-warning";
+		} else {
+			echo "text-info";
+		}
+	?>">
+		<div class="col-md-11">
+			<h1 class="h1-responsive">Edit Data Client <?= $nama; ?> | Database 
+			<?php
+				if ($table_name =='tb1') {
+					echo "Siluet";
+				} else {
+					echo "Liza";
+				}
+			?></h1>
             
 			<form method="post" action="">
-				<div class="row justify-content-center mt-4">
+				<div class="row mt-4">
 					<div class="col-md-12">
-						<div class="row text-primary">
-							<div class="col-md-6">
+						<div class="row justify-content-center">
+							<div class="col-md-5">
+								<h2 class="h2-responsive">Data Primer</h2>
 								<div class="row">
 									<div class="col-md-12 mt-2">
-										<h4 class="h4-responsive">Nomer</h4>
+										<h4 class="h4-responsive">Nomer HP</h4>
 									</div>
 									<div class="col-md-12">
 										<input type="text" aria-label="nomer" name="nomer" id="nomer" class="form-control z-depth-1" autocomplete="off" value="<?= $nomerOri; ?>">
@@ -126,75 +141,96 @@ if(isset($_SESSION['report_message'])){
 									</div>
 									<div class="col-md-12">
 										<input type="text" aria-label="nama" name="nama" id="nama" class="form-control z-depth-1" autocomplete="off" value="<?= $nama; ?>">
+									</div>									
+
+									<div class="col-md-12 mt-3">
+										<h4 class="h4-responsive">Alamat Tetap</h4>
+									</div>									
+									<div class="col-md-12 mb-2">
+										<textarea class="form-control z-depth-1" name="alamat" style="height: 100px;" id="exampleFormControlTextarea6"><?= $alamat; ?></textarea>										
 									</div>
 
-									<div class="col-md-6 mt-3">
-										<h4 class="h4-responsive">Alamat Tetap</h4>
-									</div>
-									<div class="col-md-6 mt-3">
+									<hr class="mb-3" style="width: 95%;">
+
+									<div class="col-md-12">
 										<h4 class="h4-responsive">Alamat Jemput</h4>
 									</div>
-									<div class="col-md-6">
-										<textarea class="form-control z-depth-1" name="alamat" style="height: 100px;" id="exampleFormControlTextarea6"><?= $alamat; ?></textarea>
-									</div>
-									<div class="col-md-6">
-										<textarea class="form-control z-depth-1" name="jemput" style="height: 100px;" id="exampleFormControlTextarea6"><?= $jemput; ?></textarea>
-									</div>
+									<div class="col-md-12">
+										<textarea class="form-control z-depth-1" name="jemput" style="height: 100px;" id="exampleFormControlTextarea6"><?= $jemput; ?></textarea
+											>
+										<small id="defaultRegisterFormPasswordHelpBlock" class="form-text text-muted">
+								          Isi jika client meminta dijemput di tempat yang berbeda dengan alamat tetap, kosongi jika tidak.
+								        </small>
+									</div>									
 
-									<div class="col-md-12 mt-2">
+								</div>
+							</div>
+							<div class="col-md-6">
+								<h2 class="h2-responsive">Data Sekunder</h2>
+								<div class="row">
+									<div class="col-md-6 mt-3">
 										<h4 class="h4-responsive">Tanggal Berangkat</h4>
 									</div>
-									<div class="col-md-12">
-										<input type="date" aria-label="nomer" name="tgl" id="nomer" class="form-control z-depth-1"  value="<?= $tanggal; ?>">
+									<div class="col-md-3">
+										<h6 class="h6-responsive">Jam Berangkat</h6>
 									</div>
+									<div class="col-md-3">
+										<h6 class="h6-responsive">Jumlah Penumpang</h6>
+									</div>
+									<div class="col-md-6">
+										<input type="date" aria-label="nomer" name="tgl" id="nomer" class="form-control z-depth-1"  value="<?= $tanggal; ?>">
+									</div>									
+									<div class="col-md-3">
+										<input type="text" aria-label="nomer" name="jam" id="nomer" class="form-control z-depth-1" placeholder="14:00" autocomplete="off"  value="<?= $jam; ?>">
+									</div>
+									<div class="col-md-3">
+										<input type="number" aria-label="nama" name="penumpang" id="nama" class="form-control z-depth-1" autocomplete="off" value="<?= $penumpang; ?>">
+									</div>
+
+									<div class="col-md-6 mt-2">
+										<h4 class="h4-responsive">Tujuan</h4>
+									</div>
+									<div class="col-md-6 mt-2">
+										<h4 class="h4-responsive">Lainnya..</h4>
+									</div>
+									<div class="col-md-6">
+										<select name="lunas" id="durasi1" class="form-control z-depth-1" >
+                      <option value="0">- Pilih Tujuan -</option>
+                      <option value="1">Malang</option>
+                      <option value="2">Juanda</option>
+                      <option value="3">Surabaya Kota</option>
+                      <option value="4">Carter</option>
+                  	</select>
+									</div>
+									<div class="col-md-6">
+										<input type="text" aria-label="nama" name="tujuan" id="nama" class="form-control z-depth-1" autocomplete="off"  value="<?= $tujuan; ?>">
+										<small id="defaultRegisterFormPasswordHelpBlock" class="form-text text-muted">
+								          Isi manual disini jika di pilihan sebelah tidak ada.
+								        </small>
+									</div>
+
+									<div class="col-md-6 mt-2">
+										<h4 class="h4-responsive">Lunas / BA</h4>
+									</div>
+									<div class="col-md-6 mt-2">
+										<h4 class="h4-responsive">Special Price</h4>
+									</div>
+									<div class="col-md-6">
+										<select name="lunas" id="durasi1" class="form-control z-depth-1">
+	                    <option value="0">- Pilih Status Pembayaran -</option>
+	                    <option value="1" <?php if($lunas == "1") echo "selected='selected'"; ?>>Lunas</option>
+	                    <option value="2" <?php if($lunas == "2") echo "selected='selected'"; ?>>BA</option>
+	                  </select>
+									</div>									
+									<div class="col-md-6">
+										<input type="text" aria-label="nomer" name="harga_khusus" id="nomer" class="form-control z-depth-1" autocomplete="off"  value="<?= $harga_khusus; ?>">
+									</div>
+
 									<div class="col-md-12 mt-3">
 										<h4 class="h4-responsive">Keterangan</h4>
 									</div>
 									<div class="col-md-12">
 										<textarea class="form-control z-depth-1" name="ket" style="height: 100px;" id="exampleFormControlTextarea6"><?= $ket; ?></textarea>
-									</div>
-
-								</div>
-							</div>
-							<div class="col-md-6">
-								<div class="row">
-									<div class="col-md-12 mt-2">
-										<h4 class="h4-responsive">Jam Berangkat</h4>
-									</div>
-									<div class="col-md-12">
-										<input type="text" aria-label="nomer" name="jam" id="nomer" class="form-control z-depth-1" placeholder="14:00" autocomplete="off"  value="<?= $jam; ?>">
-									</div>
-
-									<div class="col-md-12 mt-2">
-										<h4 class="h4-responsive">Tujuan</h4>
-									</div>
-									<div class="col-md-12">
-										<input type="text" aria-label="nama" name="tujuan" id="nama" class="form-control z-depth-1" autocomplete="off"  value="<?= $tujuan; ?>">
-									</div>
-
-									<div class="col-md-12 mt-3">
-										<h4 class="h4-responsive">Jumlah Penumpang</h4>
-									</div>
-									<div class="col-md-12">
-										<input type="number" aria-label="nama" name="penumpang" id="nama" class="form-control z-depth-1" autocomplete="off" value="<?= $penumpang; ?>">
-									</div>
-
-									<div class="col-md-12 mt-2">
-										<h4 class="h4-responsive">Lunas / BA</h4>
-									</div>
-									<div class="col-md-12">
-										<select name="lunas" id="durasi1" class="form-control">
-	                    <option value="0">- Pilih Status Pembayaran -</option>
-	                    <option value="1" <?php if($lunas == "1") echo "selected='selected'"; ?>>Lunas</option>
-	                    <option value="2" <?php if($lunas == "2") echo "selected='selected'"; ?>>BA</option>
-	                  </select>
-									</div>
-
-									<div class="col-md-12 mt-2">
-										<h4 class="h4-responsive">Harga Khusus</h4>
-									</div>
-									<div class="col-md-12">
-										<input type="text" aria-label="nomer" name="harga_khusus" id="nomer" class="form-control z-depth-1" autocomplete="off"  value="<?= $harga_khusus; ?>">
 									</div>
 								</div>
 							</div>		                  
