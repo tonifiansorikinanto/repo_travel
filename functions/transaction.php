@@ -23,7 +23,7 @@ function show_data_onNomer_tbSiluet($nomer){
 
 	$nomer = escape($nomer);
 
-	$query 	= "SELECT * FROM tb_siluet WHERE id='$nomer'";
+	$query 	= "SELECT * FROM tb_siluet WHERE nomer='$nomer'";
 	$result = mysqli_query($connect, $query);
 
 	return $result;
@@ -34,12 +34,33 @@ function show_data_onNomer_tbLiza($nomer){
 
 	$nomer = escape($nomer);
 
-	$query 	= "SELECT * FROM tb_liza WHERE id='$nomer'";
+	$query 	= "SELECT * FROM tb_liza WHERE nomer='$nomer'";
 	$result = mysqli_query($connect, $query);
 
 	return $result;
 }
 
+function show_data_onID_tbSiluet($nomer){
+	global $connect;
+
+	$nomer = escape($nomer);
+
+	$query 	= "SELECT * FROM tb_siluet WHERE id='$nomer'";
+	$result = mysqli_query($connect, $query);
+
+	return $result;	
+}
+
+function show_data_onID_tbLiza($nomer){
+	global $connect;
+
+	$nomer = escape($nomer);
+
+	$query 	= "SELECT * FROM tb_liza WHERE id='$nomer'";
+	$result = mysqli_query($connect, $query);
+
+	return $result;	
+}
 
 function show_dataPrint_tbSiluet($id_parameter){
 	global $connect;
