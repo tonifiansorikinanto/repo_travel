@@ -23,7 +23,7 @@ function show_data_onNomer_tbSiluet($nomer){
 
 	$nomer = escape($nomer);
 
-	$query 	= "SELECT * FROM tb_siluet WHERE id='$nomer'";
+	$query 	= "SELECT * FROM tb_siluet WHERE nomer='$nomer'";
 	$result = mysqli_query($connect, $query);
 
 	return $result;
@@ -34,7 +34,7 @@ function show_data_onNomer_tbLiza($nomer){
 
 	$nomer = escape($nomer);
 
-	$query 	= "SELECT * FROM tb_liza WHERE id='$nomer'";
+	$query 	= "SELECT * FROM tb_liza WHERE nomer='$nomer'";
 	$result = mysqli_query($connect, $query);
 
 	return $result;
@@ -81,8 +81,7 @@ function add_data_tbSiluet($nomer, $nama, $alamat, $jemput, $tgl, $jam, $tujuan,
 
 	$query = "INSERT INTO tb_siluet (nomer, nama, alamat, jemput, tanggal, jam, tujuan, penumpang, lunas, harga_khusus, ket) VALUES 
 	('$nomer', '$nama', '$alamat', '$jemput', '$tgl', '$jam', '$tujuan', '$penumpang', '$lunas', '$harga_khusus', '$ket')";
-	$result = mysqli_query($connect, $query);
-
+	$result = mysqli_query($connect, $query);	
 	return $result;
 }
 
@@ -156,7 +155,7 @@ function delete_data_tbSiluet($nomer){
 
 	$nomer = escape($nomer);
 
-	$query 	= "DELETE FROM tb_siluet WHERE nomer = '$nomer'";
+	$query 	= "DELETE FROM tb_siluet WHERE id = '$nomer'";
 	$result = mysqli_query($connect, $query);
 
 	return $result;
@@ -167,7 +166,7 @@ function delete_data_tbLiza($nomer){
 
 	$nomer = escape($nomer);
 
-	$query 	= "DELETE FROM tb_liza WHERE nomer = '$nomer'";
+	$query 	= "DELETE FROM tb_liza WHERE id = '$nomer'";
 	$result = mysqli_query($connect, $query);
 
 	return $result;

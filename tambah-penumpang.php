@@ -13,6 +13,9 @@ if(isset($_GET['tb'])){
 $data_search_found = 0;
 
 if(isset($_GET['cari-data'])){
+
+	$status_tujuan = false;
+
 	$cari_data = $_GET['cari-data'];
 
 	if($table_name == "tb1"){
@@ -46,11 +49,20 @@ if(isset($_GET['cari-data'])){
 
 		$tglOri 	= $year . "-" . $month . "-" . $day;
 
+		if ($tujuanOri == "Malang" || $tujuanOri == "Juanda" || $tujuanOri == "Surabaya Kota" || $tujuanOri == "Carter") {
+			$status_tujuan = true;
+		} else {
+			$status_tujuan = false;
+		}
+
+
 	}else{
 		$data_search_found = 0;
 
 		echo report_message("error", "Data Yang Dicari Tidak Ditemukan !");
 	}
+
+	
 }
 
 
@@ -63,7 +75,11 @@ if(isset($_POST['submit_input'])){
 	$jemput 			= $_POST['jemput'];
 	$tgl 					= $_POST['tgl'];
 	$jam 					= $_POST['jam'];
-	$tujuan 			= $_POST['tujuan'];
+	if ($_POST['tujuan_text'] != '') {
+		$tujuan = $_POST['tujuan_text'];
+	} else {
+		$tujuan = $_POST['tujuan_select'];
+	}
 	$penumpang 		= $_POST['penumpang'];
 	$lunas 				= $_POST['lunas'];
 	$harga_khusus = $_POST['harga_khusus'];
@@ -171,7 +187,7 @@ if(isset($_SESSION['report_message'])){
 										<h4 class="h4-responsive">Alamat Jemput</h4>
 									</div>									
 									<div class="col-md-12">
-										<textarea class="form-control z-depth-1" name="jemput" style="height: 100px;" id="exampleFormControlTextarea6"><?php if(isset($cari_data) && isset($jemputOri)){ echo $jemputOri; } ?></textarea>
+										<textarea class="form-control z-depth-1" name="jemput" style="height: 100px;" id="exampleFormControlTextarea6" placeholder="Alamat Jemput . . ."></textarea>
 										<small id="defaultRegisterFormPasswordHelpBlock" class="form-text text-muted mb-4">
 								          Isi jika client meminta dijemput di tempat yang berbeda dengan alamat tetap, kosongi jika tidak.
 								        </small>
@@ -194,32 +210,29 @@ if(isset($_SESSION['report_message'])){
 										<h6 class="h6-responsive">Jumlah Penumpang</h6>
 									</div>
 									<div class="col-md-6">
-										<input type="date" aria-label="nomer" name="tgl" id="tgl" class="form-control z-depth-1" value="<?php if(isset($cari_data) && isset($tglOri)){ echo $tglOri; } ?>">
+										<input type="date" aria-label="nomer" name="tgl" id="tgl" class="form-control z-depth-1">
 									</div>
 									<div class="col-md-3 text-center">
-										<input type="time" aria-label="nomer" name="jam" id="nomer" class="form-control z-depth-1" placeholder="14:00" autocomplete="off" value="<?php if(isset($cari_data) && isset($jamOri)){ echo $jamOri; } ?>">
+										<input type="time" aria-label="nomer" name="jam" id="nomer" class="form-control z-depth-1" placeholder="14:00" autocomplete="off">
 									</div>
 									<div class="col-md-3">
-										<input type="number" aria-label="nama" name="penumpang" id="nama" class="form-control z-depth-1" autocomplete="off" value="<?php if(isset($cari_data) && isset($penumpangOri)){ echo $penumpangOri; } ?>">
+										<input type="number" aria-label="nama" name="penumpang" id="nama" class="form-control z-depth-1" autocomplete="off">
 									</div>
-									<div class="col-md-6 mt-3">
+									<div class="col-md-12 text-center mt-3">
 										<h4 class="h4-responsive">Tujuan</h4>
 									</div>
-									<div class="col-md-6 mt-3">
-										<h4 class="h4-responsive">Lainnya..</h4>
-									</div>
 									<div class="col-md-6">
-										<select name="lunas" id="durasi1" class="form-control z-depth-1" >
-                      <option value="0">- Pilih Tujuan -</option>
-                      <option value="1">Malang</option>
-                      <option value="2">Juanda</option>
-                      <option value="3">Surabaya Kota</option>
-                      <option value="4">Carter</option>
+										<select name="tujuan_select" id="durasi1" class="form-control z-depth-1" >
+                      <option value="0" >- Pilih Tujuan -</option>
+                      <option value="Malang">Malang</option>
+                      <option value="Juanda">Juanda</option>
+                      <option value="Surabaya Kota">Surabaya Kota</option>
+                      <option value="Carter">Carter</option>
                   	</select>
-										<!-- <input type="text" aria-label="nama" name="tujuan" id="nama" class="form-control z-depth-1" autocomplete="off" value="<?php if(isset($cari_data) && isset($tujuanOri)){ echo $tujuanOri; } ?>"> -->
+										<!-- <input type="text" aria-label="nama" name="tujuan" id="nama" class="form-control z-depth-1" autocomplete="off" value="; } ?>"> -->
 									</div>
 									<div class="col-md-6">
-										<input type="text" aria-label="nama" name="tujuan" id="nama" class="form-control z-depth-1" autocomplete="off" value="<?php if(isset($cari_data) && isset($tujuanOri)){ echo $tujuanOri; } ?>">
+										<input type="text" aria-label="nama" name="tujuan_text" id="nama" class="form-control z-depth-1" autocomplete="off" placeholder="Lainnya..">
 										<small id="defaultRegisterFormPasswordHelpBlock" class="form-text text-muted">
 								          Isi manual disini jika di pilihan sebelah tidak ada.
 								        </small>
@@ -233,21 +246,21 @@ if(isset($_SESSION['report_message'])){
 										<h4 class="h4-responsive">Special Price</h4>
 									</div>
 									<div class="col-md-6">
-										<select name="lunas" id="durasi1" class="form-control z-depth-1" >
+										<select name="lunas" id="durasi1" class="form-control z-depth-1">
                       <option value="0">- Status Pembayaran -</option>
-                      <option value="1" <?php if(isset($lunasOri) == "1") echo "selected='selected'"; ?>>Lunas</option>
-                      <option value="2" <?php if(isset($lunasOri) == "2") echo "selected='selected'"; ?>>BA</option>
+                      <option value="1">Lunas</option>
+                      <option value="2">BA</option>
                   	</select>
 									</div>
 									<div class="col-md-6">
-										<input type="text" aria-label="nomer" name="harga_khusus" id="nomer" class="form-control z-depth-1" autocomplete="off" value="<?php if(isset($cari_data) && isset($harga_khususOri)){ echo $harga_khususOri; } ?>">
+										<input type="text" aria-label="nomer" name="harga_khusus" id="nomer" class="form-control z-depth-1" autocomplete="off" placeholder="Harga Khusus . . .">
 									</div>
 
 									<div class="col-md-12 mt-3">
 										<h4 class="h4-responsive">Keterangan</h4>
 									</div>
 									<div class="col-md-12">
-										<textarea class="form-control z-depth-1" name="ket" style="height: 100px;" id="exampleFormControlTextarea6"><?php if(isset($cari_data) && isset($ketOri)){ echo $ketOri; } ?></textarea>
+										<textarea class="form-control z-depth-1" name="ket" style="height: 100px;" id="exampleFormControlTextarea6" placeholder="Keterangan . . ."></textarea>
 									</div>
 
 								</div>
