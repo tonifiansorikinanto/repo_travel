@@ -85,7 +85,7 @@ if(isset($_POST['submit_input'])){
 	$harga_khusus = $_POST['harga_khusus'];
 	$ket 					= $_POST['ket'];
 
-	if(!empty(trim($nomer)) && !empty(trim($nama)) && !empty(trim($alamat)) && !empty(trim($jemput)) && !empty(trim($tgl)) && !empty(trim($jam)) && !empty(trim($tujuan)) && !empty(trim($penumpang)) && !empty(trim($lunas)) && !empty(trim($harga_khusus)) && !empty(trim($ket))){
+	if(!empty(trim($nomer)) && !empty(trim($nama)) && !empty(trim($alamat)) && !empty(trim($tgl)) && !empty(trim($jam)) && !empty(trim($tujuan)) && !empty(trim($penumpang)) && !empty(trim($lunas)) && !empty(trim($harga_khusus)) && !empty(trim($ket))){
 
   	$day 		= substr($tgl, 8, 2);
   	$month 		= substr($tgl, 5, 2);
@@ -187,7 +187,7 @@ if(isset($_SESSION['report_message'])){
 										<h4 class="h4-responsive">Alamat Jemput</h4>
 									</div>									
 									<div class="col-md-12">
-										<textarea class="form-control z-depth-1" name="jemput" style="height: 100px;" id="exampleFormControlTextarea6" placeholder="Alamat Jemput . . ."></textarea>
+										<textarea class="form-control z-depth-1" name="jemput" style="height: 100px;" id="exampleFormControlTextarea6"></textarea>
 										<small id="defaultRegisterFormPasswordHelpBlock" class="form-text text-muted mb-4">
 								          Isi jika client meminta dijemput di tempat yang berbeda dengan alamat tetap, kosongi jika tidak.
 								        </small>
@@ -213,13 +213,13 @@ if(isset($_SESSION['report_message'])){
 										<input type="date" aria-label="nomer" name="tgl" id="tgl" class="form-control z-depth-1">
 									</div>
 									<div class="col-md-3 text-center">
-										<input type="time" aria-label="nomer" name="jam" id="nomer" class="form-control z-depth-1" placeholder="14:00" autocomplete="off">
+										<input type="time" aria-label="nomer" name="jam" id="nomer" class="form-control z-depth-1" autocomplete="off">
 									</div>
 									<div class="col-md-3">
 										<input type="number" aria-label="nama" name="penumpang" id="nama" class="form-control z-depth-1" autocomplete="off">
 									</div>
 									<div class="col-md-12 text-center mt-3">
-										<h4 class="h4-responsive">Tujuan</h4>
+										<h4 class="h4-responsive">Tujuan (Isi Salah Satu)</h4>
 									</div>
 									<div class="col-md-6">
 										<select name="tujuan_select" id="durasi1" class="form-control z-depth-1" >
@@ -232,7 +232,7 @@ if(isset($_SESSION['report_message'])){
 										<!-- <input type="text" aria-label="nama" name="tujuan" id="nama" class="form-control z-depth-1" autocomplete="off" value="; } ?>"> -->
 									</div>
 									<div class="col-md-6">
-										<input type="text" aria-label="nama" name="tujuan_text" id="nama" class="form-control z-depth-1" autocomplete="off" placeholder="Lainnya..">
+										<input type="text" aria-label="nama" name="tujuan_text" id="nama" class="form-control z-depth-1" autocomplete="off">
 										<small id="defaultRegisterFormPasswordHelpBlock" class="form-text text-muted">
 								          Isi manual disini jika di pilihan sebelah tidak ada.
 								        </small>
@@ -253,14 +253,14 @@ if(isset($_SESSION['report_message'])){
                   	</select>
 									</div>
 									<div class="col-md-6">
-										<input type="text" aria-label="nomer" name="harga_khusus" id="nomer" class="form-control z-depth-1" autocomplete="off" placeholder="Harga Khusus . . .">
+										<input type="text" aria-label="nomer" name="harga_khusus" id="nomer" class="form-control z-depth-1" autocomplete="off">
 									</div>
 
 									<div class="col-md-12 mt-3">
 										<h4 class="h4-responsive">Keterangan</h4>
 									</div>
 									<div class="col-md-12">
-										<textarea class="form-control z-depth-1" name="ket" style="height: 100px;" id="exampleFormControlTextarea6" placeholder="Keterangan . . ."></textarea>
+										<textarea class="form-control z-depth-1" name="ket" style="height: 100px;" id="exampleFormControlTextarea6"></textarea>
 									</div>
 
 								</div>

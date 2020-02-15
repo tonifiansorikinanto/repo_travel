@@ -40,6 +40,28 @@ function show_data_onNomer_tbLiza($nomer){
 	return $result;
 }
 
+function show_data_onID_tbSiluet($id) {
+	global $connect;
+
+	$id = escape($id);
+
+	$query 	= "SELECT * FROM tb_siluet WHERE id='$id'";
+	$result = mysqli_query($connect, $query);
+
+	return $result;	
+}
+
+function show_data_onID_tbLiza($id) {
+	global $connect;
+
+	$id = escape($id);
+
+	$query 	= "SELECT * FROM tb_liza WHERE id='$id'";
+	$result = mysqli_query($connect, $query);
+
+	return $result;	
+}
+
 function search_data_tbSiluet($caritb1){
 	global $connect;
 
