@@ -7,6 +7,7 @@ var selectItems = [];
 
 var cari_nomer = document.getElementById('cari_nomer');
 
+
 function setDeleteParameter(data1, data2){
 	button_delete.href = "delete_data.php?tb=" + data1 + "&" + "nomer=" + data2;
 }
@@ -37,7 +38,7 @@ function setSearchParameter(data1){
 	document.location.reload(true);
 }
 
-function set_id(data1, data2){
+function set_id(data1, data2, data3){
 	setTimeout(function(){ document.getElementById("text_mobil").focus(); }, 500);
 
 	console.log(data1);
@@ -54,17 +55,34 @@ function set_id(data1, data2){
 		
 	}
 
+
 	history.pushState({
 		id : 'homepage'
-	}, 'Home | My App', currentUrl + "?id=" + selectItems.join("-"));
+	}, 'Home | My App', currentUrl + "?tb=" + data3 + "&id=" + selectItems.join("-"));
+	console.log(window.location.href);
 }
 
 document.onkeydown = function(evt) {
-    evt = evt || window.event;
-    if (evt.keyCode == 27) {
-      resetUrl();
-    }
+  evt = evt || window.event;
+  if (evt.keyCode == 27) {
+    resetUrl();
+  }
 };
+
+
+//function untuk tombol print 
+
+var print_button = document.getElementById('print_button');
+
+print_button.onclick = function(){
+	var goto_print_url = '' + window.location.href + '';
+	//var goto_print_url = goto_print_url.replace(,'');
+	var goto_print_url = goto_print_url.replace(currentUrl, '');
+
+	// /window.location = "print_file.php" + goto_print_url;
+	window.open("print_file.php" + goto_print_url, "_blank");
+}
+
 
 
 var button_select =  document.getElementsByClassName('button_select');

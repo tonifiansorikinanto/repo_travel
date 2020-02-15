@@ -17,6 +17,13 @@
 		}
 		// end
 
+	if(isset($_GET['id'])){
+		$id_get = $_GET['id'];
+
+		$id_get = explode("-", $id_get);
+
+	}
+
 	if(isset($_GET['caritb2'])){
 		$caritb2 = $_GET['caritb2'];
 		$show_data_tbLiza = search_data_tbLiza($caritb2);	
@@ -70,7 +77,7 @@
 				if(!empty(trim($text_mobil))){
 					if(setKeteranganLiza($text_mobil, $id_nomer)){
 						$_SESSION["report_message"] = report_message("success", "Berhasil Meng-set Data ");
-						header('Location: admin-liza');
+						header("Location: admin-liza?tb=" . $_GET['tb'] . "&id=" . $_GET['id']);
 					}else{
 						$_SESSION['report_message'] = report_message("error", "Error Saat Mengatur Data ! ");
 					}
@@ -165,7 +172,7 @@
 			  	</div>
 		      <div class="modal-footer">
 		        <button type="button" class="btn btn-sm btn-warning" data-dismiss="modal" onclick="resetUrl()">Batal</button>
-		        <button role="button" class="btn btn-sm btn-danger" id="button_edit" name="submit_cs">Login</button>
+		        <button role="button" class="btn btn-sm btn-danger" id="button_login" name="submit_cs">Login</button>
 		      </div>
 	      </form>
 	    </div>
@@ -232,7 +239,7 @@ if(isset($_SESSION['report_message'])){
 		  				<a href="#x" class="h5-responsive text-info" data-toggle="modal" data-target="#modalCS"  onclick="setInputParameter('tb2')"><i class="fas fa-user-plus"></i> Tambah Penumpang Liza</a>
 		  			</div>
 		  			<div class="col-md-4" align="right">
-		  				<a href="print_file.php?tb=tb2<?php if(isset($_GET['caritb2'])){ echo '&caritb2=' . $_GET['caritb2']; }?>" class="h5-responsive text-success" target="_blank"><i class="fas fa-print"></i> Print Tabel</a>
+		  				<a href="#x" class="h5-responsive text-success" target="_blank" id="print_button"><i class="fas fa-print"></i> Print Tabel</a>
 		  			</div>
 		  		</div>
 		  		<div class="table-responsive-sm">
@@ -257,7 +264,19 @@ if(isset($_SESSION['report_message'])){
 					  	<?php if(mysqli_num_rows($show_data_tbLiza) > 0 ): ?>
 						    <?php while($data = mysqli_fetch_assoc($show_data_tbLiza)): ?>
 						    <tr style="cursor:pointer;">
-						      <td><input type="checkbox" onclick="set_id('<?= $data['id']; ?>', 'checkid<?= $no2; ?>')" id="checkid<?= $no2; ?>"></td>
+						      <td>
+						      	<input type="checkbox" onclick="set_id('<?= $data['id']; ?>', 'checkid<?= $no2; ?>', 'tb2')" id="checkid<?= $no2; ?>"
+						      		<?php
+						      		if(isset($_GET['id']) AND !empty($_GET['id'])){
+							      		for($y = 0; $y < count($id_get); $y++){
+							      			if($data['id'] == $id_get[$y]){
+							      				echo "checked";
+							      			}
+							      		}
+						      		}
+						      		?>
+						      	>
+						      </td>
 						      <td scope="row" onclick="show_data(<?= $no2; ?>)"><?= $no2; ?></td>
 						      <td onclick="show_data(<?= $no2; ?>)"><?= $data['nomer']; ?></td>
 						      <td onclick="show_data(<?= $no2; ?>)"><?= $data['nama']; ?></td>

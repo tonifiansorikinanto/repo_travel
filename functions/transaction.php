@@ -40,6 +40,25 @@ function show_data_onNomer_tbLiza($nomer){
 	return $result;
 }
 
+
+function show_dataPrint_tbSiluet($id_parameter){
+	global $connect;
+
+	$id_parameter = escape($id_parameter);
+
+	$id_parameter = explode("-", $id_parameter);
+	$id_parameter = implode(",", $id_parameter);
+
+	// if($id_parameter == ''){
+	//   $id_parameter = "''";
+	// }
+
+	$query 	= "SELECT * FROM tb_siluet WHERE id IN (". $id_parameter .") ORDER BY jam ASC";
+	$result = mysqli_query($connect, $query);
+
+	return $result;
+}
+
 function search_data_tbSiluet($caritb1){
 	global $connect;
 

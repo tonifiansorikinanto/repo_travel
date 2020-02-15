@@ -8,13 +8,6 @@ if(isset($_SESSION["user_access"])){
 
 $show_data_tbSiluet = show_data_tbSiluet();
 
-if(isset($_GET['id'])){
-	$id_get = $_GET['id'];
-
-	$id_get = explode("-", $id_get);
-
-}
-
 // editanku
 	$query_id = $_SESSION['user_access'];
 	$query = "SELECT * FROM tb_admin WHERE username='$query_id'";
@@ -82,7 +75,7 @@ if(isset($_POST['submit_mobil'])){
 			if(!empty(trim($text_mobil))){
 				if(setKeteranganSiluet($text_mobil, $id_nomer)){
 					$_SESSION['report_message'] = report_message("success", "Error Saat Mengatur Data ! ");
-					header("Location: admin-siluet?tb=" . $_GET['tb'] . "&id=" . $_GET['id']);
+					header("Location: admin-siluet");
 				}else{
 					$_SESSION['report_message'] = report_message("error", "Error Saat Mengatur Data ! ");
 				}
@@ -156,7 +149,7 @@ if(isset($_POST['submit_mobil'])){
 			  	</div>
 		      <div class="modal-footer">
 		        <button type="button" class="btn btn-sm btn-warning" data-dismiss="modal" onclick="resetUrl()">Batal</button>
-		        <button role="button" class="btn btn-sm btn-danger" id="button_login" name="submit_cs">Login</button>
+		        <button role="button" class="btn btn-sm btn-danger" id="button_edit" name="submit_cs">Login</button>
 		      </div>
 	      </form>
 	    </div>
@@ -244,7 +237,7 @@ if(isset($_POST['submit_mobil'])){
 		  				<a href="#x" class="h5-responsive text-warning" data-toggle="modal" data-target="#modalCS"  onclick="setInputParameter('tb1')"><i class="fas fa-user-plus"></i> Tambah Penumpang Siluet</a>
 		  			</div>
 		  			<div class="col-md-4" align="right">
-		  				<a href="#x" class="h5-responsive text-success" target="_blank" id="print_button"><i class="fas fa-print"></i> Print Tabel</a>
+		  				<a href="print_file.php?tb=tb1<?php if(isset($_GET['caritb1'])){ echo '&caritb1=' . $_GET['caritb1']; }?>" class="h5-responsive text-success" target="_blank"><i class="fas fa-print"></i> Print Tabel</a>
 		  			</div>
 		  		</div>	  		
 				
@@ -269,19 +262,7 @@ if(isset($_POST['submit_mobil'])){
 				  	<?php if(mysqli_num_rows($show_data_tbSiluet) > 0 ): ?>
 					    <?php while($data = mysqli_fetch_assoc($show_data_tbSiluet)): ?>
 					    <tr style="cursor:pointer;">
-					      <td>
-					      	<input type="checkbox" onclick="set_id('<?= $data['id']; ?>', 'checkid<?= $no1; ?>', 'tb1')" id="checkid<?= $no1; ?>"
-					      		<?php
-					      		if(isset($_GET['id']) AND !empty($_GET['id'])){
-						      		for($y = 0; $y < count($id_get); $y++){
-						      			if($data['id'] == $id_get[$y]){
-						      				echo "checked";
-						      			}
-						      		}
-					      		}
-					      		?>
-					      	>
-					      </td>
+					      <td><input type="checkbox" onclick="set_id('<?= $data['id']; ?>', 'checkid<?= $no1; ?>')" id="checkid<?= $no1; ?>"></td>
 					      <td scope="row" onclick="show_data(<?= $no1; ?>)"><?= $no1; ?></td>
 					      <td onclick="show_data(<?= $no1; ?>)"><?= $data['nomer']; ?></td>
 					      <td onclick="show_data(<?= $no1; ?>)"><?= $data['nama']; ?></td>
