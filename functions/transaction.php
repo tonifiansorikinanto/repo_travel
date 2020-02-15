@@ -294,4 +294,44 @@ function setKeteranganLiza($text_mobil, $id_nomer){
 	return true;
 }
 
+function ubahStatusPrint_tbSiluet($id_nomer){
+	global $connect;
+
+	$id_nomer 	= escape($id_nomer);
+
+	$id_nomer = explode("-", $id_nomer);
+
+	for($x = 0; $x < count($id_nomer); $x){
+
+		while($data = mysqli_fetch_assoc(show_data_onID_tbSiluet($id_nomer[$x]))){			
+
+			$query = "UPDATE tb_siluet SET status_print='1' WHERE id='$id_nomer[$x]'";
+			
+			mysqli_query($connect, $query);
+
+			$x++;
+		}
+	}
+}
+
+function ubahStatusPrint_tbLiza($id_nomer){
+	global $connect;
+
+	$id_nomer 	= escape($id_nomer);
+
+	$id_nomer = explode("-", $id_nomer);
+
+	for($x = 0; $x < count($id_nomer); $x){
+
+		while($data = mysqli_fetch_assoc(show_data_onID_tbLiza($id_nomer[$x]))){			
+
+			$query = "UPDATE tb_liza SET status_print='1' WHERE id='$id_nomer[$x]'";
+			
+			mysqli_query($connect, $query);
+
+			$x++;
+		}
+	}
+}
+
 ?>
