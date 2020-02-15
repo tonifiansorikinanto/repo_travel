@@ -12,10 +12,12 @@ if(isset($_GET['id']) && isset($_GET['tb'])){
 	$nomer = $_GET['id'];
 
 	if($table_name == "tb1"){
-		$data_perNomer = show_data_onNomer_tbSiluet($nomer);
+		$data_perNomer = show_data_onID_tbSiluet($nomer);
 	}else{
-		$data_perNomer = show_data_onNomer_tbLiza($nomer);
+		$data_perNomer = show_data_onID_tbLiza($nomer);
 	}
+
+	$status_tujuan = false;
 
 	while($data = mysqli_fetch_assoc($data_perNomer)){
 		$nomerOri = $data['nomer'];
@@ -37,6 +39,12 @@ if(isset($_GET['id']) && isset($_GET['tb'])){
 
 	$tanggal 	= $year . "-" . $month . "-" . $day;
 
+	if ($tujuan == "Malang" || $tujuan == "Juanda" || $tujuan == "Surabaya Kota" || $tujuan == "Carter") {
+		$status_tujuan = true;
+	} else {
+		$status_tujuan = false;
+	}
+
 }else{
 	if($table_name == "tb1"){
 		header('Location: admin-siluet.php');
@@ -53,13 +61,17 @@ if(isset($_POST['edit'])){
 	$jemputEdit				= $_POST['jemput'];
 	$tglEdit 					= $_POST['tgl'];
 	$jamEdit 					= $_POST['jam'];
-	$tujuanEdit 			= $_POST['tujuan'];
+	if ($_POST['tujuan_text'] != '') {
+		$tujuanEdit = $_POST['tujuan_text'];
+	} else {
+		$tujuanEdit = $_POST['tujuan_select'];
+	}	
 	$penumpangEdit		= $_POST['penumpang'];
 	$lunasEdit 				= $_POST['lunas'];
 	$harga_khususEdit = $_POST['harga_khusus'];
 	$ketEdit 					= $_POST['ket'];
 
-	if(!empty(trim($nomerEdit)) && !empty(trim($namaEdit)) && !empty(trim($alamatEdit)) && !empty(trim($jemputEdit)) && !empty(trim($tglEdit)) &&
+	if(!empty(trim($nomerEdit)) && !empty(trim($namaEdit)) && !empty(trim($alamatEdit)) && !empty(trim($tglEdit)) &&
 	!empty(trim($jamEdit)) && !empty(trim($tujuanEdit)) && !empty(trim($penumpangEdit)) && !empty(trim($lunasEdit)) && !empty(trim($harga_khususEdit)) && !empty(trim($ketEdit))){
 
 		$day 			= substr($tglEdit, 8, 2);
@@ -129,7 +141,7 @@ if(isset($_SESSION['report_message'])){
 							<div class="col-md-5">
 								<h2 class="h2-responsive">Data Primer</h2>
 								<div class="row">
-									<div class="col-md-12 mt-2">
+									<div class="col-md-12 mt-3">
 										<h4 class="h4-responsive">Nomer HP</h4>
 									</div>
 									<div class="col-md-12">
@@ -187,32 +199,29 @@ if(isset($_SESSION['report_message'])){
 										<input type="number" aria-label="nama" name="penumpang" id="nama" class="form-control z-depth-1" autocomplete="off" value="<?= $penumpang; ?>">
 									</div>
 
-									<div class="col-md-6 mt-2">
-										<h4 class="h4-responsive">Tujuan</h4>
-									</div>
-									<div class="col-md-6 mt-2">
-										<h4 class="h4-responsive">Lainnya..</h4>
-									</div>
+									<div class="col-md-12 mt-3 text-center">
+										<h4 class="h4-responsive">Tujuan (Isi Salah Satu)</h4>
+									</div>									
 									<div class="col-md-6">
-										<select name="lunas" id="durasi1" class="form-control z-depth-1" >
+										<select name="tujuan_select" id="durasi1" class="form-control z-depth-1" >
                       <option value="0">- Pilih Tujuan -</option>
-                      <option value="1">Malang</option>
-                      <option value="2">Juanda</option>
-                      <option value="3">Surabaya Kota</option>
-                      <option value="4">Carter</option>
+                      <option value="Malang" <?php if ($status_tujuan == true && $tujuan=="Malang") echo "selected = 'selected'";?> >Malang</option>
+                      <option value="Juanda" <?php if ($status_tujuan == true && $tujuan=="Juanda") echo "selected = 'selected'";?> >Juanda</option>
+                      <option value="Surabaya Kota" <?php if ($status_tujuan == true && $tujuan=="Surabaya Kota") echo "selected = 'selected'";?> >Surabaya Kota</option>
+                      <option value="Carter" <?php if ($status_tujuan == true && $tujuan=="Carter") echo "selected = 'selected'";?> >Carter</option>
                   	</select>
 									</div>
 									<div class="col-md-6">
-										<input type="text" aria-label="nama" name="tujuan" id="nama" class="form-control z-depth-1" autocomplete="off"  value="<?= $tujuan; ?>">
+										<input type="text" aria-label="nama" name="tujuan_text" id="nama" class="form-control z-depth-1" autocomplete="off"  value="<?php if ($status_tujuan == false) echo $tujuan ;?>">
 										<small id="defaultRegisterFormPasswordHelpBlock" class="form-text text-muted">
 								          Isi manual disini jika di pilihan sebelah tidak ada.
 								        </small>
 									</div>
 
-									<div class="col-md-6 mt-2">
+									<div class="col-md-6 mt-3">
 										<h4 class="h4-responsive">Lunas / BA</h4>
 									</div>
-									<div class="col-md-6 mt-2">
+									<div class="col-md-6 mt-3">
 										<h4 class="h4-responsive">Special Price</h4>
 									</div>
 									<div class="col-md-6">
