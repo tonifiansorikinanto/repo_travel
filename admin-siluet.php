@@ -146,7 +146,7 @@ if(isset($_POST['submit_mobil'])){
 	    <div class="modal-content">
 	      <div class="modal-header">
 	        <h5 class="modal-title" id="exampleModalLongTitle">Login Customer Service</h5>
-	        <button type="button" class="close" data-dismiss="modal" aria-label="Close"onclick="resetUrl()">
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Close"onclick="resetUrlClear()">
 	          <span aria-hidden="true">&times;</span>
 	        </button>
 	      </div>
@@ -155,7 +155,7 @@ if(isset($_POST['submit_mobil'])){
 				    <input type="password" aria-label="pass_cs" name="pass_cs" class="form-control" placeholder="Masukkan password CS..." id="pass_cs">
 			  	</div>
 		      <div class="modal-footer">
-		        <button type="button" class="btn btn-sm btn-warning" data-dismiss="modal" onclick="resetUrl()">Batal</button>
+		        <button type="button" class="btn btn-sm btn-warning" data-dismiss="modal" onclick="resetUrlClear()">Batal</button>
 		        <button role="button" class="btn btn-sm btn-danger" id="button_login" name="submit_cs">Login</button>
 		      </div>
 	      </form>
@@ -168,7 +168,7 @@ if(isset($_POST['submit_mobil'])){
 	    <div class="modal-content">
 	      <div class="modal-header">
 	        <h5 class="modal-title" id="exampleModalLongTitle">Konfirmasi Supervisor</h5>
-	        <button type="button" class="close" data-dismiss="modal" aria-label="Close"onclick="resetUrl()">
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Close"onclick="resetUrlClear()">
 	          <span aria-hidden="true">&times;</span>
 	        </button>
 	      </div>
@@ -177,7 +177,7 @@ if(isset($_POST['submit_mobil'])){
 				    <input type="password" aria-label="pass_sv" name="pass_sv" class="form-control" placeholder="Masukkan password Supervisor..." id="pass_sv">
 			  	</div>
 		      <div class="modal-footer">
-		        <button type="button" class="btn btn-sm btn-warning" data-dismiss="modal" onclick="resetUrl()">Batal</button>
+		        <button type="button" class="btn btn-sm btn-warning" data-dismiss="modal" onclick="resetUrlClear()">Batal</button>
 		        <button role="button" class="btn btn-sm btn-danger" id="button_edit" name="submit">Konfirmasi</button>
 		      </div>
 	      </form>
@@ -270,7 +270,7 @@ if(isset($_POST['submit_mobil'])){
 					    <?php while($data = mysqli_fetch_assoc($show_data_tbSiluet)): ?>
 					    <tr style="cursor:pointer;">
 					      <td>
-					      	<input type="checkbox" onclick="set_id('<?= $data['id']; ?>', 'checkid<?= $no1; ?>', 'tb1')" id="checkid<?= $no1; ?>"
+					      	<input type="checkbox" onclick="set_id('<?= $data['id']; ?>', 'checkid<?= $no1; ?>', 'tb1')" class="check_input" id="checkid<?= $no1; ?>"
 					      		<?php
 					      		if(isset($_GET['id']) AND !empty($_GET['id'])){
 						      		for($y = 0; $y < count($id_get); $y++){
