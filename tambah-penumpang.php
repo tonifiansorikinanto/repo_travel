@@ -96,6 +96,7 @@ if(isset($_POST['submit_input'])){
 		if($table_name == "tb1"){
 			if(add_data_tbSiluet($nomer, $nama, $alamat, $jemput, $tgl, $jam, $tujuan, $penumpang, $lunas, $harga_khusus, $ket)){
 				$_SESSION['report_message'] = report_message("success", "Berhasil Menambahkan Data ke Tabel Siluet");
+				header("Refresh:3.1; URL=tambah-penumpang?tb=tb1");
 			}else{
 				$_SESSION['report_message'] = report_message("error", "Gagal Menambahkan Data !");
 				header('Location: tambah-penumpang?tb=tb1');
@@ -103,6 +104,7 @@ if(isset($_POST['submit_input'])){
 		}else{
 			if(add_data_tbLiza($nomer, $nama, $alamat, $jemput, $tgl, $jam, $tujuan, $penumpang, $lunas, $harga_khusus, $ket)){
 				$_SESSION['report_message'] = report_message("success", "Berhasil Menambahkan Data ke Tabel Liza");
+				header("Refresh:3.1; URL=tambah-penumpang?tb=tb2");
 			}else{
 				$_SESSION['report_message'] = report_message("error", "Gagal Menambahkan Data !");
 				header('Location: tambah-penumpang?tb=tb2');
