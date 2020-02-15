@@ -80,6 +80,20 @@ function show_dataPrint_tbSiluet($id_parameter){
 	return $result;
 }
 
+function show_dataPrint_tbLiza($id_parameter){
+	global $connect;
+
+	$id_parameter = escape($id_parameter);
+
+	$id_parameter = explode("-", $id_parameter);
+	$id_parameter = implode(",", $id_parameter);
+
+	$query 	= "SELECT * FROM tb_liza WHERE id IN (". $id_parameter .") ORDER BY jam ASC";
+	$result = mysqli_query($connect, $query);
+
+	return $result;
+}
+
 function search_data_tbSiluet($caritb1){
 	global $connect;
 
@@ -242,7 +256,7 @@ function setKeteranganSiluet($text_mobil, $id_nomer){
 
 	for($x = 0; $x < count($id_nomer); $x){
 
-		while($data = mysqli_fetch_assoc(show_data_onNomer_tbSiluet($id_nomer[$x]))){
+		while($data = mysqli_fetch_assoc(show_data_onID_tbSiluet($id_nomer[$x]))){
 			$ket_mobil = $data['ket'];
 
 			$query = "UPDATE tb_siluet SET ket='$ket_mobil, $text_mobil' WHERE id='$id_nomer[$x]'";
@@ -266,7 +280,7 @@ function setKeteranganLiza($text_mobil, $id_nomer){
 
 	for($x = 0; $x < count($id_nomer); $x){
 
-		while($data = mysqli_fetch_assoc(show_data_onNomer_tbLiza($id_nomer[$x]))){
+		while($data = mysqli_fetch_assoc(show_data_onID_tbLiza($id_nomer[$x]))){
 			$ket_mobil = $data['ket'];
 
 			$query = "UPDATE tb_liza SET ket='$ket_mobil, $text_mobil' WHERE id='$id_nomer[$x]'";

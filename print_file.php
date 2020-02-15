@@ -4,19 +4,17 @@ require_once __DIR__ . '/vendor/autoload.php';
 require_once 'core/system.php';
 
 
-// if(isset($_GET['tb'])){
-//   $table_name = $_GET['tb'];
-
-//   if($table_name == "tb1"){
-//     $show_data_tb = show_data_tbSiluet();
-//   }else{
-//     $show_data_tb = show_data_tbLiza();
-//   }
-// }
-
 $id_parameter = $_GET['id'];
 
-$show_data_tb = show_dataPrint_tbSiluet($id_parameter);
+if(isset($_GET['tb'])){
+  $table_name = $_GET['tb'];
+
+  if($table_name == "tb1"){
+    $show_data_tb = show_dataPrint_tbSiluet($id_parameter);
+  }else{
+    $show_data_tb = show_dataPrint_tbLiza($id_parameter);
+  }
+}
 
 $no = 1;
 

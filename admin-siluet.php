@@ -81,7 +81,7 @@ if(isset($_POST['submit_mobil'])){
 			
 			if(!empty(trim($text_mobil))){
 				if(setKeteranganSiluet($text_mobil, $id_nomer)){
-					$_SESSION['report_message'] = report_message("success", "Error Saat Mengatur Data ! ");
+					$_SESSION['report_message'] = report_message("success", "Sukses Mengatur Data ! ");
 					header("Location: admin-siluet?tb=" . $_GET['tb'] . "&id=" . $_GET['id']);
 				}else{
 					$_SESSION['report_message'] = report_message("error", "Error Saat Mengatur Data ! ");
