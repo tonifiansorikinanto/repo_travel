@@ -11,6 +11,8 @@ if(isset($_GET['tb'])){
 
   if($table_name == "tb1"){
     $show_data_tb = show_dataPrint_tbSiluet($id_parameter);
+
+    $query = "UPDATE tb_siluet SET status_print='1' WHERE "
   }else{
     $show_data_tb = show_dataPrint_tbLiza($id_parameter);
   }
