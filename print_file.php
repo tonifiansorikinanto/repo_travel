@@ -76,7 +76,7 @@ $html = '
   </thead>
  	<tbody>';
 
-  if(isset($_GET['id']) && $_GET['id'] != ""){
+  if(isset($_GET['id']) && $_GET['id'] != "" && isset($_GET['tb']) && $_GET['tb'] != ""){
 
    	while($data = mysqli_fetch_assoc($show_data_tb)){
       $dataLunas = $data["lunas"];
