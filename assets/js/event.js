@@ -7,7 +7,6 @@ var selectItems = [];
 
 var cari_nomer = document.getElementById('cari_nomer');
 
-
 function setDeleteParameter(data1, data2){
 	button_delete.href = "delete_data.php?tb=" + data1 + "&" + "nomer=" + data2;
 }
@@ -109,7 +108,7 @@ for(var z = 0; z < button_select.length; z++){
 function resetUrl(){
 	history.pushState({
 		id : 'homepage'
-	}, 'Home | My App', currentUrl);
+	}, 'Home | My App', window.location.href);
 }
 
 function cekAccessibility(){

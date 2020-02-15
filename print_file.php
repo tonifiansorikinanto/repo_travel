@@ -84,7 +84,13 @@ $html = '
       <td> ' . $data["tujuan"] . '</td>
  			<td> ' . $data["penumpang"] . '</td>
  			<td> ' . $data["nama"] . '</td>
- 			<td style="text-align: left;"> ' . $data["jemput"] . '</td>
+ 			<td style="text-align: left;"> ' . 
+      if ($data['jemput'] != ''){
+        echo $data['jemput'];
+      } else {
+        echo $data['alamat'];
+      }
+      . '</td>
       <td> ' . $data["nomer"] . '</td>
  			<td> ' . $dataLunas . '</td>
  			<td> ' . $data["harga_khusus"] . '</td>
