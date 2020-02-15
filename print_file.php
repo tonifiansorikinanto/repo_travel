@@ -78,6 +78,14 @@ $html = '
       $dataLunas = "BA";
     }
 
+    $data_alamat = $data['jemput'];
+
+    if ($data['jemput'] != ''){
+      $data_alamat =  $data['jemput'];
+    } else {
+      $data_alamat = $data['alamat'];
+    }
+
  		$html .= '
  		<tr class="row_table">
  			<td> ' . $no++ . '</td>
@@ -86,7 +94,7 @@ $html = '
       <td> ' . $data["tujuan"] . '</td>
  			<td> ' . $data["penumpang"] . '</td>
  			<td> ' . $data["nama"] . '</td>
- 			<td style="text-align: left;"> ' . $data["jemput"] . '</td>
+ 			<td style="text-align: left;"> ' . $data_alamat . '</td>
       <td> ' . $data["nomer"] . '</td>
  			<td> ' . $dataLunas . '</td>
  			<td> ' . $data["harga_khusus"] . '</td>

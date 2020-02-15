@@ -239,7 +239,7 @@ if(isset($_SESSION['report_message'])){
 		  				<a href="#x" class="h5-responsive text-info" data-toggle="modal" data-target="#modalCS"  onclick="setInputParameter('tb2')"><i class="fas fa-user-plus"></i> Tambah Penumpang Liza</a>
 		  			</div>
 		  			<div class="col-md-4" align="right">
-		  				<a href="#x" class="h5-responsive text-success" target="_blank" id="print_button"><i class="fas fa-print"></i> Print Tabel</a>
+		  				<a class="h5-responsive text-success" id="print_button"><i class="fas fa-print"></i> Print Tabel</a>
 		  			</div>
 		  		</div>
 		  		<div class="table-responsive-sm">
