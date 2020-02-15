@@ -259,7 +259,7 @@ function setKeteranganSiluet($text_mobil, $id_nomer){
 		while($data = mysqli_fetch_assoc(show_data_onID_tbSiluet($id_nomer[$x]))){
 			$ket_mobil = $data['ket'];
 
-			$query = "UPDATE tb_siluet SET ket='$ket_mobil, $text_mobil' WHERE id='$id_nomer[$x]'";
+			$query = "UPDATE tb_siluet SET ket='$ket_mobil, Mobil = $text_mobil' WHERE id='$id_nomer[$x]'";
 			
 			mysqli_query($connect, $query);
 
@@ -283,7 +283,7 @@ function setKeteranganLiza($text_mobil, $id_nomer){
 		while($data = mysqli_fetch_assoc(show_data_onID_tbLiza($id_nomer[$x]))){
 			$ket_mobil = $data['ket'];
 
-			$query = "UPDATE tb_liza SET ket='$ket_mobil, $text_mobil' WHERE id='$id_nomer[$x]'";
+			$query = "UPDATE tb_liza SET ket='$ket_mobil, Mobil = $text_mobil' WHERE id='$id_nomer[$x]'";
 			
 			mysqli_query($connect, $query);
 

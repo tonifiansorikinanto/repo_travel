@@ -11,11 +11,14 @@ if(isset($_POST['submit'])){
 	if(!empty(trim($username)) && !empty(trim($password))){
 		if(login_admin($username, $password)){
 			$_SESSION["user_access"] = $username;
+			$_SESSION['report_message'] = report_message("success", "Berhasil Masuk");
 			header('Location: admin-siluet');
 		}else{
 			// echo '<script>alert("Hello! I am an alert box!!");</script>';
-			header('Location: login-admin');
+			$_SESSION['report_message'] = report_message("error", "Data tidak terdaftar");
 		}
+	}else{
+		$_SESSION['report_message'] = report_message("error", "Data Harus Terisi !");
 	}
 }
 
@@ -91,6 +94,15 @@ background: linear-gradient(to right, #3b8d99, #6b6b83, #aa4b6b); /* W3C, IE 10+
 	     </div>
 	   </div>
 	</div>
+
+<?php
+
+if(isset($_SESSION['report_message'])){
+	echo $_SESSION['report_message'];
+	unset($_SESSION['report_message']);
+}
+
+?>
 
 <?php 
 
