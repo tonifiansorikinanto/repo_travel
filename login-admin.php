@@ -13,6 +13,7 @@ if(isset($_POST['submit'])){
 			$_SESSION["user_access"] = $username;
 			header('Location: admin-siluet');
 		}else{
+			// echo '<script>alert("Hello! I am an alert box!!");</script>';
 			header('Location: login-admin');
 		}
 	}

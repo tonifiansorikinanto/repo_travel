@@ -47,9 +47,9 @@ if(isset($_GET['id']) && isset($_GET['tb'])){
 
 }else{
 	if($table_name == "tb1"){
-		header('Location: admin-siluet.php');
+		header('Location: admin-siluet');
 	}else{
-		header('Location: admin-liza.php');
+		header('Location: admin-liza');
 	}
 }
 
