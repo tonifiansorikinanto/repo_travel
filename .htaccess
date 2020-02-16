@@ -1,3 +1,7 @@
 RewriteEngine On
 
 RewriteRule ^([a-z-]+)\/?$ $1.php [NC]
+
+RewriteRule ^([a-zA-Z0-9_-]+)/([a-zA-Z0-9_-]+)$ $1.php?tb=$2 [NC]
+
+RewriteRule ^([a-zA-Z0-9_-]+)/([a-zA-Z0-9_-]+)/([a-zA-Z0-9_-]+)$ $1.php?tb=$2&id_edit=$3 [NC]

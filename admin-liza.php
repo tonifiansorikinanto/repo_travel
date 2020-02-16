@@ -24,9 +24,9 @@
 
 	}
 
-	if(isset($_GET['caritb2'])){
-		$caritb2 = $_GET['caritb2'];
-		$show_data_tbLiza = search_data_tbLiza($caritb2);	
+	if(isset($_GET['s'])){
+		$s = $_GET['s'];
+		$show_data_tbLiza = search_data_tbLiza($s);	
 	}
 
 	if(isset($_POST['submit'])){
@@ -231,7 +231,7 @@ if(isset($_SESSION['report_message'])){
 		  				<!-- Search form -->
 						<form class="form-inline active-cyan-3 active-cyan-4">
 						  <i class="fas fa-search" aria-hidden="true"></i>
-						  <input class="form-control form-control-sm ml-3" style="width: 220px;" type="text" placeholder="Cari berdasarkan Tgl Berangkat.." aria-label="Cari berdasarkan Tgl Berangkat.." name="caritb2" autocomplete="off" spellcheck="false" <?php if(isset($_GET['caritb2'])){ echo('value=' . $_GET['caritb2'] .  ''); } ?>>
+						  <input class="form-control form-control-sm ml-3" style="width: 220px;" type="text" placeholder="Cari berdasarkan Tgl Berangkat.." aria-label="Cari berdasarkan Tgl Berangkat.." name="s" autocomplete="off" spellcheck="false" <?php if(isset($_GET['s'])){ echo('value=' . $_GET['s'] .  ''); } ?>>
 						  <a class="text-info ml-3" href="admin-liza" title="Refresh Tabel"><i class="fas fa-redo"></i></a>
 						</form>
 		  			</div>

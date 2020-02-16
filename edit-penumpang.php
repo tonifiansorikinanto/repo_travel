@@ -182,27 +182,21 @@ if(isset($_SESSION['report_message'])){
 								<div class="row">
 									<div class="col-md-6 mt-3">
 										<h4 class="h4-responsive">Tanggal Berangkat</h4>
-									</div>
-									<div class="col-md-3">
-										<h6 class="h6-responsive">Jam Berangkat</h6>
-									</div>
-									<div class="col-md-3">
-										<h6 class="h6-responsive">Jumlah Penumpang</h6>
-									</div>
-									<div class="col-md-6">
 										<input type="date" aria-label="nomer" name="tgl" id="nomer" class="form-control z-depth-1"  value="<?= $tanggal; ?>">
-									</div>									
-									<div class="col-md-3">
-										<input type="text" aria-label="nomer" name="jam" id="nomer" class="form-control z-depth-1" placeholder="14:00" autocomplete="off"  value="<?= $jam; ?>">
 									</div>
-									<div class="col-md-3">
+									<div class="col-md-3 mt-1">
+										<h6 class="h6-responsive">Jam Berangkat</h6>
+										<input type="text" aria-label="nomer" name="jam" id="nomer" class="form-control z-depth-1" placeholder="14:00" autocomplete="off"  value="<?= $jam; ?>">
+
+									</div>
+									<div class="col-md-3 mt-1">
+										<h6 class="h6-responsive">Jumlah Penumpang</h6>
 										<input type="number" aria-label="nama" name="penumpang" id="nama" class="form-control z-depth-1" autocomplete="off" value="<?= $penumpang; ?>">
 									</div>
-
 									<div class="col-md-12 mt-3 text-center">
 										<h4 class="h4-responsive">Tujuan (Isi Salah Satu)</h4>
 									</div>									
-									<div class="col-md-6">
+									<div class="col-md-6 mt-1">
 										<select name="tujuan_select" id="durasi1" class="form-control z-depth-1" >
                       <option value="0">- Pilih Tujuan -</option>
                       <option value="Malang" <?php if ($status_tujuan == true && $tujuan=="Malang") echo "selected = 'selected'";?> >Malang</option>
@@ -211,7 +205,7 @@ if(isset($_SESSION['report_message'])){
                       <option value="Carter" <?php if ($status_tujuan == true && $tujuan=="Carter") echo "selected = 'selected'";?> >Carter</option>
                   	</select>
 									</div>
-									<div class="col-md-6">
+									<div class="col-md-6 mt-1">
 										<input type="text" aria-label="nama" name="tujuan_text" id="nama" class="form-control z-depth-1" autocomplete="off"  value="<?php if ($status_tujuan == false) echo $tujuan ;?>">
 										<small id="defaultRegisterFormPasswordHelpBlock" class="form-text text-muted">
 								          Isi manual disini jika di pilihan sebelah tidak ada.
@@ -220,21 +214,16 @@ if(isset($_SESSION['report_message'])){
 
 									<div class="col-md-6 mt-3">
 										<h4 class="h4-responsive">Lunas / BA</h4>
-									</div>
-									<div class="col-md-6 mt-3">
-										<h4 class="h4-responsive">Special Price</h4>
-									</div>
-									<div class="col-md-6">
 										<select name="lunas" id="durasi1" class="form-control z-depth-1">
 	                    <option value="0">- Pilih Status Pembayaran -</option>
 	                    <option value="1" <?php if($lunas == "1") echo "selected='selected'"; ?>>Lunas</option>
 	                    <option value="2" <?php if($lunas == "2") echo "selected='selected'"; ?>>BA</option>
 	                  </select>
-									</div>									
-									<div class="col-md-6">
-										<input type="text" aria-label="nomer" name="harga_khusus" id="nomer" class="form-control z-depth-1" autocomplete="off"  value="<?= $harga_khusus; ?>">
 									</div>
-
+									<div class="col-md-6 mt-3">
+										<h4 class="h4-responsive">Special Price</h4>
+										<input type="text" aria-label="nomer" name="harga_khusus" id="nomer" class="form-control z-depth-1" autocomplete="off"  value="<?= $harga_khusus; ?>">
+									</div>									
 									<div class="col-md-12 mt-3">
 										<h4 class="h4-responsive">Keterangan</h4>
 									</div>

@@ -23,9 +23,9 @@ if(isset($_GET['id'])){
 	}
 // end
 
-if(isset($_GET['caritb1'])){
-	$caritb1 = $_GET['caritb1'];
-	$show_data_tbSiluet = search_data_tbSiluet($caritb1);	
+if(isset($_GET['s'])){
+	$s = $_GET['s'];
+	$show_data_tbSiluet = search_data_tbSiluet($s);	
 }
 
 if(isset($_POST['submit'])){
@@ -235,7 +235,7 @@ if(isset($_POST['submit_mobil'])){
 		  				<!-- Search form -->
 						<form class="form-inline active-cyan-3 active-cyan-4" method="get" action="">
 						  <i class="fas fa-search" aria-hidden="true"></i>
-						  <input class="form-control form-control-sm ml-3" style="width: 240px;" type="search" placeholder="Cari berdasarkan Tgl Berangkat.." aria-label="Cari berdasarkan Tgl Berangkat.." name="caritb1" autocomplete="off" spellcheck="false" <?php if(isset($_GET['caritb1'])){ echo('value=' . $_GET['caritb1'] .  ''); } ?>>
+						  <input class="form-control form-control-sm ml-3" style="width: 240px;" type="search" placeholder="Cari berdasarkan Tgl Berangkat.." aria-label="Cari berdasarkan Tgl Berangkat.." name="s" autocomplete="off" spellcheck="false" <?php if(isset($_GET['s'])){ echo('value=' . $_GET['s'] .  ''); } ?>>
 						  <a class="text-warning ml-3" href="admin-siluet" title="Refresh Tabel"><i class="fas fa-redo"></i></a>
 						</form>
 		  			</div>
