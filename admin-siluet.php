@@ -37,7 +37,7 @@ if(isset($_POST['submit'])){
 
 		if(cek_user_supervisor($password)){
 			$_SESSION['pass_supervisor'] = true;
-			header('Location: edit-penumpang.php?tb=' . $_GET['tb'] . '&id_edit=' . $_GET['id_edit'] . '');
+			header('Location: edit-penumpang?tb=' . $_GET['tb'] . '&id_edit=' . $_GET['id_edit'] . '');
 		}else{
 			$_SESSION['pass_supervisor'] = false;
 			$_SESSION['report_message'] = report_message("error", "Password Salah !");

@@ -84,19 +84,19 @@ if(isset($_POST['edit'])){
 			if(edit_data_tbSiluet($nomerEdit, $namaEdit, $alamatEdit, $jemputEdit, $tglEdit, $jamEdit, $tujuanEdit, $penumpangEdit, $lunasEdit, $harga_khususEdit, $ketEdit, $nomer)){
 				$_SESSION['report_message'] = report_message("success", "Berhasil Mengubah Data " . $namaEdit);
 				unset($_SESSION["pass_supervisor"]);
-				header('Location: admin-siluet.php');
+				header('Location: admin-siluet');
 			}else{
 				$_SESSION['report_message'] = report_message("error", "Gagal Mengubah Data " . $namaEdit);
-				header('Location: edit-penumpang.php?tb=' . $table_name . '&nomer=' . $nomer . '');
+				header('Location: edit-penumpang?tb=' . $table_name . '&nomer=' . $nomer . '');
 			}
 		}else{
 			if(edit_data_tbLiza($nomerEdit, $namaEdit, $alamatEdit, $jemputEdit, $tglEdit, $jamEdit, $tujuanEdit, $penumpangEdit, $lunasEdit, $harga_khususEdit, $ketEdit, $nomer)){
 				$_SESSION['report_message'] = report_message("success", "Berhasil Mengubah Data " . $namaEdit);
 				unset($_SESSION["pass_supervisor"]);
-				header('Location: admin-liza.php');
+				header('Location: admin-liza');
 			}else{
 				$_SESSION['report_message'] = report_message("error", "Gagal Mengubah Data " . $namaEdit);
-				header('Location: edit-penumpang.php?tb=' . $table_name . '&nomer=' . $nomer . '');
+				header('Location: edit-penumpang?tb=' . $table_name . '&nomer=' . $nomer . '');
 			}
 		}
 
@@ -236,9 +236,9 @@ if(isset($_SESSION['report_message'])){
 						<div align="right" class="my-4">
 			  			<button type="submit" name="edit" class="btn btn-warning btn-md" style="width: 130px;" onclick="return confirm('Yakin ingin merubah data ?')">Edit Data</button>
 			  			<?php if($table_name == "tb1"): ?>
-			  				<a type="button" class="btn btn-info btn-md" href="admin-siluet.php" style="width: 130px;">Kembali</a>
+			  				<a type="button" class="btn btn-info btn-md" href="admin-siluet" style="width: 130px;">Kembali</a>
 			  			<?php else: ?>
-			  				<a type="button" class="btn btn-info btn-md" href="admin-liza.php" style="width: 130px;">Kembali</a>
+			  				<a type="button" class="btn btn-info btn-md" href="admin-liza" style="width: 130px;">Kembali</a>
 			  			<?php endif; ?>
 			  		</div>
 					</div>
@@ -254,14 +254,14 @@ require_once 'assets/templates/footer.php';
 
 }else{
 	if($table_name == "tb1"){
-		header('Location: admin-siluet.php');
+		header('Location: admin-siluet');
 	}else{
-		header('Location: admin-liza.php');
+		header('Location: admin-liza');
 	}
 }
 
 }else{
-	header('Location: login-admin.php');
+	header('Location: login-admin');
 }
 
 ?>

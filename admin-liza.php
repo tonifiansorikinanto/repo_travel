@@ -38,7 +38,7 @@
 
 			if(cek_user_supervisor($password)){
 				$_SESSION['pass_supervisor'] = true;
-				header('Location: edit-penumpang.php?tb=' . $_GET['tb'] . '&id_edit=' . $_GET['id_edit'] . '');
+				header('Location: edit-penumpang?tb=' . $_GET['tb'] . '&id_edit=' . $_GET['id_edit'] . '');
 			}else{
 				$_SESSION['pass_supervisor'] = false;
 				echo("<script>alert('Error Saat Mengcek Password !')</script>");

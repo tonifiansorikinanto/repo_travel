@@ -13,17 +13,17 @@ if(isset($_GET['nomer']) && isset($_GET['tb'])){
 
 	if($table_name == 'tb1'){
 		delete_data_tbSiluet($nomer);
-		header('Location: admin-siluet.php');
+		header('Location: admin-siluet');
 	}else{
 		delete_data_tbLiza($nomer);
-		header('Location: admin-liza.php');
+		header('Location: admin-liza');
 	}
 }else{
-	header('Location: login-admin.php');
+	header('Location: login-admin');
 }
 
 }else{
-	header('Location: login-admin.php');
+	header('Location: login-admin');
 }
 
 ?>

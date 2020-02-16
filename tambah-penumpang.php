@@ -279,7 +279,7 @@ if(isset($_SESSION['report_message'])){
 require_once 'assets/templates/footer.php'; 
 
 }else{
-	header('Location: login-admin.php');
+	header('Location: login-admin');
 }
 
 ?>
