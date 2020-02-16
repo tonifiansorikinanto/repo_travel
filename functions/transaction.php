@@ -259,7 +259,15 @@ function setKeteranganSiluet($text_mobil, $id_nomer){
 		while($data = mysqli_fetch_assoc(show_data_onID_tbSiluet($id_nomer[$x]))){
 			$ket_mobil = $data['ket'];
 
-			$query = "UPDATE tb_siluet SET ket='$ket_mobil, Mobil = $text_mobil' WHERE id='$id_nomer[$x]'";
+			$ket_mobil_value = substr($ket_mobil, strpos($ket_mobil, "Mobil = ") + 8);
+
+			if($ket_mobil_value == ""){
+				$text_mobil_value = $ket_mobil . " Mobil = " . $text_mobil;
+			}else{
+				$text_mobil_value = str_replace($ket_mobil_value, $text_mobil, $ket_mobil);
+			}
+			$query = "UPDATE tb_siluet SET ket='$text_mobil_value' WHERE id='$id_nomer[$x]'";
+
 			
 			mysqli_query($connect, $query);
 
