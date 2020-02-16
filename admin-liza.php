@@ -212,13 +212,13 @@ if(isset($_SESSION['report_message'])){
 ?>
 
 <div class="container-fluid" style="padding-left: 0px; padding-right: 0px;">
-	<nav class="navbar navbar-dark info-color justify-content-between" style="position: sticky; top: 0; z-index: 10;">
+	<nav class="navbar navbar-dark info-color justify-content-between" style="position: sticky; top: 0; z-index: 10; padding-right: 25px;">
 	  <h2 class="navbar-brand h2-responsive my-0" href="#">Database Travel</h2>
 		<h6 class="h6-responsive my-0 ml-auto text-white" href="#">Selamat Datang, <?= $nama; ?>!</h6>
 	  <button class="btn btn-danger btn-md ml-3 my-0" type="button" data-toggle="modal" data-target="#modalLogout">logout</button>
 	</nav>	
 
-	<div class="container-fluid">
+	<div class="container-fluid" style="padding-left: 10px; padding-right: 20px;">
 		<div class="row justify-content-center mt-2 mb-4">
 			<div class="col-md-12">
 				<div align="center" class="mt-2">
