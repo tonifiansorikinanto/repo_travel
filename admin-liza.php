@@ -38,7 +38,7 @@
 
 			if(cek_user_supervisor($password)){
 				$_SESSION['pass_supervisor'] = true;
-				header('Location: edit-penumpang.php?tb=' . $_GET['tb'] . '&id=' . $_GET['id'] . '');
+				header('Location: edit-penumpang.php?tb=' . $_GET['tb'] . '&id_edit=' . $_GET['id_edit'] . '');
 			}else{
 				$_SESSION['pass_supervisor'] = false;
 				echo("<script>alert('Error Saat Mengcek Password !')</script>");
@@ -100,7 +100,7 @@
 	    <div class="modal-content">
 	      <div class="modal-header">
 	        <h5 class="modal-title" id="exampleModalLongTitle">Konfirmasi Supervisor</h5>
-	        <button type="button" class="close" data-dismiss="modal" aria-label="Close"onclick="resetUrl()">
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Close"onclick="resetUrlClear()">
 	          <span aria-hidden="true">&times;</span>
 	        </button>
 	      </div>
@@ -109,7 +109,7 @@
 				    <input type="password" aria-label="pass_sv" name="pass_sv" class="form-control" placeholder="Masukkan password Supervisor..." id="pass_sv">
 			  	</div>
 		      <div class="modal-footer">
-		        <button type="button" class="btn btn-sm btn-warning" data-dismiss="modal" onclick="resetUrl()">Batal</button>
+		        <button type="button" class="btn btn-sm btn-warning" data-dismiss="modal" onclick="resetUrlClear()">Batal</button>
 		        <button role="button" class="btn btn-sm btn-danger" id="button_edit" name="submit">Konfirmasi</button>
 		      </div>
 	      </form>
@@ -162,7 +162,7 @@
 	    <div class="modal-content">
 	      <div class="modal-header">
 	        <h5 class="modal-title" id="exampleModalLongTitle">Login Customer Service</h5>
-	        <button type="button" class="close" data-dismiss="modal" aria-label="Close"onclick="resetUrl()">
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Close"onclick="resetUrlClear()">
 	          <span aria-hidden="true">&times;</span>
 	        </button>
 	      </div>
@@ -171,7 +171,7 @@
 				    <input type="password" aria-label="pass_cs" name="pass_cs" class="form-control" placeholder="Masukkan password CS..." id="pass_cs">
 			  	</div>
 		      <div class="modal-footer">
-		        <button type="button" class="btn btn-sm btn-warning" data-dismiss="modal" onclick="resetUrl()">Batal</button>
+		        <button type="button" class="btn btn-sm btn-warning" data-dismiss="modal" onclick="resetUrlClear()">Batal</button>
 		        <button role="button" class="btn btn-sm btn-danger" id="button_login" name="submit_cs">Login</button>
 		      </div>
 	      </form>
@@ -265,7 +265,7 @@ if(isset($_SESSION['report_message'])){
 						    <?php while($data = mysqli_fetch_assoc($show_data_tbLiza)): ?>
 						    <tr style="cursor:pointer;">
 						      <td>
-						      	<input type="checkbox" onclick="set_id('<?= $data['id']; ?>', 'checkid<?= $no2; ?>', 'tb2')" id="checkid<?= $no2; ?>"
+						      	<input type="checkbox" onclick="set_id('<?= $data['id']; ?>', 'checkid<?= $no2; ?>', 'tb2')" class="check_input" id="checkid<?= $no2; ?>"
 						      		<?php
 						      		if(isset($_GET['id']) AND !empty($_GET['id'])){
 							      		for($y = 0; $y < count($id_get); $y++){

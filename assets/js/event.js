@@ -3,6 +3,8 @@ var button_delete = document.getElementById('button_delete');
 var button_edit 	= document.getElementById('button_edit');
 var currentUrl = "http://localhost" + window.location.pathname;
 
+var check_input = document.getElementsByClassName('check_input');
+
 var selectItems = [];
 
 var cari_nomer = document.getElementById('cari_nomer');
@@ -25,7 +27,7 @@ function setEditParameter(data1, data2){
 	//window.location.href = currentUrl + "?tb=" + data1 + "&" + "nomer=" + data2;
 	history.pushState({
 		id : 'homepage'
-	}, 'Home | My App', currentUrl + "?tb=" + data1 + "&" + "id=" + data2);
+	}, 'Home | My App', currentUrl + "?tb=" + data1 + "&" + "id_edit=" + data2);
 	//button_edit.href = "edit-penumpang.php?tb=" + data1 + "&" + "nomer=" + data2;
 }
 
@@ -40,10 +42,18 @@ function setSearchParameter(data1){
 function set_id(data1, data2, data3){
 	setTimeout(function(){ document.getElementById("text_mobil").focus(); }, 500);
 
-	console.log(data1);
-
 	if(document.getElementById(data2).checked){
+
+		for(var y = 0; y <= selectItems.length; y++){
+			var index = selectItems.indexOf(data1);		
+
+			if (index > -1) {
+			  selectItems.splice(index, 1);
+			}
+		}
+
 		selectItems.push(data1);
+
 	}else{
 		for(var x = 0; x <= selectItems.length; x++){
 			var index = selectItems.indexOf(data1);
@@ -58,7 +68,6 @@ function set_id(data1, data2, data3){
 	history.pushState({
 		id : 'homepage'
 	}, 'Home | My App', currentUrl + "?tb=" + data3 + "&id=" + selectItems.join("-"));
-	console.log(window.location.href);
 }
 
 document.onkeydown = function(evt) {
@@ -81,7 +90,6 @@ print_button.onclick = function(){
 	// /window.location = "print_file.php" + goto_print_url;
 	window.open("print_file.php" + goto_print_url, "_blank");
 }
-
 
 
 var button_select =  document.getElementsByClassName('button_select');
@@ -109,6 +117,19 @@ function resetUrl(){
 	history.pushState({
 		id : 'homepage'
 	}, 'Home | My App', window.location.href);
+}
+
+function resetUrlClear(){
+	history.pushState({
+		id : 'homepage'
+	}, 'Home | My App', currentUrl);
+
+	for(var z = 1; z <= check_input.length; z++){
+		var data3 = "checkid" + z + "";
+		document.getElementById(data3).checked = false;		
+
+		selectItems = [];
+	}
 }
 
 function cekAccessibility(){

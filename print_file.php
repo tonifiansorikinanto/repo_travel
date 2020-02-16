@@ -3,24 +3,28 @@
 require_once __DIR__ . '/vendor/autoload.php';
 require_once 'core/system.php';
 
+$id_parameter = "";
 
-$id_parameter = $_GET['id'];
+if(isset($_GET['id']) && $_GET['id'] != ""){
+  $id_parameter = $_GET['id'];
 
-if(isset($_GET['tb'])){
-  $table_name = $_GET['tb'];
+  if(isset($_GET['tb'])){
+    $table_name = $_GET['tb'];
 
-  if($table_name == "tb1"){
-    $show_data_tb = show_dataPrint_tbSiluet($id_parameter);
+    if($table_name == "tb1"){
+      $show_data_tb = show_dataPrint_tbSiluet($id_parameter);
 
-    ubahStatusPrint_tbSiluet($id_parameter);
+      ubahStatusPrint_tbSiluet($id_parameter);
 
-  }else{
-    $show_data_tb = show_dataPrint_tbLiza($id_parameter);
+    }else{
+      $show_data_tb = show_dataPrint_tbLiza($id_parameter);
 
-    ubahStatusPrint_tbLiza($id_parameter);
+      ubahStatusPrint_tbLiza($id_parameter);
 
+    }
   }
 }
+
 
 $no = 1;
 
@@ -51,10 +55,9 @@ $html = '
   </style>
 </head>
 <body>
-
 <h1>Tabel Data Penumpang</h1>
 
-<table cellspacing="0" cellpadding="10">
+<table cellspacing="0" cellpadding="10" style="width:100%">
   <thead>
     <tr style="background-color:#4C4C4C;">
       <th style="color:#FFFFFF;">#</th>
@@ -73,39 +76,48 @@ $html = '
   </thead>
  	<tbody>';
 
- 	while($data = mysqli_fetch_assoc($show_data_tb)){
-    $dataLunas = $data["lunas"];
+  if(isset($_GET['id']) && $_GET['id'] != "" && isset($_GET['tb']) && $_GET['tb'] != ""){
 
-    if($dataLunas == 1){
-      $dataLunas = "Lunas";
-    }else{
-      $dataLunas = "BA";
-    }
+   	while($data = mysqli_fetch_assoc($show_data_tb)){
+      $dataLunas = $data["lunas"];
 
-    $data_alamat = $data['jemput'];
+      if($dataLunas == 1){
+        $dataLunas = "Lunas";
+      }else{
+        $dataLunas = "BA";
+      }
 
-    if ($data['jemput'] != ''){
-      $data_alamat =  $data['jemput'];
-    } else {
-      $data_alamat = $data['alamat'];
-    }
+      $data_alamat = $data['jemput'];
 
- 		$html .= '
- 		<tr class="row_table">
- 			<td> ' . $no++ . '</td>
-      <td> ' . $data["tanggal"] . '</td>
-      <td> ' . $data["jam"] . '</td>
-      <td> ' . $data["tujuan"] . '</td>
- 			<td> ' . $data["penumpang"] . '</td>
- 			<td> ' . $data["nama"] . '</td>
- 			<td style="text-align: left;"> ' . $data_alamat . '</td>
-      <td> ' . $data["nomer"] . '</td>
- 			<td> ' . $dataLunas . '</td>
- 			<td> ' . $data["harga_khusus"] . '</td>
-      <td style="text-align: left;"> ' . $data["ket"] . '</td>
- 		</tr>
- 		';
- 	}
+      if ($data['jemput'] != ''){
+        $data_alamat =  $data['jemput'];
+      } else {
+        $data_alamat = $data['alamat'];
+      }
+
+   		$html .= '
+   		<tr class="row_table">
+   			<td> ' . $no++ . '</td>
+        <td> ' . $data["tanggal"] . '</td>
+        <td> ' . $data["jam"] . '</td>
+        <td> ' . $data["tujuan"] . '</td>
+   			<td> ' . $data["penumpang"] . '</td>
+   			<td> ' . $data["nama"] . '</td>
+   			<td style="text-align: left;"> ' . $data_alamat . '</td>
+        <td> ' . $data["nomer"] . '</td>
+   			<td> ' . $dataLunas . '</td>
+   			<td> ' . $data["harga_khusus"] . '</td>
+        <td style="text-align: left;"> ' . $data["ket"] . '</td>
+   		</tr>
+   		';
+   	}
+  }else{
+    $html .= '
+    <tr class="row_table">
+      <td colspan="11"><b>Tidak ada data yang dipilih</b></td>
+    </tr>
+    ';
+  }
 
 $html .= '
  	</tbody>
