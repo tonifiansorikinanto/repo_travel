@@ -18,6 +18,8 @@ header,
   background-color: #7986cb;
 }
 
+
+
 @media (max-width: 991px) {
   .navbar:not(.top-nav-collapse) {
     background-color: #7986cb;
@@ -27,6 +29,9 @@ header,
 @media (min-width: 800px) and (max-width: 850px) {
   .navbar:not(.top-nav-collapse) {
     background-color: #7986cb;
+  }
+  .ghost-text-right{
+    text-align: right;
   }
 }
 

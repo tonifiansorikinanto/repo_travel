@@ -240,12 +240,10 @@ if(isset($_SESSION['report_message'])){
 		  			</div>
 		  			<div class="col-md-4" align="right">
 		  				<a class="h5-responsive text-success" id="print_button"><i class="fas fa-print"></i> Print Tabel</a>
-		  			</div>
-		  			<div class="col-md-12 my-3" align="center">
-		  				<h5 class="h5-responsive">Menampilkan data ke 1-20 dari 56 data</h5><i title="Data sebelumnya" class="far fa-caret-square-left fa-2x mr-2"></i> <i title="Data selanjutnya" class="far fa-caret-square-right fa-2x"></i> 
-		  			</div>
+		  			</div>		  			
 		  		</div>
-		  		<div class="table-responsive-sm">
+		  		
+		  		<div class="table-responsive mt-3">
 					<table class="table table-hover" id="example">
 					  <thead class="info-color text-white" align="center">
 					    <tr>
@@ -311,7 +309,7 @@ if(isset($_SESSION['report_message'])){
 						    <tr class="align-items-center row_hidden" id="row<?= $no2++; ?>">
 						    	<td colspan="2"></td>
 						    	<td><b>Keterangan</b></td>
-						    	<td colspan="6"><?= $data['ket']; ?></td>
+						    	<td colspan="6"><?= $data['ket'].$data['mobil']; ?></td>
 						    	<td colspan="1" class="text-right"><b>Aksi</b></td>
 						    	<td colspan="2">
 						      	<a href="#x" role="button" class="text-warning" data-toggle="modal" data-target="#modalKonfirmSupervisor" onclick="setEditParameter('tb2', '<?=$data['id']; ?>')">Edit</i></a>
@@ -328,8 +326,16 @@ if(isset($_SESSION['report_message'])){
 					</table>
 				</div>
 				
+				<div class="row justify-content-end align-items-center mt-3">
+					<div class="col-md-4 mr-0 pr-0" align="right">
+			  			<h6 class="h6-responsive">Menampilkan data ke 1-20 dari 56 data</h6> 
+			  		</div>
+			  		<div class="col-md-1 pr-4" align="right">
+			  			<a href="#x" id="prev_button"><i title="Data sebelumnya" class="far fa-caret-square-left fa-2x mr-2"></i></a>
+			  			<a href="#x" id="next_button"><i title="Data selanjutnya" class="far fa-caret-square-right fa-2x"></i></a>
+			  		</div>
+			  	</div>
 
-						
 			</div>
 		</div>
 	</div>

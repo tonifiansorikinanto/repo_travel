@@ -244,98 +244,102 @@ if(isset($_POST['submit_mobil'])){
 		  			</div>
 		  			<div class="col-md-4" align="right">
 		  				<a class="h5-responsive text-success" id="print_button"><i class="fas fa-print"></i> Print Tabel</a>
-		  			</div>		  			
-		  			<div class="col-md-12 my-3" align="center">
-		  				<h5 class="h5-responsive">Menampilkan data ke 1-20 dari 56 data</h5> 
-		  				<a href="#x" id="prev_button"><i title="Data sebelumnya" class="far fa-caret-square-left fa-2x mr-2"></i></a>
-		  				<a href="#x" id="next_button"><i title="Data selanjutnya" class="far fa-caret-square-right fa-2x"></i></a>
-		  			</div>
+		  			</div>		  					  			
 		  		</div>
 
-		  		
-		  			
-		  		
-
-				<table class="table table-hover" id="table_pagination">
-				  <thead class="warning-color text-white" align="center">
-				    <tr>
-				      <th style="width: 35px;" scope="col"><i class="far fa-check-square"></i></th>
-				      <th style="width: 35px;" scope="col">#</th>
-				      <th scope="col">Nomer HP</th>
-				      <th scope="col">Nama</th>
-				      <th scope="col">Alamat Jemput</th>
-				      <th scope="col">Tgl Berangkat</th>
-				      <th scope="col">Jam Berangkat</th>
-				      <th scope="col">Tujuan</th>		
-				      <th scope="col">Jumlah Penumpang</th>			      
-				      <th scope="col">Lunas / BA</th>
-				      <th scope="col">Special Price</th>
-				      <th scope="col">Mobil</th>				      
-				    </tr>
-				  </thead>
-				  <tbody>
-				  	<?php if(mysqli_num_rows($show_data_tbSiluet) > 0 ): ?>
-					    <?php while($data = mysqli_fetch_assoc($show_data_tbSiluet)): ?>
-					    <tr style="cursor:pointer;" class="row_show">
-					      <td>
-					      	<input type="checkbox" onclick="set_id('<?= $data['id']; ?>', 'checkid<?= $no1; ?>', 'tb1')" class="check_input" id="checkid<?= $no1; ?>"
-					      		<?php
-					      		if(isset($_GET['id']) AND !empty($_GET['id'])){
-						      		for($y = 0; $y < count($id_get); $y++){
-						      			if($data['id'] == $id_get[$y]){
-						      				echo "checked";
-						      			}
+		  		<div class="table-responsive mt-3">
+					<table class="table table-hover" id="table_pagination">
+					  <thead class="warning-color text-white" align="center">
+					    <tr>
+					      <th style="width: 35px;" scope="col"><i class="far fa-check-square"></i></th>
+					      <th style="width: 35px;" scope="col">#</th>
+					      <th scope="col">Nomer HP</th>
+					      <th scope="col">Nama</th>
+					      <th scope="col">Alamat Jemput</th>
+					      <th scope="col">Tgl Berangkat</th>
+					      <th scope="col">Jam Berangkat</th>
+					      <th scope="col">Tujuan</th>		
+					      <th scope="col">Jumlah Penumpang</th>			      
+					      <th scope="col">Lunas / BA</th>
+					      <th scope="col">Special Price</th>
+					      <th scope="col">Mobil</th>				      
+					    </tr>
+					  </thead>
+					  <tbody>
+					  	<?php if(mysqli_num_rows($show_data_tbSiluet) > 0 ): ?>
+						    <?php while($data = mysqli_fetch_assoc($show_data_tbSiluet)): ?>
+						    <tr style="cursor:pointer;" class="row_show">
+						      <td>
+						      	<input type="checkbox" onclick="set_id('<?= $data['id']; ?>', 'checkid<?= $no1; ?>', 'tb1')" class="check_input" id="checkid<?= $no1; ?>"
+						      		<?php
+						      		if(isset($_GET['id']) AND !empty($_GET['id'])){
+							      		for($y = 0; $y < count($id_get); $y++){
+							      			if($data['id'] == $id_get[$y]){
+							      				echo "checked";
+							      			}
+							      		}
 						      		}
-					      		}
-					      		?>
-					      	>
-					      </td>
-					      <td scope="row" onclick="show_data(<?= $no1; ?>)"><?= $no1; ?></td>
-					      <td onclick="show_data(<?= $no1; ?>)"><?= $data['nomer']; ?></td>
-					      <td onclick="show_data(<?= $no1; ?>)"><?= $data['nama']; ?></td>
-					      <td onclick="show_data(<?= $no1; ?>)">
-					      	<?php
-					      		if ($data['jemput'] != ''){
-					      			echo $data['jemput'];
-					      		} else {
-					      			echo $data['alamat'];
-					      		}
-					      	?>
-					      </td>
-					      <td onclick="show_data(<?= $no1; ?>)"><?= $data['tanggal']; ?></td>
-					      <td onclick="show_data(<?= $no1; ?>)"><?= $data['jam']; ?></td>
-					      <td onclick="show_data(<?= $no1; ?>)"><?= $data['tujuan']; ?></td>
-					      <td onclick="show_data(<?= $no1; ?>)" class="text-center"><?= $data['penumpang']; ?></td>
-					      <td onclick="show_data(<?= $no1; ?>)">
-					      	<?php 
-					      	if($data['lunas'] == 1){
-					      		echo "Lunas";
-					      	}else if($data['lunas'] == 2){
-					      		echo "BA";
-					      	}
-					      	?>
-					      </td>
-					      <td onclick="show_data(<?= $no1; ?>)"><?= $data['harga_khusus']; ?></td>
-					      <td><a href="#x" role="button" class="text-primary button_select" data-toggle="modal" data-target="#modalSelect">Pilih</a></td>
-					    </tr>					    
-					    <tr class="align-items-center row_hidden" id="row<?= $no1++; ?>">
-					    	<td colspan="2"></td>
-					    	<td><b>Keterangan</b></td>
-					    	<td colspan="6"><?= $data['ket']; ?></td>
-					    	<td colspan="1" class="text-right"><b>Aksi</b></td>
-					    	<td colspan="2">
-					      	<a href="#x" role="button" class="text-warning" data-toggle="modal" data-target="#modalKonfirmSupervisor" onclick="setEditParameter('tb1', '<?=$data['id']; ?>')">Edit</i></a>
-					      	| <a href="#x" role="button" class="text-danger" data-toggle="modal" data-target="#modalDelete" onclick="setDeleteParameter('tb1', '<?=$data['id']; ?>')">Hapus</a>
-					      </td>
-					    </tr>	
-					    <?php endwhile; ?>	
-					  <?php else: ?>	    
-					  <tr>
-					  	<td colspan="12" class="text-center"><b>Tidak ada data !</b></td>
-					  </tr>
-					  <?php endif; ?>			    
-				  </tbody>				  
-				</table>												
+						      		
+						      		?>
+						      	>
+						      </td>
+						      <td scope="row" onclick="show_data(<?= $no1; ?>)"><?= $no1; ?></td>
+						      <td onclick="show_data(<?= $no1; ?>)"><?= $data['nomer']; ?></td>
+						      <td onclick="show_data(<?= $no1; ?>)"><?= $data['nama']; ?></td>
+						      <td onclick="show_data(<?= $no1; ?>)">
+						      	<?php
+						      		if ($data['jemput'] != ''){
+						      			echo $data['jemput'];
+						      		} else {
+						      			echo $data['alamat'];
+						      		}
+						      	?>
+						      </td>
+						      <td onclick="show_data(<?= $no1; ?>)"><?= $data['tanggal']; ?></td>
+						      <td onclick="show_data(<?= $no1; ?>)"><?= $data['jam']; ?></td>
+						      <td onclick="show_data(<?= $no1; ?>)"><?= $data['tujuan']; ?></td>
+						      <td onclick="show_data(<?= $no1; ?>)" class="text-center"><?= $data['penumpang']; ?></td>
+						      <td onclick="show_data(<?= $no1; ?>)">
+						      	<?php 
+						      	if($data['lunas'] == 1){
+						      		echo "Lunas";
+						      	}else if($data['lunas'] == 2){
+						      		echo "BA";
+						      	}
+						      	?>
+						      </td>
+						      <td onclick="show_data(<?= $no1; ?>)"><?= $data['harga_khusus']; ?></td>
+						      <td><a href="#x" role="button" class="text-primary button_select" data-toggle="modal" data-target="#modalSelect">Pilih</a></td>
+						    </tr>					    
+						    <tr class="align-items-center row_hidden" id="row<?= $no1++; ?>">
+						    	<td colspan="2"></td>
+						    	<td><b>Keterangan</b></td>
+						    	<td colspan="6"><?= $data['ket'].$data['mobil']; ?></td>
+						    	<td colspan="1" class="text-right"><b>Aksi</b></td>
+						    	<td colspan="2">
+						      	<a href="#x" role="button" class="text-warning" data-toggle="modal" data-target="#modalKonfirmSupervisor" onclick="setEditParameter('tb1', '<?=$data['id']; ?>')">Edit</i></a>
+						      	| <a href="#x" role="button" class="text-danger" data-toggle="modal" data-target="#modalDelete" onclick="setDeleteParameter('tb1', '<?=$data['id']; ?>')">Hapus</a>
+						      </td>
+						    </tr>	
+						    <?php endwhile; ?>	
+						  <?php else: ?>	    
+						  <tr>
+						  	<td colspan="12" class="text-center"><b>Tidak ada data !</b></td>
+						  </tr>
+						  <?php endif; ?>			    
+					  </tbody>				  
+					</table>
+				</div>
+
+				<div class="row justify-content-end align-items-center mt-3">
+					<div class="col-md-4 mr-0 pr-0" align="right">
+			  			<h6 class="h6-responsive">Menampilkan data ke 1-20 dari 56 data</h6> 
+			  		</div>
+			  		<div class="col-md-1 pr-4" align="right">
+			  			<a href="#x" id="prev_button"><i title="Data sebelumnya" class="far fa-caret-square-left fa-2x mr-2"></i></a>
+			  			<a href="#x" id="next_button"><i title="Data selanjutnya" class="far fa-caret-square-right fa-2x"></i></a>
+			  		</div>
+			  	</div>												
 			</div>
 		</div>
 	</div>

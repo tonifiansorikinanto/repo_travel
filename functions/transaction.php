@@ -256,18 +256,12 @@ function setKeteranganSiluet($text_mobil, $id_nomer){
 
 	for($x = 0; $x < count($id_nomer); $x){
 
-		while($data = mysqli_fetch_assoc(show_data_onID_tbSiluet($id_nomer[$x]))){
-			$ket_mobil = $data['ket'];
+		while($data = mysqli_fetch_assoc(show_data_onID_tbSiluet($id_nomer[$x]))){			
 
-			$ket_mobil_value = substr($ket_mobil, strpos($ket_mobil, ". Mobil = ") + 10);
+			$string_awal = ". Mobil = ";
+			$all_mobil = $string_awal.$text_mobil;			
 
-			if($ket_mobil_value == ""){
-				$text_mobil_value = $ket_mobil . ". Mobil = " . $text_mobil;
-			}else{
-				$text_mobil_value = str_replace($ket_mobil_value, $text_mobil, $ket_mobil);
-			}
-			$query = "UPDATE tb_siluet SET ket='$text_mobil_value' WHERE id='$id_nomer[$x]'";
-
+			$query = "UPDATE tb_siluet SET mobil='$all_mobil' WHERE id='$id_nomer[$x]'";
 			
 			mysqli_query($connect, $query);
 
@@ -288,18 +282,13 @@ function setKeteranganLiza($text_mobil, $id_nomer){
 
 	for($x = 0; $x < count($id_nomer); $x){
 
-		while($data = mysqli_fetch_assoc(show_data_onID_tbLiza($id_nomer[$x]))){
-			$ket_mobil = $data['ket'];
+		while($data = mysqli_fetch_assoc(show_data_onID_tbSiluet($id_nomer[$x]))){
 
-			$ket_mobil_value = substr($ket_mobil, strpos($ket_mobil, ". Mobil = ") + 10);
+			$string_awal = ". Mobil = ";
+			$all_mobil = $string_awal.$text_mobil;
+			die($all_mobil);
 
-			if($ket_mobil_value == ""){
-				$text_mobil_value = $ket_mobil . ". Mobil = " . $text_mobil;
-			}else{
-				$text_mobil_value = str_replace($ket_mobil_value, $text_mobil, $ket_mobil);
-			}
-			$query = "UPDATE tb_liza SET ket='$text_mobil_value' WHERE id='$id_nomer[$x]'";
-
+			$query = "UPDATE tb_liza SET mobil='$all_mobil' WHERE id='$id_nomer[$x]'";
 			
 			mysqli_query($connect, $query);
 
