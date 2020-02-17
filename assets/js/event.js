@@ -173,12 +173,17 @@ var prev_button = document.getElementById('prev_button');
 var start_index = 2;
 
 next_button.onclick = function(){
-	start_index += 2;
+	if(start_index != row_show.length){
+		start_index += 2;
+	}
 	table_pagination_meta(start_index);
 };
 
 prev_button.onclick = function(){
-	start_index -= 2;
+	if(start_index != 2){
+		start_index -= 2;
+	}
+
 	table_pagination_meta(start_index);
 };
 
