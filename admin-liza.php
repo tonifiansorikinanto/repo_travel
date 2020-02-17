@@ -32,13 +32,13 @@
 	if(isset($_POST['submit'])){
 		$password = $_POST["pass_sv"];
 		$tb 		= $_GET['tb'];
-		$nomer 	= $_GET['id'];
+		$id 	= $_GET['id_edit'];
 
 		if(!empty(trim($password))){
 
 			if(cek_user_supervisor($password)){
 				$_SESSION['pass_supervisor'] = true;
-				header('Location: edit-penumpang?tb=' . $_GET['tb'] . '&id_edit=' . $_GET['id_edit'] . '');
+				header('Location: edit-penumpang?tb=' . $tb . '&id_edit=' . $id . '');
 			}else{
 				$_SESSION['pass_supervisor'] = false;
 				echo("<script>alert('Error Saat Mengcek Password !')</script>");
@@ -241,9 +241,12 @@ if(isset($_SESSION['report_message'])){
 		  			<div class="col-md-4" align="right">
 		  				<a class="h5-responsive text-success" id="print_button"><i class="fas fa-print"></i> Print Tabel</a>
 		  			</div>
+		  			<div class="col-md-12 my-3" align="center">
+		  				<h5 class="h5-responsive">Menampilkan data ke 1-20 dari 56 data</h5><i title="Data sebelumnya" class="far fa-caret-square-left fa-2x mr-2"></i> <i title="Data selanjutnya" class="far fa-caret-square-right fa-2x"></i> 
+		  			</div>
 		  		</div>
 		  		<div class="table-responsive-sm">
-					<table class="table table-hover mt-4" id="example">
+					<table class="table table-hover" id="example">
 					  <thead class="info-color text-white" align="center">
 					    <tr>
 					      <th style="width: 35px;" scope="col"><i class="far fa-check-square"></i></th>

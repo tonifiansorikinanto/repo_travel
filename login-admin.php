@@ -88,7 +88,7 @@ background: linear-gradient(to right, #3b8d99, #6b6b83, #aa4b6b); /* W3C, IE 10+
 						<p class="h4 mb-4 white-text">Login Admin</p>
 						<!-- header -->
 
-						<input style=" border-radius: 15px;" type="text" id="defaultLoginFormEmail" class="form-control mb-4 text-center" placeholder="User" name="username" <?php if($status_submit==false){echo "autofocus";}?> autocomplete="off" spellcheck="false" maxlength="50" <?php if (isset($_POST['submit'])){ echo "value='".$_POST['username']."'";} ?>>
+						<input style=" border-radius: 15px;" type="text" id="defaultLoginFormEmail" class="form-control mb-4 text-center" placeholder="User" name="username" <?php if($status_submit==false){echo "autofocus";} if (isset($_POST['submit'])){ echo "value='".$_POST['username']."'";}?> autocomplete="off" spellcheck="false" maxlength="50">
 						<input type="password" id="defaultLoginFormPassword" style=" border-radius: 15px;" class="form-control mb-4 text-center"  <?php if($status_submit==true){echo "autofocus";}?> placeholder="Password" name="password" spellcheck="false" maxlength="50">
 						<button name="submit" class="btn btn-secondary btn-md" style="width: 130px; border-radius: 40px;" type="submit">Login</button>											    
 						</form>
