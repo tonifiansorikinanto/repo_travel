@@ -9,7 +9,7 @@ if(isset($_GET['nomer']) && isset($_GET['tb'])){
 	$table_name = $_GET['tb'];
 	$nomer 			= $_GET['nomer'];
 
-	$_SESSION['report_message'] = report_message("success", "Berhasil Menghapus Data : " . $nomer);
+	$_SESSION['report_message'] = report_message("success", "Berhasil Menghapus Data!");
 
 	if($table_name == 'tb1'){
 		delete_data_tbSiluet($nomer);

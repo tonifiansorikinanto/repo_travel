@@ -210,7 +210,7 @@ function delete_data_tbSiluet($nomer){
 
 	$nomer = escape($nomer);
 
-	$query 	= "DELETE FROM tb_siluet WHERE nomer = '$nomer'";
+	$query 	= "DELETE FROM tb_siluet WHERE id = '$nomer'";
 	$result = mysqli_query($connect, $query);
 
 	return $result;
@@ -221,7 +221,7 @@ function delete_data_tbLiza($nomer){
 
 	$nomer = escape($nomer);
 
-	$query 	= "DELETE FROM tb_liza WHERE nomer = '$nomer'";
+	$query 	= "DELETE FROM tb_liza WHERE id = '$nomer'";
 	$result = mysqli_query($connect, $query);
 
 	return $result;
