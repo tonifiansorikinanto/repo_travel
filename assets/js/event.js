@@ -161,3 +161,40 @@ function show_data(data){
 
 	}
 }
+
+
+
+var table_pagination = document.getElementsByClassName('row_show');
+var next_button = document.getElementById('next_button');
+var prev_button = document.getElementById('prev_button');
+
+var start_index = 2;
+
+next_button.onclick = function(){
+	start_index += 2;
+	table_pagination_meta(start_index);
+};
+
+prev_button.onclick = function(){
+	start_index -= 2;
+	table_pagination_meta(start_index);
+};
+
+function table_pagination_meta(start_index){
+	for(var w = 0; w < table_pagination.length; w++){
+		var minimW = start_index - 2;
+		if(w < minimW || w >= start_index){
+			table_pagination[w].style.display = "none";
+		}else{
+			table_pagination[w].style.display = "table-row";
+		}
+
+	}
+}
+
+window.onload = function(){
+	table_pagination_meta(start_index);
+};
+
+
+//table_pagination.outerHTML = "";

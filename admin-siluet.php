@@ -246,7 +246,9 @@ if(isset($_POST['submit_mobil'])){
 		  				<a class="h5-responsive text-success" id="print_button"><i class="fas fa-print"></i> Print Tabel</a>
 		  			</div>		  			
 		  			<div class="col-md-12 my-3" align="center">
-		  				<h5 class="h5-responsive">Menampilkan data ke 1-20 dari 56 data</h5> <i title="Data sebelumnya" class="far fa-caret-square-left fa-2x mr-2"></i> <i title="Data selanjutnya" class="far fa-caret-square-right fa-2x"></i>
+		  				<h5 class="h5-responsive">Menampilkan data ke 1-20 dari 56 data</h5> 
+		  				<a href="#x" id="prev_button"><i title="Data sebelumnya" class="far fa-caret-square-left fa-2x mr-2"></i></a>
+		  				<a href="#x" id="next_button"><i title="Data selanjutnya" class="far fa-caret-square-right fa-2x"></i></a>
 		  			</div>
 		  		</div>
 
@@ -254,7 +256,7 @@ if(isset($_POST['submit_mobil'])){
 		  			
 		  		
 
-				<table class="table table-hover">
+				<table class="table table-hover" id="table_pagination">
 				  <thead class="warning-color text-white" align="center">
 				    <tr>
 				      <th style="width: 35px;" scope="col"><i class="far fa-check-square"></i></th>
@@ -274,7 +276,7 @@ if(isset($_POST['submit_mobil'])){
 				  <tbody>
 				  	<?php if(mysqli_num_rows($show_data_tbSiluet) > 0 ): ?>
 					    <?php while($data = mysqli_fetch_assoc($show_data_tbSiluet)): ?>
-					    <tr style="cursor:pointer;">
+					    <tr style="cursor:pointer;" class="row_show">
 					      <td>
 					      	<input type="checkbox" onclick="set_id('<?= $data['id']; ?>', 'checkid<?= $no1; ?>', 'tb1')" class="check_input" id="checkid<?= $no1; ?>"
 					      		<?php
