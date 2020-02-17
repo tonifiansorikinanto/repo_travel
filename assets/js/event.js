@@ -164,7 +164,9 @@ function show_data(data){
 
 
 
-var table_pagination = document.getElementsByClassName('row_show');
+var row_show = document.getElementsByClassName('row_show');
+var row_hidden = document.getElementsByClassName('row_hidden');
+
 var next_button = document.getElementById('next_button');
 var prev_button = document.getElementById('prev_button');
 
@@ -181,12 +183,14 @@ prev_button.onclick = function(){
 };
 
 function table_pagination_meta(start_index){
-	for(var w = 0; w < table_pagination.length; w++){
+	for(var w = 0; w < row_show.length; w++){
 		var minimW = start_index - 2;
 		if(w < minimW || w >= start_index){
-			table_pagination[w].style.display = "none";
+			row_show[w].style.display = "none";
+			//row_hidden[w].style.display = "none";
 		}else{
-			table_pagination[w].style.display = "table-row";
+			row_show[w].style.display = "table-row";
+			//row_hidden[w].style.display = "table-row";
 		}
 
 	}
