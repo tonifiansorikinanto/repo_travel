@@ -190,9 +190,16 @@ prev_button.onclick = function(){
 function table_pagination_meta(start_index){
 	for(var w = 0; w < row_show.length; w++){
 		var minimW = start_index - 2;
+		var y = w - 1;
+
+		row_hidden[w].style.opacity = "0";
+		row_hidden[w].style.transform = "translateX(-200px)";
+		row_hidden[w].style.display = "none";
+
 		if(w < minimW || w >= start_index){
 			row_show[w].style.display = "none";
-			//row_hidden[w].style.display = "none";
+
+			//show_data(w);
 		}else{
 			row_show[w].style.display = "table-row";
 			//row_hidden[w].style.display = "table-row";
