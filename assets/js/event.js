@@ -170,6 +170,8 @@ var row_hidden = document.getElementsByClassName('row_hidden');
 var next_button = document.getElementById('next_button');
 var prev_button = document.getElementById('prev_button');
 
+var data_total = document.getElementById('data_total');
+
 var start_index = 2;
 
 next_button.onclick = function(){
@@ -190,15 +192,18 @@ prev_button.onclick = function(){
 };
 
 function table_pagination_meta(start_index){
+
+	data_total.innerHTML = row_show.length;
+
 	for(var w = 0; w < row_show.length; w++){
 		var minimW = start_index - 2;
 		var y = w - 1;
 
-		row_hidden[w].style.opacity = "0";
-		row_hidden[w].style.transform = "translateX(-200px)";
-		row_hidden[w].style.display = "none";
-
 		if(w < minimW || w >= start_index){
+			row_hidden[w].style.opacity = "0";
+			row_hidden[w].style.transform = "translateX(-200px)";
+			row_hidden[w].style.display = "none";
+		
 			row_show[w].style.display = "none";
 
 			//show_data(w);

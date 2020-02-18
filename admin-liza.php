@@ -326,9 +326,9 @@ if(isset($_SESSION['report_message'])){
 					</table>
 				</div>
 				
-				<div class="row justify-content-end align-items-center mt-3">
+				<div class="row justify-content-end align-items-center mt-3 footer_table">
 					<div class="col-md-4 mr-0 pr-0" align="right">
-			  			<h6 class="h6-responsive">Menampilkan data ke 1-20 dari 56 data</h6> 
+			  			<h6 class="h6-responsive">Menampilkan data ke 1-20 dari <span id="data_total"></span> data</h6> 
 			  		</div>
 			  		<div class="col-md-1 pr-4" align="right">
 			  			<a href="#x" id="prev_button"><i title="Data sebelumnya" class="far fa-caret-square-left fa-2x mr-2"></i></a>
