@@ -173,8 +173,9 @@ var prev_button = document.getElementById('prev_button');
 var start_index = 2;
 
 next_button.onclick = function(){
-	if(start_index != row_show.length){
+	if(start_index < row_show.length){
 		start_index += 2;
+		console.log(start_index);
 	}
 	table_pagination_meta(start_index);
 };
@@ -182,6 +183,7 @@ next_button.onclick = function(){
 prev_button.onclick = function(){
 	if(start_index != 2){
 		start_index -= 2;
+		console.log(start_index);
 	}
 
 	table_pagination_meta(start_index);

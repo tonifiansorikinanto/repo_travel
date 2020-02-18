@@ -244,7 +244,7 @@ if(isset($_SESSION['report_message'])){
 		  		</div>
 		  		
 		  		<div class="table-responsive mt-3">
-					<table class="table table-hover" id="example">
+					<table class="table table-hover"  id="table_pagination">
 					  <thead class="info-color text-white" align="center">
 					    <tr>
 					      <th style="width: 35px;" scope="col"><i class="far fa-check-square"></i></th>
@@ -264,7 +264,7 @@ if(isset($_SESSION['report_message'])){
 					  <tbody>
 					  	<?php if(mysqli_num_rows($show_data_tbLiza) > 0 ): ?>
 						    <?php while($data = mysqli_fetch_assoc($show_data_tbLiza)): ?>
-						    <tr style="cursor:pointer;">
+						    <tr style="cursor:pointer;" class="row_show">
 						      <td>
 						      	<input type="checkbox" onclick="set_id('<?= $data['id']; ?>', 'checkid<?= $no2; ?>', 'tb2')" class="check_input" id="checkid<?= $no2; ?>"
 						      		<?php
