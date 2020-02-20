@@ -73,7 +73,7 @@ function set_id(data1, data2, data3){
 document.onkeydown = function(evt) {
   evt = evt || window.event;
   if (evt.keyCode == 27) {
-    resetUrl();
+    resetUrlClear();
   }
 };
 
