@@ -60,7 +60,7 @@ $html = '
 <table cellspacing="0" cellpadding="10" style="width:100%">
   <thead>
     <tr style="background-color:#4C4C4C;">
-      <th style="color:#FFFFFF;">#</th>
+      <th style="color:#FFFFFF; width: 10px;">#</th>
       
       <th style="color:#FFFFFF; width: 10px;">Tgl Berangkat</th>
       <th style="color:#FFFFFF; width: 10px;">Jam Berangkat</th>
@@ -68,9 +68,9 @@ $html = '
       <th style="color:#FFFFFF; width: 10px;">Jumlah Pnmpg</th>
       <th style="color:#FFFFFF;">Nama</th>
       <th style="color:#FFFFFF;">Alamat Jemput</th>
-      <th style="color:#FFFFFF;">Nomer HP</th>
+      <th style="color:#FFFFFF; width: 10px;">Nomer HP</th>
       <th style="color:#FFFFFF; width: 10px;">Lunas / BA</th>
-      <th style="color:#FFFFFF;">Harga Khusus</th>
+      <th style="color:#FFFFFF; width: 10px;">Harga Khusus</th>
       <th style="color:#FFFFFF;">Keterangan</th>
     </tr>
   </thead>
