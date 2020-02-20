@@ -247,18 +247,18 @@ if(isset($_SESSION['report_message'])){
 					<table class="table table-hover"  id="table_pagination">
 					  <thead class="info-color text-white" align="center">
 					    <tr>
-					      <th style="width: 35px;" scope="col"><i class="far fa-check-square"></i></th>
-					      <th style="width: 35px;" scope="col">#</th>
-					      <th scope="col">Nomer HP</th>
-					      <th scope="col">Nama</th>
-					      <th scope="col">Alamat Jemput</th>
-					      <th scope="col">Tgl Berangkat</th>
-					      <th scope="col">Jam Berangkat</th>
-					      <th scope="col">Tujuan</th>		
-					      <th scope="col">Jumlah Penumpang</th>			      
-					      <th scope="col">Lunas / BA</th>
-					      <th scope="col">Special Price</th>
-					      <th scope="col">Mobil</th>				      
+					      <th style="vertical-align: middle; padding-top: 10px; padding-bottom: 10px;" width="10px" scope="col"><i class="far fa-check-square"></i></th>
+					      <th style="vertical-align: middle; padding-top: 10px; padding-bottom: 10px;" width="10px" scope="col">#</th>
+					      <th style="vertical-align: middle; padding-top: 10px; padding-bottom: 10px;" scope="col" width="10px">Nomer HP</th>
+					      <th style="vertical-align: middle; padding-top: 10px; padding-bottom: 10px;" scope="col">Nama</th>
+					      <th style="vertical-align: middle; padding-top: 10px; padding-bottom: 10px;" scope="col">Alamat Jemput</th>
+					      <th style="vertical-align: middle; padding-top: 10px; padding-bottom: 10px;" scope="col">Tgl Berangkat</th>
+					      <th style="vertical-align: middle; padding-top: 10px; padding-bottom: 10px;" scope="col" width="10px">Jam Berangkat</th>
+					      <th style="vertical-align: middle; padding-top: 10px; padding-bottom: 10px;" scope="col">Tujuan</th>		
+					      <th style="vertical-align: middle; padding-top: 10px; padding-bottom: 10px;" scope="col" width="10px">Jumlah Penumpang</th>			      
+					      <th style="vertical-align: middle; padding-top: 10px; padding-bottom: 10px;" scope="col" width="95spx">Lunas / BA</th>
+					      <th style="vertical-align: middle; padding-top: 10px; padding-bottom: 10px;" scope="col" width="120px">Special Price</th>
+					      <th style="vertical-align: middle; padding-top: 10px; padding-bottom: 10px;" scope="col" width="10px">Mobil</th>				      
 					    </tr>
 					  </thead>
 					  <tbody>
@@ -290,11 +290,11 @@ if(isset($_SESSION['report_message'])){
 						      		}
 						      	?>
 						      </td>
-						      <td onclick="show_data(<?= $no2; ?>)"><?= $data['tanggal']; ?></td>
-						      <td onclick="show_data(<?= $no2; ?>)"><?= $data['jam']; ?></td>
+						      <td onclick="show_data(<?= $no2; ?>)" class="text-center"><?= $data['tanggal']; ?></td>
+						      <td onclick="show_data(<?= $no2; ?>)" class="text-center"><?= $data['jam']; ?></td>
 						      <td onclick="show_data(<?= $no2; ?>)"><?= $data['tujuan']; ?></td>
 						      <td onclick="show_data(<?= $no2; ?>)" class="text-center"><?= $data['penumpang']; ?></td>
-						      <td onclick="show_data(<?= $no2; ?>)">
+						      <td onclick="show_data(<?= $no2; ?>)" class="text-center">
 						      	<?php 
 						      	if($data['lunas'] == 1){
 						      		echo "Lunas";
@@ -303,8 +303,8 @@ if(isset($_SESSION['report_message'])){
 						      	}
 						      	?>
 						      </td>
-						      <td onclick="show_data(<?= $no2; ?>)"><?= $data['harga_khusus']; ?></td>
-						      <td><a href="#x" role="button" class="text-primary button_select" data-toggle="modal" data-target="#modalSelect">Pilih</a></td>
+						      <td onclick="show_data(<?= $no2; ?>)" class="text-center"><?= $data['harga_khusus']; ?></td>
+						      <td><a href="#x" role="button" class="text-primary button_select text-center" data-toggle="modal" data-target="#modalSelect">Pilih</a></td>
 						    </tr>					    
 						    <tr class="align-items-center row_hidden" id="row<?= $no2++; ?>">
 						    	<td colspan="2"></td>
@@ -328,11 +328,11 @@ if(isset($_SESSION['report_message'])){
 				
 				<div class="row justify-content-end align-items-center mt-3 footer_table">
 					<div class="col-md-4 mr-0 pr-0" align="right">
-			  			<h6 class="h6-responsive">Menampilkan data ke 1-20 dari <span id="data_total"></span> data</h6> 
+			  			<h6 class="h6-responsive">Menampilkan 10 data per halaman dari total <span id="data_total"></span> data</h6> 
 			  		</div>
-			  		<div class="col-md-1 pr-4" align="right">
-			  			<a id="prev_button"><i title="Data sebelumnya" class="far fa-caret-square-left fa-2x mr-2"></i></a>
-			  			<a id="next_button"><i title="Data selanjutnya" class="far fa-caret-square-right fa-2x"></i></a>
+			  		<div class="col-md-1 pr-4 text-info" align="right">
+			  			<a id="prev_button"><i title="Data sebelumnya" class="far fa-caret-square-left fa-2x waves-effect mr-2"></i></a>
+			  			<a id="next_button"><i title="Data selanjutnya" class="far fa-caret-square-right fa-2x waves-effect"></i></a>
 			  		</div>
 			  	</div>
 

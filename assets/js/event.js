@@ -172,19 +172,19 @@ var prev_button = document.getElementById('prev_button');
 
 var data_total = document.getElementById('data_total');
 
-var start_index = 2;
+var start_index = 10;
 
 next_button.onclick = function(){
 	if(start_index < row_show.length){
-		start_index += 2;
+		start_index += 10;
 		console.log(start_index);
 	}
 	table_pagination_meta(start_index);
 };
 
 prev_button.onclick = function(){
-	if(start_index != 2){
-		start_index -= 2;
+	if(start_index != 10){
+		start_index -= 10;
 		console.log(start_index);
 	}
 
@@ -196,7 +196,7 @@ function table_pagination_meta(start_index){
 	data_total.innerHTML = row_show.length;
 
 	for(var w = 0; w < row_show.length; w++){
-		var minimW = start_index - 2;
+		var minimW = start_index - 10;
 		var y = w - 1;
 
 		if(w < minimW || w >= start_index){

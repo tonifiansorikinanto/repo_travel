@@ -285,8 +285,7 @@ function setKeteranganLiza($text_mobil, $id_nomer){
 		while($data = mysqli_fetch_assoc(show_data_onID_tbSiluet($id_nomer[$x]))){
 
 			$string_awal = ". Mobil = ";
-			$all_mobil = $string_awal.$text_mobil;
-			die($all_mobil);
+			$all_mobil = $string_awal.$text_mobil;			
 
 			$query = "UPDATE tb_liza SET mobil='$all_mobil' WHERE id='$id_nomer[$x]'";
 			
