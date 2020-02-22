@@ -9,9 +9,9 @@ if(isset($_GET['id']) && $_GET['id'] != ""){
   $id_parameter = $_GET['id'];
 
   if ($_GET['tb'] == "tb1"){
-    $nama_tabel == "Siluet";
+    $nama_tabel = "Siluet";
   } else {
-    $nama_tabel == "Liza";
+    $nama_tabel = "Liza";
   }
 
   if(isset($_GET['tb'])){
