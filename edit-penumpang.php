@@ -100,6 +100,8 @@ if(isset($_POST['edit'])){
 			}
 		}
 
+	}else{
+		$_SESSION['report_message'] = report_message("error", "Data selain alamat jemput harus diisi !");
 	}
 }
 

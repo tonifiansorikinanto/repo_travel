@@ -41,6 +41,7 @@ html {
 
 body {
   overflow: overlay;
+  overflow-x: hidden;
 }
 
 @font-face { font-family: title; src: url('../fonts/Economica-Regular.TTF'); } 

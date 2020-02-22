@@ -219,7 +219,7 @@ if(isset($_SESSION['report_message'])){
 									</div>
 									<div class="col-md-6 mt-1">
 										<select name="tujuan_select" id="durasi1" class="form-control z-depth-1" >
-                      <option value="0" >- Pilih Tujuan -</option>
+                      <option value="0">- Pilih Tujuan -</option>
                       <option value="Malang">Malang</option>
                       <option value="Juanda">Juanda</option>
                       <option value="Surabaya Kota">Surabaya Kota</option>
