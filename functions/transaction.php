@@ -282,7 +282,7 @@ function setKeteranganLiza($text_mobil, $id_nomer){
 
 	for($x = 0; $x < count($id_nomer); $x){
 
-		while($data = mysqli_fetch_assoc(show_data_onID_tbSiluet($id_nomer[$x]))){
+		while($data = mysqli_fetch_assoc(show_data_onID_tbLiza($id_nomer[$x]))){
 			$ket = $data['ket'];
 
 			if ($ket == ""){
