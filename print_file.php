@@ -136,7 +136,7 @@ $html .= '
   <div class="col-ttd" align="center">
     <h3>Malang, ___ ____________ _____</h3>
     <h3 style="margin-bottom: 80px; margin-top: 1px; padding-top: 1px;">Petugas Penerima</h3>
-    <h3>_______________________________</h3>
+    <h3>(_______________________________)</h3>
   </div>
  </div>
 
