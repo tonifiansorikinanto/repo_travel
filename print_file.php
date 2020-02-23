@@ -8,6 +8,12 @@ $id_parameter = "";
 if(isset($_GET['id']) && $_GET['id'] != ""){
   $id_parameter = $_GET['id'];
 
+  if ($_GET['tb'] == "tb1"){
+    $nama_tabel == "Siluet";
+  } else {
+    $nama_tabel == "Liza";
+  }
+
   if(isset($_GET['tb'])){
     $table_name = $_GET['tb'];
 
@@ -24,6 +30,8 @@ if(isset($_GET['id']) && $_GET['id'] != ""){
     }
   }
 }
+
+
 
 
 $no = 1;
@@ -45,17 +53,19 @@ $html = '
       letter-spacing:1.01px;
     }
 
-    tr:nth-child(even){
-      background-color: #6D6D6D;
-      
+    .row{
+      display: flex;
+      margin-top: 10px;
     }
-    tr:nth-child(even) td{
-      color: #f1f1f1;
+
+    .row-ttd{
+      flex: 30%;
     }
   </style>
+
 </head>
 <body>
-<h1>Tabel Data Penumpang</h1>
+<h1>Tabel Data Penumpang ' . $nama_tabel . '</h1>
 
 <table cellspacing="0" cellpadding="10" style="width:100%">
   <thead>
@@ -122,6 +132,13 @@ $html = '
 $html .= '
  	</tbody>
  </table>
+ <div class="row">
+  <div class="col-ttd" align="center">
+    <h3>Malang, ___ ____________ _____</h3>
+    <h3 style="margin-bottom: 80px; margin-top: 1px; padding-top: 1px;">Petugas Penerima</h3>
+    <h3>_______________________________</h3>
+  </div>
+ </div>
 
 </body>
 </html>';
