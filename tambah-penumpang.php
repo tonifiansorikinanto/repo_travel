@@ -208,17 +208,6 @@ if(isset($_SESSION['report_message'])){
   </div>
 </div>
 
-<script>
-	// window.onload = function(){
-	// 	var modalKetersediaan =  document.getElementById('modalKetersediaan');
-
-	// 	var bodys = document.getElementsByTagName('body')[0];
-	// 	bodys.classList.add("modal-open");
-	// 	modalKetersediaan.classList.add('show');
-	// 	modalKetersediaan.style.display = "block";
-	// }
-</script>
-
 <div class="container">
 	<div class="row justify-content-center
 	 <?php
@@ -377,6 +366,14 @@ if(isset($_SESSION['report_message'])){
 
 <?php 
 require_once 'assets/templates/footer.php'; 
+
+if(isset($_POST['submit_cari_mobil'])){
+	echo '<script>
+    $(document).ready(function(){
+        $("#modalKetersediaan").modal("show");
+    });
+  </script>';
+}
 
 }else{
 	header('Location: login-admin');
