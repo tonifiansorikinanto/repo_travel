@@ -85,7 +85,7 @@ if(isset($_POST['submit_input'])){
 	$harga_khusus = $_POST['harga_khusus'];
 	$ket 					= $_POST['ket'];
 
-	if(!empty(trim($nomer)) && !empty(trim($nama)) && !empty(trim($alamat)) && !empty(trim($tgl)) && !empty(trim($jam)) && !empty(trim($tujuan)) && !empty(trim($penumpang)) && !empty(trim($lunas)) && !empty(trim($harga_khusus)) && !empty(trim($ket))){
+	if(!empty(trim($nomer)) && !empty(trim($nama)) && !empty(trim($alamat)) && !empty(trim($tgl)) && !empty(trim($jam)) && !empty(trim($tujuan)) && !empty(trim($penumpang)) && !empty(trim($lunas))){
 
   	$day 		= substr($tgl, 8, 2);
   	$month 		= substr($tgl, 5, 2);

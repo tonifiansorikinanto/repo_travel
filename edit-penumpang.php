@@ -72,7 +72,7 @@ if(isset($_POST['edit'])){
 	$ketEdit 					= $_POST['ket'];
 
 	if(!empty(trim($nomerEdit)) && !empty(trim($namaEdit)) && !empty(trim($alamatEdit)) && !empty(trim($tglEdit)) &&
-	!empty(trim($jamEdit)) && !empty(trim($tujuanEdit)) && !empty(trim($penumpangEdit)) && !empty(trim($lunasEdit)) && !empty(trim($harga_khususEdit)) && !empty(trim($ketEdit))){
+	!empty(trim($jamEdit)) && !empty(trim($tujuanEdit)) && !empty(trim($penumpangEdit)) && !empty(trim($lunasEdit))){
 
 		$day 			= substr($tglEdit, 8, 2);
   	$month 		= substr($tglEdit, 5, 2);
@@ -220,6 +220,7 @@ if(isset($_SESSION['report_message'])){
 	                    <option value="0">- Pilih Status Pembayaran -</option>
 	                    <option value="1" <?php if($lunas == "1") echo "selected='selected'"; ?>>Lunas</option>
 	                    <option value="2" <?php if($lunas == "2") echo "selected='selected'"; ?>>BA</option>
+	                    <option value="3" <?php if($lunas == "3") echo "selected='selected'"; ?>>Paket</option>
 	                  </select>
 									</div>
 									<div class="col-md-6 mt-3">
