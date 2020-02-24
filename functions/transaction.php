@@ -9,6 +9,19 @@ function show_alldata_mobil(){
 	return $result;
 }
 
+function show_data_mobil($data){
+	global $connect;
+
+	$query 	= "SELECT * FROM tb_mobil WHERE id_mobil='$data'";
+	$result = mysqli_query($connect, $query);
+
+	while($data_mobil = mysqli_fetch_assoc($result)){
+		$mobil = $data_mobil['mobil'];
+	}
+
+	return $mobil;
+}
+
 function show_data_tbSiluet(){
 	global $connect;
 
@@ -265,12 +278,9 @@ function setKeteranganSiluet($text_mobil, $id_nomer){
 
 	for($x = 0; $x < count($id_nomer); $x){
 
-		while($data = mysqli_fetch_assoc(show_data_onID_tbSiluet($id_nomer[$x]))){			
+		while($data = mysqli_fetch_assoc(show_data_onID_tbSiluet($id_nomer[$x]))){					
 
-			$string_awal = ". Mobil = ";
-			$all_mobil = $string_awal.$text_mobil;			
-
-			$query = "UPDATE tb_siluet SET mobil='$all_mobil' WHERE id='$id_nomer[$x]'";
+			$query = "UPDATE tb_siluet SET mobil='$text_mobil' WHERE id='$id_nomer[$x]'";
 			
 			mysqli_query($connect, $query);
 
@@ -292,17 +302,8 @@ function setKeteranganLiza($text_mobil, $id_nomer){
 	for($x = 0; $x < count($id_nomer); $x){
 
 		while($data = mysqli_fetch_assoc(show_data_onID_tbLiza($id_nomer[$x]))){
-			$ket = $data['ket'];
 
-			if ($ket == ""){
-				$string_awal = "Mobil = ";	
-			} else {
-				$string_awal = ". Mobil = ";
-			}
-
-			$all_mobil = $string_awal.$text_mobil;			
-
-			$query = "UPDATE tb_liza SET mobil='$all_mobil' WHERE id='$id_nomer[$x]'";
+			$query = "UPDATE tb_liza SET mobil='$text_mobil' WHERE id='$id_nomer[$x]'";
 			
 			mysqli_query($connect, $query);
 
