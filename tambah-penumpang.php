@@ -68,6 +68,16 @@ if(isset($_GET['cari-data'])){
 	
 }
 
+if (isset($_POST['submit_cari_mobil'])) {
+	$jam_modal	= $_POST['jam'];
+	$tgl_cari	= $_POST['tgl'];
+	$day		= substr($tgl_cari, 0, 2);
+	$month 		= substr($tgl_cari, 3, 2);
+	$year 		= substr($tgl_cari, 6, 4);
+
+	$tgl_modal 	= $year . "-" . $month . "-" . $day;
+}
+
 
 // pengaturan submit data
 
@@ -131,6 +141,8 @@ if(isset($_SESSION['report_message'])){
 
 ?>
 
+
+
 <div class="modal fade" id="modalKetersediaan" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true" style="z-index:99999999;">
   <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
     <div class="modal-content">
@@ -145,11 +157,11 @@ if(isset($_SESSION['report_message'])){
       	<div class="row align-items-center justify-content-center">
 	        <div class="col-md-4">
 				<h4 class="h4-responsive">Tanggal Berangkat</h4>
-				<input type="date" aria-label="nomer" name="tgl" id="tgl" class="form-control z-depth-1">
+				<input type="date" value="<?=$tgl_cari;?>" aria-label="nomer" name="tgl" id="tgl" class="form-control z-depth-1">
 			</div>
 			<div class="col-md-3">
 				<h4 class="h4-responsive">Jam Berangkat</h4>
-				<input type="time" aria-label="nomer" name="jam" id="nomer" class="form-control z-depth-1" autocomplete="off">
+				<input type="time" aria-label="nomer" name="jam" id="nomer" class="form-control z-depth-1" autocomplete="off" value="<?=$jam_modal;?>">
 			</div>
 			<div class="col-md-2">
 				<button type="submit" name="submit_cari_mobil" class="btn btn-<?php if($table_name == "tb1"){
@@ -195,6 +207,17 @@ if(isset($_SESSION['report_message'])){
     </div>
   </div>
 </div>
+
+<script>
+	// window.onload = function(){
+	// 	var modalKetersediaan =  document.getElementById('modalKetersediaan');
+
+	// 	var bodys = document.getElementsByTagName('body')[0];
+	// 	bodys.classList.add("modal-open");
+	// 	modalKetersediaan.classList.add('show');
+	// 	modalKetersediaan.style.display = "block";
+	// }
+</script>
 
 <div class="container">
 	<div class="row justify-content-center
