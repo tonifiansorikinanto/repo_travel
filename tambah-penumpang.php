@@ -157,11 +157,11 @@ if(isset($_SESSION['report_message'])){
       	<div class="row align-items-center justify-content-center">
 	        <div class="col-md-4">
 				<h4 class="h4-responsive">Tanggal Berangkat</h4>
-				<input type="date" value="<?=$tgl_cari;?>" aria-label="nomer" name="tgl" id="tgl" class="form-control z-depth-1">
+				<input type="date" value="<?php if(isset($_POST['submit_cari_mobil'])) { echo $tgl_cari; } ?>" aria-label="nomer" name="tgl" id="tgl" class="form-control z-depth-1">
 			</div>
 			<div class="col-md-3">
 				<h4 class="h4-responsive">Jam Berangkat</h4>
-				<input type="time" aria-label="nomer" name="jam" id="nomer" class="form-control z-depth-1" autocomplete="off" value="<?=$jam_modal;?>">
+				<input type="time" aria-label="nomer" name="jam" id="nomer" class="form-control z-depth-1" autocomplete="off" value="<?php if(isset($_POST['submit_cari_mobil'])) { echo $jam_modal; } ?>">
 			</div>
 			<div class="col-md-2">
 				<button type="submit" name="submit_cari_mobil" class="btn btn-<?php if($table_name == "tb1"){

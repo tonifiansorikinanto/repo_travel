@@ -44,9 +44,29 @@ if(isset($_POST['submit'])){
 		}else{
 			$_SESSION['pass_supervisor'] = false;
 			$_SESSION['report_message'] = report_message("error", "Password Salah !");
+
+			$error_modal = '<script>
+		    $(document).ready(function(){
+		      $("#modalKonfirmSupervisor").modal("show");
+
+		      setTimeout(function(){
+		        $("#pass_sv").focus();
+		      }, 500);
+		    });
+		  </script>';
 		}
 	}else{
 		$_SESSION['report_message'] = report_message("error", "Data Harus Terisi !");
+
+		$error_modal = '<script>
+	    $(document).ready(function(){
+	      $("#modalKonfirmSupervisor").modal("show");
+
+	      setTimeout(function(){
+	        $("#pass_sv").focus();
+	      }, 500);
+	    });
+	  </script>';
 	}
 
 }
@@ -62,9 +82,29 @@ if(isset($_POST['submit_cs'])){
 		}else{
 			$_SESSION['pass_cs'] = false;
 			$_SESSION['report_message'] = report_message("error", "Password Salah !");
+
+			$error_modal = '<script>
+		    $(document).ready(function(){
+		      $("#modalCS").modal("show");
+
+		      setTimeout(function(){
+		        $("#pass_cs").focus();
+		      }, 500);
+		    });
+		  </script>';
 		}
 	}else{
 		$_SESSION['report_message'] = report_message("error", "Data Harus Terisi !");
+
+		$error_modal = '<script>
+	    $(document).ready(function(){
+	      $("#modalCS").modal("show");
+
+	      setTimeout(function(){
+	        $("#pass_cs").focus();
+	      }, 500);
+	    });
+	  </script>';
 	}
 
 }
@@ -90,6 +130,11 @@ if(isset($_POST['submit_mobil'])){
 				}
 			}else{
 				$_SESSION['report_message'] = report_message("error", "Data Tidak Boleh Kosong !");
+
+				$error_modal = '<script>
+			    $(document).ready(function(){
+			      $("#modalSelect").modal("show");
+			  </script>';
 			}
 
 		}else{
@@ -397,6 +442,10 @@ if(isset($_POST['delete_mobil'])){
 
 <?php 
 require_once 'assets/templates/footer.php'; 
+
+if(isset($error_modal)){
+	echo $error_modal;
+}
 
 }else{
 	header('Location: login-admin');

@@ -45,8 +45,30 @@
 				header('Location: edit-penumpang?tb=' . $tb . '&id_edit=' . $id . '');
 			}else{
 				$_SESSION['pass_supervisor'] = false;
-				echo("<script>alert('Error Saat Mengcek Password !')</script>");
+				$_SESSION['report_message'] = report_message("error", "Password Salah !");
+
+				$error_modal = '<script>
+			    $(document).ready(function(){
+			      $("#modalKonfirmSupervisor").modal("show");
+
+			      setTimeout(function(){
+			        $("#pass_sv").focus();
+			      }, 500);
+			    });
+			  </script>';
 			}
+		}else{
+			$_SESSION['report_message'] = report_message("error", "Data Harus Terisi !");
+
+			$error_modal = '<script>
+		    $(document).ready(function(){
+		      $("#modalKonfirmSupervisor").modal("show");
+
+		      setTimeout(function(){
+		        $("#pass_sv").focus();
+		      }, 500);
+		    });
+		  </script>';
 		}
 	}
 
@@ -62,8 +84,30 @@
 				// header('Location: tambah-penumpang?tb=' . $_GET['tb'] . '');
 			}else{
 				$_SESSION['pass_cs'] = false;
-				echo("<script>alert('Error Saat Mengcek Password !')</script>");
+				$_SESSION['report_message'] = report_message("error", "Password Salah !");
+
+				$error_modal = '<script>
+			    $(document).ready(function(){
+			      $("#modalCS").modal("show");
+
+			      setTimeout(function(){
+			        $("#pass_cs").focus();
+			      }, 500);
+			    });
+			  </script>';
 			}
+		}else{
+			$_SESSION['report_message'] = report_message("error", "Data Harus Terisi !");
+
+			$error_modal = '<script>
+		    $(document).ready(function(){
+		      $("#modalCS").modal("show");
+
+		      setTimeout(function(){
+		        $("#pass_cs").focus();
+		      }, 500);
+		    });
+		  </script>';
 		}
 	}
 
@@ -399,6 +443,10 @@ $('.dataTables_length').addClass('bs-select');
 
 <?php 
 require_once 'assets/templates/footer.php'; 
+
+if(isset($error_modal)){
+	echo $error_modal;
+}
 
 }else{
 	header('Location: login-admin');
