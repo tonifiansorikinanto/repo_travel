@@ -21,21 +21,25 @@
 
 </head>
 
-<!--Mask-->
-  <div id="intro" class="view">
-      <div class="mask rgba-stylish-strong">
-          <div class="container-fluid d-flex align-items-center justify-content-center h-100">
-              <div class="row d-flex justify-content-center text-center">
-                  <div class="col-md-12">
-                      <!-- Heading -->
-                      <h1 class="h1-responsive white-text pt-4 mb-2" style="letter-spacing: 2.5px;"><font face="title">Magi | Web Developer</font></h1>
-                      <!-- Divider -->
-                      <hr class="hr-light">
-                      <!-- Description -->
-                      <h5 class="white-text my-4">Admin</h5>
-                                          
-                  </div>
-              </div>
-          </div>
-      </div>
-  </div>
+
+<?php if($currentPage != "edit" && $currentPage != "tambah"){?>
+  <!--Mask-->
+    <div id="intro" class="view">
+        <div class="mask rgba-stylish-strong">
+            <div class="container-fluid d-flex align-items-center justify-content-center h-100">
+                <div class="row d-flex justify-content-center text-center">
+                    <div class="col-md-12">
+                        <!-- Heading -->
+                        <h1 class="h1-responsive white-text pt-4 mb-2" style="letter-spacing: 2.5px;"><font face="title">Magi | Web Developer</font></h1>
+                        <!-- Divider -->
+                        <hr class="hr-light">
+                        <!-- Description -->
+                        <h5 class="white-text my-4">Admin</h5>
+                                            
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+  <!--  -->
+<?php } else {}?>

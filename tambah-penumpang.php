@@ -1,6 +1,9 @@
 <?php 
 require_once 'core/system.php';
-require_once 'assets/templates/header.php'; 
+$currentPage = "tambah";
+require_once 'assets/templates/header.php';
+
+
 
 if(isset($_SESSION["user_access"])){
 

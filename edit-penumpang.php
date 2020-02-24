@@ -1,6 +1,9 @@
 <?php 
 require_once 'core/system.php';
+$currentPage = "edit";
 require_once 'assets/templates/header.php';
+
+
 
 $table_name = $_GET['tb'];
 

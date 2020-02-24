@@ -1,5 +1,6 @@
 <?php 
 require_once 'core/system.php';
+$currentPage = "admin-siluet";
 require_once 'assets/templates/header.php';
 
 $no1 = 1;
