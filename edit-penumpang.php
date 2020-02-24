@@ -295,7 +295,7 @@ if(isset($_SESSION['report_message'])){
 									</div>
 									<div class="col-md-6 mt-3">
 										<h4 class="h4-responsive">Special Price</h4>
-										<input type="text" aria-label="nomer" name="harga_khusus" id="nomer" class="form-control z-depth-1" autocomplete="off"  value="<?= $harga_khusus; ?>">
+										<input type="number" aria-label="nomer" name="harga_khusus" id="nomer" class="form-control z-depth-1" autocomplete="off"  value="<?= $harga_khusus; ?>">
 									</div>									
 									<div class="col-md-12 mt-3">
 										<h4 class="h4-responsive">Keterangan</h4>

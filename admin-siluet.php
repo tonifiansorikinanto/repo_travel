@@ -9,6 +9,8 @@ if(isset($_SESSION["user_access"])){
 
 $show_data_tbSiluet = show_data_tbSiluet();
 
+$show_alldata_mobil = show_alldata_mobil();
+
 if(isset($_GET['id'])){
 	$id_get = $_GET['id'];
 
@@ -88,6 +90,31 @@ if(isset($_POST['submit_mobil'])){
 				}
 			}else{
 				$_SESSION['report_message'] = report_message("error", "Data Tidak Boleh Kosong !");
+			}
+
+		}else{
+			$_SESSION['report_message'] = report_message("error", "Harus Memilih data !");
+		}
+
+	}
+
+}
+
+if(isset($_POST['delete_mobil'])){
+	if(!isset($_GET['id'])){
+		$_SESSION['report_message'] = report_message("error", "Harus Memilih data !");
+	}else{
+		$id_nomer = $_GET['id'];
+
+		if($id_nomer != ""){
+			
+			$text_mobil = "";
+
+			if(setKeteranganSiluet($text_mobil, $id_nomer)){
+				$_SESSION['report_message'] = report_message("success", "Sukses Mengatur Data ! ");
+				header("Location: admin-siluet?tb=" . $_GET['tb'] . "&id=" . $_GET['id']);
+			}else{
+				$_SESSION['report_message'] = report_message("error", "Error Saat Mengatur Data ! ");
 			}
 
 		}else{
@@ -196,11 +223,17 @@ if(isset($_POST['submit_mobil'])){
 	      </div>
 	      <form method="post" action="" name="">
 		      <div class="modal-body">
-				    <input type="text" aria-label="text_mobil" name="text_mobil" class="form-control" placeholder="Masukkan Keterangan Mobil..." id="text_mobil">
+				    <!-- <input type="text" aria-label="text_mobil" name="text_mobil" class="form-control" placeholder="Masukkan Keterangan Mobil..." id="text_mobil"> -->
+				    <select name="text_mobil" class="form-control">
+				    	<?php while($data_mobil = mysqli_fetch_assoc($show_alldata_mobil)): ?>
+				    		<option value="<?= $data_mobil['id_mobil']; ?>"><?= $data_mobil['mobil']; ?> (<?= $data_mobil['plat_nomor']; ?> • <?= $data_mobil['penumpang'] . " Penumpang"; ?>)</option>
+				    	<?php endwhile; ?>
+				    </select>
 			  	</div>
 		      <div class="modal-footer">
-		        <button type="button" class="btn btn-sm btn-warning" data-dismiss="modal" onclick="resetUrl()">Batal</button>
-		        <button role="button" class="btn btn-sm btn-danger" id="submit_mobil" name="submit_mobil">Submit</button>
+		        <button type="button" class="btn btn-sm btn-primary" data-dismiss="modal" onclick="resetUrl()">Batal</button>
+		        <button role="button" class="btn btn-sm btn-danger" name="delete_mobil">Hapus Mobil</button>
+		        <button role="button" class="btn btn-sm btn-success" id="submit_mobil" name="submit_mobil">Submit</button>
 		      </div>
 	      </form>
 	    </div>
@@ -269,6 +302,16 @@ if(isset($_POST['submit_mobil'])){
 					  <tbody>
 					  	<?php if(mysqli_num_rows($show_data_tbSiluet) > 0 ): ?>
 						    <?php while($data = mysqli_fetch_assoc($show_data_tbSiluet)): ?>
+
+						    <?php
+						    if($data['mobil'] != ""){
+						    	$data_mobil_set = true;
+						    }else{
+						    	$data_mobil_set = false;
+						    }
+						    ?>
+
+
 						    <tr style="cursor:pointer;" class="row_show">
 						      <td>
 						      	<input type="checkbox" onclick="set_id('<?= $data['id']; ?>', 'checkid<?= $no1; ?>', 'tb1')" class="check_input" id="checkid<?= $no1; ?>"
@@ -315,7 +358,12 @@ if(isset($_POST['submit_mobil'])){
 						    <tr class="align-items-center row_hidden" id="row<?= $no1++; ?>">
 						    	<td colspan="2"></td>
 						    	<td><b>Keterangan</b></td>
-						    	<td colspan="6"><?= $data['ket'].$data['mobil']; ?></td>
+						    	<td colspan="6">
+						    		<?= $data['ket']; ?>
+						    		<?php if($data_mobil_set == true): ?>
+						    			<?= ". Mobil = " . show_data_mobil($data['mobil']); ?>
+						    		<?php endif; ?>
+						    	</td>
 						    	<td colspan="1" class="text-right"><b>Aksi</b></td>
 						    	<td colspan="2">
 						      	<a href="#x" role="button" class="text-warning" data-toggle="modal" data-target="#modalKonfirmSupervisor" onclick="setEditParameter('tb1', '<?=$data['id']; ?>')">Edit</i></a>

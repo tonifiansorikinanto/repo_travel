@@ -45,6 +45,7 @@ $html = '
 	<link href="assets/css/print.css" rel="stylesheet">
 
   <style>
+
     body{
       font-size:10px;
     }
@@ -117,7 +118,7 @@ $html = '
         <td> ' . $data["nomer"] . '</td>
    			<td> ' . $dataLunas . '</td>
    			<td> ' . $data["harga_khusus"] . '</td>
-        <td style="text-align: left;"> ' . $data["ket"] . '</td>
+        <td style="text-align: left;">' . $data["ket"] . '</td>
    		</tr>
    		';
    	}
@@ -131,8 +132,156 @@ $html = '
 
 $html .= '
  	</tbody>
+ </table>';
+
+$html .= '
+  <table cellspacing="0" cellpadding="10" style="width:100%; margin-top:40px;">
+  <thead>
+    <tr style="background-color:#4C4C4C;">
+      <th style="color:#FFFFFF; width: 10px;">#</th>
+      
+      <th style="color:#FFFFFF; width: 10px;">Tgl Berangkat</th>
+      <th style="color:#FFFFFF; width: 10px;">Jam Berangkat</th>
+      <th style="color:#FFFFFF;">Tujuan</th>
+      <th style="color:#FFFFFF; width: 10px;">Jumlah Pnmpg</th>
+      <th style="color:#FFFFFF;">Nama</th>
+      <th style="color:#FFFFFF;">Alamat Jemput</th>
+      <th style="color:#FFFFFF; width: 100px;">Nomer HP</th>
+      <th style="color:#FFFFFF; width: 10px;">Lunas / BA</th>
+      <th style="color:#FFFFFF; width: 70px;">Harga Khusus</th>
+      <th style="color:#FFFFFF;">Keterangan</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr class="row_table">
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td style="text-align: left; height:20px;"></td>
+    </tr>
+    <tr class="row_table">
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td style="text-align: left; height:20px;"></td>
+    </tr>
+    <tr class="row_table">
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td style="text-align: left; height:20px;"></td>
+    </tr>
+
+    ';
+
+    if($nama_tabel == "Liza"){
+
+    $html .= '
+    <tr class="row_table">
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td style="text-align: left; height:20px;"></td>
+    </tr>
+    <tr class="row_table">
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td style="text-align: left; height:20px;"></td>
+    </tr>';
+  }
+
+$html .= '
+  </tbody>
  </table>
- <div class="row">
+';
+
+$html .= '
+  <table cellspacing="0" cellpadding="10" style="width:100%; margin-top:40px;">
+  <thead>
+    <tr style="background-color:#4C4C4C;">
+      <th style="color:#FFFFFF; width: 10px;">#</th>
+      
+      <th style="color:#FFFFFF; width: 10px;">Tgl Berangkat</th>
+      <th style="color:#FFFFFF; width: 10px;">Jam Berangkat</th>
+      <th style="color:#FFFFFF;">Tujuan</th>
+      <th style="color:#FFFFFF; width: 10px;">Jumlah Pnmpg</th>
+      <th style="color:#FFFFFF;">Nama</th>
+      <th style="color:#FFFFFF;">Alamat Jemput</th>
+      <th style="color:#FFFFFF; width: 100px;">Nomer HP</th>
+      <th style="color:#FFFFFF; width: 10px;">Lunas / BA</th>
+      <th style="color:#FFFFFF; width: 70px;">Harga Khusus</th>
+      <th style="color:#FFFFFF;">Keterangan</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr class="row_table">
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td style="text-align: left; height:20px;"></td>
+    </tr>
+    <tr class="row_table">
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td style="text-align: left; height:20px;"></td>
+    </tr>
+  </tbody>
+ </table>
+';
+
+
+$html .= '<div class="row">
   <div class="col-ttd" align="center">
     <h3>Malang, ___ ____________ _____</h3>
     <h3 style="margin-bottom: 80px; margin-top: 1px; padding-top: 1px;">Petugas Penerima</h3>
