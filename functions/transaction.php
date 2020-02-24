@@ -1,5 +1,14 @@
 <?php
 
+function show_alldata_mobil(){
+	global $connect;
+
+	$query 	= "SELECT * FROM tb_mobil";
+	$result = mysqli_query($connect, $query);
+
+	return $result;
+}
+
 function show_data_tbSiluet(){
 	global $connect;
 
