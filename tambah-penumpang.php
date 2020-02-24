@@ -131,8 +131,73 @@ if(isset($_SESSION['report_message'])){
 
 ?>
 
+<div class="modal fade" id="modalKetersediaan" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true" style="z-index:99999999;">
+  <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Cek Mobil</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+      	<form method="post" action="">
+      	<div class="row align-items-center justify-content-center">
+	        <div class="col-md-4">
+				<h4 class="h4-responsive">Tanggal Berangkat</h4>
+				<input type="date" aria-label="nomer" name="tgl" id="tgl" class="form-control z-depth-1">
+			</div>
+			<div class="col-md-3">
+				<h4 class="h4-responsive">Jam Berangkat</h4>
+				<input type="time" aria-label="nomer" name="jam" id="nomer" class="form-control z-depth-1" autocomplete="off">
+			</div>
+			<div class="col-md-2">
+				<button type="submit" name="submit_cari_mobil" class="btn btn-<?php if($table_name == "tb1"){
+					  	echo('warning');
+					  }else{
+					  	echo('info');
+					  }?>
+				btn-md" style="width: 80px;">Cek</button>
+			</div>
+			</form>
+			<?php if(isset($_POST['submit_cari_mobil'])){?>
+				<div class="col-md-6 mt-4">
+					<table class="table">
+					  <thead class="<?php if($table_name == "tb1"){
+					  	echo('warning-color');
+					  }else{
+					  	echo('info-color');
+					  }?>
+					  white-text">
+					    <tr>
+					      <th scope="col" style="vertical-align: middle;" width="10px">#</th>
+					      <th scope="col" style="vertical-align: middle;">Mobil</th>
+					      <th scope="col" style="vertical-align: middle;">Plat</th>
+					      <th scope="col" style="vertical-align: middle; text-align: center;" width="10px">Seat Tersedia</th>					      
+					    </tr>
+					  </thead>
+					  <tbody>
+					    <tr>
+					      <th scope="row">1</th>
+					      <td>Mark</td>
+					      <td>Otto</td>
+					      <td class="text-center">Otto</td>					      
+					    </tr>					    
+					  </tbody>
+					</table>
+				</div>
+			<?php } ?>
+		</div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-md btn-warning" data-dismiss="modal">Tutup</button>        
+      </div>
+    </div>
+  </div>
+</div>
+
 <div class="container">
-	<div class="row justify-content-center mt-3
+	<div class="row justify-content-center
 	 <?php
 		if ($table_name =='tb1') {
 			echo "text-warning";
@@ -140,23 +205,26 @@ if(isset($_SESSION['report_message'])){
 			echo "text-info";
 		}
 	?>">
-		<div class="col-md-11">
-			<h1 class="h1-responsive"> Tambah Penumpang 
-					<?php
-						if ($table_name =='tb1') {
-							echo "Siluet";
-						} else {
-							echo "Liza";							
-						}
-					?>					
-				</h1>
+		<div class="col-md-11 mt-2">
+			
 
-			<div class="row mt-4 justify-content-center">
-	  			<div align="center" class="col-md-3">
-						<h4 class="h4-responsive">Cari Nomer HP</h4>
+			<div class="row align-items-center">
+				<div class="col-md-7">
+					<h1 class="h1-responsive"> Tambah Penumpang 
+						<?php
+							if ($table_name =='tb1') {
+								echo "Siluet";
+							} else {
+								echo "Liza";							
+							}
+						?>					
+					</h1>
+				</div>
+	  			<div align="center" class="offset-md-1 col-md-3">
+					<h4 class="h4-responsive">Cari Nomer HP</h4>
 
-						<input class="form-control z-depth-1 text-center" type="text" aria-label="" name="cari-data" autocomplete="off" spellcheck="false" placeholder="input nomer.." style="width: 100%;" maxlength="13" id="cari_nomer" value="<?php if(isset($cari_data)){ echo $cari_data; }?>" onkeypress="if(event.keyCode == 13){ setSearchParameter('<?= $table_name ?>'); }">
-	  			</div>
+					<input class="form-control z-depth-1 text-center" type="text" aria-label="" name="cari-data" autocomplete="off" spellcheck="false" placeholder="input nomer.." style="width: 100%;" maxlength="13" id="cari_nomer" value="<?php if(isset($cari_data)){ echo $cari_data; }?>" onkeypress="if(event.keyCode == 13){ setSearchParameter('<?= $table_name ?>'); }">					
+	  			</div>	  			
 		  	</div>			
             
 			<form method="post" action="">
@@ -186,8 +254,10 @@ if(isset($_SESSION['report_message'])){
 									</div>
 									<div class="col-md-12 mb-2">
 										<textarea class="form-control z-depth-1" name="alamat" style="height: 100px;" id="exampleFormControlTextarea6"><?php if(isset($cari_data) && isset($alamatOri)){ echo $alamatOri; } ?></textarea>
-									</div>
+									</div>			
+
 									<hr class="mb-3" style="width: 95%;">
+
 									<div class="col-md-12">
 										<h4 class="h4-responsive">Alamat Jemput</h4>
 									</div>									
@@ -216,8 +286,11 @@ if(isset($_SESSION['report_message'])){
 									<div class="col-md-3 mt-1">
 										<h6 class="h6-responsive">Jumlah Penumpang</h6>
 										<input type="number" aria-label="nama" name="penumpang" id="nama" class="form-control z-depth-1" autocomplete="off">
-									</div>																		
-									<div class="col-md-12 text-center mt-3">
+									</div>
+									<div class="col-md-12 mt-2" align="right">
+										<button class="btn btn-info btn-md" type="button" data-toggle="modal" data-target="#modalKetersediaan" style="width: 130px;">Cek Mobil</button>
+									</div>			
+									<div class="col-md-12 text-center mt-1">
 										<h4 class="h4-responsive">Tujuan (Isi Salah Satu)</h4>
 									</div>
 									<div class="col-md-6 mt-1">
@@ -256,20 +329,21 @@ if(isset($_SESSION['report_message'])){
 									<div class="col-md-12">
 										<textarea class="form-control z-depth-1" name="ket" style="height: 100px;" id="exampleFormControlTextarea6"></textarea>
 									</div>
-
 								</div>
+
+								<div class="mt-3" align="right">
+						  			<button type="submit" name="submit_input" class="btn btn-primary btn-md" style="width: 130px;" onclick="return confirm('Lanjut Tambah Data Penumpang ?')">Tambah Data</button>
+
+						  			<?php if($table_name == "tb1"): ?>
+						  				<a type="button" class="btn btn-info btn-md" href="admin-siluet" style="width: 130px;">Kembali</a>
+						  			<?php else: ?>
+						  				<a type="button" class="btn btn-info btn-md" href="admin-liza" style="width: 130px;">Kembali</a>
+						  			<?php endif; ?>
+					  			</div>
 							</div>		                  
 						</div>
 						
-						<div align="right" class="mt-5 mb-4">
-			  			<button type="submit" name="submit_input" class="btn btn-primary btn-md" style="width: 130px;" onclick="return confirm('Lanjut Tambah Data Penumpang ?')">Tambah Data</button>
-
-			  			<?php if($table_name == "tb1"): ?>
-			  				<a type="button" class="btn btn-info btn-md" href="admin-siluet" style="width: 130px;">Kembali</a>
-			  			<?php else: ?>
-			  				<a type="button" class="btn btn-info btn-md" href="admin-liza" style="width: 130px;">Kembali</a>
-			  			<?php endif; ?>
-			  			</div>
+						
 					</div>
 				</div>				
 			</form>

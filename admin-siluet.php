@@ -196,8 +196,8 @@ if(isset($_POST['submit_mobil'])){
 	      </div>
 	      <form method="post" action="" name="">
 		      <div class="modal-body">
-				    <input type="text" aria-label="text_mobil" name="text_mobil" class="form-control" placeholder="Masukkan Keterangan Mobil..." id="text_mobil">
-			  	</div>
+			     <input type="text" aria-label="text_mobil" name="text_mobil" class="form-control" placeholder="Masukkan Keterangan Mobil..." id="text_mobil">
+			  </div>
 		      <div class="modal-footer">
 		        <button type="button" class="btn btn-sm btn-warning" data-dismiss="modal" onclick="resetUrl()">Batal</button>
 		        <button role="button" class="btn btn-sm btn-danger" id="submit_mobil" name="submit_mobil">Submit</button>

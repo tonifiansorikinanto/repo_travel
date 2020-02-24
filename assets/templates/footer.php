@@ -1,4 +1,4 @@
-<div class="container-fluid">
+<div class="container-fluid sticky-bottom">
   <div class="row text-center">
     <div class="col-md-12 py-2">
       <h6 class="h6-responsive">Developed by <a href="">Magi Web Dev</a> © 2020</h6>
