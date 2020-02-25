@@ -155,11 +155,26 @@ function add_data_tbSiluet($nomer, $nama, $alamat, $jemput, $tgl, $jam, $tujuan,
 	$harga_khusus = escape($harga_khusus);
 	$ket 					= escape($ket);
 
-	$query = "INSERT INTO tb_siluet (nomer, nama, alamat, jemput, tanggal, jam, tujuan, penumpang, lunas, harga_khusus, ket) VALUES 
-	('$nomer', '$nama', '$alamat', '$jemput', '$tgl', '$jam', '$tujuan', '$penumpang', '$lunas', '$harga_khusus', '$ket')";
-	$result = mysqli_query($connect, $query);
+	if($penumpang > 1){
 
-	return $result;
+		for($x = 1; $x <= $penumpang; $x++){
+			$query = "INSERT INTO tb_siluet (nomer, nama, alamat, jemput, tanggal, jam, tujuan, penumpang, lunas, harga_khusus, ket) VALUES 
+			('$nomer', '$nama', '$alamat', '$jemput', '$tgl', '$jam', '$tujuan', '$penumpang', '$lunas', '$harga_khusus', '$ket')";
+
+			mysqli_query($connect, $query);
+		}
+
+		return true;
+
+	}else{
+
+		$query = "INSERT INTO tb_siluet (nomer, nama, alamat, jemput, tanggal, jam, tujuan, penumpang, lunas, harga_khusus, ket) VALUES 
+		('$nomer', '$nama', '$alamat', '$jemput', '$tgl', '$jam', '$tujuan', '$penumpang', '$lunas', '$harga_khusus', '$ket')";
+		$result = mysqli_query($connect, $query);
+
+		return $result;
+
+	}
 }
 
 function add_data_tbLiza($nomer, $nama, $alamat, $jemput, $tgl, $jam, $tujuan, $penumpang, $lunas, $harga_khusus, $ket){
@@ -168,16 +183,34 @@ function add_data_tbLiza($nomer, $nama, $alamat, $jemput, $tgl, $jam, $tujuan, $
 	$nomer 				= escape($nomer);
 	$nama 				= escape($nama);
 	$alamat 			= escape($alamat);
+	$jemput 			= escape($jemput);
 	$tgl 					= escape($tgl);
 	$jam 					= escape($jam);
 	$tujuan 			= escape($tujuan);
+	$penumpang 		= escape($penumpang);
 	$lunas 				= escape($lunas);
 	$harga_khusus = escape($harga_khusus);
+	$ket 					= escape($ket);
 
-	$query = "INSERT INTO tb_liza (nomer, nama, alamat, jemput, tanggal, jam, tujuan, penumpang, lunas, harga_khusus, ket) VALUES ('$nomer', '$nama', '$alamat', '$jemput', '$tgl', '$jam', '$tujuan', '$penumpang', '$lunas', '$harga_khusus', '$ket')";
-	$result = mysqli_query($connect, $query);
+	if($penumpang > 1){
 
-	return $result;
+		for($x = 1; $x <= $penumpang; $x++){
+			$query = "INSERT INTO tb_liza (nomer, nama, alamat, jemput, tanggal, jam, tujuan, penumpang, lunas, harga_khusus, ket) VALUES 
+			('$nomer', '$nama', '$alamat', '$jemput', '$tgl', '$jam', '$tujuan', '$penumpang', '$lunas', '$harga_khusus', '$ket')";
+
+			mysqli_query($connect, $query);
+		}
+
+		return true;
+
+	}else{
+
+		$query = "INSERT INTO tb_liza (nomer, nama, alamat, jemput, tanggal, jam, tujuan, penumpang, lunas, harga_khusus, ket) VALUES ('$nomer', '$nama', '$alamat', '$jemput', '$tgl', '$jam', '$tujuan', '$penumpang', '$lunas', '$harga_khusus', '$ket')";
+		$result = mysqli_query($connect, $query);
+
+		return $result;
+
+	}
 }
 
 
