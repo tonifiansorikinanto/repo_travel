@@ -290,7 +290,8 @@ if(isset($_POST['delete_mobil'])){
 	<nav class="navbar navbar-dark warning-color justify-content-between" style="position: sticky; top: 0; z-index: 10; padding-right: 25px;">
 	  <h2 class="navbar-brand h2-responsive my-0" href="#">Database Travel</h2>
 		<h6 class="h6-responsive my-0 ml-auto text-white" href="#">Selamat Datang, <?= $nama; ?>!</h6>
-	  <button class="btn btn-danger btn-md ml-3 my-0" type="button" data-toggle="modal" data-target="#modalLogout">logout</button>
+	  <button class="btn btn-danger btn-md ml-4 my-0" type="button" data-toggle="modal" data-target="#modalLogout">logout</button>
+	  <a role="button" class="btn btn-primary btn-md my-0" href="data-mobil-siluet">Data Mobil Siluet</a>
 	</nav>	
 
 	<?php
