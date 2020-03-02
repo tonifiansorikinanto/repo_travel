@@ -1,9 +1,18 @@
 <?php
 
-function show_alldata_mobil(){
+function show_alldata_mobil_siluet(){
 	global $connect;
 
-	$query 	= "SELECT * FROM tb_mobil";
+	$query 	= "SELECT * FROM tb_mobil_siluet";
+	$result = mysqli_query($connect, $query);
+
+	return $result;
+}
+
+function show_alldata_mobil_liza(){
+	global $connect;
+
+	$query 	= "SELECT * FROM tb_mobil_liza";
 	$result = mysqli_query($connect, $query);
 
 	return $result;

@@ -258,7 +258,7 @@ if(isset($_SESSION['report_message'])){
 										<h4 class="h4-responsive">Nama</h4>
 									</div>
 									<div class="col-md-12">
-										<input type="text" aria-label="nama" name="nama" id="nama" class="form-control z-depth-1" autocomplete="off"  value="<?php if(isset($cari_data) && isset($namaOri)){ echo $namaOri; } ?>">
+										 
 									</div>
 
 									<div class="col-md-12 mt-3">

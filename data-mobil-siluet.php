@@ -3,15 +3,16 @@
 	$currentPage = "data-mobil-siluet";
 	require_once 'assets/templates/header.php';
 
-	$query_id = $_SESSION['user_access'];
-	$query = "SELECT * FROM tb_admin WHERE username='$query_id'";
-	$result = mysqli_query($connect, $query);
-	while($row = mysqli_fetch_assoc($result)){
-	    $nama = $row['nama'];   
-	}	
-
 	if(isset($_SESSION["user_access"])){
-		
+		$no = 1;	
+		$data_mobil = show_alldata_mobil();
+
+		$query_id = $_SESSION['user_access'];
+		$query = "SELECT * FROM tb_admin WHERE username='$query_id'";
+		$result = mysqli_query($connect, $query);
+		while($row = mysqli_fetch_assoc($result)){
+		    $nama = $row['nama'];   
+		}		
 ?>
 
 <div class="modal fade" id="modalLogout" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true" style="z-index:99999999;">
@@ -144,12 +145,19 @@
 			  </thead>
 			  <tbody>
 			    <tr>
-			      <th scope="row">1</th>
-			      <td>Mark</td>
-			      <td>Otto</td>
-			      <td class="text-center">Otto</td>
-			      <td class="text-center" style="width: 100px;"><a href="#x" role="button" class="text-warning" data-toggle="modal" data-target="#modalAddMobil" onclick="setEditParameter('tb1', '<?=$data['id']; ?>')">Edit</i></a>
-				  | <a href="#x" role="button" class="text-danger" data-toggle="modal" data-target="#modalDelete" onclick="setDeleteParameter('tb1', '<?=$data['id']; ?>')">Hapus</a></td>					      
+				      <?php
+			      		if(mysqli_num_rows($data_mobil) > 0){
+			      			while($data = mysqli_fetch_assoc($data_mobil)){		
+				      ?>
+				      <th scope="row"><?=$no1++;?></th>
+				      <td><?=$data['mobil'];?></td>
+				      <td><?=$data['plat'];?></td>
+				      <td class="text-center"><?=$data['penumpang'];?></td>
+				      <td class="text-center" style="width: 100px;"><a href="#x" role="button" class="text-warning" data-toggle="modal" data-target="#modalAddMobil" onclick="setEditParameter('tb1', '<?=$data['id']; ?>')">Edit</i></a>
+					  | <a href="#x" role="button" class="text-danger" data-toggle="modal" data-target="#modalDelete" onclick="setDeleteParameter('tb1', '<?=$data['id']; ?>')">Hapus</a></td>
+					  <?php } } else { ?>
+						 <td colspan="5" class="text-center"><b>Tidak ada data !</b></td>
+					  <?php } ?>
 			    </tr>					    
 			  </tbody>
 			</table>

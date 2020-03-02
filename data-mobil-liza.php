@@ -3,15 +3,16 @@
 	$currentPage = "data-mobil-liza";
 	require_once 'assets/templates/header.php';
 
-	$query_id = $_SESSION['user_access'];
-	$query = "SELECT * FROM tb_admin WHERE username='$query_id'";
-	$result = mysqli_query($connect, $query);
-	while($row = mysqli_fetch_assoc($result)){
-	    $nama = $row['nama'];   
-	}	
-
 	if(isset($_SESSION["user_access"])){
-		
+		$no = 1;	
+		$data_mobil = show_alldata_mobil();
+
+		$query_id = $_SESSION['user_access'];
+		$query = "SELECT * FROM tb_admin WHERE username='$query_id'";
+		$result = mysqli_query($connect, $query);
+		while($row = mysqli_fetch_assoc($result)){
+		    $nama = $row['nama'];   
+		}		
 ?>
 
 <div class="modal fade" id="modalLogout" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true" style="z-index:99999999;">
