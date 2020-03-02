@@ -76,6 +76,20 @@ if (isset($_POST['submit_cari_mobil'])) {
 	$year 		= substr($tgl_cari, 6, 4);
 
 	$tgl_modal 	= $year . "-" . $month . "-" . $day;
+
+	$cek_mobil_siluet = cek_mobil_siluet($jam_modal, $tgl_cari);
+
+	$sum_seat_use_mobil_siluet = sum_seat_use_mobil_siluet($jam_modal, $tgl_cari);
+	if($sum_seat_use_mobil_siluet == ''){
+		$sum_seat_use_mobil_siluet = 0;
+	}
+	$sum_seat_mobil_siluet = sum_seat_mobil_siluet();
+	if($sum_seat_mobil_siluet == ''){
+		$sum_seat_mobil_siluet = 0;
+	}
+
+	$min_seat_total = $sum_seat_mobil_siluet - $sum_seat_use_mobil_siluet;
+	
 }
 
 
@@ -173,30 +187,50 @@ if(isset($_SESSION['report_message'])){
 			</div>
 			</form>
 			<?php if(isset($_POST['submit_cari_mobil'])){?>
-				<div class="col-md-6 mt-4">
-					<table class="table">
-					  <thead class="<?php if($table_name == "tb1"){
-					  	echo('warning-color');
-					  }else{
-					  	echo('info-color');
-					  }?>
-					  white-text">
-					    <tr>
-					      <th scope="col" style="vertical-align: middle;" width="10px">#</th>
-					      <th scope="col" style="vertical-align: middle;">Mobil</th>
-					      <th scope="col" style="vertical-align: middle;">Plat</th>
-					      <th scope="col" style="vertical-align: middle; text-align: center;" width="10px">Seat Tersedia</th>					      
-					    </tr>
-					  </thead>
-					  <tbody>
-					    <tr>
-					      <th scope="row">1</th>
-					      <td>Mark</td>
-					      <td>Otto</td>
-					      <td class="text-center">Otto</td>					      
-					    </tr>					    
-					  </tbody>
-					</table>
+				<div class="col-md-8 mt-4" align="center">
+					<h4 class="h4-responsive">Jumlah Seat Dipesan (<?= $sum_seat_use_mobil_siluet; ?>) • Total Seat Tersedia (<?= $min_seat_total; ?>)</h4>
+
+					<div class="box_table">
+						<table class="table">
+						  <thead class="<?php if($table_name == "tb1"){
+						  	echo('warning-color');
+						  }else{
+						  	echo('info-color');
+						  }?>
+						  white-text">
+						    <tr>
+						      <th scope="col" style="vertical-align: middle;" width="10px">#</th>
+						      <th scope="col" style="vertical-align: middle;">Mobil</th>
+						      <th scope="col" style="vertical-align: middle;">Plat</th>
+						      <th scope="col" style="vertical-align: middle; text-align: center;" width="10px">Seat Tersedia</th>
+						    </tr>
+						  </thead>
+						  <tbody>
+						  	<?php if($_GET['tb'] == 'tb1'): ?>
+						  	<?php 
+						  	if(mysqli_num_rows($cek_mobil_siluet) > 0){
+						  	while($data = mysqli_fetch_assoc($cek_mobil_siluet)): 
+						  	?>
+						    <tr>
+						      <th scope="row">1</th>
+						      <td><?= $data['mobil'] ?></td>
+						      <td><?= $data['plat_nomor'] ?></td>
+						      <td class="text-center"><?= $data['penumpang'] - $data['seat_use']; ?></td>					      
+						    </tr>
+							  <?php 
+								endwhile; 
+								}else{
+								?>
+
+								<tr><td colspan="4" class="text-center">Tidak ada data !</td></tr>
+								<?php } ?>
+							 <?php else: ?>
+							<?php endif; ?>
+						  </tbody>
+						</table>
+					</div>
+
+					<h6 class="h6-responsive mt-4 text-right">*Data di tabel termasuk mobil yang belum di jadwalkan</h6>
 				</div>
 			<?php } ?>
 		</div>
@@ -258,7 +292,7 @@ if(isset($_SESSION['report_message'])){
 										<h4 class="h4-responsive">Nama</h4>
 									</div>
 									<div class="col-md-12">
-										 
+										<input type="text" name="nama" id="nama" class="form-control z-depth-1" value="<?php if(isset($cari_data) && isset($namaOri)){ echo $namaOri; } ?>"> 
 									</div>
 
 									<div class="col-md-12 mt-3">

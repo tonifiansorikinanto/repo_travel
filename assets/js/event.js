@@ -13,6 +13,10 @@ function setDeleteParameter(data1, data2){
 	button_delete.href = "delete_data.php?tb=" + data1 + "&" + "nomer=" + data2;
 }
 
+function setDeleteParameterMobil(data1, data2){
+	button_delete.href = "delete_data.php?tb=" + data1 + "&" + "id_mobil=" + data2;
+}
+
 function setInputParameter(data1){
 	setTimeout(function(){ document.getElementById("pass_cs").focus(); }, 500);
 
@@ -29,6 +33,16 @@ function setEditParameter(data1, data2){
 		id : 'homepage'
 	}, 'Home | My App', currentUrl + "?tb=" + data1 + "&" + "id_edit=" + data2);
 	//button_edit.href = "edit-penumpang.php?tb=" + data1 + "&" + "nomer=" + data2;
+}
+
+function setEditParameterMobil(data1, data2, data3, data4, data5){	
+	document.getElementById("mobil_edit").value = data1;
+	document.getElementById("plat_edit").value = data2;
+	document.getElementById("seat_edit").value = data3;
+
+	history.pushState({
+		id : 'homepage'
+	}, 'Home | My App', currentUrl + "?tb=" + data4 + "&" + "id_edit=" + data5);
 }
 
 function setSearchParameter(data1){

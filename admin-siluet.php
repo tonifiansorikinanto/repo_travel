@@ -9,7 +9,7 @@ if(isset($_SESSION["user_access"])){
 
 $show_data_tbSiluet = show_data_tbSiluet();
 
-$show_alldata_mobil = show_alldata_mobil();
+$show_alldata_mobil = show_alldata_mobil_siluet();
 
 if(isset($_GET['id'])){
 	$id_get = $_GET['id'];

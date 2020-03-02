@@ -271,3 +271,12 @@ input[type="checkbox"]:before{
   -ms-user-select: none;
   -o-user-select: none;
 }
+
+.box_table{
+  display:block;
+  width:100%; height:220px;
+  box-sizing: border-box;
+  overflow-y: scroll;
+  padding-right:10px;
+  padding-left: 10px;
+}

@@ -5,14 +5,55 @@
 
 	if(isset($_SESSION["user_access"])){
 		$no = 1;	
-		$data_mobil = show_alldata_mobil();
+		$data_mobil = show_alldata_mobil_siluet();
 
 		$query_id = $_SESSION['user_access'];
 		$query = "SELECT * FROM tb_admin WHERE username='$query_id'";
 		$result = mysqli_query($connect, $query);
 		while($row = mysqli_fetch_assoc($result)){
 		    $nama = $row['nama'];   
-		}		
+		}
+
+		$sum_seat_mobil_siluet = sum_seat_mobil_siluet();
+
+	if (isset($_POST['add_mobil'])){
+		$mobil = $_POST['mobil'];
+		$plat = $_POST['plat'];
+		$seat = $_POST['seat'];
+
+		if (!empty(trim($mobil)) && !empty(trim($plat)) && !empty(trim($seat))){
+			if (add_mobil_siluet($mobil, $plat, $seat)){
+				$_SESSION['report_message'] = report_message("success", "Berhasil Menambahkan Data ke Tabel Mobil Siluet");
+				header("Refresh:3.1; URL=data-mobil-siluet");
+			} else {
+				$_SESSION['report_message'] = report_message("error", "Gagal Menambahkan Data ke Tabel Mobil Siluet");
+				header("Refresh:3.1; URL=data-mobil-siluet");
+			}
+		} else {
+			$_SESSION['report_message'] = report_message("error", "Data harus diisi semua!");
+			header("Refresh:3.1; URL=data-mobil-siluet");
+		}
+	}
+
+	if (isset($_POST['edit_mobil'])){
+		$id = $_GET['id_edit'];
+		$mobil = $_POST['mobil_edit'];
+		$plat = $_POST['plat_edit'];
+		$seat = $_POST['seat_edit'];
+
+		if (!empty(trim($id)) && !empty(trim($mobil)) && !empty(trim($plat)) && !empty(trim($seat))){
+			if (edit_mobil_siluet($id, $mobil, $plat, $seat)){
+				$_SESSION['report_message'] = report_message("success", "Berhasil edit mobil" . $mobil);
+				header("Refresh:3.1; URL=data-mobil-siluet");
+			} else {
+				$_SESSION['report_message'] = report_message("error", "Gagal edit mobil" . $mobil);
+				header("Refresh:3.1; URL=data-mobil-siluet");
+			}
+		} else {
+			$_SESSION['report_message'] = report_message("error", "Data harus diisi semua!");
+			header("Refresh:3.1; URL=data-mobil-siluet");
+		}
+	}
 ?>
 
 <div class="modal fade" id="modalLogout" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true" style="z-index:99999999;">
@@ -66,7 +107,7 @@
 			      			<input type="text" aria-label="plat" name="plat" id="plat" class="form-control z-depth-1" autocomplete="off">
 			      		</div>
 			      		<div class="col-md-3">
-			      			<input type="text" aria-label="seat" name="seat" id="seat" class="form-control z-depth-1" autocomplete="off">
+			      			<input type="number" aria-label="seat" name="seat" id="seat" class="form-control z-depth-1" autocomplete="off">
 			      		</div>			      		
 			      	</div>
 			    </div>
@@ -75,7 +116,54 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-md btn-warning" data-dismiss="modal">Tutup</button>
-        <button type="submit" class="btn btn-md btn-info">Tambah</button>       
+        <button type="submit" name="add_mobil" class="btn btn-md btn-info">Tambah</button>       
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="modalEditMobil" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true" style="z-index:99999999;">
+  <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Edit Mobil Liza</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+      	<div class="container">
+      		<form method="post" action="">
+	      	<div class="row justify-content-center">
+	      		<div class="col-md-10">
+	      			<div class="row">	      				
+			      		<div class="col-md-6">
+			      			<h4 class="h4-responsive">Mobil</h4>
+			      		</div>
+			      		<div class="col-md-3">
+			      			<h4 class="h4-responsive">Plat</h4>
+			      		</div>
+			      		<div class="col-md-3">
+			      			<h4 class="h4-responsive">Seat</h4>
+			      		</div>			      		
+			      		<div class="col-md-6">
+			      			<input type="text" aria-label="mobil" name="mobil_edit" id="mobil_edit" class="form-control z-depth-1" autocomplete="off">
+			      		</div>
+			      		<div class="col-md-3">
+			      			<input type="text" aria-label="plat" name="plat_edit" id="plat_edit" class="form-control z-depth-1" autocomplete="off">
+			      		</div>
+			      		<div class="col-md-3">
+			      			<input type="number" aria-label="seat" name="seat_edit" id="seat_edit" class="form-control z-depth-1" autocomplete="off">
+			      		</div>			      		
+			      	</div>
+			    </div>
+	      	</div>
+	    </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-md btn-warning" data-dismiss="modal">Tutup</button>
+        <button type="submit" class="btn btn-md btn-info" name="edit_mobil">Simpan</button>       
         </form>
       </div>
     </div>
@@ -92,7 +180,7 @@
         </button>
       </div>
       <div class="modal-body">
-        Anda yakin ingin menghapus data penumpang ini?
+        Anda yakin ingin menghapus data mobil ini?
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-sm btn-warning" data-dismiss="modal">Tidak</button>
@@ -101,6 +189,15 @@
     </div>
   </div>
 </div>
+
+<?php
+
+if(isset($_SESSION['report_message'])){
+	echo $_SESSION['report_message'];
+	unset($_SESSION['report_message']);
+}
+
+?>
 
 <div class="container-fluid" style="padding-left: 0px; padding-right: 0px;">
 
@@ -118,7 +215,8 @@
 
 	<div class="row my-4 justify-content-center text-center">
 		<div class="col-md-4 text-warning">
-			<h5 class="h5-responsive">Total Seat (10)</h5>
+
+			<h5 class="h5-responsive">Total Seat (<?= $sum_seat_mobil_siluet; ?>)</h5>
 		</div>
 		<div class="col-md-4">
 			<a class="h5-responsive text-warning" data-toggle="modal" data-target="#modalAddMobil"><i class="fas fa-car"></i> Tambah Mobil</a>
@@ -144,24 +242,27 @@
 			    </tr>
 			  </thead>
 			  <tbody>
-			    <tr>
 				      <?php
 			      		if(mysqli_num_rows($data_mobil) > 0){
 			      			while($data = mysqli_fetch_assoc($data_mobil)){		
 				      ?>
-				      <th scope="row"><?=$no1++;?></th>
+				      <tr>
+				      <th scope="row"><?=$no++;?></th>
 				      <td><?=$data['mobil'];?></td>
-				      <td><?=$data['plat'];?></td>
+				      <td><?=$data['plat_nomor'];?></td>
 				      <td class="text-center"><?=$data['penumpang'];?></td>
-				      <td class="text-center" style="width: 100px;"><a href="#x" role="button" class="text-warning" data-toggle="modal" data-target="#modalAddMobil" onclick="setEditParameter('tb1', '<?=$data['id']; ?>')">Edit</i></a>
-					  | <a href="#x" role="button" class="text-danger" data-toggle="modal" data-target="#modalDelete" onclick="setDeleteParameter('tb1', '<?=$data['id']; ?>')">Hapus</a></td>
+				      <td class="text-center" style="width: 100px;"><a href="#x" role="button" class="text-warning" data-toggle="modal" data-target="#modalEditMobil" onclick="setEditParameterMobil('<?=$data['mobil']; ?>', '<?=$data['plat_nomor']; ?>', '<?=$data['penumpang']; ?>', 'tb1', '<?=$data['id_mobil']; ?>')">Edit</i></a>
+					  | <a href="#x" role="button" class="text-danger" data-toggle="modal" data-target="#modalDelete"  onclick="setDeleteParameterMobil('tb1', '<?=$data['id_mobil']; ?>')">Hapus</a></td>
+					  </tr>
 					  <?php } } else { ?>
+					  	<tr>
 						 <td colspan="5" class="text-center"><b>Tidak ada data !</b></td>
+						 </tr>
 					  <?php } ?>
-			    </tr>					    
 			  </tbody>
 			</table>
 		</div>
+
 	</div>
 
 </div>

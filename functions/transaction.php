@@ -1,5 +1,142 @@
 <?php
 
+function cek_mobil_siluet($jam_modal, $tgl_cari){
+	global $connect;
+
+	$query 	= "SELECT * FROM tb_jadwal_siluet, tb_mobil_siluet WHERE tb_jadwal_siluet.tanggal LIKE '%$tgl_cari%' AND tb_jadwal_siluet.jam LIKE '%$jam_modal%' 
+				AND tb_jadwal_siluet.id_mobil = tb_mobil_siluet.id_mobil";
+	$result = mysqli_query($connect, $query);
+
+	return $result;
+}
+
+function cek_mobil_liza(){
+	global $connect;
+
+	$query 	= "SELECT * FROM tb_mobil_liza";
+	$result = mysqli_query($connect, $query);
+
+	return $result;
+}
+
+
+function edit_mobil_siluet($id, $mobil, $plat, $seat){
+	global $connect;
+
+	$id = escape($id);
+	$mobil = escape($mobil);
+	$plat = escape($plat);
+	$seat = escape($seat);
+
+	$query = "UPDATE tb_mobil_siluet SET mobil='$mobil', plat_nomor='$plat', penumpang='$seat' WHERE id_mobil='$id'";
+	$result = mysqli_query($connect, $query);
+
+	return $result;
+}
+
+function edit_mobil_liza($id, $mobil, $plat, $seat){
+	global $connect;
+
+	$id = escape($id);
+	$mobil = escape($mobil);
+	$plat = escape($plat);
+	$seat = escape($seat);
+
+	$query = "UPDATE tb_mobil_liza SET mobil='$mobil', plat_nomor='$plat', penumpang='$seat' WHERE id_mobil='$id'";
+	$result = mysqli_query($connect, $query);
+
+	return $result;
+}
+
+function delete_data_mobilSiluet($id_mobil){
+	global $connect;
+
+	$id_mobil = escape($id_mobil);
+	$query 	= "DELETE FROM tb_mobil_siluet WHERE id_mobil = '$id_mobil'";
+	$result = mysqli_query($connect, $query);
+
+	return $result;
+}
+
+function delete_data_mobilLiza($id_mobil){
+	global $connect;
+
+	$id_mobil = escape($id_mobil);
+	$query 	= "DELETE FROM tb_mobil_liza WHERE id_mobil = '$id_mobil'";
+	$result = mysqli_query($connect, $query);
+
+	return $result;
+
+}
+
+function add_mobil_siluet($mobil, $plat, $penumpang){
+	global $connect;
+
+	$mobil = escape($mobil);
+	$plat = escape($plat);
+	$seat = escape($penumpang);
+
+	$query = "INSERT INTO tb_mobil_siluet (mobil, plat_nomor, penumpang) VALUES ('$mobil', '$plat', '$seat')";
+	$result = mysqli_query($connect, $query);
+	return $result;
+}
+
+function add_mobil_liza($mobil, $plat, $penumpang){
+	global $connect;
+
+	$mobil = escape($mobil);
+	$plat = escape($plat);
+	$seat = escape($penumpang);
+
+	$query = "INSERT INTO tb_mobil_liza (mobil, plat_nomor, penumpang) VALUES ('$mobil', '$plat', '$seat')";
+	$result = mysqli_query($connect, $query);
+	return $result;
+}
+
+
+function sum_seat_use_mobil_siluet($jam_modal, $tgl_cari){
+	global $connect;
+
+	$jam_modal = escape($jam_modal);
+	$tgl_cari = escape($tgl_cari);
+
+	$query 	= "SELECT SUM(seat_use) FROM tb_jadwal_siluet WHERE tanggal = '$tgl_cari' AND jam = '$jam_modal'";
+	$result = mysqli_query($connect, $query);
+
+	while($data = mysqli_fetch_assoc($result)){
+		$dataOper = $data['SUM(seat_use)'];
+	}
+
+	return $dataOper;
+}
+
+
+function sum_seat_mobil_siluet(){
+	global $connect;
+
+	$query 	= "SELECT SUM(penumpang) FROM tb_mobil_siluet";
+	$result = mysqli_query($connect, $query);
+
+	while($data = mysqli_fetch_assoc($result)){
+		$dataOper = $data['SUM(penumpang)'];
+	}
+
+	return $dataOper;
+}
+
+function sum_seat_mobil_liza(){
+	global $connect;
+
+	$query 	= "SELECT SUM(penumpang) FROM tb_mobil_liza";
+	$result = mysqli_query($connect, $query);
+
+	while($data = mysqli_fetch_assoc($result)){
+		$dataOper = $data['SUM(penumpang)'];
+	}
+
+	return $dataOper;
+}
+
 function show_alldata_mobil_siluet(){
 	global $connect;
 

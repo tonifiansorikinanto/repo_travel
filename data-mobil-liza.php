@@ -5,7 +5,7 @@
 
 	if(isset($_SESSION["user_access"])){
 		$no = 1;	
-		$data_mobil = show_alldata_mobil();
+		$data_mobil = show_alldata_mobil_liza();
 
 		$query_id = $_SESSION['user_access'];
 		$query = "SELECT * FROM tb_admin WHERE username='$query_id'";
@@ -40,6 +40,53 @@
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="exampleModalLongTitle">Tambah Mobil Liza</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+      	<div class="container">
+      		<form method="post" action="">
+	      	<div class="row justify-content-center">
+	      		<div class="col-md-10">
+	      			<div class="row">	      				
+			      		<div class="col-md-6">
+			      			<h4 class="h4-responsive">Mobil</h4>
+			      		</div>
+			      		<div class="col-md-3">
+			      			<h4 class="h4-responsive">Plat</h4>
+			      		</div>
+			      		<div class="col-md-3">
+			      			<h4 class="h4-responsive">Seat</h4>
+			      		</div>			      		
+			      		<div class="col-md-6">
+			      			<input type="text" aria-label="mobil" name="mobil" id="mobil" class="form-control z-depth-1" autocomplete="off">
+			      		</div>
+			      		<div class="col-md-3">
+			      			<input type="text" aria-label="plat" name="plat" id="plat" class="form-control z-depth-1" autocomplete="off">
+			      		</div>
+			      		<div class="col-md-3">
+			      			<input type="text" aria-label="seat" name="seat" id="seat" class="form-control z-depth-1" autocomplete="off">
+			      		</div>			      		
+			      	</div>
+			    </div>
+	      	</div>
+	    </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-md btn-warning" data-dismiss="modal">Tutup</button>
+        <button type="submit" class="btn btn-md btn-info">Tambah</button>       
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="modalEditMobil" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true" style="z-index:99999999;">
+  <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Edit Mobil Liza</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -140,21 +187,31 @@
 			      <th scope="col" style="vertical-align: middle;">Mobil</th>
 			      <th scope="col" style="vertical-align: middle;">Plat</th>
 			      <th scope="col" style="vertical-align: middle; text-align: center;" width="10px">Seat</th>
-			      <th scope="col" style="vertical-align: middle; text-align: center;">Aksu</th>					      
+			      <th scope="col" style="vertical-align: middle; text-align: center;">Aksu</th>
 			    </tr>
 			  </thead>
 			  <tbody>
-			    <tr>
-			      <th scope="row">1</th>
-			      <td>Mark</td>
-			      <td>Otto</td>
-			      <td class="text-center">Otto</td>
-			      <td class="text-center" style="width: 100px;"><a href="#x" role="button" class="text-warning" data-toggle="modal" data-target="#modalAddMobil" onclick="setEditParameter('tb1', '<?=$data['id']; ?>')">Edit</i></a>
-				  | <a href="#x" role="button" class="text-danger" data-toggle="modal" data-target="#modalDelete" onclick="setDeleteParameter('tb1', '<?=$data['id']; ?>')">Hapus</a></td>					      
-			    </tr>					    
+				      <?php
+			      		if(mysqli_num_rows($data_mobil) > 0){
+			      			while($data = mysqli_fetch_assoc($data_mobil)){		
+				      ?>
+				      <tr>
+				      <th scope="row"><?=$no++;?></th>
+				      <td><?=$data['mobil'];?></td>
+				      <td><?=$data['plat_nomor'];?></td>
+				      <td class="text-center"><?=$data['penumpang'];?></td>
+				      <td class="text-center" style="width: 100px;"><a href="#x" role="button" class="text-warning" data-toggle="modal" data-target="#modalEditMobil" onclick="setEditParameter('tb1', '<?=$data['id']; ?>')">Edit</i></a>
+					  | <a href="#x" role="button" class="text-danger" data-toggle="modal" data-target="#modalDelete" onclick="setDeleteParameter('tb1', '<?=$data['id']; ?>')">Hapus</a></td>
+					  </tr>
+					  <?php } } else { ?>
+					  	<tr>
+						 <td colspan="5" class="text-center"><b>Tidak ada data !</b></td>
+						 </tr>
+					  <?php } ?>
 			  </tbody>
 			</table>
 		</div>
+
 	</div>
 
 </div>
