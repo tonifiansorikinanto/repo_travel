@@ -1,5 +1,31 @@
 <?php
 
+function add_data_tbJadwalSiluet($tgl, $jam, $penumpang){
+	global $connect;
+
+	$tgl = escape($tgl);
+	$jam = escape($jam);
+	$penumpang = escape($penumpang);
+
+	$query = "INSERT INTO tb_jadwal_siluet(tgl, jam, penumpang) VALUES ('$tgl', '$jam', '$penumpang')";
+
+	mysqli_query($connect, $query);
+	return true;
+}
+
+function add_data_tbJadwalLiza($tgl, $jam, $penumpang){
+	global $connect;
+
+	$tgl = escape($tgl);
+	$jam = escape($jam);
+	$penumpang = escape($penumpang);
+
+	$query = "INSERT INTO tb_jadwal_siluet(tgl, jam, penumpang) VALUES ('$tgl', '$jam', '$penumpang')";
+
+	mysqli_query($connect, $query);
+	return true;
+}
+
 function cek_mobil_siluet($jam_modal, $tgl_cari){
 	global $connect;
 
@@ -96,8 +122,8 @@ function add_mobil_siluet($mobil, $plat, $penumpang){
 	$seat = escape($penumpang);
 
 	$query = "INSERT INTO tb_mobil_siluet (mobil, plat_nomor, penumpang) VALUES ('$mobil', '$plat', '$seat')";
-	$result = mysqli_query($connect, $query);
-	return $result;
+	mysqli_query($connect, $query);
+	return true;
 }
 
 function add_mobil_liza($mobil, $plat, $penumpang){
@@ -108,8 +134,8 @@ function add_mobil_liza($mobil, $plat, $penumpang){
 	$seat = escape($penumpang);
 
 	$query = "INSERT INTO tb_mobil_liza (mobil, plat_nomor, penumpang) VALUES ('$mobil', '$plat', '$seat')";
-	$result = mysqli_query($connect, $query);
-	return $result;
+	mysqli_query($connect, $query);
+	return true;
 }
 
 
