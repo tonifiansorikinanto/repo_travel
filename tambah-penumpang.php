@@ -80,19 +80,26 @@ if (isset($_POST['submit_cari_mobil'])) {
 	$no = 1; $no1 = 1;
 
 	$cek_mobil_siluet = cek_mobil_siluet($jam_modal, $tgl_cari);
+	$cek_mobil_liza 	= cek_mobil_liza($jam_modal, $tgl_cari);
 
 	$cek_mobil_kosong_siluet = cek_mobil_kosong_siluet($jam_modal, $tgl_cari);
 
-	$sum_seat_use_mobil_siluet = sum_seat_use_mobil_siluet($jam_modal, $tgl_cari);
-	if($sum_seat_use_mobil_siluet == ''){
-		$sum_seat_use_mobil_siluet = 0;
-	}
-	$sum_seat_mobil_siluet = sum_seat_mobil_siluet();
-	if($sum_seat_mobil_siluet == ''){
-		$sum_seat_mobil_siluet = 0;
+	$show_alldata_mobil_siluet = show_alldata_mobil_siluet();
+	$show_alldata_mobil_liza = show_alldata_mobil_liza();
+
+	if($table_name == "tb1"){
+		$sum_seat_use_mobil = sum_seat_use_mobil_siluet($jam_modal, $tgl_cari);
+		$sum_seat_mobil = sum_seat_mobil_siluet();
+	}else{
+		$sum_seat_use_mobil = sum_seat_use_mobil_liza($jam_modal, $tgl_cari);
+		$sum_seat_mobil = sum_seat_mobil_liza();
 	}
 
-	$min_seat_total = $sum_seat_mobil_siluet - $sum_seat_use_mobil_siluet;
+	if($sum_seat_use_mobil == ''){ $sum_seat_use_mobil = 0; }
+
+	if($sum_seat_mobil == ''){ $sum_seat_mobil = 0; }
+
+	$min_seat_total = $sum_seat_mobil - $sum_seat_use_mobil;
 	
 }
 
@@ -192,7 +199,12 @@ if(isset($_SESSION['report_message'])){
 			</form>
 			<?php if(isset($_POST['submit_cari_mobil'])){?>
 				<div class="col-md-12 mt-4" align="center">
-					<h4 class="h4-responsive">Jumlah Seat Dipesan (<?= $sum_seat_use_mobil_siluet; ?>) • Total Seat Tersedia (<?= $min_seat_total; ?>)</h4>
+
+					<?php if($table_name == "tb1"): ?>
+						<h4 class="h4-responsive">Jumlah Seat Dipesan (<?= $sum_seat_use_mobil; ?>) • Total Seat Tersedia (<?= $min_seat_total; ?>)</h4>
+					<?php else: ?>
+						<h4 class="h4-responsive">Jumlah Seat Dipesan (<?= $sum_seat_use_mobil; ?>) • Total Seat Tersedia (<?= $min_seat_total; ?>)</h4>
+					<?php endif; ?>
 
 					<div class="row mt-3 justify-content-center">
 
@@ -229,11 +241,29 @@ if(isset($_SESSION['report_message'])){
 										endwhile; 
 										}else{
 										?>
-
 										<tr><td colspan="4" class="text-center">Tidak ada data !</td></tr>
 										<?php } ?>
-									 <?php else: ?>
-									<?php endif; ?>
+
+										<?php else: ?>
+
+										<?php 
+								  	if(mysqli_num_rows($cek_mobil_liza) > 0){
+								  	while($data = mysqli_fetch_assoc($cek_mobil_liza)): 
+								  	?>
+								    <tr>
+								      <th scope="row"><?= $no++;?></th>
+								      <td><?= $data['mobil'] ?></td>
+								      <td><?= $data['plat_nomor'] ?></td>
+								      <td class="text-center"><?= $data['penumpang'] - $data['seat_use']; ?></td>					      
+								    </tr>
+									  <?php 
+										endwhile; 
+										}else{
+										?>
+										<tr><td colspan="4" class="text-center">Tidak ada data !</td></tr>
+										<?php } ?>
+
+										<?php endif; ?>
 								  </tbody>
 								</table>
 							</div>
@@ -259,8 +289,8 @@ if(isset($_SESSION['report_message'])){
 								  <tbody>
 								  	<?php if($_GET['tb'] == 'tb1'): ?>
 								  	<?php 
-								  	if(mysqli_num_rows($cek_mobil_kosong_siluet) > 0){
-								  	while($data = mysqli_fetch_assoc($cek_mobil_kosong_siluet)): 
+								  	if(mysqli_num_rows($show_alldata_mobil_siluet) > 0){
+								  	while($data = mysqli_fetch_assoc($show_alldata_mobil_siluet)): 
 								  	?>
 								    <tr>
 								      <th scope="row"><?= $no1++ ;?></th>
@@ -272,11 +302,29 @@ if(isset($_SESSION['report_message'])){
 										endwhile; 
 										}else{
 										?>
-
 										<tr><td colspan="4" class="text-center">Tidak ada data !</td></tr>
 										<?php } ?>
-									 <?php else: ?>
-									<?php endif; ?>
+
+										<?php else: ?>
+
+										<?php 
+								  	if(mysqli_num_rows($show_alldata_mobil_liza) > 0){
+								  	while($data = mysqli_fetch_assoc($show_alldata_mobil_liza)): 
+								  	?>
+								    <tr>
+								      <th scope="row"><?= $no1++ ;?></th>
+								      <td><?= $data['mobil'] ?></td>
+								      <td><?= $data['plat_nomor'] ?></td>
+								      <td class="text-center"><?= $data['penumpang'];?></td>					      
+								    </tr>
+									  <?php 
+										endwhile; 
+										}else{
+										?>
+										<tr><td colspan="4" class="text-center">Tidak ada data !</td></tr>
+										<?php } ?>
+
+										<?php endif; ?>
 								  </tbody>
 								</table>
 							</div>

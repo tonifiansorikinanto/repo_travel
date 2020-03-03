@@ -19,10 +19,11 @@ function cek_mobil_kosong_siluet($jam_modal, $tgl_cari){
 	return $result;
 }
 
-function cek_mobil_liza(){
+function cek_mobil_liza($jam_modal, $tgl_cari){
 	global $connect;
 
-	$query 	= "SELECT * FROM tb_mobil_liza";
+	$query 	= "SELECT * FROM tb_jadwal_liza, tb_mobil_liza WHERE tb_jadwal_liza.tanggal LIKE '%$tgl_cari%' AND tb_jadwal_liza.jam LIKE '%$jam_modal%' 
+				AND tb_jadwal_liza.id_mobil = tb_mobil_liza.id_mobil";
 	$result = mysqli_query($connect, $query);
 
 	return $result;
@@ -119,6 +120,21 @@ function sum_seat_use_mobil_siluet($jam_modal, $tgl_cari){
 	return $dataOper;
 }
 
+function sum_seat_use_mobil_liza($jam_modal, $tgl_cari){
+	global $connect;
+
+	$jam_modal = escape($jam_modal);
+	$tgl_cari = escape($tgl_cari);
+
+	$query 	= "SELECT SUM(seat_use) FROM tb_jadwal_liza WHERE tanggal = '$tgl_cari' AND jam = '$jam_modal'";
+	$result = mysqli_query($connect, $query);
+
+	while($data = mysqli_fetch_assoc($result)){
+		$dataOper = $data['SUM(seat_use)'];
+	}
+
+	return $dataOper;
+}
 
 function sum_seat_mobil_siluet(){
 	global $connect;
