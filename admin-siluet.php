@@ -265,12 +265,7 @@ if (isset($_POST['submit_cari_mobil'])) {
 								<h5 class="h5-responsive">Tabel Mobil Tanpa Penumpang</h5>
 								<div class="box_table">
 									<table class="table">
-									  <thead class="<?php if($table_name == "tb1"){
-									  	echo('warning-color');
-									  }else{
-									  	echo('info-color');
-									  }?>
-									  white-text">
+									  <thead class="warning-color white-text">
 									    <tr>
 									      <th scope="col" style="vertical-align: middle;" width="10px">#</th>
 									      <th scope="col" style="vertical-align: middle;">Mobil</th>
@@ -279,7 +274,6 @@ if (isset($_POST['submit_cari_mobil'])) {
 									    </tr>
 									  </thead>
 									  <tbody>
-									  	<?php if($_GET['tb'] == 'tb1'): ?>
 									  	<?php 
 									  	if(mysqli_num_rows($cek_mobil_kosong_siluet) > 0){
 									  	while($data = mysqli_fetch_assoc($cek_mobil_kosong_siluet)): 
@@ -294,11 +288,8 @@ if (isset($_POST['submit_cari_mobil'])) {
 											endwhile; 
 											}else{
 											?>
-
 											<tr><td colspan="4" class="text-center">Tidak ada data !</td></tr>
 											<?php } ?>
-										 <?php else: ?>
-										<?php endif; ?>
 									  </tbody>
 									</table>
 								</div>

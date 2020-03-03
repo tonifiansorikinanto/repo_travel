@@ -125,12 +125,6 @@ if(isset($_POST['submit_input'])){
 
 	if(!empty(trim($nomer)) && !empty(trim($nama)) && !empty(trim($alamat)) && !empty(trim($tgl)) && !empty(trim($jam)) && !empty(trim($tujuan)) && !empty(trim($penumpang)) && !empty(trim($lunas))){
 
-  	$day 		= substr($tgl, 8, 2);
-  	$month 		= substr($tgl, 5, 2);
-  	$year 		= substr($tgl, 0, 4);
-
-  	$tgl 	= $day . "-" . $month . "-" . $year;
-
 		if($table_name == "tb1"){
 			if(add_data_tbSiluet($nomer, $nama, $alamat, $jemput, $tgl, $jam, $tujuan, $penumpang, $lunas, $harga_khusus, $ket)){
 				$_SESSION['report_message'] = report_message("success", "Berhasil Menambahkan Data ke Tabel Siluet");

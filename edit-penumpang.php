@@ -36,12 +36,6 @@ if(isset($_GET['id_edit']) && isset($_GET['tb'])){
 		$harga_khusus = $data['harga_khusus'];
 	}
 
-	$day 			= substr($tanggal, 0, 2);
-	$month 		= substr($tanggal, 3, 2);
-	$year 		= substr($tanggal, 6, 4);
-
-	$tanggal 	= $year . "-" . $month . "-" . $day;
-
 	if ($tujuan == "Malang" || $tujuan == "Juanda" || $tujuan == "Surabaya Kota" || $tujuan == "Carter") {
 		$status_tujuan = true;
 	} else {
@@ -76,12 +70,6 @@ if(isset($_POST['edit'])){
 
 	if(!empty(trim($nomerEdit)) && !empty(trim($namaEdit)) && !empty(trim($alamatEdit)) && !empty(trim($tglEdit)) &&
 	!empty(trim($jamEdit)) && !empty(trim($tujuanEdit)) && !empty(trim($penumpangEdit)) && !empty(trim($lunasEdit))){
-
-		$day 			= substr($tglEdit, 8, 2);
-  	$month 		= substr($tglEdit, 5, 2);
-  	$year 		= substr($tglEdit, 0, 4);
-
-  	$tglEdit 	= $day . "-" . $month . "-" . $year;
 
 		if($table_name == "tb1"){
 			if(edit_data_tbSiluet($nomerEdit, $namaEdit, $alamatEdit, $jemputEdit, $tglEdit, $jamEdit, $tujuanEdit, $penumpangEdit, $lunasEdit, $harga_khususEdit, $ketEdit, $nomer)){

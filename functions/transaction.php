@@ -13,7 +13,16 @@ function cek_mobil_siluet($jam_modal, $tgl_cari){
 function cek_mobil_kosong_siluet($jam_modal, $tgl_cari){
 	global $connect;
 
-	$query 	= "SELECT * FROM tb_jadwal_siluet, tb_mobil_siluet WHERE tb_jadwal_siluet.tanggal ='' AND tb_jadwal_siluet.jam ='' AND tb_jadwal_siluet.id_mobil != tb_mobil_siluet.id_mobil";
+	$query 	= "SELECT * FROM tb_jadwal_siluet, tb_mobil_siluet WHERE  tb_jadwal_siluet.id_mobil != tb_mobil_siluet.id_mobil";
+	$result = mysqli_query($connect, $query);
+
+	return $result;
+}
+
+function cek_mobil_kosong_liza($jam_modal, $tgl_cari){
+	global $connect;
+
+	$query 	= "SELECT * FROM tb_jadwal_liza, tb_mobil_liza WHERE tb_jadwal_liza.tanggal ='' AND tb_jadwal_liza.jam ='' AND tb_jadwal_liza.id_mobil != tb_mobil_liza.id_mobil";
 	$result = mysqli_query($connect, $query);
 
 	return $result;
@@ -196,7 +205,7 @@ function show_data_mobil($data){
 function show_data_tbSiluet(){
 	global $connect;
 
-	$query 	= "SELECT * FROM tb_siluet WHERE status_print = 0";
+	$query 	= "SELECT * FROM tb_siluet WHERE status_print = 0 ORDER BY tanggal, jam ASC";
 	$result = mysqli_query($connect, $query);
 
 	return $result;
@@ -205,7 +214,7 @@ function show_data_tbSiluet(){
 function show_data_tbLiza(){
 	global $connect;
 
-	$query 	= "SELECT * FROM tb_liza WHERE status_print = 0";
+	$query 	= "SELECT * FROM tb_liza WHERE status_print = 0 ORDER BY tanggal, jam ASC";
 	$result = mysqli_query($connect, $query);
 
 	return $result;

@@ -165,6 +165,30 @@
 		}
 
 	}
+
+	if (isset($_POST['submit_cari_mobil'])) {
+		$jam_modal	= $_POST['jam'];
+		$tgl_cari	= $_POST['tgl'];
+
+		$no = 1; $no1 = 1;
+
+		$cek_mobil_liza = cek_mobil_liza($jam_modal, $tgl_cari);
+
+		$cek_mobil_kosong_liza = cek_mobil_kosong_liza($jam_modal, $tgl_cari);
+
+		$sum_seat_use_mobil_liza = sum_seat_use_mobil_liza($jam_modal, $tgl_cari);
+		if($sum_seat_use_mobil_liza == ''){
+			$sum_seat_use_mobil_liza = 0;
+		}
+		$sum_seat_mobil_liza = sum_seat_mobil_liza();
+		if($sum_seat_mobil_liza == ''){
+			$sum_seat_mobil_liza = 0;
+		}
+
+		$min_seat_total = $sum_seat_mobil_liza - $sum_seat_use_mobil_liza;
+		
+	}
+
 ?>
 
 <!-- modal -->
@@ -194,7 +218,7 @@
 				</form>
 				<?php if(isset($_POST['submit_cari_mobil'])){?>
 					<div class="col-md-12 mt-4" align="center">
-						<h4 class="h4-responsive">Jumlah Seat Dipesan (<?= $sum_seat_use_mobil_siluet; ?>) • Total Seat Tersedia (<?= $min_seat_total; ?>)</h4>
+						<h4 class="h4-responsive">Jumlah Seat Dipesan (<?= $sum_seat_use_mobil_liza; ?>) • Total Seat Tersedia (<?= $min_seat_total; ?>)</h4>
 
 						<div class="row mt-3 justify-content-center">
 
@@ -202,7 +226,7 @@
 								<h5 class="h5-responsive">Tabel Mobil Berpenumpang</h5>
 								<div class="box_table">
 									<table class="table">
-									  <thead class="warning-color white-text">
+									  <thead class="info-color white-text">
 									    <tr>
 									      <th scope="col" style="vertical-align: middle;" width="10px">#</th>
 									      <th scope="col" style="vertical-align: middle;">Mobil</th>
@@ -211,10 +235,9 @@
 									    </tr>
 									  </thead>
 									  <tbody>
-									  	<?php if($_GET['tb'] == 'tb1'): ?>
 									  	<?php 
-									  	if(mysqli_num_rows($cek_mobil_siluet) > 0){
-									  	while($data = mysqli_fetch_assoc($cek_mobil_siluet)): 
+									  	if(mysqli_num_rows($cek_mobil_liza) > 0){
+									  	while($data = mysqli_fetch_assoc($cek_mobil_liza)): 
 									  	?>
 									    <tr>
 									      <th scope="row"><?= $no++;?></th>
@@ -226,11 +249,8 @@
 											endwhile; 
 											}else{
 											?>
-
 											<tr><td colspan="4" class="text-center">Tidak ada data !</td></tr>
 											<?php } ?>
-										 <?php else: ?>
-										<?php endif; ?>
 									  </tbody>
 									</table>
 								</div>
@@ -240,12 +260,7 @@
 								<h5 class="h5-responsive">Tabel Mobil Tanpa Penumpang</h5>
 								<div class="box_table">
 									<table class="table">
-									  <thead class="<?php if($table_name == "tb1"){
-									  	echo('warning-color');
-									  }else{
-									  	echo('info-color');
-									  }?>
-									  white-text">
+									  <thead class="info-color white-text">
 									    <tr>
 									      <th scope="col" style="vertical-align: middle;" width="10px">#</th>
 									      <th scope="col" style="vertical-align: middle;">Mobil</th>
@@ -254,10 +269,9 @@
 									    </tr>
 									  </thead>
 									  <tbody>
-									  	<?php if($_GET['tb'] == 'tb1'): ?>
 									  	<?php 
-									  	if(mysqli_num_rows($cek_mobil_kosong_siluet) > 0){
-									  	while($data = mysqli_fetch_assoc($cek_mobil_kosong_siluet)): 
+									  	if(mysqli_num_rows($cek_mobil_kosong_liza) > 0){
+									  	while($data = mysqli_fetch_assoc($cek_mobil_kosong_liza)): 
 									  	?>
 									    <tr>
 									      <th scope="row"><?= $no1++ ;?></th>
@@ -269,11 +283,8 @@
 											endwhile; 
 											}else{
 											?>
-
 											<tr><td colspan="4" class="text-center">Tidak ada data !</td></tr>
 											<?php } ?>
-										 <?php else: ?>
-										<?php endif; ?>
 									  </tbody>
 									</table>
 								</div>
@@ -508,7 +519,14 @@ if(isset($_SESSION['report_message'])){
 						      		}
 						      	?>
 						      </td>
-						      <td onclick="show_data(<?= $no2; ?>)" class="text-center"><?= $data['tanggal']; ?></td>
+						      <?php
+						      $day_data 	= substr($data['tanggal'], 8, 2);
+									$month_data = substr($data['tanggal'], 5, 2);
+									$year_data 	= substr($data['tanggal'], 0, 4);
+
+									$tglData 	= $day_data . "-" . $month_data . "-" . $year_data;
+						      ?>
+						      <td onclick="show_data(<?= $no2; ?>)" class="text-center"><?= $tglData; ?></td>
 						      <td onclick="show_data(<?= $no2; ?>)" class="text-center"><?= $data['jam']; ?></td>
 						      <td onclick="show_data(<?= $no2; ?>)"><?= $data['tujuan']; ?></td>
 						      <td onclick="show_data(<?= $no2; ?>)" class="text-center"><?= $data['penumpang']; ?></td>
@@ -575,6 +593,14 @@ require_once 'assets/templates/footer.php';
 
 if(isset($error_modal)){
 	echo $error_modal;
+}
+
+if(isset($_POST['submit_cari_mobil'])){
+	echo '<script>
+    $(document).ready(function(){
+        $("#modalKetersediaan").modal("show");
+    });
+  </script>';
 }
 
 }else{
