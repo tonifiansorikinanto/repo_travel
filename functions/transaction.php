@@ -10,6 +10,15 @@ function cek_mobil_siluet($jam_modal, $tgl_cari){
 	return $result;
 }
 
+function cek_mobil_kosong_siluet($jam_modal, $tgl_cari){
+	global $connect;
+
+	$query 	= "SELECT * FROM tb_jadwal_siluet, tb_mobil_siluet WHERE tb_jadwal_siluet.tanggal ='' AND tb_jadwal_siluet.jam ='' AND tb_jadwal_siluet.id_mobil != tb_mobil_siluet.id_mobil";
+	$result = mysqli_query($connect, $query);
+
+	return $result;
+}
+
 function cek_mobil_liza(){
 	global $connect;
 
