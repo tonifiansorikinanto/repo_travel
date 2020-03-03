@@ -83,6 +83,7 @@ if (isset($_POST['submit_cari_mobil'])) {
 	$cek_mobil_liza 	= cek_mobil_liza($jam_modal, $tgl_cari);
 
 	$cek_mobil_kosong_siluet = cek_mobil_kosong_siluet($jam_modal, $tgl_cari);
+	$cek_mobil_kosong_liza = cek_mobil_kosong_liza($jam_modal, $tgl_cari);
 
 	$show_alldata_mobil_siluet = show_alldata_mobil_siluet();
 	$show_alldata_mobil_liza = show_alldata_mobil_liza();
@@ -283,8 +284,8 @@ if(isset($_SESSION['report_message'])){
 								  <tbody>
 								  	<?php if($_GET['tb'] == 'tb1'): ?>
 								  	<?php 
-								  	if(mysqli_num_rows($show_alldata_mobil_siluet) > 0){
-								  	while($data = mysqli_fetch_assoc($show_alldata_mobil_siluet)): 
+								  	if(mysqli_num_rows($cek_mobil_kosong_siluet) > 0){
+								  	while($data = mysqli_fetch_assoc($cek_mobil_kosong_siluet)): 
 								  	?>
 								    <tr>
 								      <th scope="row"><?= $no1++ ;?></th>
@@ -302,8 +303,8 @@ if(isset($_SESSION['report_message'])){
 										<?php else: ?>
 
 										<?php 
-								  	if(mysqli_num_rows($show_alldata_mobil_liza) > 0){
-								  	while($data = mysqli_fetch_assoc($show_alldata_mobil_liza)): 
+								  	if(mysqli_num_rows($cek_mobil_kosong_liza) > 0){
+								  	while($data = mysqli_fetch_assoc($cek_mobil_kosong_liza)):
 								  	?>
 								    <tr>
 								      <th scope="row"><?= $no1++ ;?></th>

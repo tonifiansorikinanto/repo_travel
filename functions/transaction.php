@@ -22,7 +22,7 @@ function cek_mobil_kosong_siluet($jam_modal, $tgl_cari){
 function cek_mobil_kosong_liza($jam_modal, $tgl_cari){
 	global $connect;
 
-	$query 	= "SELECT * FROM tb_jadwal_liza, tb_mobil_liza WHERE tb_jadwal_liza.tanggal ='' AND tb_jadwal_liza.jam ='' AND tb_jadwal_liza.id_mobil != tb_mobil_liza.id_mobil";
+	$query 	= "SELECT * FROM tb_jadwal_liza, tb_mobil_liza WHERE  tb_jadwal_liza.id_mobil != tb_mobil_liza.id_mobil";
 	$result = mysqli_query($connect, $query);
 
 	return $result;
