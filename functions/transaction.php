@@ -7,7 +7,7 @@ function add_data_tbJadwalSiluet($tgl, $jam, $penumpang){
 	$jam = escape($jam);
 	$penumpang = escape($penumpang);
 
-	$query = "INSERT INTO tb_jadwal_siluet(tgl, jam, penumpang) VALUES ('$tgl', '$jam', '$penumpang')";
+	$query = "INSERT INTO tb_jadwal_siluet(tanggal, jam, seat_use) VALUES ('$tgl', '$jam', '$penumpang')";
 
 	mysqli_query($connect, $query);
 	return true;

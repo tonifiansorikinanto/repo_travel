@@ -126,8 +126,10 @@ if(isset($_POST['submit_input'])){
 
 	if(!empty(trim($nomer)) && !empty(trim($nama)) && !empty(trim($alamat)) && !empty(trim($tgl)) && !empty(trim($jam)) && !empty(trim($tujuan)) && !empty(trim($penumpang)) && !empty(trim($lunas))){
 
+		// 
+
 		if($table_name == "tb1"){
-			if(add_data_tbSiluet($nomer, $nama, $alamat, $jemput, $tgl, $jam, $tujuan, $penumpang, $lunas, $harga_khusus, $ket)){
+			if(add_data_tbSiluet($nomer, $nama, $alamat, $jemput, $tgl, $jam, $tujuan, $penumpang, $lunas, $harga_khusus, $ket) && add_data_tbJadwalSiluet($tgl, $jam, $penumpang)){
 				$_SESSION['report_message'] = report_message("success", "Berhasil Menambahkan Data ke Tabel Siluet");
 				header("Refresh:3.1; URL=tambah-penumpang?tb=tb1");
 			}else{
@@ -135,7 +137,7 @@ if(isset($_POST['submit_input'])){
 				header('Location: tambah-penumpang?tb=tb1');
 			}
 		}else{
-			if(add_data_tbLiza($nomer, $nama, $alamat, $jemput, $tgl, $jam, $tujuan, $penumpang, $lunas, $harga_khusus, $ket)){
+			if(add_data_tbLiza($nomer, $nama, $alamat, $jemput, $tgl, $jam, $tujuan, $penumpang, $lunas, $harga_khusus, $ket && add_data_tbJadwalLiza($tgl, $jam, $penumpang))){
 				$_SESSION['report_message'] = report_message("success", "Berhasil Menambahkan Data ke Tabel Liza");
 				header("Refresh:3.1; URL=tambah-penumpang?tb=tb2");
 			}else{
