@@ -10,7 +10,7 @@ if(isset($_SESSION["user_access"])){
 $show_data_tbSiluet = show_data_tbSiluet();
 
 $show_mobil_available = show_mobil_available_siluet_order();
-$show_mobil_idle 			=show_mobil_available_siluet_idle();
+$show_mobil_idle 			= show_mobil_idle_siluet();
 
 if(isset($_GET['id'])){
 	$id_get = $_GET['id'];
@@ -416,8 +416,8 @@ if (isset($_POST['submit_cari_mobil'])) {
 			    		<option value="<?= $data_mobil['id_mobil']; ?>"><?= $data_mobil['mobil']; ?> (<?= $data_mobil['plat_nomor']; ?> • <?= $hasil . " Penumpang"; ?>)</option>
 			    		<?php endwhile; ?>
 
-			    		<?php while($data_mobil = mysqli_fetch_assoc($show_mobil_idle)): ?>
-			    		<option value="<?= $data_mobil['id_mobil']; ?>"><?= $data_mobil['mobil']; ?> (<?= $data_mobil['plat_nomor']; ?> • <?= $data_mobil['penumpang'] . " Penumpang"; ?>)</option>
+			    		<?php while($data_idle = mysqli_fetch_assoc($show_mobil_idle)): ?>
+			    		<option value="<?= $data_idle['id_mobil']; ?>"><?= $data_idle['mobil']; ?> (<?= $data_idle['plat_nomor']; ?> • <?= $data_idle['penumpang'] . " Penumpang"; ?>)</option>
 			    		<?php endwhile; ?>
 			    		
 			    	</select>

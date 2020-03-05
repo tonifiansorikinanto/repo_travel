@@ -247,24 +247,38 @@ function show_alldata_mobil_liza(){
 function show_mobil_available_siluet_order(){
 	global $connect;
 
-	$query 	= "SELECT * FROM tb_mobil_siluet, tb_jadwal_siluet WHERE tb_mobil_siluet.status = 0 AND tb_mobil_siluet.id_mobil = tb_jadwal_siluet.id_mobil";
-
+	$query 	= "SELECT *, tb_mobil_siluet.id_mobil FROM tb_mobil_siluet, tb_jadwal_siluet WHERE tb_mobil_siluet.status = 0 AND tb_mobil_siluet.id_mobil = tb_jadwal_siluet.id_mobil";
+	
 	$result = mysqli_query($connect, $query);
 	return $result;
 }
 
-function show_mobil_available_siluet_idle(){
-	$query 	= "SELECT * FROM tb_mobil_siluet, tb_jadwal_siluet WHERE tb_mobil_siluet.status = 0 AND tb_mobil_siluet.id_mobil != tb_jadwal_siluet.id_mobil";
-	return runCode($query);
-}
-
-function runCode($query){
+function show_mobil_idle_siluet(){
 	global $connect;
 
+	$query 	= "SELECT *, tb_mobil_siluet.id_mobil FROM tb_mobil_siluet, tb_jadwal_siluet WHERE tb_mobil_siluet.status = 0 AND tb_mobil_siluet.id_mobil != tb_jadwal_siluet.id_mobil";
+	
 	$result = mysqli_query($connect, $query);
 	return $result;
 }
 
+function show_mobil_available_liza_order(){
+	global $connect;
+
+	$query 	= "SELECT *, tb_mobil_liza.id_mobil FROM tb_mobil_liza, tb_jadwal_liza WHERE tb_mobil_liza.status = 0 AND tb_mobil_liza.id_mobil = tb_jadwal_liza.id_mobil";
+	
+	$result = mysqli_query($connect, $query);
+	return $result;
+}
+
+function show_mobil_idle_liza(){
+	global $connect;
+
+	$query 	= "SELECT *, tb_mobil_liza.id_mobil FROM tb_mobil_liza, tb_jadwal_liza WHERE tb_mobil_liza.status = 0 AND tb_mobil_liza.id_mobil != tb_jadwal_liza.id_mobil";
+	
+	$result = mysqli_query($connect, $query);
+	return $result;
+}
 
 
 function show_data_tbSiluet(){
