@@ -1,5 +1,11 @@
 <?php
 
+// function setIDJadwalSiluet($id_mobil){
+// 	global $connect;
+	
+// 	$query = "UPDATE "
+// }
+
 function add_data_tbJadwalSiluet($tgl, $jam, $penumpang){
 	global $connect;
 
@@ -39,19 +45,29 @@ function cek_mobil_siluet($jam_modal, $tgl_cari){
 function cek_mobil_kosong_siluet($jam_modal, $tgl_cari){
 	global $connect;
 
-	$query 	= "SELECT * FROM tb_jadwal_siluet, tb_mobil_siluet WHERE  tb_jadwal_siluet.id_mobil != tb_mobil_siluet.id_mobil";
-	$result = mysqli_query($connect, $query);
-
-	return $result;
+	$query 	= "SELECT * FROM tb_jadwal_siluet, tb_mobil_siluet WHERE  tb_jadwal_siluet.id_mobil != tb_mobil_siluet.id_mobil AND tb_jadwal_siluet.tanggal LIKE '%$tgl_cari%' AND tb_jadwal_siluet.jam LIKE '%$jam_modal%'";
+	$result = mysqli_query($connect, $query);	
+	if (mysqli_num_rows($result) > 0){
+		return $result;
+	} else {
+		$query2 = "SELECT * FROM tb_mobil_siluet";
+		$result2 = mysqli_query($connect, $query2);	
+		return $result2;
+	}
 }
 
 function cek_mobil_kosong_liza($jam_modal, $tgl_cari){
 	global $connect;
 
-	$query 	= "SELECT * FROM tb_jadwal_liza, tb_mobil_liza WHERE  tb_jadwal_liza.id_mobil != tb_mobil_liza.id_mobil";
-	$result = mysqli_query($connect, $query);
-
-	return $result;
+	$query 	= "SELECT * FROM tb_jadwal_liza, tb_mobil_liza WHERE  tb_jadwal_liza.id_mobil != tb_mobil_liza.id_mobil AND tb_jadwal_liza.tanggal LIKE '%$tgl_cari%' AND tb_jadwal_liza.jam LIKE '%$jam_modal%'";
+	$result = mysqli_query($connect, $query);	
+	if (mysqli_num_rows($result) > 0){
+		return $result;
+	} else {
+		$query2 = "SELECT * FROM tb_mobil_liza";
+		$result2 = mysqli_query($connect, $query2);	
+		return $result2;
+	}
 }
 
 function cek_mobil_liza($jam_modal, $tgl_cari){

@@ -112,6 +112,7 @@ if(isset($_POST['submit_cs'])){
 
 if(isset($_POST['submit_mobil'])){
 	$text_mobil = $_POST["text_mobil"];
+	$id_mobil = $_POST["id_mobil"];
 
 	if(!isset($_GET['id'])){
 		$_SESSION['report_message'] = report_message("error", "Harus Memilih data !");
@@ -120,7 +121,7 @@ if(isset($_POST['submit_mobil'])){
 		$id_nomer = $_GET['id'];
 
 		if($id_nomer != ""){
-			
+			 // && setIDJadwalSiluet($id_mobil)
 			if(!empty(trim($text_mobil))){
 				if(setKeteranganSiluet($text_mobil, $id_nomer)){
 					$_SESSION['report_message'] = report_message("success", "Sukses Mengatur Data ! ");
@@ -405,11 +406,12 @@ if (isset($_POST['submit_cari_mobil'])) {
 	      <form method="post" action="" name="">
 		      <div class="modal-body">
 				    <!-- <input type="text" aria-label="text_mobil" name="text_mobil" class="form-control" placeholder="Masukkan Keterangan Mobil..." id="text_mobil"> -->
-				    <select name="text_mobil" class="form-control">
-				    	<?php while($data_mobil = mysqli_fetch_assoc($show_alldata_mobil)): ?>
+				    <?php while($data_mobil = mysqli_fetch_assoc($show_alldata_mobil)): ?>
+				    	<input type="hidden" name="id_mobil" value="<?= $data_mobil['id_mobil']; ?>">
+				    	<select name="text_mobil" class="form-control">				    	
 				    		<option value="<?= $data_mobil['id_mobil']; ?>"><?= $data_mobil['mobil']; ?> (<?= $data_mobil['plat_nomor']; ?> • <?= $data_mobil['penumpang'] . " Penumpang"; ?>)</option>
-				    	<?php endwhile; ?>
-				    </select>
+				    	</select>
+				    <?php endwhile; ?>
 			  	</div>
 		      <div class="modal-footer">
 		        <button type="button" class="btn btn-sm btn-primary" data-dismiss="modal" onclick="resetUrl()">Batal</button>

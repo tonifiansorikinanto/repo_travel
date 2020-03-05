@@ -298,7 +298,7 @@
 			</div>
 	      </div>
 	      <div class="modal-footer">
-	        <button type="button" class="btn btn-md btn-warning" data-dismiss="modal">Tutup</button>        
+	        <button type="button" class="btn btn-md btn-info" data-dismiss="modal">Tutup</button>        
 	      </div>
 	    </div>
 	  </div>
