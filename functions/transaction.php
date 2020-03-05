@@ -231,18 +231,41 @@ function show_alldata_mobil_liza(){
 	return $result;
 }
 
-function show_data_mobil($data){
+// function show_data_mobil($data){
+// 	global $connect;
+
+// 	$query 	= "SELECT * FROM tb_mobil WHERE id_mobil='$data'";
+// 	$result = mysqli_query($connect, $query);
+
+// 	while($data_mobil = mysqli_fetch_assoc($result)){
+// 		$mobil = $data_mobil['mobil'];
+// 	}
+
+// 	return $mobil;
+// }
+
+function show_mobil_available_siluet_order(){
 	global $connect;
 
-	$query 	= "SELECT * FROM tb_mobil WHERE id_mobil='$data'";
+	$query 	= "SELECT * FROM tb_mobil_siluet, tb_jadwal_siluet WHERE tb_mobil_siluet.status = 0 AND tb_mobil_siluet.id_mobil = tb_jadwal_siluet.id_mobil";
+
 	$result = mysqli_query($connect, $query);
-
-	while($data_mobil = mysqli_fetch_assoc($result)){
-		$mobil = $data_mobil['mobil'];
-	}
-
-	return $mobil;
+	return $result;
 }
+
+function show_mobil_available_siluet_idle(){
+	$query 	= "SELECT * FROM tb_mobil_siluet, tb_jadwal_siluet WHERE tb_mobil_siluet.status = 0 AND tb_mobil_siluet.id_mobil != tb_jadwal_siluet.id_mobil";
+	return runCode($query);
+}
+
+function runCode($query){
+	global $connect;
+
+	$result = mysqli_query($connect, $query);
+	return $result;
+}
+
+
 
 function show_data_tbSiluet(){
 	global $connect;

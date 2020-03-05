@@ -9,7 +9,8 @@ if(isset($_SESSION["user_access"])){
 
 $show_data_tbSiluet = show_data_tbSiluet();
 
-$show_alldata_mobil = show_alldata_mobil_siluet();
+$show_mobil_available = show_mobil_available_siluet_order();
+$show_mobil_idle 			=show_mobil_available_siluet_idle();
 
 if(isset($_GET['id'])){
 	$id_get = $_GET['id'];
@@ -406,12 +407,21 @@ if (isset($_POST['submit_cari_mobil'])) {
 	      <form method="post" action="" name="">
 		      <div class="modal-body">
 				    <!-- <input type="text" aria-label="text_mobil" name="text_mobil" class="form-control" placeholder="Masukkan Keterangan Mobil..." id="text_mobil"> -->
-				    <?php while($data_mobil = mysqli_fetch_assoc($show_alldata_mobil)): ?>
-				    	<input type="hidden" name="id_mobil" value="<?= $data_mobil['id_mobil']; ?>">
-				    	<select name="text_mobil" class="form-control">				    	
-				    		<option value="<?= $data_mobil['id_mobil']; ?>"><?= $data_mobil['mobil']; ?> (<?= $data_mobil['plat_nomor']; ?> • <?= $data_mobil['penumpang'] . " Penumpang"; ?>)</option>
-				    	</select>
-				    <?php endwhile; ?>
+				    
+			    	<input type="hidden" name="id_mobil" value="<?= $data_mobil['id_mobil']; ?>">
+			    	<select name="text_mobil" class="form-control">
+			    		<?php while($data_mobil = mysqli_fetch_assoc($show_mobil_available)):
+			    		$hasil = $data_mobil['penumpang'] - $data_mobil['seat_use'];
+			    		?>
+			    		<option value="<?= $data_mobil['id_mobil']; ?>"><?= $data_mobil['mobil']; ?> (<?= $data_mobil['plat_nomor']; ?> • <?= $hasil . " Penumpang"; ?>)</option>
+			    		<?php endwhile; ?>
+
+			    		<?php while($data_mobil = mysqli_fetch_assoc($show_mobil_idle)): ?>
+			    		<option value="<?= $data_mobil['id_mobil']; ?>"><?= $data_mobil['mobil']; ?> (<?= $data_mobil['plat_nomor']; ?> • <?= $data_mobil['penumpang'] . " Penumpang"; ?>)</option>
+			    		<?php endwhile; ?>
+			    		
+			    	</select>
+
 			  	</div>
 		      <div class="modal-footer">
 		        <button type="button" class="btn btn-sm btn-primary" data-dismiss="modal" onclick="resetUrl()">Batal</button>
