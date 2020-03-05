@@ -422,13 +422,6 @@ if (isset($_POST['submit_cari_mobil'])) {
 			    		
 			    	</select>
 
-				    <!-- <input type="text" aria-label="text_mobil" name="text_mobil" class="form-control" placeholder="Masukkan Keterangan Mobil..." id="text_mobil"> -->				    
-			    	<select name="text_mobil" class="form-control">				    	
-			    		<?php while($data_mobil = mysqli_fetch_assoc($show_alldata_mobil)): ?>
-			    		<option value="<?= $data_mobil['id_mobil']; ?>"><?= $data_mobil['mobil']; ?> (<?= $data_mobil['plat_nomor']; ?> • <?= $data_mobil['penumpang'] . " Penumpang"; ?>)</option>
-			    		<?php endwhile; ?>
-			    	</select>				    
-
 			  	</div>
 		      <div class="modal-footer">
 		        <button type="button" class="btn btn-sm btn-primary" data-dismiss="modal" onclick="resetUrl()">Batal</button>
