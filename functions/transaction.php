@@ -231,18 +231,23 @@ function show_alldata_mobil_liza(){
 	return $result;
 }
 
-// function show_data_mobil($data){
-// 	global $connect;
+function show_data_mobil($data1, $data2){
+	global $connect;
 
-// 	$query 	= "SELECT * FROM tb_mobil WHERE id_mobil='$data'";
-// 	$result = mysqli_query($connect, $query);
+	if($data2 == "tb1"){
+		$query 	= "SELECT * FROM tb_mobil_siluet WHERE id_mobil='$data1'";
+	}else{
+		$query 	= "SELECT * FROM tb_mobil_liza WHERE id_mobil='$data1'";
+	}
+	
+	$result = mysqli_query($connect, $query);
 
-// 	while($data_mobil = mysqli_fetch_assoc($result)){
-// 		$mobil = $data_mobil['mobil'];
-// 	}
+	while($data_mobil = mysqli_fetch_assoc($result)){
+		$mobil = $data_mobil['mobil'];
+	}
 
-// 	return $mobil;
-// }
+	return $mobil;
+}
 
 function show_mobil_available_siluet_order(){
 	global $connect;

@@ -554,7 +554,7 @@ if(isset($_SESSION['report_message'])){
 						    	<td colspan="5">
 						    		<?= $data['ket']; ?>
 						    		<?php if($data_mobil_set == true): ?>
-						    			<?= ". Mobil = " . show_data_mobil($data['mobil']); ?>
+						    			<?= ". Mobil = " . show_data_mobil($data['mobil'], 'tb2'); ?>
 						    		<?php endif; ?>
 						    	</td>
 						    	<td colspan="1" class="text-right"><b>Aksi</b></td>
