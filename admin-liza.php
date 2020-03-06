@@ -171,7 +171,7 @@
 		$jam_modal	= $_POST['jam'];
 		$tgl_cari	= $_POST['tgl'];
 
-		$no = 1; $no1 = 1;
+		$no = 1;
 
 		$cek_mobil_liza = cek_mobil_liza($jam_modal, $tgl_cari);
 
@@ -275,7 +275,7 @@
 									  	while($data = mysqli_fetch_assoc($cek_mobil_kosong_liza)): 
 									  	?>
 									    <tr>
-									      <th scope="row"><?= $no1++ ;?></th>
+									      <th scope="row"><?= $no++ ;?></th>
 									      <td><?= $data['mobil'] ?></td>
 									      <td><?= $data['plat_nomor'] ?></td>
 									      <td class="text-center"><?= $data['penumpang'];?></td>					      
@@ -596,7 +596,7 @@ $('.dataTables_length').addClass('bs-select');
 </script>
 
 <?php 
-require_once 'assets/templates/footer.php'; 
+require_once 'assets/templates/footer.php';
 
 if(isset($error_modal)){
 	echo $error_modal;
