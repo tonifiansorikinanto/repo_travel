@@ -407,8 +407,6 @@ if (isset($_POST['submit_cari_mobil'])) {
 	      <form method="post" action="" name="">
 		      <div class="modal-body">
 				    <!-- <input type="text" aria-label="text_mobil" name="text_mobil" class="form-control" placeholder="Masukkan Keterangan Mobil..." id="text_mobil"> -->
-				    
-			    	<input type="hidden" name="id_mobil" value="<?= $data_mobil['id_mobil']; ?>">
 			    	<select name="text_mobil" class="form-control">
 			    		<?php while($data_mobil = mysqli_fetch_assoc($show_mobil_available)):
 			    		$hasil = $data_mobil['penumpang'] - $data_mobil['seat_use'];
@@ -587,13 +585,13 @@ if (isset($_POST['submit_cari_mobil'])) {
 
 				<div class="row justify-content-end align-items-center mt-3 footer_table">
 					<div class="col-md-4 mr-0 pr-0" align="right">
-			  			<h6 class="h6-responsive">Menampilkan 10 data per halaman dari total <span id="data_total"></span> data</h6> 
-			  		</div>
-			  		<div class="col-md-1 pr-4 text-warning" align="right">
-			  			<a id="prev_button"><i title="Data sebelumnya" class="far fa-caret-square-left fa-2x waves-effect mr-2"></i></a>
-			  			<a id="next_button"><i title="Data selanjutnya" class="far fa-caret-square-right fa-2x waves-effect"></i></a>
-			  		</div>
-			  	</div>												
+		  			<h6 class="h6-responsive">Menampilkan 10 data per halaman dari total <span id="data_total"></span> data</h6> 
+		  		</div>
+		  		<div class="col-md-1 pr-4 text-warning" align="right">
+		  			<a id="prev_button"><i title="Data sebelumnya" class="far fa-caret-square-left fa-2x waves-effect mr-2"></i></a>
+		  			<a id="next_button"><i title="Data selanjutnya" class="far fa-caret-square-right fa-2x waves-effect"></i></a>
+		  		</div>
+		  	</div>												
 			</div>
 		</div>
 	</div>
