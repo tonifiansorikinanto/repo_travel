@@ -34,7 +34,7 @@ if(isset($_GET['s'])){
 
 if(isset($_POST['submit'])){
 	$password = $_POST["pass_sv"];
-	$tb 		= $_GET['tb'];	
+	$tb 	= $_GET['tb'];	
 	$id 	= $_GET['id_edit'];
 
 	if(!empty(trim($password))){
@@ -122,7 +122,7 @@ if(isset($_POST['submit_mobil'])){
 		$id_nomer = $_GET['id'];
 
 		if($id_nomer != ""){
-			 // && setIDJadwalSiluet($id_mobil)
+			
 			if(!empty(trim($text_mobil))){
 				if(setKeteranganSiluet($text_mobil, $id_nomer)){
 					$_SESSION['report_message'] = report_message("success", "Sukses Mengatur Data ! ");
@@ -183,13 +183,10 @@ if (isset($_POST['submit_cari_mobil'])) {
 	$cek_mobil_kosong_siluet = cek_mobil_kosong_siluet($jam_modal, $tgl_cari);
 
 	$sum_seat_use_mobil_siluet = sum_seat_use_mobil_siluet($jam_modal, $tgl_cari);
-	if($sum_seat_use_mobil_siluet == ''){
-		$sum_seat_use_mobil_siluet = 0;
-	}
+	if($sum_seat_use_mobil_siluet == ''){ $sum_seat_use_mobil_siluet = 0; }
 	$sum_seat_mobil_siluet = sum_seat_mobil_siluet();
-	if($sum_seat_mobil_siluet == ''){
-		$sum_seat_mobil_siluet = 0;
-	}
+
+	if($sum_seat_mobil_siluet == ''){ $sum_seat_mobil_siluet = 0; }
 
 	$min_seat_total = $sum_seat_mobil_siluet - $sum_seat_use_mobil_siluet;
 	
@@ -400,13 +397,13 @@ if (isset($_POST['submit_cari_mobil'])) {
 	    <div class="modal-content">
 	      <div class="modal-header">
 	        <h5 class="modal-title" id="exampleModalLongTitle">Masukan Keterangan Mobil</h5>
-	        <button type="button" class="close" data-dismiss="modal" aria-label="Close"onclick="resetUrl()">
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick="resetUrl()">
 	          <span aria-hidden="true">&times;</span>
 	        </button>
 	      </div>
 	      <form method="post" action="" name="">
 		      <div class="modal-body">
-				    <!-- <input type="text" aria-label="text_mobil" name="text_mobil" class="form-control" placeholder="Masukkan Keterangan Mobil..." id="text_mobil"> -->
+		      	
 			    	<select name="text_mobil" class="form-control">
 			    		<?php while($data_mobil = mysqli_fetch_assoc($show_mobil_available)):
 			    		$hasil = $data_mobil['penumpang'] - $data_mobil['seat_use'];
