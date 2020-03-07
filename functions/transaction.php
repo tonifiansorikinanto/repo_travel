@@ -6,32 +6,6 @@
 // 	$query = "UPDATE "
 // }
 
-function add_data_tbJadwalSiluet($tgl, $jam, $penumpang){
-	global $connect;
-
-	$tgl = escape($tgl);
-	$jam = escape($jam);
-	$penumpang = escape($penumpang);
-
-	$query = "INSERT INTO tb_jadwal_siluet(tanggal, jam, seat_use) VALUES ('$tgl', '$jam', '$penumpang')";
-
-	mysqli_query($connect, $query);
-	return true;
-}
-
-function add_data_tbJadwalLiza($tgl, $jam, $penumpang){
-	global $connect;
-
-	$tgl = escape($tgl);
-	$jam = escape($jam);
-	$penumpang = escape($penumpang);
-
-	$query = "INSERT INTO tb_jadwal_siluet(tgl, jam, penumpang) VALUES ('$tgl', '$jam', '$penumpang')";
-
-	mysqli_query($connect, $query);
-	return true;
-}
-
 function cek_mobil_siluet($jam_modal, $tgl_cari){
 	global $connect;
 
@@ -417,13 +391,14 @@ function add_data_tbSiluet($nomer, $nama, $alamat, $jemput, $tgl, $jam, $tujuan,
 	$penumpang 		= escape($penumpang);
 	$lunas 				= escape($lunas);
 	$harga_khusus = escape($harga_khusus);
-	$ket 					= escape($ket);
+	$ket 					= escape($ket);	
+	$id_jadwal = md5($nama);
 
 	if($penumpang > 1){
-
-		for($x = 1; $x <= $penumpang; $x++){
-			$query = "INSERT INTO tb_siluet (nomer, nama, alamat, jemput, tanggal, jam, tujuan, penumpang, lunas, harga_khusus, ket) VALUES 
-			('$nomer', '$nama', '$alamat', '$jemput', '$tgl', '$jam', '$tujuan', '$penumpang', '$lunas', '$harga_khusus', '$ket')";
+		$no = 0;
+		for($x = 1; $x <= $penumpang; $x++){			
+			$query = "INSERT INTO tb_siluet (nomer, nama, alamat, jemput, tanggal, jam, tujuan, penumpang, lunas, harga_khusus, ket, id_jadwal) VALUES 
+			('$nomer', '$nama', '$alamat', '$jemput', '$tgl', '$jam', '$tujuan', '$penumpang', '$lunas', '$harga_khusus', '$ket', '$id_jadwal.$no++')";
 
 			mysqli_query($connect, $query);
 		}
@@ -475,6 +450,32 @@ function add_data_tbLiza($nomer, $nama, $alamat, $jemput, $tgl, $jam, $tujuan, $
 		return $result;
 
 	}
+}
+
+function add_data_tbJadwalSiluet($tgl, $jam, $penumpang){
+	global $connect;
+
+	$tgl = escape($tgl);
+	$jam = escape($jam);
+	$penumpang = escape($penumpang);
+
+	$query = "INSERT INTO tb_jadwal_siluet(tanggal, jam, seat_use) VALUES ('$tgl', '$jam', '$penumpang')";
+
+	mysqli_query($connect, $query);
+	return true;
+}
+
+function add_data_tbJadwalLiza($tgl, $jam, $penumpang){
+	global $connect;
+
+	$tgl = escape($tgl);
+	$jam = escape($jam);
+	$penumpang = escape($penumpang);
+
+	$query = "INSERT INTO tb_jadwal_siluet(tgl, jam, penumpang) VALUES ('$tgl', '$jam', '$penumpang')";
+
+	mysqli_query($connect, $query);
+	return true;
 }
 
 
