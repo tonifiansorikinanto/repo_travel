@@ -124,13 +124,31 @@
 			if($id_nomer != ""){
 
 				if(!empty(trim($text_mobil))){
-					if(setKeteranganSiluet($text_mobil, $id_nomer)){
-						add_tbjadwal_siluet($text_mobil, $id_nomer);
-						$_SESSION["report_message"] = report_message("success", "Berhasil Meng-set Data ");
-						header("Location: admin-siluet?tb=" . $_GET['tb'] . "&id=" . $_GET['id']);
-					}else{
-						$_SESSION['report_message'] = report_message("error", "Error Saat Mengatur Data ! ");
+					$show_data_mobil1 = show_ondata_mobil_siluet($text_mobil);
+					$count_user = explode("-", $id_nomer);
+					$count_user = count($count_user);
+
+					while($data_mobil_1 = mysqli_fetch_assoc($show_data_mobil1)){
+						$data_penumpang = $data_mobil_1['penumpang'];
+						$data_sisa			= $data_mobil_1['sisa_seat'];
 					}
+
+					if($data_penumpang != $data_sisa){
+						$data_penumpang -= $data_sisa;
+					}
+
+					if($count_user <= $data_penumpang){
+						if(setKeteranganSiluet($text_mobil, $id_nomer)){
+							add_tbjadwal_siluet($text_mobil, $id_nomer);
+							$_SESSION["report_message"] = report_message("success", "Berhasil Meng-set Data ");
+							header("Location: admin-siluet?tb=" . $_GET['tb'] . "&id=" . $_GET['id']);
+						}else{
+							$_SESSION['report_message'] = report_message("error", "Error Saat Mengatur Data ! ");
+						}
+					}else{
+						$_SESSION['report_message'] = report_message("error", "Penumpang Terlalu Banyak ! ");
+					}
+
 				}else{
 					$_SESSION['report_message'] = report_message("error", "Data Tidak Boleh Kosong !");
 				}
