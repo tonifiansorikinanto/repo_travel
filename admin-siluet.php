@@ -393,7 +393,7 @@
 	  <div class="modal-dialog modal-dialog-centered" role="document">
 	    <div class="modal-content">
 	      <div class="modal-header">
-	        <h5 class="modal-title" id="exampleModalLongTitle">Masukan Keterangan Mobil</h5>
+	        <h5 class="modal-title" id="exampleModalLongTitle">Masukkan Keterangan Mobil</h5>
 	        <button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick="resetUrl()">
 	          <span aria-hidden="true">&times;</span>
 	        </button>
@@ -401,14 +401,17 @@
 	      <form method="post" action="" name="">
 		      <div class="modal-body">
 				    <!-- <input type="text" aria-label="text_mobil" name="text_mobil" class="form-control" placeholder="Masukkan Keterangan Mobil..." id="text_mobil"> -->
-				    <select name="text_mobil" class="form-control">
-				    	<?php while($data_mobil = mysqli_fetch_assoc($show_mobil_available)):
-			    		$hasil = $data_mobil['penumpang'] - $data_mobil['seat_use'];
-			    		?>
-			    			<option value="<?= $data_mobil['id_mobil']; ?>"><?= $data_mobil['mobil']; ?> (<?= $data_mobil['plat_nomor']; ?> • <?= $hasil . " Penumpang"; ?>)</option>
-			    		<?php endwhile; ?>			    	
-			    		
-				    </select>
+				    <?php if (isset($_GET['id']) && !empty($_GET['id'])): ?>
+					    <select name="text_mobil" class="form-control">
+					    	<?php while($data_mobil = mysqli_fetch_assoc($show_mobil_available)):
+				    		$hasil = $data_mobil['penumpang'] - $data_mobil['seat_use'];
+				    		?>
+				    			<option value="<?= $data_mobil['id_mobil']; ?>"><?= $data_mobil['mobil']; ?> (<?= $data_mobil['plat_nomor']; ?> • <?= $hasil . " Penumpang"; ?>)</option>
+				    		<?php endwhile; ?>			    				    		
+					    </select>
+					 <?php else : ?>
+					 	<h4 class="h4-responsive text-center">Pilih data client sebelum memilih data mobil!</h4>
+					 <?php endif; ?>
 			  	</div>
 		      <div class="modal-footer">
 		        <button type="button" class="btn btn-sm btn-primary" data-dismiss="modal" onclick="resetUrl()">Batal</button>
@@ -554,8 +557,10 @@ if(isset($_SESSION['report_message'])){
 						    	<td><b>Keterangan</b></td>
 						    	<td colspan="5">
 						    		<?= $data['ket']; ?>
-						    		<?php if($data_mobil_set == true): ?>
+						    		<?php if($data_mobil_set == true && $data['ket'] != ''): ?>
 						    			<?= ". Mobil = " . show_data_mobil($data['mobil'], 'tb1'); ?>
+						    		<?php else : ?>
+						    			<?= "Mobil = " . show_data_mobil($data['mobil'], 'tb1'); ?>
 						    		<?php endif; ?>
 						    	</td>
 						    	<td colspan="1" class="text-right"><b>Aksi</b></td>

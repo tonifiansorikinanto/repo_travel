@@ -130,7 +130,7 @@ function add_mobil_siluet($mobil, $plat, $penumpang){
 	$plat = escape($plat);
 	$seat = escape($penumpang);
 
-	$query = "INSERT INTO tb_mobil_siluet (mobil, plat_nomor, penumpang) VALUES ('$mobil', '$plat', '$seat')";
+	$query = "INSERT INTO tb_mobil_siluet (mobil, plat_nomor, penumpang, sisa_seat) VALUES ('$mobil', '$plat', '$seat', '$seat')";
 	mysqli_query($connect, $query);
 	return true;
 }
@@ -654,54 +654,64 @@ function setKeteranganSiluet($text_mobil, $id_nomer){
 	return true;
 }
 
-function add_tbjadwal_siluet($text_mobil, $id_nomer){
+function add_tbjadwal_siluet($id_mobil, $id_nomer){
 	global $connect;
 
-	$text_mobil = escape($text_mobil);
+	$id_mobil = escape($id_mobil);
 	$id_nomer 	= escape($id_nomer);
 
 	$id_nomer = explode("-", $id_nomer);
 
 	$data_tampil_siluet = show_data_onID_tbSiluet($id_nomer[0]);
 
-	$penambahan = '';
 	while($data1 = mysqli_fetch_assoc($data_tampil_siluet)){
 		$tgl = $data1['tanggal'];
-		$jam = $data1['jam'];
-		$hasil_penambahan = 0;
+		$jam = $data1['jam'];			
 	}
 
-	$x = 0;
+	if($id_mobil != 5){
 
-	$data_sama = '';
+		$x = 0;
 
-	while($data2 = mysqli_fetch_assoc(show_data_onID_tbSiluet($id_nomer[$x]))){
+		$data_sama = '';
 
-		if($data_sama != $data2['same_id']){
-			$data_sama = $data2['same_id'];
+		while($data2 = mysqli_fetch_assoc(show_data_onID_tbSiluet($id_nomer[$x]))){
 
-			$data_hasil += $data2['penumpang'];
+			if($data_sama != $data2['same_id']){
+				$data_sama = $data2['same_id'];
+
+				$data_hasil += $data2['penumpang'];
+			}
+
+			$x++;
 		}
 
-		$x++;
+		$id_user = implode(",", $id_nomer);
+
+		$query1 = "INSERT INTO tb_jadwal_siluet (tanggal, jam, id_mobil, seat_use, id_user) VALUES ('$tgl', '$jam', '$id_mobil', '$data_hasil', '$id_user')";
+		mysqli_query($connect, $query1);
+
+
+		$show_data_mobil1 = show_ondata_mobil_siluet($id_mobil);
+
+		while($data3 = mysqli_fetch_assoc($show_data_mobil1)){
+			$sisa_seat = $data3['penumpang'];
+		}
+
+		$sisa_seat = $sisa_seat - $data_hasil;
+
+		$query2 = "UPDATE tb_mobil_siluet SET sisa_seat='$sisa_seat' WHERE id_mobil='$id_mobil'";		
+		$result = mysqli_query($connect, $query2);
+
+	} else {
+		$id_user = implode(",", $id_nomer);
+
+		$query1 = "INSERT INTO tb_jadwal_siluet (tanggal, jam, id_mobil, seat_use, id_user) VALUES ('$tgl', '$jam', '$id_mobil', 1 , '$id_user')";
+		mysqli_query($connect, $query1);
+
+		$query2 = "UPDATE tb_mobil_siluet SET sisa_seat = 1 WHERE id_mobil='$id_mobil'";		
+		$result = mysqli_query($connect, $query2);
 	}
-
-	$id_user = implode(",", $id_nomer);
-
-	$query1 = "INSERT INTO tb_jadwal_siluet (tanggal, jam, id_mobil, seat_use, id_user) VALUES ('$tgl', '$jam', '$text_mobil', '$data_hasil', '$id_user')";
-	mysqli_query($connect, $query1);
-
-
-	$show_data_mobil1 = show_ondata_mobil_siluet($text_mobil);
-	while($data3 = mysqli_fetch_assoc($show_data_mobil1)){
-		$sisa_seat = $data3['penumpang'];
-	}
-
-	$sisa_seat = $sisa_seat - $data_hasil;
-
-	$query2 = "UPDATE tb_mobil_siluet SET sisa_seat='$sisa_seat' WHERE id_mobil='$text_mobil'";		
-	$result = mysqli_query($connect, $query2);
-
 	return $result;
 }
 

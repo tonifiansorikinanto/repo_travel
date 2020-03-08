@@ -257,8 +257,8 @@ if(isset($_SESSION['report_message'])){
 			      <th scope="col" style="vertical-align: middle;" width="10px">#</th>
 			      <th scope="col" style="vertical-align: middle;">Mobil</th>
 			      <th scope="col" style="vertical-align: middle;">Plat</th>
-			      <th scope="col" style="vertical-align: middle; text-align: center;" width="10px">Seat</th>
-			      <th scope="col" style="vertical-align: middle; text-align: center;" width="10px">Sisa Seat</th>
+			      <th scope="col" style="vertical-align: middle; text-align: center;" width="10px">Total Seat</th>
+			      <th scope="col" style="vertical-align: middle; text-align: center;" width="10px">Seat Kosong</th>
 			      <th scope="col" style="vertical-align: middle; text-align: center;">Aksi</th>
 			    </tr>
 			  </thead>
@@ -275,7 +275,7 @@ if(isset($_SESSION['report_message'])){
 				      <td class="text-center"><?=$data['sisa_seat'];?></td>
 				      <td class="text-center" style="width: 100px;"><a href="#x" role="button" class="text-warning" data-toggle="modal" data-target="#modalEditMobil" onclick="setEditParameterMobil('<?=$data['mobil']; ?>', '<?=$data['plat_nomor']; ?>', '<?=$data['penumpang']; ?>', 'tb1', '<?=$data['id_mobil']; ?>')">Edit</i></a>
 					  | <a href="#x" role="button" class="text-danger" data-toggle="modal" data-target="#modalDelete"  onclick="setDeleteParameterMobil('tb1', '<?=$data['id_mobil']; ?>')">Hapus</a>
-					  | <a href="#x" role="button" class="text-danger" data-toggle="modal" data-target="#modalReset"  onclick="setResetParameterMobil('tb1', '<?=$data['id_mobil']; ?>')">Reset</a></td>
+					  <a href="#x" role="button" class="text-info" data-toggle="modal" data-target="#modalReset"  onclick="setResetParameterMobil('tb1', '<?=$data['id_mobil']; ?>')">Reset</a></td>
 					  </tr>
 					  <?php } } else { ?>
 					  	<tr>
