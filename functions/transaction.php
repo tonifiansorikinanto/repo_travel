@@ -302,15 +302,6 @@ function show_mobil_idle_siluet(){
 	return $result;
 }
 
-function show_mobil_available_liza_order(){
-	global $connect;
-
-	$query 	= "SELECT *, tb_mobil_liza.id_mobil FROM tb_mobil_liza, tb_jadwal_liza WHERE tb_mobil_liza.status = 0 AND tb_mobil_liza.id_mobil = tb_jadwal_liza.id_mobil";
-	
-	$result = mysqli_query($connect, $query);
-	return $result;
-}
-
 function show_mobil_idle_liza(){
 	global $connect;
 
@@ -320,6 +311,22 @@ function show_mobil_idle_liza(){
 	return $result;
 }
 
+function show_mobil_available_liza_order($id){
+	global $connect;
+
+	$queryCari = "SELECT * FROM tb_liza WHERE id = '$id[0]'";
+	$resultCari = mysqli_query($connect, $queryCari);
+
+	while ($data = mysqli_fetch_assoc($resultCari)) {
+		$tgl = $data['tanggal'];
+		$jam = $data['jam'];
+	}
+
+	$query 	= "SELECT * FROM tb_mobil_liza WHERE tb_mobil_liza.sisa_seat > 0";
+	
+	$result = mysqli_query($connect, $query);
+	return $result;
+}
 
 function show_data_tbSiluet(){
 	global $connect;
@@ -698,18 +705,7 @@ function add_tbjadwal_siluet($id_mobil, $id_nomer){
 
 		$x = 0;
 
-		$data_sama = '';
-
-		while($data2 = mysqli_fetch_assoc(show_data_onID_tbSiluet($id_nomer[$x]))){
-
-			if($data_sama != $data2['same_id']){
-				$data_sama = $data2['same_id'];
-
-				$data_hasil += $data2['penumpang'];
-			}
-
-			$x++;
-		}
+		$data_hasil = count($id_nomer);
 
 		$id_user = implode(",", $id_nomer);
 
@@ -747,10 +743,12 @@ function setKeteranganLiza($text_mobil, $id_nomer){
 	$id_nomer 	= escape($id_nomer);
 
 	$id_nomer = explode("-", $id_nomer);
-
+	//die(count($id_nomer));
 	for($x = 0; $x < count($id_nomer); $x){
 
-		while($data = mysqli_fetch_assoc(show_data_onID_tbLiza($id_nomer[$x]))){
+		// die(print_r($id_nomer));
+
+		while($data = mysqli_fetch_assoc(show_data_onID_tbLiza($id_nomer[$x]))){					
 
 			$query = "UPDATE tb_liza SET mobil='$text_mobil' WHERE id='$id_nomer[$x]'";
 			
@@ -758,9 +756,59 @@ function setKeteranganLiza($text_mobil, $id_nomer){
 
 			$x++;
 		}
+
 	}
 
 	return true;
+}
+
+function add_tbjadwal_liza($id_mobil, $id_nomer){
+	global $connect;
+
+	$id_mobil = escape($id_mobil);
+	$id_nomer 	= escape($id_nomer);
+
+	$id_nomer = explode("-", $id_nomer);
+	$data_tampil_liza = show_data_onID_tbLiza($id_nomer[0]);
+
+	while($data1 = mysqli_fetch_assoc($data_tampil_liza)){
+		$tgl = $data1['tanggal'];
+		$jam = $data1['jam'];			
+	}
+
+	if($id_mobil != 5){
+
+		$x = 0;
+
+		$data_hasil = count($id_nomer);
+
+		$id_user = implode(",", $id_nomer);
+
+		$query1 = "INSERT INTO tb_jadwal_liza (tanggal, jam, id_mobil, seat_use, id_user) VALUES ('$tgl', '$jam', '$id_mobil', '$data_hasil', '$id_user')";
+		mysqli_query($connect, $query1);
+
+
+		$show_data_mobil1 = show_ondata_mobil_liza($id_mobil);
+
+		while($data3 = mysqli_fetch_assoc($show_data_mobil1)){
+			$sisa_seat = $data3['penumpang'];
+		}
+
+		$sisa_seat = $sisa_seat - $data_hasil;
+
+		$query2 = "UPDATE tb_mobil_liza SET sisa_seat='$sisa_seat' WHERE id_mobil='$id_mobil'";		
+		$result = mysqli_query($connect, $query2);
+
+	} else {
+		$id_user = implode(",", $id_nomer);
+
+		$query1 = "INSERT INTO tb_jadwal_liza (tanggal, jam, id_mobil, seat_use, id_user) VALUES ('$tgl', '$jam', '$id_mobil', 1 , '$id_user')";
+		mysqli_query($connect, $query1);
+
+		$query2 = "UPDATE tb_mobil_liza SET sisa_seat = 1 WHERE id_mobil='$id_mobil'";		
+		$result = mysqli_query($connect, $query2);
+	}
+	return $result;
 }
 
 function ubahStatusPrint_tbSiluet($id_nomer){
