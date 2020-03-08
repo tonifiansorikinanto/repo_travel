@@ -121,7 +121,7 @@
 		}else{
 			$id_nomer = $_GET['id'];
 
-			if($id_nomer != ""){
+			if($id_nomer != "" && $text_mobil != "5"){
 
 				if(!empty(trim($text_mobil))){
 					$show_data_mobil1 = show_ondata_mobil_siluet($text_mobil);
@@ -153,6 +153,14 @@
 					$_SESSION['report_message'] = report_message("error", "Data Tidak Boleh Kosong !");
 				}
 
+			}elseif($id_nomer != "" && $text_mobil == "5"){
+				if(setKeteranganSiluet($text_mobil, $id_nomer)){
+					add_tbjadwal_siluet($text_mobil, $id_nomer);
+					$_SESSION["report_message"] = report_message("success", "Berhasil Meng-set Data ");
+					header("Location: admin-siluet?tb=" . $_GET['tb'] . "&id=" . $_GET['id']);
+				}else{
+					$_SESSION['report_message'] = report_message("error", "Error Saat Mengatur Data ! ");
+				}
 			}else{
 				$_SESSION['report_message'] = report_message("error", "Harus Memilih data !");
 			}

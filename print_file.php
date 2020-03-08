@@ -14,32 +14,34 @@ if(isset($_GET['id']) && $_GET['id'] != ""){
     $nama_tabel = "Liza";
   }
 
+  if ($nama_tabel == "Siluet") {
+    while($data_cek = mysqli_fetch_assoc(show_dataPrint_tbSiluet($id_parameter))){
+      $id_mobil = $data_cek['id_mobil'];
+      if ($id_mobil == ''){
+       $_SESSION['report_message'] = report_message("error", "Ada client yang tidak mendapatkan mobil!");
+       header('Location: admin-siluet');
+      }
+    }
+  } else {
+    while($data_cek = mysqli_fetch_assoc(show_dataPrint_tbLiza($id_parameter))){
+      $id_mobil = $data_cek['id_mobil'];
+      if ($id_mobil == ''){
+       $_SESSION['report_message'] = report_message("error", "Ada client yang tidak mendapatkan mobil!");
+       header('Location: admin-liza');
+      }
+    }
+  }
+
   if(isset($_GET['tb'])){
     $table_name = $_GET['tb'];
 
     if($table_name == "tb1"){
       $show_data_tb = show_dataPrint_tbSiluet($id_parameter);
 
-      while($data_cek = mysqli_fetch_assoc($show_data_tb)){
-        $id_mobil = $data_cek['id_mobil'];
-        if ($id_mobil == ''){
-         $_SESSION['report_message'] = report_message("error", "Ada client yang tidak mendapatkan mobil!");
-         header('Location: admin-siluet');
-        }
-      }
-
       ubahStatusPrint_tbSiluet($id_parameter);
 
     }else{
       $show_data_tb = show_dataPrint_tbLiza($id_parameter);
-
-      while($data_cek = mysqli_fetch_assoc($show_data_tb)){
-        $id_mobil = $data_cek['id_mobil'];
-        if ($id_mobil == ''){
-         $_SESSION['report_message'] = report_message("error", "Ada client yang tidak mendapatkan mobil!");
-         header('Location: admin-liza');
-        }
-      }
 
       ubahStatusPrint_tbLiza($id_parameter);
 
