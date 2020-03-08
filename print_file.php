@@ -20,10 +20,26 @@ if(isset($_GET['id']) && $_GET['id'] != ""){
     if($table_name == "tb1"){
       $show_data_tb = show_dataPrint_tbSiluet($id_parameter);
 
+      while($data_cek = mysqli_fetch_assoc($show_data_tb)){
+        $id_mobil = $data_cek['id_mobil'];
+        if ($id_mobil == ''){
+         $_SESSION['report_message'] = report_message("error", "Ada client yang tidak mendapatkan mobil!");
+         header('Location: admin-siluet');
+        }
+      }
+
       ubahStatusPrint_tbSiluet($id_parameter);
 
     }else{
       $show_data_tb = show_dataPrint_tbLiza($id_parameter);
+
+      while($data_cek = mysqli_fetch_assoc($show_data_tb)){
+        $id_mobil = $data_cek['id_mobil'];
+        if ($id_mobil == ''){
+         $_SESSION['report_message'] = report_message("error", "Ada client yang tidak mendapatkan mobil!");
+         header('Location: admin-liza');
+        }
+      }
 
       ubahStatusPrint_tbLiza($id_parameter);
 
@@ -31,7 +47,16 @@ if(isset($_GET['id']) && $_GET['id'] != ""){
   }
 }
 
+while($data1 = mysqli_fetch_assoc($show_data_tb)){
+  $id_mobil = $data1['id_mobil'];
+}
 
+$panggil_mobil = show_ondata_mobil_siluet($id_mobil);
+
+while($data2 = mysqli_fetch_assoc($panggil_mobil)){
+  $nama_mobil = $data2['mobil'];
+  $plat = $data2['plat_nomor'];  
+}
 
 
 $no = 1;
@@ -66,7 +91,7 @@ $html = '
 
 </head>
 <body>
-<h1>Tabel Data Penumpang ' . $nama_tabel . '</h1>
+<h1>Tabel Data Penumpang ' . $nama_tabel . ' • ' . $nama_mobil . ' • ' . $plat . '</h1>
 
 <table cellspacing="0" cellpadding="10" style="width:100%">
   <thead>
