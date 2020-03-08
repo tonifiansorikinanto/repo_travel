@@ -236,7 +236,7 @@
 					<button type="submit" name="submit_cari_mobil" class="btn btn-info btn-md" style="width: 80px;">Cek</button>
 				</div>
 				</form>
-				<?php if(!isset($_POST['submit_cari_mobil'])){?>
+				<?php if(isset($_POST['submit_cari_mobil'])){?>
 					<div class="col-md-12 mt-4" align="center">
 						<h4 class="h4-responsive">Jumlah Seat Dipesan (<?= $sum_seat_use_mobil_siluet; ?>) • Total Seat Tersedia (<?= $min_seat_total; ?>)</h4>
 
@@ -573,12 +573,13 @@ if(isset($_SESSION['report_message'])){
 						    <tr class="align-items-center row_hidden" id="row<?= $no2++; ?>">
 						    	<td colspan="2"></td>
 						    	<td><b>Keterangan</b></td>
-						    	<td colspan="5">
-						    		<?= $data['ket']; ?>
+						    	<td colspan="5">						    		
 						    		<?php if($data_mobil_set == true && $data['ket'] != ''): ?>
-						    			<?= ". Mobil = " . show_data_mobil($data['mobil'], 'tb1'); ?>
-						    		<?php else : ?>
+						    			<?= $data['ket'] . ". Mobil = " . show_data_mobil($data['mobil'], 'tb1'); ?>
+						    		<?php elseif($data_mobil_set == true && $data['ket'] == '') : ?>
 						    			<?= "Mobil = " . show_data_mobil($data['mobil'], 'tb1'); ?>
+						    		<?php elseif($data_mobil_set == false && $data['ket'] != '') : ?>
+						    			<?= $data['ket']; ?>
 						    		<?php endif; ?>
 						    	</td>
 						    	<td colspan="1" class="text-right"><b>Aksi</b></td>
