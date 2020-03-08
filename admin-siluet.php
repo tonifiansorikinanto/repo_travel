@@ -133,11 +133,9 @@
 						$data_sisa			= $data_mobil_1['sisa_seat'];
 					}
 
-					if($data_penumpang != $data_sisa){
-						$data_penumpang -= $data_sisa;
-					}
+					$data_hasil_0 = $data_sisa - $count_user;
 
-					if($count_user <= $data_penumpang){
+					if($data_hasil_0 >= 0 && $count_user <= $data_sisa){
 						if(setKeteranganSiluet($text_mobil, $id_nomer)){
 							add_tbjadwal_siluet($text_mobil, $id_nomer);
 							$_SESSION["report_message"] = report_message("success", "Berhasil Meng-set Data ");

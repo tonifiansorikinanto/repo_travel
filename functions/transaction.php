@@ -666,20 +666,49 @@ function setKeteranganSiluet($text_mobil, $id_nomer){
 	$id_nomer 	= escape($id_nomer);
 
 	$id_nomer = explode("-", $id_nomer);
-	//die(count($id_nomer));
-	for($x = 0; $x < count($id_nomer); $x){
+	$count_user = count($id_nomer);
 
-		//die(print_r($id_nomer));
+	$show_data_mobil = show_ondata_mobil_siluet($text_mobil);
+	while($data = mysqli_fetch_assoc($show_data_mobil)){
+		$data_penumpang = $data['penumpang'];
+		$data_sisa = $data['sisa_seat'];
+	}
 
-		while($data = mysqli_fetch_assoc(show_data_onID_tbSiluet($id_nomer[$x]))){					
+	if($data_sisa != $data_penumpang){
+		$data_hasil = $data_sisa - $count_user;
 
-			$query = "UPDATE tb_siluet SET mobil='$text_mobil' WHERE id='$id_nomer[$x]'";
-			
-			mysqli_query($connect, $query);
+		$query_mobil = "UPDATE tb_mobil_siluet SET sisa_seat='$data_hasil' WHERE id_mobil='$text_mobil'";
+		mysqli_query($connect, $query_mobil);
 
-			$x++;
+		for($x = 0; $x < count($id_nomer); $x){
+			//die(print_r($id_nomer));
+
+			while($data = mysqli_fetch_assoc(show_data_onID_tbSiluet($id_nomer[$x]))){					
+
+				$query = "UPDATE tb_siluet SET mobil='$text_mobil' WHERE id='$id_nomer[$x]'";
+				
+				mysqli_query($connect, $query);
+
+				$x++;
+			}
+
 		}
+	}else{
+		$data_hasil_0 = $data_sisa - $count_user;
+		
+		$data_hasil = $data_sisa - $count_user;
 
+		$query_mobil = "UPDATE tb_mobil_siluet SET sisa_seat='$data_hasil' WHERE id_mobil='$text_mobil'";
+		mysqli_query($connect, $query_mobil);
+
+		for($y = 0; $y < count($id_nomer); $y){
+			while($data = mysqli_fetch_assoc(show_data_onID_tbSiluet($id_nomer[$y]))){					
+				$query = "UPDATE tb_siluet SET mobil='$text_mobil' WHERE id='$id_nomer[$y]'";
+				mysqli_query($connect, $query);
+
+				$y++;
+			}
+		}
 	}
 
 	return true;
@@ -711,18 +740,6 @@ function add_tbjadwal_siluet($id_mobil, $id_nomer){
 		$query1 = "INSERT INTO tb_jadwal_siluet (tanggal, jam, id_mobil, seat_use, id_user) VALUES ('$tgl', '$jam', '$id_mobil', '$data_hasil', '$id_user')";
 		mysqli_query($connect, $query1);
 
-
-		$show_data_mobil1 = show_ondata_mobil_siluet($id_mobil);
-
-		while($data3 = mysqli_fetch_assoc($show_data_mobil1)){
-			$sisa_seat = $data3['penumpang'];
-		}
-
-		$sisa_seat = $sisa_seat - $data_hasil;
-
-		$query2 = "UPDATE tb_mobil_siluet SET sisa_seat='$sisa_seat' WHERE id_mobil='$id_mobil'";		
-		$result = mysqli_query($connect, $query2);
-
 	} else {
 		$id_user = implode(",", $id_nomer);
 
@@ -742,20 +759,49 @@ function setKeteranganLiza($text_mobil, $id_nomer){
 	$id_nomer 	= escape($id_nomer);
 
 	$id_nomer = explode("-", $id_nomer);
-	//die(count($id_nomer));
-	for($x = 0; $x < count($id_nomer); $x){
+	$count_user = count($id_nomer);
 
-		// die(print_r($id_nomer));
+	$show_data_mobil = show_ondata_mobil_liza($text_mobil);
+	while($data = mysqli_fetch_assoc($show_data_mobil)){
+		$data_penumpang = $data['penumpang'];
+		$data_sisa = $data['sisa_seat'];
+	}
 
-		while($data = mysqli_fetch_assoc(show_data_onID_tbLiza($id_nomer[$x]))){					
+	if($data_sisa != $data_penumpang){
+		$data_hasil = $data_sisa - $count_user;
 
-			$query = "UPDATE tb_liza SET mobil='$text_mobil' WHERE id='$id_nomer[$x]'";
-			
-			mysqli_query($connect, $query);
+		$query_mobil = "UPDATE tb_mobil_liza SET sisa_seat='$data_hasil' WHERE id_mobil='$text_mobil'";
+		mysqli_query($connect, $query_mobil);
 
-			$x++;
+		for($x = 0; $x < count($id_nomer); $x){
+			//die(print_r($id_nomer));
+
+			while($data = mysqli_fetch_assoc(show_data_onID_tbLiza($id_nomer[$x]))){					
+
+				$query = "UPDATE tb_liza SET mobil='$text_mobil' WHERE id='$id_nomer[$x]'";
+				
+				mysqli_query($connect, $query);
+
+				$x++;
+			}
+
 		}
+	}else{
+		$data_hasil_0 = $data_sisa - $count_user;
+		
+		$data_hasil = $data_sisa - $count_user;
 
+		$query_mobil = "UPDATE tb_mobil_liza SET sisa_seat='$data_hasil' WHERE id_mobil='$text_mobil'";
+		mysqli_query($connect, $query_mobil);
+
+		for($y = 0; $y < count($id_nomer); $y){
+			while($data = mysqli_fetch_assoc(show_data_onID_tbLiza($id_nomer[$y]))){					
+				$query = "UPDATE tb_liza SET mobil='$text_mobil' WHERE id='$id_nomer[$y]'";
+				mysqli_query($connect, $query);
+
+				$y++;
+			}
+		}
 	}
 
 	return true;
@@ -788,15 +834,6 @@ function add_tbjadwal_liza($id_mobil, $id_nomer){
 
 
 		$show_data_mobil1 = show_ondata_mobil_liza($id_mobil);
-
-		while($data3 = mysqli_fetch_assoc($show_data_mobil1)){
-			$sisa_seat = $data3['penumpang'];
-		}
-
-		$sisa_seat = $sisa_seat - $data_hasil;
-
-		$query2 = "UPDATE tb_mobil_liza SET sisa_seat='$sisa_seat' WHERE id_mobil='$id_mobil'";		
-		$result = mysqli_query($connect, $query2);
 
 	} else {
 		$id_user = implode(",", $id_nomer);
