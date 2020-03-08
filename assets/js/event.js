@@ -1,6 +1,7 @@
 
 var button_delete = document.getElementById('button_delete');
 var button_edit 	= document.getElementById('button_edit');
+var button_reset = document.getElementById('button_reset');
 var currentUrl = "http://localhost" + window.location.pathname;
 
 var check_input = document.getElementsByClassName('check_input');
@@ -53,8 +54,12 @@ function setSearchParameter(data1){
 	document.location.reload(true);
 }
 
+function setResetParameterMobil(data1, data2){
+	button_reset.href = "reset_mobil.php?tb=" + data1 + "&" + "id_mobil=" + data2;
+}
+
 function set_id(data1, data2, data3){
-	setTimeout(function(){ document.getElementById("text_mobil").focus(); }, 500);
+	//setTimeout(function(){ document.getElementById("text_mobil").focus(); }, 500);
 
 	if(document.getElementById(data2).checked){
 
@@ -67,6 +72,7 @@ function set_id(data1, data2, data3){
 		}
 
 		selectItems.push(data1);
+		console.log(selectItems);
 
 	}else{
 		for(var x = 0; x <= selectItems.length; x++){
@@ -75,6 +81,8 @@ function set_id(data1, data2, data3){
 			  selectItems.splice(index, 1);
 			}
 		}
+
+		console.log(selectItems);
 		
 	}
 
@@ -110,7 +118,7 @@ var button_select =  document.getElementsByClassName('button_select');
 
 for(var z = 0; z < button_select.length; z++){
 	button_select[z].onclick = function(){
-		setTimeout(function(){ document.getElementById("text_mobil").focus(); }, 500);
+		//setTimeout(function(){ document.getElementById("text_mobil").focus(); }, 500);
 	}
 }
 

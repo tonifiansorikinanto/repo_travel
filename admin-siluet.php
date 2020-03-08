@@ -10,9 +10,6 @@
 
 		$show_data_tbSiluet = show_data_tbSiluet();
 
-		$show_mobil_available = show_mobil_available_siluet_order();
-		$show_mobil_idle 			= show_mobil_idle_siluet();
-
 		// editanku
 		$query_id = $_SESSION['user_access'];
 		$query = "SELECT * FROM tb_admin WHERE username='$query_id'";
@@ -26,6 +23,9 @@
 		$id_get = $_GET['id'];
 
 		$id_get = explode("-", $id_get);
+
+		$show_mobil_available = show_mobil_available_siluet_order($id_get);
+		//$show_mobil_idle 			= show_mobil_idle_siluet();
 
 	}
 
@@ -125,6 +125,7 @@
 
 				if(!empty(trim($text_mobil))){
 					if(setKeteranganSiluet($text_mobil, $id_nomer)){
+						add_tbjadwal_siluet($text_mobil, $id_nomer);
 						$_SESSION["report_message"] = report_message("success", "Berhasil Meng-set Data ");
 						header("Location: admin-siluet?tb=" . $_GET['tb'] . "&id=" . $_GET['id']);
 					}else{
@@ -404,12 +405,9 @@
 				    	<?php while($data_mobil = mysqli_fetch_assoc($show_mobil_available)):
 			    		$hasil = $data_mobil['penumpang'] - $data_mobil['seat_use'];
 			    		?>
-			    		<option value="<?= $data_mobil['id_mobil']; ?>"><?= $data_mobil['mobil']; ?> (<?= $data_mobil['plat_nomor']; ?> • <?= $hasil . " Penumpang"; ?>)</option>
-			    		<?php endwhile; ?>
-
-			    		<?php while($data_idle = mysqli_fetch_assoc($show_mobil_idle)): ?>
-			    		<option value="<?= $data_idle['id_mobil']; ?>"><?= $data_idle['mobil']; ?> (<?= $data_idle['plat_nomor']; ?> • <?= $data_idle['penumpang'] . " Penumpang"; ?>)</option>
-			    		<?php endwhile; ?>
+			    			<option value="<?= $data_mobil['id_mobil']; ?>"><?= $data_mobil['mobil']; ?> (<?= $data_mobil['plat_nomor']; ?> • <?= $hasil . " Penumpang"; ?>)</option>
+			    		<?php endwhile; ?>			    	
+			    		
 				    </select>
 			  	</div>
 		      <div class="modal-footer">
@@ -437,7 +435,7 @@ if(isset($_SESSION['report_message'])){
 	  <h2 class="navbar-brand h2-responsive my-0" href="#">Database Travel</h2>
 		<h6 class="h6-responsive my-0 ml-auto text-white" href="#">Selamat Datang, <?= $nama; ?>!</h6>
 	  <button class="btn btn-danger btn-md mx-3 my-0" type="button" data-toggle="modal" data-target="#modalLogout">logout</button>
-	  <a role="button" class="btn btn-primary btn-md my-0" href="data-mobil-liza">Data Mobil</a>
+	  <a role="button" class="btn btn-primary btn-md my-0" href="data-mobil-siluet">Data Mobil</a>
 	</nav>	
 
 	<div class="container-fluid" style="padding-left: 10px; padding-right: 20px;">
@@ -458,13 +456,16 @@ if(isset($_SESSION['report_message'])){
 						</form>
 		  			</div>
 		  			<div class="col-md-3" align="center">
-		  				<a href="#x" class="h5-responsive text-warning" data-toggle="modal" data-target="#modalCS"  onclick="setInputParameter('tb1')"><i class="fas fa-user-plus"></i> Tambah Penumpang Liza</a>
+		  				<a href="#x" class="h5-responsive text-warning" data-toggle="modal" data-target="#modalCS"  onclick="setInputParameter('tb1')"><i class="fas fa-user-plus"></i> Tambah Penumpang Siluet</a>
 		  			</div>
 		  			<div class="col-md-2" align="right">
 		  				<button class="btn btn-info btn-md" type="button" data-toggle="modal" data-target="#modalKetersediaan" style="width: 130px;">Cek Mobil</button>		  				
 		  			</div>
 		  			<div class="col-md-2" align="right">
-		  				<a href="#x" role="button" class="h5-responsive text-primary button_select text-center" data-toggle="modal" data-target="#modalSelect"><i class="fas fa-car"></i> Pilih Mobil</a>
+		  				<!-- <a role="button" class="h5-responsive text-primary button_select text-center" data-toggle="modal" data-target="#modalSelect" onclick="console.log('Shao');"><i class="fas fa-car"></i> Pilih Mobil</a> -->
+		  				<form action="" method="post">
+		  					<button name="pilih_mobil" class="h5-responsive text-primary button_select text-center button_mobil"><i class="fas fa-car"></i> Pilih Mobil</button>
+		  				</form>
 		  			</div>		  			
 		  			<div class="col-md-2" align="right">
 		  				<a class="h5-responsive text-success" id="print_button"><i class="fas fa-print"></i> Print Tabel</a>
@@ -588,24 +589,39 @@ if(isset($_SESSION['report_message'])){
 	</div>
 </div>
 
-<script>
-$(document).ready(function () {
-$('#example').DataTable();
-$('.dataTables_length').addClass('bs-select');
-});
-</script>
-
 <?php 
+
 require_once 'assets/templates/footer.php';
 
 if(isset($error_modal)){
 	echo $error_modal;
 }
 
+if(isset($_GET['id']) && $_GET['id'] != ""){
+	for($s = 0; $s < count($id_get); $s++){
+		$data_select = "<script>
+			selectItems.push('$id_get[$s]');
+			console.log(selectItems);
+		</script>";
+
+		echo $data_select;
+	}
+}
+
+//if(isset($_GET['id']) && $_GET['id'] != ""){ $data_select; }
+
 if(isset($_POST['submit_cari_mobil'])){
 	echo '<script>
     $(document).ready(function(){
         $("#modalKetersediaan").modal("show");
+    });
+  </script>';
+}
+
+if(isset($_POST['pilih_mobil'])){
+	echo '<script>
+    $(document).ready(function(){
+        $("#modalSelect").modal("show");
     });
   </script>';
 }

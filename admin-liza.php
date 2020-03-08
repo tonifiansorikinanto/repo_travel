@@ -588,13 +588,6 @@ if(isset($_SESSION['report_message'])){
 	</div>
 </div>
 
-<script>
-$(document).ready(function () {
-$('#example').DataTable();
-$('.dataTables_length').addClass('bs-select');
-});
-</script>
-
 <?php 
 require_once 'assets/templates/footer.php';
 

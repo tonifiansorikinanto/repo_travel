@@ -280,3 +280,10 @@ input[type="checkbox"]:before{
   padding-right:10px;
   padding-left: 10px;
 }
+
+.button_mobil{
+  outline:none;
+  border:none;
+  background:none;
+  cursor:pointer;
+}
