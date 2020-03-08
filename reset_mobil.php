@@ -8,10 +8,12 @@ if(isset($_SESSION["user_access"])){
 		$data_tb = $_GET['tb'];
 		$data_id = $_GET['id_mobil'];
 
-		reset_data_mobil_siluet($data_id);
+		
 		if($data_tb == "tb1"){
+			reset_data_mobil_siluet($data_id);
 			header('Location: data-mobil-siluet');
 		}else{
+			reset_data_mobil_liza($data_id);
 			header('Location: data-mobil-liza');
 		}
 

@@ -117,8 +117,24 @@ function reset_data_mobil_siluet($data_id){
 
 	$query = "UPDATE tb_mobil_siluet SET sisa_seat='$penumpang' WHERE id_mobil = '$id_mobil'";
 	$result = mysqli_query($connect, $query);
+	
+	return $result;
+}
 
+function reset_data_mobil_liza($data_id){
+	global $connect;
 
+	$id_mobil = escape($data_id);
+
+	$show_mobil = show_ondata_mobil_liza($id_mobil);
+
+	while($data = mysqli_fetch_assoc($show_mobil)){
+		$penumpang = $data['penumpang'];
+	}
+
+	$query = "UPDATE tb_mobil_liza SET sisa_seat='$penumpang' WHERE id_mobil = '$id_mobil'";
+	$result = mysqli_query($connect, $query);
+	
 	print_r($result);
 	return $result;
 }
@@ -142,7 +158,7 @@ function add_mobil_liza($mobil, $plat, $penumpang){
 	$plat = escape($plat);
 	$seat = escape($penumpang);
 
-	$query = "INSERT INTO tb_mobil_liza (mobil, plat_nomor, penumpang) VALUES ('$mobil', '$plat', '$seat')";
+	$query = "INSERT INTO tb_mobil_liza (mobil, plat_nomor, penumpang, sisa_seat) VALUES ('$mobil', '$plat', '$seat', '$seat')";
 	mysqli_query($connect, $query);
 	return true;
 }
@@ -228,6 +244,15 @@ function show_ondata_mobil_siluet($id){
 	global $connect;
 
 	$query 	= "SELECT * FROM tb_mobil_siluet WHERE id_mobil = '$id'";
+	$result = mysqli_query($connect, $query);
+
+	return $result;
+}
+
+function show_ondata_mobil_liza($id){
+	global $connect;
+
+	$query 	= "SELECT * FROM tb_mobil_liza WHERE id_mobil = '$id'";
 	$result = mysqli_query($connect, $query);
 
 	return $result;
