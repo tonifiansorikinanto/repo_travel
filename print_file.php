@@ -70,6 +70,8 @@ while($data2 = mysqli_fetch_assoc($panggil_mobil)){
   $plat = $data2['plat_nomor'];  
 }
 
+// die($nama_mobil);
+
 $no = 1;
 
 $mpdf = new \Mpdf\Mpdf();

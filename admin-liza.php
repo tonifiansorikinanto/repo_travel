@@ -196,7 +196,7 @@
 		$jam_modal	= $_POST['jam'];
 		$tgl_cari	= $_POST['tgl'];
 
-		$no = 1;
+		$no = 1; $no3 = 1;
 
 		$cek_mobil_liza = cek_mobil_liza($jam_modal, $tgl_cari);
 
@@ -300,7 +300,7 @@
 									  	while($data = mysqli_fetch_assoc($cek_mobil_kosong_liza)): 
 									  	?>
 									    <tr>
-									      <th scope="row"><?= $no++ ;?></th>
+									      <th scope="row"><?= $no3++ ;?></th>
 									      <td><?= $data['mobil'] ?></td>
 									      <td><?= $data['plat_nomor'] ?></td>
 									      <td class="text-center"><?= $data['penumpang'];?></td>					      
@@ -427,10 +427,8 @@
 				    <!-- <input type="text" aria-label="text_mobil" name="text_mobil" class="form-control" placeholder="Masukkan Keterangan Mobil..." id="text_mobil"> -->
 				    <?php if (isset($_GET['id']) && !empty($_GET['id'])): ?>
 					    <select name="text_mobil" class="form-control">
-					    	<?php while($data_mobil = mysqli_fetch_assoc($show_mobil_available)):
-				    		$hasil = $data_mobil['penumpang'] - $data_mobil['seat_use'];
-				    		?>
-				    			<option value="<?= $data_mobil['id_mobil']; ?>"><?= $data_mobil['mobil']; ?> (<?= $data_mobil['plat_nomor']; ?> • <?= $hasil . " Penumpang"; ?>)</option>
+					    	<?php while($data_mobil = mysqli_fetch_assoc($show_mobil_available)):?>
+				    			<option value="<?= $data_mobil['id_mobil']; ?>"><?= $data_mobil['mobil']; ?> (<?= $data_mobil['plat_nomor']; ?> • <?= $data_mobil['sisa_seat'] . " Seat"; ?>)</option>
 				    		<?php endwhile; ?>			    				    		
 					    </select>
 					 <?php else : ?>
