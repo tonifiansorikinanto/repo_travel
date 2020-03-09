@@ -49,12 +49,12 @@ if(isset($_GET['id']) && $_GET['id'] != ""){
     if($table_name == "tb1"){
       $show_data_tb = show_dataPrint_tbSiluet($id_parameter);
       $show_data_tb_test = show_dataPrint_tbSiluet($id_parameter);
-      // ubahStatusPrint_tbSiluet($id_parameter);
+      ubahStatusPrint_tbSiluet($id_parameter);
     }else{
       $show_data_tb = show_dataPrint_tbLiza($id_parameter);
       $show_data_tb_test = show_dataPrint_tbLiza($id_parameter);
 
-      //ubahStatusPrint_tbLiza($id_parameter);
+      ubahStatusPrint_tbLiza($id_parameter);
     }
   }
 }
@@ -106,7 +106,7 @@ $html = '
 <body>
 <h1>Tabel Data Penumpang ' . $nama_tabel . ' • ' . $nama_mobil . ' • ' . $plat . '</h1>
 
-<table cellspacing="0" cellpadding="10" style="width:100%">
+<table cellspacing="0" cellpadding="10" style="width:100%; padding-top:0;">
   <thead>
     <tr style="background-color:#4C4C4C;">
       <th style="color:#FFFFFF; width: 10px;">#</th>
@@ -171,7 +171,7 @@ $html .= '
  </table>';
 
 $html .= '
-  <table cellspacing="0" cellpadding="10" style="width:100%; margin-top:40px;">
+  <table cellspacing="0" cellpadding="10" style="width:100%; margin-top:30px;">
   <thead>
     <tr style="background-color:#4C4C4C;">
       <th style="color:#FFFFFF; width: 10px;">#</th>
@@ -317,16 +317,16 @@ $html .= '
 ';
 
 
-$html .= '<div class="row">
-  <div class="col-ttd" align="center">
-    <h3>Malang, ___ ____________ _____</h3>
-    <h3 style="margin-bottom: 80px; margin-top: 1px; padding-top: 1px;">Petugas Penerima</h3>
-    <h3>(_______________________________)</h3>
-  </div>
- </div>
+// $html .= '<div class="row">
+//   <div class="col-ttd" align="center">
+//     <h3>Malang, ___ ____________ _____</h3>
+//     <h3 style="margin-bottom: 80px; margin-top: 1px; padding-top: 1px;">Petugas Penerima</h3>
+//     <h3>(_______________________________)</h3>
+//   </div>
+//  </div>
 
-</body>
-</html>';
+// </body>
+// </html>';
 
 $mpdf->AddPage('L');
 $mpdf->WriteHTML($html);

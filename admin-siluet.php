@@ -467,8 +467,8 @@ if(isset($_SESSION['report_message'])){
 		<div class="row justify-content-center mt-2 mb-4">
 			<div class="col-md-12">
 				<div align="center" class="mt-2">
-					<a href="admin-siluet" class="btn waves-effect btn-warning" role="button" style="width: 190px;">Siluet</a>
-					<a class="btn waves-effect btn-outline-info" href="admin-liza" role="button" style="width: 190px;">Liza</a>
+					<a href="admin-siluet" class="btn waves-effect btn-outline-warning" role="button" style="width: 190px;">Siluet</a>
+					<a class="btn waves-effect btn-info" href="admin-liza" role="button" style="width: 190px;">Liza</a>
 				</div>
 				
 				<div class="row mt-4 justify-content-center align-items-center">
