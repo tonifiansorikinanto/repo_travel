@@ -404,7 +404,6 @@ function show_dataPrint_tbSiluet($id_parameter){
 
 	$query 	= "SELECT * FROM tb_siluet WHERE id IN (". $id_parameter .") ORDER BY jam ASC";
 	$result = mysqli_query($connect, $query);
-
 	return $result;
 }
 

@@ -14,9 +14,12 @@ if(isset($_GET['id']) && $_GET['id'] != ""){
     $nama_tabel = "Liza";
   }
 
+  $show_data_print = show_data_onID_tbSiluet($id_parameter);
+
   if ($nama_tabel == "Siluet") {
-    while($data_cek = mysqli_fetch_assoc(show_dataPrint_tbSiluet($id_parameter))){
-      $id_mobil = $data_cek['id_mobil'];
+    while($data_cek = mysqli_fetch_assoc($show_data_print)){
+      $id_mobil = $data_cek['mobil'];
+
       if ($id_mobil == ''){
        $_SESSION['report_message'] = report_message("error", "Ada client yang tidak mendapatkan mobil!");
        header('Location: admin-siluet');
@@ -34,12 +37,10 @@ if(isset($_GET['id']) && $_GET['id'] != ""){
 
   if(isset($_GET['tb'])){
     $table_name = $_GET['tb'];
-
     if($table_name == "tb1"){
       $show_data_tb = show_dataPrint_tbSiluet($id_parameter);
-
-      ubahStatusPrint_tbSiluet($id_parameter);
-
+      $show_data_tb_test = show_dataPrint_tbSiluet($id_parameter);
+      // ubahStatusPrint_tbSiluet($id_parameter);
     }else{
       $show_data_tb = show_dataPrint_tbLiza($id_parameter);
 
@@ -50,7 +51,7 @@ if(isset($_GET['id']) && $_GET['id'] != ""){
 }
 
 while($data1 = mysqli_fetch_assoc($show_data_tb)){
-  $id_mobil = $data1['id_mobil'];
+  $id_mobil = $data1['mobil'];
 }
 
 $panggil_mobil = show_ondata_mobil_siluet($id_mobil);
@@ -115,10 +116,8 @@ $html = '
  	<tbody>';
 
   if(isset($_GET['id']) && $_GET['id'] != "" && isset($_GET['tb']) && $_GET['tb'] != ""){
-
-   	while($data = mysqli_fetch_assoc($show_data_tb)){
+   	while($data = mysqli_fetch_assoc($show_data_tb_test)){
       $dataLunas = $data["lunas"];
-
       if($dataLunas == 1){
         $dataLunas = "Lunas";
       }else{
