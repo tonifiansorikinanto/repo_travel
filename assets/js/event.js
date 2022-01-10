@@ -239,7 +239,12 @@ function table_pagination_meta(start_index){
 
 window.onload = function(){
 	table_pagination_meta(start_index);
+
+	// document.documentElement.requestFullscreen();
 };
+
+
+
 
 
 //table_pagination.outerHTML = "";
